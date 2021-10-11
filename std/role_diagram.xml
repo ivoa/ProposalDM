@@ -1,0 +1,26 @@
+<!--
+Document authors (ivoatex maintainers have different rules):
+
+* svn cp this file to role_diagram.xml, and then:
+
+* Remove all <rec> elements in there referring to standards not related
+  to the current one,
+
+* change the tag name for the current one from rec to thisrec
+
+* make role_diagram.pdf
+
+For the time being, keep both role_diagram.pdf and role_diagram.svg as
+created by this in the VCS.  This helps document builds on machines
+with missing dependencies.
+-->
+
+<archdiag xmlns="http://ivoa.net/archdiag">
+	<!-- Data Models: x=430..580, y=250..400 -->
+	<rec name="VODML" x="490" y="195"/>
+	<thisrec name="ProposalDM" x="550" y="230"/>
+
+	<!-- Semantics: x=160..250 y=250..400 -->
+	<rec name="VOUnits" x="200" y="250"/>
+	<rec name="Vocabularies" x="160" y="335"/>
+</archdiag>

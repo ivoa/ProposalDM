@@ -1,0 +1,25 @@
+/*
+ *  created on 09-Jul-2021 
+ */
+ 
+ model proposalDM (0.1) "description" author "pharriso" 
+ 
+ include "https://raw.githubusercontent.com/ivoa/vodsl-models/master/IVOA-v1.0.vodsl" // this is an edited version of the standard to include identifiers.
+ 
+ 
+ enum ProposalKind
+ {
+ 	Standard "",
+ 	ToO "target of opportunity",
+ 	Survey ""
+ 	
+ }
+ 
+ otype ObservingProposal "a complete proposal"
+ {
+ 	title: ivoa:string   "the proposal title" ;
+    code: ivoa:stringIdentifier  "a code that can be used to refer to the proposal" ;
+    ^abstract: ivoa:string   "" ;
+    kind : ProposalKind "the type of proposal";
+    relatedProposals @* references ObservingProposal "";
+ }

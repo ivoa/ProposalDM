@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vo-dml:model xmlns:vo-dml="http://www.ivoa.net/xml/VODML/v1" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.ivoa.net/xml/VODML/v1 https://www.ivoa.net/xml/VODML/vo-dml-v1.xsd" 
+              vodmlVersion="1.1">	<!-- file generated from VODSL - needs validatate against v1.1 of schema  --> 
+      <name>proposalDM</name>
+      <description>description</description> 
+      <uri/>
+      <title>TBD</title>
+      <author>pharriso</author>
+      <version>0.1</version>
+      <lastModified>2021-10-08T15:14:35Z</lastModified>
+      <import>
+        <name>null</name><!--should not be needed in modern vo-dml -->
+        <url>IVOA-v1.0.vo-dml.xml</url>
+        <documentationURL>not known</documentationURL>
+      </import>
+            <enumeration>
+               <vodml-id>ProposalKind</vodml-id>
+               <name>ProposalKind</name>
+               <description></description>	    
+                  <literal>
+                    <vodml-id>ProposalKind.Standard</vodml-id>
+                    <name>Standard</name>
+                    <description></description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>ProposalKind.ToO</vodml-id>
+                    <name>ToO</name>
+                    <description>target of opportunity</description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>ProposalKind.Survey</vodml-id>
+                    <name>Survey</name>
+                    <description></description>	    
+                  </literal>	
+            </enumeration>
+            <objectType>
+               <vodml-id>ObservingProposal</vodml-id>
+               <name>ObservingProposal</name>
+               <description>a complete proposal</description>	    
+               <attribute>
+                 <vodml-id>ObservingProposal.title</vodml-id>
+                 <name>title</name>
+                 <description>the proposal title</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>ObservingProposal.code</vodml-id>
+                 <name>code</name>
+                 <description>a code that can be used to refer to the proposal</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:stringIdentifier</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>ObservingProposal.abstract</vodml-id>
+                 <name>abstract</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>ObservingProposal.kind</vodml-id>
+                 <name>kind</name>
+                 <description>the type of proposal</description>	    
+                 <datatype>
+                    <vodml-ref>proposalDM:ProposalKind</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <reference>
+                 <vodml-id>ObservingProposal.relatedProposals</vodml-id>
+                 <name>relatedProposals</name>
+                 <description></description>	    
+                 <datatype>
+                   <vodml-ref>proposalDM:ObservingProposal</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </reference>
+            </objectType>
+</vo-dml:model>
