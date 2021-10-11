@@ -37,8 +37,8 @@ jobs:
     
     - name: Check the output
       run: |
-        test -f ${{ env.doc_name }}-draft.pdf
-        test -f ${{ env.doc_name }}.bbl
+        test -f std/${{ env.doc_name }}-draft.pdf
+        test -f std/${{ env.doc_name }}.bbl
     
     - name: Move the auto-pdf-preview tag
       uses: weareyipyip/walking-tag-action@v2
@@ -61,6 +61,6 @@ jobs:
           It will be updated automatically after each merge of a PullRequest.
           **DO NOT PUBLISH THIS PRE-RELEASE!**"
           _Corresponding commit: ${{ github.sha }}_
-        assets: ${{ env.doc_name }}-draft.pdf
+        assets: std/${{ env.doc_name }}-draft.pdf
         replace_assets: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
