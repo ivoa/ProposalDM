@@ -1,0 +1,239 @@
+
+model coords (1.0) "This model defines objects which describe the coordinate space, coordinates within that space, and frames, which provide additional metadata regarding the origin, orientation, etc, of the coordinate space. The model also defines a coordinate system, bundling frames into associated groups.
+"
+     
+ author "Arnold Rots, Mark Cresitello-Dittmar, Omar Laurino"
+       include "IVOA-v1.0.vodsl"
+     
+    primitive Epoch  "We define epoch as a primitive data type with the expected form '<type><year>' where type = 'J' or 'B' for Julian or Besselian respectively, and year is expressed as a decimal year.  e.g.: 'B1950', 'J2000.0'"
+enum Handedness  "The handedness of a coordinate space.  For most cases, this will be a fixed value in the specification of the coordinate space.  We provide this element to allow this flexibility when needed.  In this document, it is used in the Pixel domain."
+{
+left  "positive x and y axes point right and up, the positive z axis points inward",
+right  "positive x and y axes point right and up, the positive z axis points outward"
+}
+
+enum PolStateEnum  "Polarization states: Stokes, Circular, Linear and Vector states
+"
+{
+I  "",
+Q  "",
+U  "",
+V  "",
+RR  "",
+LL  "",
+RL  "",
+LR  "",
+XX  "",
+YY  "",
+XY  "",
+YX  "",
+PF  "",
+PP  "",
+PA  ""
+}
+
+abstract dtype Coordinate  "Abstract base class for the Coordinate data types which represent an absolute location within a coordinate space. Coordinates MUST refer to a coordinate system, providing additional metadata relevant to interpreting the coordinate value, and its representation.
+"
+  {   
+        coordSys  references CoordSys "Provided additional metadata relevant to interpreting the coordinate value; for example, the spatial reference position, or time scale, axis descriptions.
+";
+  }
+
+dtype BinnedCoordinate  -> Coordinate "Coordinate value type specifically intended for binned data (e.g.: pixel indexes).
+"
+  {   
+        cval: ivoa:integer   "The binned coordinate value, expressed as an integer.  e.g.: bin number, pixel index.
+";
+  }
+
+dtype PixelIndex  -> BinnedCoordinate "Specialized BinnedCoordinate for the pixel domain for a 1-dimensional pixel index.  PixelIndex MUST refer to a PixelCoordSystem.
+"
+  {   
+  }
+
+dtype PhysicalCoordinate  -> Coordinate "The most common type of coordinate value.  This type is appropriate for any data whose values can be described by an ivoa:Quantity (numeric, with unit)."
+  {   
+        cval: ivoa:Quantity   "This coordinate MUST contain a value expressed as an ivoa:Quantity.";
+  }
+
+dtype Point  -> Coordinate "Multi-dimensional spatial coordinate. The Point MUST refer to a spatial coordinate system (SpaceSys).  The coordinate values map, in order, to the axes described by the associated CoordSpace.  Values for unused/undefined dimensions need not be provided."
+  {   
+     subset coords:Coordinate.coordSys as coords:SpaceSys;
+        axis1: ivoa:Quantity  @?   "Coordinate value along the first axis of the associated coordinate space, expressed as an ivoa:Quantity.";
+        axis2: ivoa:Quantity  @?   "Coordinate value along the second axis of the associated coordinate space, expressed as an ivoa:Quantity.";
+        axis3: ivoa:Quantity  @?   "Coordinate value along the third axis of the associated coordinate space, expressed as an ivoa:Quantity.";
+  }
+
+abstract dtype TimeStamp  -> Coordinate "This is the abstract basis for a set of simple time domain coordinates which are expected to accommodate the vast majority of use cases. All TimeStamps, by definition, exist in a standard 1-D coordinate space, with domainMin|Max of +/-Infinity.  All TimeStamps MUST refer to an appropriate TimeSys.
+"
+  {   
+     subset coords:Coordinate.coordSys as coords:TimeSys;
+  }
+
+dtype TimeOffset  -> TimeStamp "Time is given as an offset from a specific point in time (time0)."
+  {   
+        time: ivoa:RealQuantity   "The TimeOffset coordinate value.";
+        time0: TimeInstant   "The reference time from which the offset is calculated.  This MUST be given as a TimeInstant (e.g.: JD, MJD, ISOTime).";
+  }
+
+abstract dtype TimeInstant  -> TimeStamp "TimeStamps which specify a specific instant in time.  We define three subtypes (ISOTime, JD, MJD), which allow users to explicitly identify the representation and interpretation of the TimeInstant."
+  {   
+  }
+
+dtype JD  -> TimeInstant "Extension of TimeInstant for time expressed in Julian days.  Note that JD does not properly specify a time stamp unless it is related to a time scale and reference position.  Precision can easily become an issue with JD, as the numbers tend to be large."
+  {   
+        date: ivoa:real   "The JD coordinate value.  JD dates are dimensionless, with implied units in days.";
+  }
+
+dtype MJD  -> TimeInstant "Extension of TimeInstant for time expressed in Modified Julian Days.  T(MJD) = T(JD) - 2400000.5."
+  {   
+        date: ivoa:real   "The MJD coordinate value.  MJD dates are dimensionless, with implied units in days.";
+  }
+
+dtype ISOTime  -> TimeInstant "Extension of TimeInstant for time expressed as a structured datetime string.
+The string representation of a datetime value should follow the FITS convention for representing dates (Hanish and Farris et al, 2001).  The FITS standard is effectively ISO8601 format without the 'Z' tag to indicate UTC:  YYYY-MM-DD['T'hh:mm:ss[.SSS]].  The TimeScale is provided in the associated TimeFrame."
+  {   
+        date: ivoa:datetime   "The ISOTime coordinate value.";
+  }
+
+abstract dtype PolCoordinate  -> Coordinate "Abstract head of the polarization coordinate types. Current use cases only require support for discrete polarization states, however, we include this head class to facilitate extension for other types (eg: polarization fraction and angle)."
+  {   
+  }
+
+dtype PolState  -> PolCoordinate "Coordinate type for discrete polarization states.
+"
+  {   
+        cval: PolStateEnum   "The coordinate value MUST be from the PolStateEnum enumerated set.
+";
+  }
+
+abstract dtype RefLocation  "RefLocation defines the origin of the spatial coordinate space.  This location is represented either by a standard reference position (for which the absolute location in phase space is known by definition), or a specified point in another Spatial frame.  This object is used as the origin of the SpaceFrame here, but also to specify the Spatial Reference Position (refPosition) associated with other domain Frames.  For example, in the Time domain, the Spatial Reference Position indicates that the 'time' values are the time that the 'event' occured at that location, which might be different from the detector location.  
+ "
+  {   
+  }
+
+dtype StdRefLocation  -> RefLocation "An absolute a-priori known location in phase space (position and velocity).  Values are selected from the StdRefPosition vocabulary.  Considering that the GEOCENTER is really the only place for which we know the absolute location at all times, all other locations require the specification of a planetary ephemeris.  LSR[KD] are reserved for spectral and reshift frames.  TOPOCENTER (location of the observer) is special in that it assumes that the observing location is available through other means (e.g. a geographic location or an orbit ephemeris).  RELOCATABLE is available for simulations.  UNKNOWN should only be used if absolutely necessary."
+  {   
+        position: ivoa:string   "Standard reference location.  Values MUST be selected from the controlled vocabulary at the given URL. " semantic "ReferencePosition" in "http://www.ivoa.net/rdf/refposition";
+  }
+
+dtype CustomRefLocation  -> RefLocation "A custom reference location in phase space (position and velocity).  Position and velocity are given as coordinates with an associated SpaceFrame.  An epoch MAY be provided to further refine the location."
+  {   
+        epoch: Epoch  @?   "Epoch for the reference location.";
+        position: Point   "The spatial coordinates of the reference location.";
+        velocity: Point  @?   "The velocity of the reference location.";
+  }
+
+abstract otype CoordSpace  "This object defines a domain space.  i.e.: it describes the set of possible coordinate values."
+  {   
+        axis : Axis @+  as composition "Describes an axis of the coordinate space.  ";
+  }
+
+abstract otype Axis  "The abstract parent class for all coordinate axis types.  We provide concrete classes for the most common types of data, Continuous, Binned, and Discrete, but allow extension for other types as needed."
+  {   
+        name: ivoa:string  @?   "Freeform string, provides the name or label for the axis.";
+  }
+
+otype ContinuousAxis  -> Axis "Axis description for continuous data.  This object describes the domain for a particular axis of the domain space.  It allows for the specification of the legal domain range (min,max), and a flag indicating if the axis is cyclic."
+  {   
+        domainMin: ivoa:Quantity  @?   "Minimum extent of the axis domain space.  If not provided, the domain space is considered to have no lower bound (-INFINITY).";
+        domainMax: ivoa:Quantity  @?   "Maximum extent of the axis domain space.  If not provided, the domain space is considered to have no upper bound (+INFINITY).";
+        cyclic: ivoa:boolean  @?   "Flag indicating if the axis is cyclic in nature.  If not provided, it is assumed to be FALSE.";
+  }
+
+otype BinnedAxis  -> Axis "Axis description for binned data, where values along the axis correspond to a bin number."
+  {   
+        length: ivoa:nonnegativeInteger   "  The length, or number of bins, along the axis.";
+  }
+
+otype DiscreteSetAxis  -> Axis "Axis type specifically intended for enumerated coordinates.  Since the content and nature of this axis type is heavily dependent on the use case, we define no additional metadata here.  Extensions of this type may include additional metadata relevant to the particular use cases.  For example, an extension could include the allowed set of values."
+  {   
+  }
+
+abstract otype CoordFrame  "This is the abstract, empty, base class for all coordinate frames.  Coordinate frames provide metadata associated with the coordinate domain space.  Typically, this will be related to the origin and orientation of the axes, but might include any metadata which pertains to the definition of the domain."
+  {   
+  }
+
+otype GenericFrame  -> CoordFrame "The generic coordinate frame is for cases where a domain-specific frame (e.g.: Space, Time), is not required, but the relevant reference metadata is still needed (e.g.: for Redshift or Spectral data)"
+  {   
+        refPosition: RefLocation   "Spatial location in phase space (position and velocity) at which the observed value is considered to have been taken. This will typically be given by a standard reference position, but we allow for custom locations as well.
+";
+        planetaryEphem: ivoa:string  @?   "A planetary ephemeris MAY be provided, and SHOULD be provided whenever appropriate, to indicate which solar system ephemeris was used.  If needed, but not provided, it is assumed to be 'DE405'";
+  }
+
+otype SpaceFrame  -> CoordFrame "A SpaceFrame is specified by its reference frame (orientation), and a reference position (origin). Currently only standard reference frames are allowed. An equinox MUST be provided for pre-ICRS reference frames. A planetary ephemeris MAY be provided if relevant. If needed, but not provided, it is assumed to be 'DE405'.
+"
+  {   
+        refPosition: RefLocation   "The spatial location at which the coordinates are considered to have been determined.  This model supports locations provided as either a standard reference position (e.g. GEOCENTER), or a coordinate specifying a custom location (e.g. long, lat, height ).";
+        spaceRefFrame: ivoa:string   "The spatial reference frame. Values MUST be selected from the controlled vocabulary at the given URL.
+" semantic "SpaceRefFrame" in "http://www.ivoa.net/rdf/refframe";
+        equinox: Epoch  @?   "Reference date for the frame, required for pre-ICRS reference frames.";
+        planetaryEphem: ivoa:string  @?   "Ephemeris file for solar system objects SHOULD be specified whenever relevant.";
+  }
+
+otype TimeFrame  -> CoordFrame "A TimeFrame SHALL include a time scale and reference position.  It MAY also include a reference direction."
+  {   
+        refPosition: RefLocation   "The spatial location at which the coordinate is considered to have been taken.  This model supports locations provided as either a standard reference position (e.g. GEOCENTER), or a coordinate specifying a custom location (e.g. long, lat, height).";
+        timescale: ivoa:string   "The time scale sets the reference frame.  The value MUST be selected from the controlled vocabulary at the given URL." semantic "TimeScale" in "http://www.ivoa.net/rdf/timescale";
+        refDirection: RefLocation  @?   "The reference direction is needed if the time stamps are transformed to a time frame with a different reference position.  In those situations, the solar system ephemeris also comes into play.  See: FITS WCS Paper IV for details, but in short:  The reference direction, presumably the direction to the thing being observed, is used in conjunction with the reference position and planetary ephemeris to determine the correction applied for the path length change.  To be fully useful, one also needs to know the location at which the observation was made ( i.e. the observatory location), which is not considered to be Frame metadata.";
+  }
+
+otype AstroCoordSystem  -> CoordSys "The AstroCoordSystem object holds a collection of component coordinate system descriptions across all represented physical domains."
+  {   
+        coordSys : PhysicalCoordSys @+  as composition "Coordinate system description for each physical domain (Space, Time, etc).";
+  }
+
+otype PixelCoordSystem  -> CoordSys "The PixelCoordSystem provides a complete description of the pixel coordinate space.  It SHALL contain one PixelSpace instance describing each pixel axis."
+  {   
+        pixelSpace : PixelSpace as composition "The pixel space completely defines the pixel coordinate axes.  Each axis MUST be defined as a BinnedAxis type.";
+  }
+
+otype PixelSpace  -> CoordSpace "A PixelSpace SHALL include one or more BinnedAxis objects describing the pixel coordinate space.  A handedness value MAY be provided to specify the relative orientation of the axes.  "
+  {   
+     subset coords:CoordSpace.axis as coords:BinnedAxis;
+        handedness: Handedness  @?   "Specifies the handedness of the coordinate space.";
+  }
+
+abstract otype CoordSys  "Abstract head of the coordinate system object tree."
+  {   
+  }
+
+abstract otype PhysicalCoordSys  -> CoordSys "Coordinate system description for any physical domain, such as Time, Space, Redshift, Temperature, Flux, etc."
+  {   
+        coordSpace : PhysicalCoordSpace @?  as composition "Description of the coordinate space occupied by the property.";
+        frame : CoordFrame @?  as composition "";
+  }
+
+otype GenericSys  -> PhysicalCoordSys "Specialized coordinate system for generic, one-dimensional domains not covered by other, more concrete objects.  If a CoordSpace is not provided, it is assumed to be represented by a Standard 1-Dimensional Coordinate Space as described in Appendix B."
+  {   
+     subset coords:PhysicalCoordSys.frame as coords:GenericFrame;
+  }
+
+otype SpaceSys  -> PhysicalCoordSys "Specialized coordinate system for the Spatial domain.  This object SHOULD include an appropriate SpaceFrame.  In Appendix B, we define two standard spatial coordinate space instances (Spherical and Cartesian), which may be referenced in serializations.  If a CoordSpace is not provided, it is assumed to be represented by a Standard Spherical Coordinate Space."
+  {   
+     subset coords:PhysicalCoordSys.frame as coords:SpaceFrame;
+  }
+
+otype TimeSys  -> PhysicalCoordSys "Specialized coordinate system for the Temporal domain.  This object SHOULD include an appropriate TimeFrame.  If a CoordSpace is not provided, it is assumed to be represented by a Standard 1-Dimensional Coordinate Space as described in Appendix B."
+  {   
+     subset coords:PhysicalCoordSys.frame as coords:TimeFrame;
+     subset coords:PhysicalCoordSys.coordSpace as coords:GenericCoordSpace;
+  }
+
+abstract otype PhysicalCoordSpace  -> CoordSpace "Abstract head of coordinate spaces related to physical properties."
+  {   
+  }
+
+otype GenericCoordSpace  -> PhysicalCoordSpace "Generic, one-dimensional coordinate space suitable for use with most non-spatial properties.  In Appendix B, we provide the description of a Standard 1D Coordinate Space instance which may be referenced in serializations."
+  {   // constraint  axis[1]
+  }
+
+otype SphericalCoordSpace  -> PhysicalCoordSpace "Spatial domain, three-dimensional spherical coordinate space.  The particulars of the axis descriptions depend on the flavor of space being instantiated.  In Appendix B., we provide a Standard Spherical Coordinate Space instance which applies to many Astronomical use cases.  It provides the default space for SpaceSys instances, and may be referenced in serializations."
+  {   // constraint  axis[3]
+     subset coords:CoordSpace.axis as coords:ContinuousAxis;
+  }
+
+otype CartesianCoordSpace  -> PhysicalCoordSpace "Spatial domain, three-dimensional cartesian coordinate space.  The particulars of the axis descriptions depend on the physical constraints of the instance.  In Appendix B, we provide the description of a Standard Cartesian Coordinate Space instance which applies to many Astronomical cases, and may be referenced in serializations."
+  {   // constraint  axis[1..3]
+     subset coords:CoordSpace.axis as coords:ContinuousAxis;
+  }

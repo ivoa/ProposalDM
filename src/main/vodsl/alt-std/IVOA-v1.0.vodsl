@@ -1,0 +1,30 @@
+
+model ivoa (1.0) "This is the main reference data model containing primitive types used in other data models."
+     
+    primitive Unit  "Must conform to definition of unit in VOUnit spec."
+    primitive anyURI  "Represents a URI in the same way as the datatype of the same nam in XML Schema is used."
+    primitive boolean  "The standard boolean, having values true or false."
+    primitive complex  "Represents a complex number, consisting of a real and imaginary component, both of which are reals. Note that in many contexts there is no native mapping for this type and it must be treated with a custom mapping."
+    primitive datetime  "Represents a moment in time using a date+timestamp. "
+    primitive integer  "An integer number (from Z)."
+    primitive nonnegativeInteger  "An integer number from N, therefore greater than or equal to 0."
+    primitive rational  "A rational number from Q, represented by two integers, a numerator and a denominator. A native mapping to a serialisation context does in general not exists."
+    primitive real  "A real number (from R)."
+    primitive string  "A string, represented as an array of characters treated as a single, primitive value. Ala Java, a string can not be updated, that is any update leads to a different string. However in contrast to Java we assume that two strings that are identical in all their constitutent characters are the same.
+I.e. string has value type semantics."
+dtype IntegerQuantity  -> Quantity "An integer number with a unit. Examples of such units that can be used for attributes are bit/byte/kiloByte etc."
+  {   
+        value: integer   "The integer value of this IntegerQuantity.";
+  }
+
+abstract dtype Quantity  "Meant to represent the value of a numerical physical quantity.  
+Can be mapped in VOTables to FIELDrefs and PARAM(ref)s, in which case the @unit attribute of those VOTable elements is assumed to be mapped to the attribute on the Quantity.
+Ths is only allowed for these predefined ivoa types."
+  {   
+        unit: Unit  @?   "The unit of this  quantity.";
+  }
+
+dtype RealQuantity  -> Quantity "A real value with a unit."
+  {   
+        value: real   "The real value of this quantity";
+  }
