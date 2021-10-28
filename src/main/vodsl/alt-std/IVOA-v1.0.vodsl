@@ -28,3 +28,7 @@ dtype RealQuantity  -> Quantity "A real value with a unit."
   {   
         value: real   "The real value of this quantity";
   }
+  abstract primitive identifier "something that an identifier that can be used as a key for lookup of an entity that is *outside this datamodel*"
+  primitive intIdentifier -> identifier "an integer identifier"
+  primitive stringIdentifier -> identifier "a string identifier"
+  primitive ivorn -> identifier "an identifier that can be used as a key to look up in an IVOA registry - see https://www.ivoa.net/documents/IVOAIdentifiers/"
