@@ -5,15 +5,14 @@ model coords (1.0) "This model defines objects which describe the coordinate spa
  author "Arnold Rots, Mark Cresitello-Dittmar, Omar Laurino"
        include "IVOA-v1.0.vodsl"
      
-    primitive Epoch  "We define epoch as a primitive data type with the expected form '<type><year>' where type = 'J' or 'B' for Julian or Besselian respectively, and year is expressed as a decimal year.  e.g.: 'B1950', 'J2000.0'"
+    primitive Epoch  "We define epoch as a primitive data type with the expected form '$type$year' where type = 'J' or 'B' for Julian or Besselian respectively, and year is expressed as a decimal year.  e.g.: 'B1950', 'J2000.0'"
 enum Handedness  "The handedness of a coordinate space.  For most cases, this will be a fixed value in the specification of the coordinate space.  We provide this element to allow this flexibility when needed.  In this document, it is used in the Pixel domain."
 {
 left  "positive x and y axes point right and up, the positive z axis points inward",
 right  "positive x and y axes point right and up, the positive z axis points outward"
 }
 
-enum PolStateEnum  "Polarization states: Stokes, Circular, Linear and Vector states
-"
+enum PolStateEnum  "Polarization states: Stokes, Circular, Linear and Vector states" //TODO remove Enum from the name
 {
 I  "",
 Q  "",
@@ -62,6 +61,19 @@ dtype Point  -> Coordinate "Multi-dimensional spatial coordinate. The Point MUST
         axis1: ivoa:Quantity  @?   "Coordinate value along the first axis of the associated coordinate space, expressed as an ivoa:Quantity.";
         axis2: ivoa:Quantity  @?   "Coordinate value along the second axis of the associated coordinate space, expressed as an ivoa:Quantity.";
         axis3: ivoa:Quantity  @?   "Coordinate value along the third axis of the associated coordinate space, expressed as an ivoa:Quantity.";
+  }
+dtype SphericalPoint  -> Coordinate "A point in space expressed in spherical coordinates"
+  {   
+     subset coords:Coordinate.coordSys as coords:SpaceSys;
+        r: ivoa:RealQuantity     "radius";
+        theta: ivoa:RealQuantity   "polar angle";
+        phi: ivoa:RealQuantity   "azimuthal angle";
+  }
+dtype EquatorialPoint  -> Coordinate "A Point on the Unit Sphere"
+  {   
+     subset coords:Coordinate.coordSys as coords:SpaceSys;
+        long: ivoa:RealQuantity    "The longitudinal angle";
+        lat: ivoa:RealQuantity     "The latitudinal angle";
   }
 
 abstract dtype TimeStamp  -> Coordinate "This is the abstract basis for a set of simple time domain coordinates which are expected to accommodate the vast majority of use cases. All TimeStamps, by definition, exist in a standard 1-D coordinate space, with domainMin|Max of +/-Infinity.  All TimeStamps MUST refer to an appropriate TimeSys.

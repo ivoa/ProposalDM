@@ -10,7 +10,7 @@
       <title>TBD</title>
       <author>Arnold Rots, Mark Cresitello-Dittmar, Omar Laurino</author>
       <version>1.0</version>
-      <lastModified>2021-10-20T15:43:19Z</lastModified>
+      <lastModified>2021-10-29T15:21:18Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -19,7 +19,7 @@
       <primitiveType>
         <vodml-id>Epoch</vodml-id>
         <name>Epoch</name>
-        <description>We define epoch as a primitive data type with the expected form '<type><year>' where type = 'J' or 'B' for Julian or Besselian respectively, and year is expressed as a decimal year.  e.g.: 'B1950', 'J2000.0'</description>	    
+        <description>We define epoch as a primitive data type with the expected form '$type$year' where type = 'J' or 'B' for Julian or Besselian respectively, and year is expressed as a decimal year.  e.g.: 'B1950', 'J2000.0'</description>	    
       </primitiveType>
             <enumeration>
                <vodml-id>Handedness</vodml-id>
@@ -275,16 +275,16 @@
             </attribute>
             </dataType>
             <dataType>
-              <vodml-id>CelestialPoint</vodml-id>
-              <name>CelestialPoint</name>
-              <description>A Point on the Celestial Sphere</description>	    
+              <vodml-id>EquatorialPoint</vodml-id>
+              <name>EquatorialPoint</name>
+              <description>A Point on the Unit Sphere</description>	    
                <extends>
                   <vodml-ref>coords:Coordinate</vodml-ref>
                </extends>
             <attribute>
-              <vodml-id>CelestialPoint.long</vodml-id>
+              <vodml-id>EquatorialPoint.long</vodml-id>
               <name>long</name>
-              <description></description>	    
+              <description>The longitudinal angle</description>	    
               <datatype>
                  <vodml-ref>ivoa:RealQuantity</vodml-ref>
               </datatype>
@@ -294,9 +294,9 @@
               </multiplicity>
             </attribute>
             <attribute>
-              <vodml-id>CelestialPoint.lat</vodml-id>
+              <vodml-id>EquatorialPoint.lat</vodml-id>
               <name>lat</name>
-              <description>Coordinate value along the second axis of the associated coordinate space, expressed as an ivoa:Quantity.</description>	    
+              <description>The latitudinal angle</description>	    
               <datatype>
                  <vodml-ref>ivoa:RealQuantity</vodml-ref>
               </datatype>
