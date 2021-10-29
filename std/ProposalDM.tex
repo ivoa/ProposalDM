@@ -1,4 +1,5 @@
 \documentclass[11pt,a4paper]{ivoa}
+\usepackage{hyperref}
 \input tthdefs
 
 \title{ProposalDM: A Datamodel for Observation Proposals}
@@ -48,13 +49,13 @@ infrastructure that enable VO applications.
 \section{Introduction}
 
 
-The concept of
+The concept of a common proposal DM was discussed in \cite{2008SPIE.7019E..0PB}.
 
-https://www.eso.org/sci/meetings/2018/proposal-tools-workshop.html
+\url{https://www.eso.org/sci/meetings/2018/proposal-tools-workshop.html}
 
-Inspired by Alan Bridger and Bryan Butler "The ALMA/EVLA project data model: steps toward a common project
-description for astronomy", Proc. SPIE 7019, Advanced Software and Control for Astronomy II, 70190P (14 July 2008);
-https://doi.org/10.1117/12.789262
+One of the main inspirations is the Alma Project Data model
+\cite{alma:projdm} from which several ideas have been reused.
+
 
 \subsection{Role within the VO Architecture}
 
@@ -77,6 +78,20 @@ IVOA architecture \citep{2010ivoa.rept.1123A}.
 
 \section{The Model}
 
+\begin{figure}
+    \centering
+\includegraphics[width=\textwidth]{generated/proposaldm.vo-dml.png}
+\caption{The Proposal Data Model}
+\label{fig:propdm}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{generated/proposalReview.vo-dml.png}
+    \caption{The Review Data Model}
+    \label{fig:proprevdm}
+\end{figure}
+
 \appendix
 \section{Changes from Previous Versions}
 
@@ -87,7 +102,7 @@ No previous versions yet.
 
 % NOTE: IVOA recommendations must be cited from docrepo rather than ivoabib
 % (REC entries there are for legacy documents only)
-\bibliography{ivoatex/ivoabib,ivoatex/docrepo}
+\bibliography{references,ivoatex/ivoabib,ivoatex/docrepo}
 
 
 \end{document}

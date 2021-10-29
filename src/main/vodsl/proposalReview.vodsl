@@ -1,0 +1,73 @@
+/*
+ *  created on 20 Oct 2021 // The review side of the proposal.
+ */
+ 
+ model proposalReview (0.1) "description" author "pharriso"
+ 
+ include "alt-std/IVOA-v1.0.vodsl"
+ include "proposaldm.vodsl"
+ 
+ otype Reviewer -> proposal:Person "assigned to review the proposal"{
+ 	
+ }
+ 
+ otype TechnicalReviewer -> Reviewer "" 
+ {
+ 	
+ }
+ 
+ otype ScienceReviewer -> Reviewer ""
+ {
+ 	
+ }
+ 
+ 
+ otype Review "the review" {
+ 	
+ }
+ 
+ 
+ otype TAC "time allocation committee"
+ {
+ 	members : Reviewer @+ as composition "members of the committee";
+ 	
+ }
+ 
+ 
+ otype ReviewGrade "" {
+ 	
+ }
+ 
+ 
+ otype ProposalCycle "" {
+ 	submissionDeadline : ivoa:datetime "";
+ 	observationSessionStart : ivoa:datetime "";
+ 	observationSesstionEnd: ivoa:datetime "";
+ 	availableResources : AvailableResources as composition "";
+ }
+ 
+ 
+ otype ProposalsInCycle "" {
+ 	cycle references ProposalCycle "";
+ 	proposals : proposal:ObservingProposal  @* as composition "";
+ }
+ 
+ otype ResourceType "a type of resource  " {
+ 	name : ivoa:string "";
+ 	unit : ivoa:string "";
+ 	
+ }
+ 
+ otype Resource "" {
+ 	type references ResourceType "";
+ 	amount : ivoa:real "The amount of the resource"; 
+ }
+
+ otype AvailableResources "" {
+ 	resources  : Resource @* as composition ""; // TODO need to ensure that each resource type can occur only once.
+ }
+ 
+ otype AllocatedResources  ""
+ {
+ 	
+ }

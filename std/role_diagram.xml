@@ -19,6 +19,8 @@ with missing dependencies.
 	<!-- Data Models: x=430..580, y=250..400 -->
 	<rec name="VODML" x="490" y="195"/>
 	<thisrec name="ProposalDM" x="550" y="230"/>
+	<prerec name="Coords" x="501" y="305" w="44"/>
+	<prerec name="DatasetDM" x="490" y="380" w="65"/>
 
 	<!-- Semantics: x=160..250 y=250..400 -->
 	<rec name="VOUnits" x="200" y="250"/>

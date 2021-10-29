@@ -3,16 +3,21 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://www.ivoa.net/xml/VODML/v1 https://www.ivoa.net/xml/VODML/vo-dml-v1.xsd" 
               vodmlVersion="1.1">	<!-- file generated from VODSL - needs validatate against v1.1 of schema  --> 
-      <name>proposalDM</name>
+      <name>proposal</name>
       <description>description</description> 
       <uri/>
       <title>TBD</title>
-      <author>pharriso</author>
+      <author>Paul Harrison</author>
       <version>0.1</version>
-      <lastModified>2021-10-08T15:14:35Z</lastModified>
+      <lastModified>2021-10-29T15:22:27Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
+        <documentationURL>not known</documentationURL>
+      </import>
+      <import>
+        <name>null</name><!--should not be needed in modern vo-dml -->
+        <url>STC_coords-v1.0.vo-dml.xml</url>
         <documentationURL>not known</documentationURL>
       </import>
             <enumeration>
@@ -35,6 +40,207 @@
                     <description></description>	    
                   </literal>	
             </enumeration>
+            <enumeration>
+               <vodml-id>CalibrationTarget_intendedUse</vodml-id>
+               <name>CalibrationTarget_intendedUse</name>
+               <description></description>	    
+                  <literal>
+                    <vodml-id>CalibrationTarget_intendedUse.Amplitude</vodml-id>
+                    <name>Amplitude</name>
+                    <description></description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>CalibrationTarget_intendedUse.Atmospheric</vodml-id>
+                    <name>Atmospheric</name>
+                    <description></description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>CalibrationTarget_intendedUse.Bandpass</vodml-id>
+                    <name>Bandpass</name>
+                    <description></description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>CalibrationTarget_intendedUse.Phase</vodml-id>
+                    <name>Phase</name>
+                    <description></description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>CalibrationTarget_intendedUse.Pointing</vodml-id>
+                    <name>Pointing</name>
+                    <description></description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>CalibrationTarget_intendedUse.Focus</vodml-id>
+                    <name>Focus</name>
+                    <description></description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>CalibrationTarget_intendedUse.Polarization</vodml-id>
+                    <name>Polarization</name>
+                    <description></description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>CalibrationTarget_intendedUse.Delay</vodml-id>
+                    <name>Delay</name>
+                    <description></description>	    
+                  </literal>	
+            </enumeration>
+            <objectType>
+               <vodml-id>Organization</vodml-id>
+               <name>Organization</name>
+               <description></description>	    
+               <attribute>
+                 <vodml-id>Organization.name</vodml-id>
+                 <name>name</name>
+                 <description>The name of the organization</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>Organization.address</vodml-id>
+                 <name>address</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>Organization.ivoid</vodml-id>
+                 <name>ivoid</name>
+                 <description>the registry identifier for the organization</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:ivorn</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType>
+               <vodml-id>Observatory</vodml-id>
+               <name>Observatory</name>
+               <description></description>	    
+               <extends>
+                  <vodml-ref>proposal:Organization</vodml-ref>
+               </extends>
+            </objectType>
+            <objectType>
+               <vodml-id>Telescope</vodml-id>
+               <name>Telescope</name>
+               <description></description>	    
+               <attribute>
+                 <vodml-id>Telescope.name</vodml-id>
+                 <name>name</name>
+                 <description>telescope name</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <reference>
+                 <vodml-id>Telescope.observatory</vodml-id>
+                 <name>observatory</name>
+                 <description>the observatory that hosts the telescope</description>	    
+                 <datatype>
+                   <vodml-ref>proposal:Observatory</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
+            </objectType>
+            <objectType>
+               <vodml-id>Instrument</vodml-id>
+               <name>Instrument</name>
+               <description></description>	    
+               <attribute>
+                 <vodml-id>Instrument.name</vodml-id>
+                 <name>name</name>
+                 <description>the instrument name</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <reference>
+                 <vodml-id>Instrument.telescope</vodml-id>
+                 <name>telescope</name>
+                 <description></description>	    
+                 <datatype>
+                   <vodml-ref>proposal:Telescope</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
+            </objectType>
+            <objectType>
+               <vodml-id>Person</vodml-id>
+               <name>Person</name>
+               <description>person connected with the proposal</description>	    
+               <attribute>
+                 <vodml-id>Person.fullName</vodml-id>
+                 <name>fullName</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>Person.eMail</vodml-id>
+                 <name>eMail</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <reference>
+                 <vodml-id>Person.homeInstitute</vodml-id>
+                 <name>homeInstitute</name>
+                 <description></description>	    
+                 <datatype>
+                   <vodml-ref>proposal:Organization</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
+            </objectType>
+            <objectType>
+               <vodml-id>Investigator</vodml-id>
+               <name>Investigator</name>
+               <description>a person involved in creating the proposal</description>	    
+               <extends>
+                  <vodml-ref>proposal:Person</vodml-ref>
+               </extends>
+            </objectType>
             <objectType>
                <vodml-id>ObservingProposal</vodml-id>
                <name>ObservingProposal</name>
@@ -62,6 +268,9 @@
                    <minOccurs>1</minOccurs>
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
+                 <constraint xsi:type="vo-dml:NaturalKey">
+                 	<position>1</position>
+                 </constraint>
                </attribute>
                <attribute>
                  <vodml-id>ObservingProposal.abstract</vodml-id>
@@ -80,24 +289,605 @@
                  <name>kind</name>
                  <description>the type of proposal</description>	    
                  <datatype>
-                    <vodml-ref>proposalDM:ProposalKind</vodml-ref>
+                    <vodml-ref>proposal:ProposalKind</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
+               <attribute>
+                 <vodml-id>ObservingProposal.dateSubmitted</vodml-id>
+                 <name>dateSubmitted</name>
+                 <description>date that the proposal is submitted</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:datetime</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <composition>
+                 <vodml-id>ObservingProposal.principalInvestigator</vodml-id>
+                 <name>principalInvestigator</name>
+                 <description>the person(s) leading the proposal</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:Investigator</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </composition>
+               <composition>
+                 <vodml-id>ObservingProposal.coInvestigator</vodml-id>
+                 <name>coInvestigator</name>
+                 <description>other persons associated with the proposal</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:Investigator</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </composition>
+               <composition>
+                 <vodml-id>ObservingProposal.supportingDocuments</vodml-id>
+                 <name>supportingDocuments</name>
+                 <description>any additional documents</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:SupportingDocument</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </composition>
+               <composition>
+                 <vodml-id>ObservingProposal.targets</vodml-id>
+                 <name>targets</name>
+                 <description>The observing targets</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:Target</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </composition>
                <reference>
                  <vodml-id>ObservingProposal.relatedProposals</vodml-id>
                  <name>relatedProposals</name>
                  <description></description>	    
                  <datatype>
-                   <vodml-ref>proposalDM:ObservingProposal</vodml-ref>
+                   <vodml-ref>proposal:ObservingProposal</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>0</minOccurs>
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
                </reference>
+            </objectType>
+            <objectType>
+               <vodml-id>SupportingDocument</vodml-id>
+               <name>SupportingDocument</name>
+               <description>a document</description>	    
+               <attribute>
+                 <vodml-id>SupportingDocument.title</vodml-id>
+                 <name>title</name>
+                 <description>document title</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>SupportingDocument.location</vodml-id>
+                 <name>location</name>
+                 <description>location of document</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:anyURI</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType abstract='true'>
+               <vodml-id>Field</vodml-id>
+               <name>Field</name>
+               <description>Definition of an observing field pointing</description>	    
+               <attribute>
+                 <vodml-id>Field.name</vodml-id>
+                 <name>name</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>Field.centre</vodml-id>
+                 <name>centre</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>coords:Point</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType>
+               <vodml-id>Point</vodml-id>
+               <name>Point</name>
+               <description>Single point on the sky</description>	    
+               <extends>
+                  <vodml-ref>proposal:Field</vodml-ref>
+               </extends>
+            </objectType>
+            <objectType>
+               <vodml-id>Polygon</vodml-id>
+               <name>Polygon</name>
+               <description>Polygonal map</description>	    
+               <extends>
+                  <vodml-ref>proposal:Field</vodml-ref>
+               </extends>
+               <attribute>
+                 <vodml-id>Polygon.points</vodml-id>
+                 <name>points</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>coords:EquatorialPoint</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType>
+               <vodml-id>Ellipse</vodml-id>
+               <name>Ellipse</name>
+               <description>Specialization of a Field for an elliptical map.</description>	    
+               <extends>
+                  <vodml-ref>proposal:Field</vodml-ref>
+               </extends>
+               <attribute>
+                 <vodml-id>Ellipse.semiMajor</vodml-id>
+                 <name>semiMajor</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>Ellipse.semiMinor</vodml-id>
+                 <name>semiMinor</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>Ellipse.pAMajor</vodml-id>
+                 <name>pAMajor</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType abstract='true'>
+               <vodml-id>TimingConstraint</vodml-id>
+               <name>TimingConstraint</name>
+               <description>Any specific timing requirements for the observing</description>	    
+               <attribute>
+                 <vodml-id>TimingConstraint.note</vodml-id>
+                 <name>note</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>TimingConstraint.isAvoidConstraint</vodml-id>
+                 <name>isAvoidConstraint</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:boolean</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType>
+               <vodml-id>TimingWindow</vodml-id>
+               <name>TimingWindow</name>
+               <description>particular time range</description>	    
+               <extends>
+                  <vodml-ref>proposal:TimingConstraint</vodml-ref>
+               </extends>
+               <attribute>
+                 <vodml-id>TimingWindow.startTime</vodml-id>
+                 <name>startTime</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:datetime</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>TimingWindow.endTime</vodml-id>
+                 <name>endTime</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:datetime</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType>
+               <vodml-id>SimultaneityConstraint</vodml-id>
+               <name>SimultaneityConstraint</name>
+               <description>A constraint that requires that two observations occur simultaneously</description>	    
+               <extends>
+                  <vodml-ref>proposal:TimingConstraint</vodml-ref>
+               </extends>
+            </objectType>
+            <objectType>
+               <vodml-id>ScienceSpectralWindow</vodml-id>
+               <name>ScienceSpectralWindow</name>
+               <description>A spectral window for science use.</description>	    
+               <attribute>
+                 <vodml-id>ScienceSpectralWindow.index</vodml-id>
+                 <name>index</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:integer</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <composition>
+                 <vodml-id>ScienceSpectralWindow.spectralWindowSetup</vodml-id>
+                 <name>spectralWindowSetup</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>proposal:SpectralWindowSetup</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </composition>
+               <composition>
+                 <vodml-id>ScienceSpectralWindow.expectedSpectralLine</vodml-id>
+                 <name>expectedSpectralLine</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>proposal:ExpectedSpectralLine</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </composition>
+            </objectType>
+            <objectType>
+               <vodml-id>SpectralWindowSetup</vodml-id>
+               <name>SpectralWindowSetup</name>
+               <description>Science oriented definition of a spectral window.</description>	    
+               <attribute>
+                 <vodml-id>SpectralWindowSetup.centerFrequency</vodml-id>
+                 <name>centerFrequency</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>SpectralWindowSetup.bandWidth</vodml-id>
+                 <name>bandWidth</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>SpectralWindowSetup.spectralResolution</vodml-id>
+                 <name>spectralResolution</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>SpectralWindowSetup.isSkyFrequency</vodml-id>
+                 <name>isSkyFrequency</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:boolean</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>SpectralWindowSetup.polarization</vodml-id>
+                 <name>polarization</name>
+                 <description>desired polarization</description>	    
+                 <datatype>
+                    <vodml-ref>coords:PolStateEnum</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType>
+               <vodml-id>ExpectedSpectralLine</vodml-id>
+               <name>ExpectedSpectralLine</name>
+               <description>Brief description of a spectral line.</description>	    
+               <attribute>
+                 <vodml-id>ExpectedSpectralLine.restFrequency</vodml-id>
+                 <name>restFrequency</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>ExpectedSpectralLine.transition</vodml-id>
+                 <name>transition</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>ExpectedSpectralLine.splatalogId</vodml-id>
+                 <name>splatalogId</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:identifier</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>ExpectedSpectralLine.description</vodml-id>
+                 <name>description</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType abstract='true'>
+               <vodml-id>Target</vodml-id>
+               <name>Target</name>
+               <description>A target source</description>	    
+               <attribute>
+                 <vodml-id>Target.sourceName</vodml-id>
+                 <name>sourceName</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType>
+               <vodml-id>CelestialTarget</vodml-id>
+               <name>CelestialTarget</name>
+               <description>The basic target setup for a celestial Target.</description>	    
+               <extends>
+                  <vodml-ref>proposal:Target</vodml-ref>
+               </extends>
+               <attribute>
+                 <vodml-id>CelestialTarget.sourceCoordinates</vodml-id>
+                 <name>sourceCoordinates</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>coords:EquatorialPoint</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>CelestialTarget.pmRA</vodml-id>
+                 <name>pmRA</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>CelestialTarget.pmDec</vodml-id>
+                 <name>pmDec</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>CelestialTarget.parallax</vodml-id>
+                 <name>parallax</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>CelestialTarget.sourceVelocity</vodml-id>
+                 <name>sourceVelocity</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType>
+               <vodml-id>SolarSystemTarget</vodml-id>
+               <name>SolarSystemTarget</name>
+               <description></description>	    
+               <extends>
+                  <vodml-ref>proposal:Target</vodml-ref>
+               </extends>
+            </objectType>
+            <objectType>
+               <vodml-id>PerformanceParameters</vodml-id>
+               <name>PerformanceParameters</name>
+               <description>The parameters required for observation</description>	    
+               <attribute>
+                 <vodml-id>PerformanceParameters.desiredAngularResolution</vodml-id>
+                 <name>desiredAngularResolution</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>PerformanceParameters.desiredLargestScale</vodml-id>
+                 <name>desiredLargestScale</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>PerformanceParameters.desiredSensitivity</vodml-id>
+                 <name>desiredSensitivity</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>PerformanceParameters.desiredDynamicRange</vodml-id>
+                 <name>desiredDynamicRange</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>PerformanceParameters.representativeFreq</vodml-id>
+                 <name>representativeFreq</name>
+                 <description>the frequency at which these pertain</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+            </objectType>
+            <objectType>
+               <vodml-id>scienceGoal</vodml-id>
+               <name>scienceGoal</name>
+               <description>collects together the science goal of the proposal</description>	    
             </objectType>
 </vo-dml:model>

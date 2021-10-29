@@ -2,10 +2,10 @@
  *  created on 09-Jul-2021 
  */
  
- model proposalDM (0.1) "description" author "pharriso" 
+ model proposal (0.1) "description" author "Paul Harrison"
  
- include "https://raw.githubusercontent.com/ivoa/vodsl-models/master/IVOA-v1.0.vodsl" // this is an edited version of the standard to include identifiers.
- 
+ include "alt-std/IVOA-v1.0.vodsl" // this is an edited version of the standard to include identifiers.
+ include "alt-std/STC_coords-v1.0.vodsl"
  
  enum ProposalKind
  {
@@ -15,11 +15,166 @@
  	
  }
  
+ enum CalibrationTarget_intendedUse  "" 
+{
+Amplitude  "" ,
+Atmospheric  "" ,
+Bandpass  "" ,
+Phase  "" ,
+Pointing  "" ,
+Focus  "" ,
+Polarization  "" ,
+Delay  "" 
+}
+ 
+ 
+ otype Organization
+ {
+ 	name: ivoa:string "The name of the organization";
+ 	address : ivoa:string "";
+ 	ivoid : ivoa:ivorn @? "the registry identifier for the organization";
+ 	
+ }
+ 
+ otype Observatory -> Organization {
+ 	
+ }
+ 
+ otype Telescope {
+ 	name : ivoa:string "telescope name";
+ 	observatory references Observatory "the observatory that hosts the telescope";
+ 	
+ }
+ 
+ otype Instrument {
+ 	name : ivoa:string "the instrument name";
+ 	telescope references Telescope "";
+ 	
+ }
+ otype Person "person connected with the proposal" {
+ 	fullName : ivoa:string "";
+ 	eMail : ivoa:string "";
+ 	homeInstitute references Organization "";
+ }
+ 
+ otype Investigator -> Person "a person involved in creating the proposal" {
+ 	
+ }
+ 
  otype ObservingProposal "a complete proposal"
  {
  	title: ivoa:string   "the proposal title" ;
-    code: ivoa:stringIdentifier  "a code that can be used to refer to the proposal" ;
+    code: ivoa:stringIdentifier iskey  "a code that can be used to refer to the proposal" ;
     ^abstract: ivoa:string   "" ;
+    principalInvestigator: Investigator @+ as composition  "the person(s) leading the proposal";
+    coInvestigator: Investigator @* as composition "other persons associated with the proposal";
     kind : ProposalKind "the type of proposal";
     relatedProposals @* references ObservingProposal "";
+    dateSubmitted : ivoa:datetime "date that the proposal is submitted";
+    supportingDocuments: SupportingDocument @* as composition "any additional documents";
+    targets: Target  @+ as composition "The observing targets";
  }
+ 
+ 
+ otype SupportingDocument "a document" {
+ 	title : ivoa:string "document title";
+ 	location : ivoa:anyURI "location of document";
+ }
+ 
+ 
+ abstract otype Field  "Definition of an observing field pointing"
+  {   
+        name: ivoa:string   "" ;
+        centre: coords:Point   "" ;
+  }
+  
+  otype Point -> Field "Single point on the sky" {}
+  
+  otype Polygon  -> Field  "Polygonal map"
+  {   
+        points: coords:EquatorialPoint   @*   "" ;
+  }
+  otype Ellipse  -> Field "Specialization of a Field for an elliptical map."
+  {   
+        semiMajor: ivoa:RealQuantity   "" ;
+        semiMinor: ivoa:RealQuantity   "" ;
+        pAMajor: ivoa:RealQuantity   "" ;
+  }
+  
+  abstract otype TimingConstraint  "Any specific timing requirements for the observing"
+  {   
+        note: ivoa:string  @?   "" ;
+        isAvoidConstraint: ivoa:boolean  @?   "" ;
+  }
+  
+  otype TimingWindow -> TimingConstraint "particular time range"
+  {
+        startTime: ivoa:datetime  @?   "" ;
+        endTime: ivoa:datetime  @?   "" ;
+  }
+ 
+ otype SimultaneityConstraint -> TimingConstraint "A constraint that requires that two observations occur simultaneously"
+ {
+ 	
+ }
+  
+  otype ScienceSpectralWindow  "A spectral window for science use."
+  {   
+        index: ivoa:integer   "" ;
+        spectralWindowSetup: SpectralWindowSetup  @?   as composition  "" ;
+        expectedSpectralLine: ExpectedSpectralLine  @*   as composition  "" ;
+  }
+ 
+  otype SpectralWindowSetup  "Science oriented definition of a spectral window."
+  {   
+        centerFrequency: ivoa:RealQuantity   "" ;
+        bandWidth: ivoa:RealQuantity    "" ;
+        spectralResolution: ivoa:RealQuantity    "" ;
+        isSkyFrequency: ivoa:boolean   "" ;
+        polarization: coords:PolStateEnum "desired polarization";
+   }  
+ 
+  
+  otype ExpectedSpectralLine  "Brief description of a spectral line."
+  {   
+        restFrequency: ivoa:RealQuantity   "" ;
+        transition: ivoa:string   "" ;
+        splatalogId: ivoa:identifier   "" ;
+        description: ivoa:string   "" ;
+  }
+  
+ 
+  
+  abstract otype Target "A target source" {
+     sourceName: ivoa:string   "" ;
+  	
+  }
+  
+  otype CelestialTarget -> Target  "The basic target setup for a celestial Target."
+  {   //most of these source parameters should be in an ivoa source model.
+        sourceCoordinates: coords:EquatorialPoint   "" ;
+        pmRA: ivoa:RealQuantity  "" ;
+        pmDec: ivoa:RealQuantity   "" ;
+        parallax: ivoa:RealQuantity  "" ;
+        sourceVelocity: ivoa:RealQuantity   "" ;
+ }
+ 
+ otype SolarSystemTarget -> Target ""
+ {
+ 	// needs ephemeris data.
+ }
+  
+ otype PerformanceParameters "The parameters required for observation" // should probably be attached to each target
+ {
+ 	desiredAngularResolution: ivoa:RealQuantity "";
+ 	desiredLargestScale:  ivoa:RealQuantity "";
+ 	desiredSensitivity:  ivoa:RealQuantity "";
+ 	desiredDynamicRange:  ivoa:RealQuantity "";  // sensitivity or dynamic range?
+ 	representativeFreq: ivoa:RealQuantity "the frequency at which these pertain";
+ }
+ 
+ 
+ otype scienceGoal "collects together the science goal of the proposal" {
+ 	
+ }
+ 

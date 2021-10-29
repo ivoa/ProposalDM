@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mappedModels xmlns:m="http://www.ivoa.net/xml/vodml-binding/v0.9">
+<!-- ========================================
+Ultimately this file should be bundled up with a jar for the IVOA model, and not a dependency here.
+ -->
+
+<model>
+<name>ivoa</name>
+<file>IVOA-v1.0.vo-dml.xml</file>
+<java-package>org.ivoa.dm.ivoa</java-package>
+<xml-targetnamespace prefix="ivoa">http://ivoa.net/dm/models/vo-dml/xsd/ivoa</xml-targetnamespace>
+<type-mapping>
+  <vodml-id>real</vodml-id>
+  <java-type jpa-atomic="true">Double</java-type>
+  <xsd-type>xsd:float</xsd-type>
+</type-mapping>
+<type-mapping>
+  <vodml-id>string</vodml-id>
+  <java-type jpa-atomic="true">String</java-type>
+  <xsd-type>xsd:string</xsd-type>
+</type-mapping>
+<type-mapping>
+  <vodml-id>boolean</vodml-id>
+  <java-type jpa-atomic="true">Boolean</java-type>
+  <xsd-type>xsd:boolean</xsd-type>
+</type-mapping>
+<type-mapping>
+  <vodml-id>integer</vodml-id>
+  <java-type jpa-atomic="true">Integer</java-type>
+  <xsd-type>xsd:int</xsd-type>
+</type-mapping>
+<type-mapping>
+  <vodml-id>nonnegativeInteger</vodml-id>
+  <java-type jpa-atomic="true">Integer</java-type>
+  <xsd-type>xsd:nonNegativeInteger</xsd-type>
+</type-mapping>
+<type-mapping>
+  <vodml-id>anyURI</vodml-id>
+  <java-type jpa-atomic="true">String</java-type>
+  <xsd-type>xsd:anyURI</xsd-type>
+</type-mapping>
+<type-mapping>
+  <vodml-id>datetime</vodml-id>
+  <java-type jpa-atomic="true">java.util.Date</java-type>
+  <xsd-type>xsd:dateTime</xsd-type>
+</type-mapping>
+<type-mapping>
+  <vodml-id>decimal</vodml-id>
+  <java-type>java.math.BigDecimal</java-type>
+  <xsd-type>xsd:decimal</xsd-type>
+</type-mapping>
+<type-mapping>
+  <vodml-id>rational</vodml-id>
+  <java-type>org.ivoa.vodml.stdtypes.Rational</java-type>
+  <xsd-type>xsd:string</xsd-type>
+</type-mapping>
+<type-mapping>
+  <vodml-id>complex</vodml-id>
+  <java-type>org.ivoa.vodml.stdtypes.Complex</java-type>
+  <xsd-type>xsd:float</xsd-type>
+</type-mapping>
+</model>
+
+</m:mappedModels>

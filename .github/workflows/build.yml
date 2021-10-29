@@ -24,14 +24,22 @@ jobs:
       uses: actions/checkout@v1
       with:
         submodules: true
-    
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+
     - name: Setup dependencies
       run: |
         sudo apt update
         sudo apt install texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended xsltproc latexmk cm-super inkscape
-      
+
     - name: Build the document
-      run: make -C std
+      run: |
+         ./gradlew vodmlDoc
+         make -C std
       
     - name: Check the output
       run: |

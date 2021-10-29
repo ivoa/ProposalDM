@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:mappedModels xmlns:m="http://www.ivoa.net/xml/vodml-binding/v0.9">
+<!-- ========================================
+ -->
+<model>
+<name>proposal</name>
+<file>proposaldm.vo-dml.xml</file>
+    <java-package>org.ivoa.dm.proposal.prop</java-package>
+<xml-targetnamespace prefix="prop">http://ivoa.net/dm/models/vo-dml/xsd/proposalDM</xml-targetnamespace>
+</model>
+    <model>
+    <name>proposalReview</name>
+    <file>proposalReview.vo-dml.xml</file>
+    <java-package>org.ivoa.dm.proposal.review</java-package>
+    <xml-targetnamespace prefix="prop">http://ivoa.net/dm/models/vo-dml/xsd/proposalReview</xml-targetnamespace>
+    </model>
+</m:mappedModels>
