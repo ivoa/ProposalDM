@@ -34,7 +34,7 @@ jobs:
     - name: Setup dependencies
       run: |
         sudo apt update
-        sudo apt install texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended xsltproc latexmk cm-super inkscape
+        sudo apt install texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended xsltproc latexmk cm-super inkscape graphviz
 
     - name: Build the document
       run: |
