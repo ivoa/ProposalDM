@@ -1,6 +1,6 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.1"   
+        id("net.ivoa.vo-dml.vodmltools") version "0.2"
 }
 
 group = "org.javastro.ivoa.vo-dml"

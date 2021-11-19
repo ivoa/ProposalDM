@@ -10,7 +10,7 @@
       <title>TBD</title>
       <author>Arnold Rots, Mark Cresitello-Dittmar, Omar Laurino</author>
       <version>1.0</version>
-      <lastModified>2021-10-29T15:21:18Z</lastModified>
+      <lastModified>2021-10-31T13:09:01Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -282,8 +282,8 @@
                   <vodml-ref>coords:Coordinate</vodml-ref>
                </extends>
             <attribute>
-              <vodml-id>EquatorialPoint.long</vodml-id>
-              <name>long</name>
+              <vodml-id>EquatorialPoint.lon</vodml-id>
+              <name>lon</name>
               <description>The longitudinal angle</description>	    
               <datatype>
                  <vodml-ref>ivoa:RealQuantity</vodml-ref>
