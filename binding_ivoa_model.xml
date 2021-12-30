@@ -59,6 +59,31 @@ Ultimately this file should be bundled up with a jar for the IVOA model, and not
   <java-type>org.ivoa.vodml.stdtypes.Complex</java-type>
   <xsd-type>xsd:float</xsd-type>
 </type-mapping>
+  <type-mapping>
+    <vodml-id>identifier</vodml-id>
+    <java-type>org.ivoa.vodml.stdtypes2.Identifier</java-type>
+    <xsd-type>xsd:string</xsd-type>
+  </type-mapping>
+  <type-mapping>
+    <vodml-id>stringIdentifier</vodml-id>
+    <java-type>org.ivoa.vodml.stdtypes2.StringIdentifier</java-type>
+    <xsd-type>xsd:string</xsd-type>
+  </type-mapping>
+  <type-mapping>
+    <vodml-id>intIdentifier</vodml-id>
+    <java-type>org.ivoa.vodml.stdtypes2.IntIdentifier</java-type>
+    <xsd-type>xsd:integer</xsd-type>
+  </type-mapping>
+  <type-mapping>
+    <vodml-id>ivorn</vodml-id>
+    <java-type>org.ivoa.vodml.stdtypes2.Ivorn</java-type>
+    <xsd-type>xsd:string</xsd-type>
+  </type-mapping>
+  <type-mapping>
+    <vodml-id>Unit</vodml-id>
+    <java-type>org.ivoa.vodml.stdtypes2.Unit</java-type>
+    <xsd-type>xsd:string</xsd-type>
+  </type-mapping>
 </model>
 
 </m:mappedModels>

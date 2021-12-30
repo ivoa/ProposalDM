@@ -9,7 +9,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.1</version>
-      <lastModified>2021-10-29T15:22:27Z</lastModified>
+      <lastModified>2021-12-30T16:12:13Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -38,6 +38,21 @@
                     <vodml-id>ProposalKind.Survey</vodml-id>
                     <name>Survey</name>
                     <description></description>	    
+                  </literal>	
+            </enumeration>
+            <enumeration>
+               <vodml-id>InvestigatorKind</vodml-id>
+               <name>InvestigatorKind</name>
+               <description></description>	    
+                  <literal>
+                    <vodml-id>InvestigatorKind.PI</vodml-id>
+                    <name>PI</name>
+                    <description>principal investigator</description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>InvestigatorKind.COI</vodml-id>
+                    <name>COI</name>
+                    <description>co-investigator</description>	    
                   </literal>	
             </enumeration>
             <enumeration>
@@ -164,6 +179,35 @@
                </reference>
             </objectType>
             <objectType>
+               <vodml-id>TelescopeArray</vodml-id>
+               <name>TelescopeArray</name>
+               <description>a set of telescopes that are operated together for an observation</description>	    
+               <attribute>
+                 <vodml-id>TelescopeArray.name</vodml-id>
+                 <name>name</name>
+                 <description>the array name</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <composition>
+                 <vodml-id>TelescopeArray.telescopes</vodml-id>
+                 <name>telescopes</name>
+                 <description>the telescopes that make up the array</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:Telescope</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </composition>
+            </objectType>
+            <objectType>
                <vodml-id>Instrument</vodml-id>
                <name>Instrument</name>
                <description></description>	    
@@ -242,6 +286,35 @@
                </extends>
             </objectType>
             <objectType>
+               <vodml-id>ObservingInvestigator</vodml-id>
+               <name>ObservingInvestigator</name>
+               <description></description>	    
+               <attribute>
+                 <vodml-id>ObservingInvestigator.type</vodml-id>
+                 <name>type</name>
+                 <description>the investigator type</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:InvestigatorKind</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <reference>
+                 <vodml-id>ObservingInvestigator.investigator</vodml-id>
+                 <name>investigator</name>
+                 <description>the investigator</description>	    
+                 <datatype>
+                   <vodml-ref>proposal:Investigator</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
+            </objectType>
+            <objectType>
                <vodml-id>ObservingProposal</vodml-id>
                <name>ObservingProposal</name>
                <description>a complete proposal</description>	    
@@ -262,7 +335,7 @@
                  <name>code</name>
                  <description>a code that can be used to refer to the proposal</description>	    
                  <datatype>
-                    <vodml-ref>ivoa:stringIdentifier</vodml-ref>
+                    <vodml-ref>ivoa:string</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -273,9 +346,9 @@
                  </constraint>
                </attribute>
                <attribute>
-                 <vodml-id>ObservingProposal.abstract</vodml-id>
-                 <name>abstract</name>
-                 <description></description>	    
+                 <vodml-id>ObservingProposal.summary</vodml-id>
+                 <name>summary</name>
+                 <description>a short summary/abstract of the proposal</description>	    
                  <datatype>
                     <vodml-ref>ivoa:string</vodml-ref>
                  </datatype>
@@ -309,11 +382,11 @@
                  </multiplicity>
                </attribute>
                <composition>
-                 <vodml-id>ObservingProposal.principalInvestigator</vodml-id>
-                 <name>principalInvestigator</name>
-                 <description>the person(s) leading the proposal</description>	    
+                 <vodml-id>ObservingProposal.investigators</vodml-id>
+                 <name>investigators</name>
+                 <description>the person(s) making the proposal</description>	    
                  <datatype>
-                    <vodml-ref>proposal:Investigator</vodml-ref>
+                    <vodml-ref>proposal:ObservingInvestigator</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -321,11 +394,11 @@
                  </multiplicity>
                </composition>
                <composition>
-                 <vodml-id>ObservingProposal.coInvestigator</vodml-id>
-                 <name>coInvestigator</name>
-                 <description>other persons associated with the proposal</description>	    
+                 <vodml-id>ObservingProposal.relatedProposals</vodml-id>
+                 <name>relatedProposals</name>
+                 <description></description>	    
                  <datatype>
-                    <vodml-ref>proposal:Investigator</vodml-ref>
+                    <vodml-ref>proposal:RelatedProposal</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>0</minOccurs>
@@ -356,16 +429,21 @@
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
                </composition>
+            </objectType>
+            <objectType>
+               <vodml-id>RelatedProposal</vodml-id>
+               <name>RelatedProposal</name>
+               <description>a related proposal</description>	    
                <reference>
-                 <vodml-id>ObservingProposal.relatedProposals</vodml-id>
-                 <name>relatedProposals</name>
-                 <description></description>	    
+                 <vodml-id>RelatedProposal.proposal</vodml-id>
+                 <name>proposal</name>
+                 <description>the related proposal</description>	    
                  <datatype>
                    <vodml-ref>proposal:ObservingProposal</vodml-ref>
                  </datatype>
                  <multiplicity>
-                   <minOccurs>0</minOccurs>
-                   <maxOccurs>-1</maxOccurs>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </reference>
             </objectType>
@@ -445,7 +523,7 @@
                <attribute>
                  <vodml-id>Polygon.points</vodml-id>
                  <name>points</name>
-                 <description></description>	    
+                 <description>an array of points....</description>	    
                  <datatype>
                     <vodml-ref>coords:EquatorialPoint</vodml-ref>
                  </datatype>
@@ -707,7 +785,7 @@
                  <name>splatalogId</name>
                  <description></description>	    
                  <datatype>
-                    <vodml-ref>ivoa:identifier</vodml-ref>
+                    <vodml-ref>ivoa:stringIdentifier</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -885,9 +963,66 @@
                  </multiplicity>
                </attribute>
             </objectType>
+            <objectType abstract='true'>
+               <vodml-id>Observation</vodml-id>
+               <name>Observation</name>
+               <description></description>	    
+               <reference>
+                 <vodml-id>Observation.target</vodml-id>
+                 <name>target</name>
+                 <description></description>	    
+                 <datatype>
+                   <vodml-ref>proposal:Target</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
+               <reference>
+                 <vodml-id>Observation.field</vodml-id>
+                 <name>field</name>
+                 <description></description>	    
+                 <datatype>
+                   <vodml-ref>proposal:Field</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
+               <reference>
+                 <vodml-id>Observation.scienceGoal</vodml-id>
+                 <name>scienceGoal</name>
+                 <description></description>	    
+                 <datatype>
+                   <vodml-ref>proposal:ScienceGoal</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
+            </objectType>
             <objectType>
-               <vodml-id>scienceGoal</vodml-id>
-               <name>scienceGoal</name>
+               <vodml-id>TargetObservation</vodml-id>
+               <name>TargetObservation</name>
+               <description></description>	    
+               <extends>
+                  <vodml-ref>proposal:Observation</vodml-ref>
+               </extends>
+            </objectType>
+            <objectType>
+               <vodml-id>CalibrationObservation</vodml-id>
+               <name>CalibrationObservation</name>
+               <description></description>	    
+               <extends>
+                  <vodml-ref>proposal:Observation</vodml-ref>
+               </extends>
+            </objectType>
+            <objectType>
+               <vodml-id>ScienceGoal</vodml-id>
+               <name>ScienceGoal</name>
                <description>collects together the science goal of the proposal</description>	    
             </objectType>
 </vo-dml:model>

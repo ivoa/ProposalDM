@@ -9,7 +9,7 @@
       <title>TBD</title>
       <author>pharriso</author>
       <version>0.1</version>
-      <lastModified>2021-10-21T16:38:35Z</lastModified>
+      <lastModified>2021-12-28T12:25:17Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -20,6 +20,26 @@
         <url>proposaldm.vo-dml.xml</url>
         <documentationURL>not known</documentationURL>
       </import>
+            <enumeration>
+               <vodml-id>TacRole</vodml-id>
+               <name>TacRole</name>
+               <description>A role within the timeAllocation committee</description>	    
+                  <literal>
+                    <vodml-id>TacRole.TechnicalReviewer</vodml-id>
+                    <name>TechnicalReviewer</name>
+                    <description></description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>TacRole.ScienceReviewer</vodml-id>
+                    <name>ScienceReviewer</name>
+                    <description></description>	    
+                  </literal>	
+                  <literal>
+                    <vodml-id>TacRole.Chair</vodml-id>
+                    <name>Chair</name>
+                    <description></description>	    
+                  </literal>	
+            </enumeration>
             <objectType>
                <vodml-id>Reviewer</vodml-id>
                <name>Reviewer</name>
@@ -29,25 +49,38 @@
                </extends>
             </objectType>
             <objectType>
-               <vodml-id>TechnicalReviewer</vodml-id>
-               <name>TechnicalReviewer</name>
-               <description></description>	    
-               <extends>
-                  <vodml-ref>proposalReview:Reviewer</vodml-ref>
-               </extends>
-            </objectType>
-            <objectType>
-               <vodml-id>ScienceReviewer</vodml-id>
-               <name>ScienceReviewer</name>
-               <description></description>	    
-               <extends>
-                  <vodml-ref>proposalReview:Reviewer</vodml-ref>
-               </extends>
-            </objectType>
-            <objectType>
                <vodml-id>Review</vodml-id>
                <name>Review</name>
                <description>the review</description>	    
+            </objectType>
+            <objectType>
+               <vodml-id>CommitteeMember</vodml-id>
+               <name>CommitteeMember</name>
+               <description>a member of the committee</description>	    
+               <attribute>
+                 <vodml-id>CommitteeMember.role</vodml-id>
+                 <name>role</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>proposalReview:TacRole</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <reference>
+                 <vodml-id>CommitteeMember.member</vodml-id>
+                 <name>member</name>
+                 <description>the member</description>	    
+                 <datatype>
+                   <vodml-ref>proposalReview:Reviewer</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
             </objectType>
             <objectType>
                <vodml-id>TAC</vodml-id>
@@ -58,7 +91,7 @@
                  <name>members</name>
                  <description>members of the committee</description>	    
                  <datatype>
-                    <vodml-ref>proposalReview:Reviewer</vodml-ref>
+                    <vodml-ref>proposalReview:CommitteeMember</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -185,7 +218,7 @@
             <objectType>
                <vodml-id>Resource</vodml-id>
                <name>Resource</name>
-               <description></description>	    
+               <description>A resource that will be consumed by allocating an observation from a proposal</description>	    
                <attribute>
                  <vodml-id>Resource.amount</vodml-id>
                  <name>amount</name>

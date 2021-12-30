@@ -11,25 +11,26 @@
  	
  }
  
- otype TechnicalReviewer -> Reviewer "" 
- {
- 	
- }
  
- otype ScienceReviewer -> Reviewer ""
- {
- 	
+ enum TacRole "A role within the timeAllocation committee" {
+ 	TechnicalReviewer "",
+ 	ScienceReviewer "",
+ 	Chair ""
  }
- 
  
  otype Review "the review" {
  	
  }
  
+ otype CommitteeMember "a member of the committee" {
+ 	member references Reviewer "the member";
+ 	role: TacRole "";
+ }
+ 
  
  otype TAC "time allocation committee"
  {
- 	members : Reviewer @+ as composition "members of the committee";
+ 	members : CommitteeMember @+ as composition "members of the committee";
  	
  }
  
@@ -58,7 +59,7 @@
  	
  }
  
- otype Resource "" {
+ otype Resource "A resource that will be consumed by allocating an observation from a proposal" {
  	type references ResourceType "";
  	amount : ivoa:real "The amount of the resource"; 
  }

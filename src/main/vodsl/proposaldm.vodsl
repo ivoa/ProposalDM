@@ -15,17 +15,6 @@
  	
  }
  
- enum CalibrationTarget_intendedUse  "" 
-{
-Amplitude  "" ,
-Atmospheric  "" ,
-Bandpass  "" ,
-Phase  "" ,
-Pointing  "" ,
-Focus  "" ,
-Polarization  "" ,
-Delay  "" 
-}
  
  
  otype Organization
@@ -46,6 +35,11 @@ Delay  ""
  	
  }
  
+ otype TelescopeArray "a set of telescopes that are operated together for an observation" {
+ 	name : ivoa:string "the array name";
+    telescopes: Telescope @+ as composition "the telescopes that make up the array"; 	
+ }
+ 
  otype Instrument {
  	name : ivoa:string "the instrument name";
  	telescope references Telescope "";
@@ -61,20 +55,34 @@ Delay  ""
  	
  }
  
+ enum InvestigatorKind {
+ 	PI "principal investigator",
+ 	COI "co-investigator"
+ }
+ 
+ otype ObservingInvestigator {
+ 	investigator references Investigator "the investigator";
+ 	type : InvestigatorKind "the investigator type";
+ }
+ 
  otype ObservingProposal "a complete proposal"
  {
  	title: ivoa:string   "the proposal title" ;
-    code: ivoa:stringIdentifier iskey  "a code that can be used to refer to the proposal" ;
-    ^abstract: ivoa:string   "" ;
-    principalInvestigator: Investigator @+ as composition  "the person(s) leading the proposal";
-    coInvestigator: Investigator @* as composition "other persons associated with the proposal";
+    code: ivoa:string iskey  "a code that can be used to refer to the proposal" ;
+    summary: ivoa:string   "a short summary/abstract of the proposal" ;
+    investigators: ObservingInvestigator @+ as composition  "the person(s) making the proposal";
     kind : ProposalKind "the type of proposal";
-    relatedProposals @* references ObservingProposal "";
+    relatedProposals: RelatedProposal @* as composition "";
     dateSubmitted : ivoa:datetime "date that the proposal is submitted";
     supportingDocuments: SupportingDocument @* as composition "any additional documents";
     targets: Target  @+ as composition "The observing targets";
  }
  
+ otype RelatedProposal "a related proposal" // note that this is being done to follow the vodml aggregation pattern
+ {
+ 	proposal references ObservingProposal "the related proposal" ;
+ 	//IMPL could also put information about the type of relationship
+ }
  
  otype SupportingDocument "a document" {
  	title : ivoa:string "document title";
@@ -92,7 +100,7 @@ Delay  ""
   
   otype Polygon  -> Field  "Polygonal map"
   {   
-        points: coords:EquatorialPoint   @*   "" ;
+        points: coords:EquatorialPoint   @*   "an array of points...." ; 
   }
   otype Ellipse  -> Field "Specialization of a Field for an elliptical map."
   {   
@@ -139,7 +147,7 @@ Delay  ""
   {   
         restFrequency: ivoa:RealQuantity   "" ;
         transition: ivoa:string   "" ;
-        splatalogId: ivoa:identifier   "" ;
+        splatalogId: ivoa:stringIdentifier   "" ; // IMPL is VAMDC more client friendly?
         description: ivoa:string   "" ;
   }
   
@@ -173,8 +181,34 @@ Delay  ""
  	representativeFreq: ivoa:RealQuantity "the frequency at which these pertain";
  }
  
+ abstract otype Observation "" {
+ 	target references Target "";
+ 	field references Field "";
+ 	scienceGoal references ScienceGoal "";
+ 	
+ }
  
- otype scienceGoal "collects together the science goal of the proposal" {
+ otype TargetObservation -> Observation{
+ }
+ 
+ otype CalibrationObservation -> Observation {
+ 	
+ }
+ 
+ enum CalibrationTarget_intendedUse  "" 
+{
+Amplitude  "" ,
+Atmospheric  "" ,
+Bandpass  "" ,
+Phase  "" ,
+Pointing  "" ,
+Focus  "" ,
+Polarization  "" ,
+Delay  "" 
+}
+ 
+ 
+ otype ScienceGoal "collects together the science goal of the proposal" {
  	
  }
  

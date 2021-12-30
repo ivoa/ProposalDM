@@ -1,6 +1,6 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.2"
+        id("net.ivoa.vo-dml.vodmltools") version "0.2.1"
 }
 
 group = "org.javastro.ivoa.vo-dml"
@@ -29,6 +29,11 @@ repositories {
         mavenLocal() // TODO remove this when releasing - just here to pick up local vodml-runtime
 }
 
+tasks.test {
+        useJUnitPlatform()
+}
+
+
 dependencies {
         implementation("org.javastro.ivoa.vo-dml:vodml-runtime:0.1")
 //    implementation("org.javastro:ivoa-entities:0.9.3-SNAPSHOT")
@@ -39,5 +44,7 @@ dependencies {
         testRuntimeOnly("ch.qos.logback:logback-classic:1.2.3")
 
         testImplementation("org.apache.derby:derby:10.14.2.0")
+        testImplementation("org.javastro:jaxbjpa-utils:0.1")
+        testImplementation("org.javastro:jaxbjpa-utils:0.1:test")
 
 }
