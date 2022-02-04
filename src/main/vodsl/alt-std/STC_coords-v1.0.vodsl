@@ -69,12 +69,21 @@ dtype SphericalPoint  -> Coordinate "A point in space expressed in spherical coo
         theta: ivoa:RealQuantity   "polar angle";
         phi: ivoa:RealQuantity   "azimuthal angle";
   }
-dtype EquatorialPoint  -> Coordinate "A Point on the Unit Sphere"
+dtype EquatorialPoint  -> Coordinate "A Point on the Unit Sphere" 
   {   
      subset coords:Coordinate.coordSys as coords:SpaceSys;
         lon: ivoa:RealQuantity    "The longitudinal angle";
         lat: ivoa:RealQuantity     "The latitudinal angle";
   }
+  
+ dtype GeocentricPoint -> Coordinate "ITRS earth coordinate"
+ {
+ 	    subset coords:Coordinate.coordSys as coords:SpaceSys;
+        x: ivoa:RealQuantity   "cartesian x";
+        y: ivoa:RealQuantity   "catesian y (+ve in east)";
+        z: ivoa:RealQuantity   "cartesian z";
+ 	
+ }
 
 abstract dtype TimeStamp  -> Coordinate "This is the abstract basis for a set of simple time domain coordinates which are expected to accommodate the vast majority of use cases. All TimeStamps, by definition, exist in a standard 1-D coordinate space, with domainMin|Max of +/-Infinity.  All TimeStamps MUST refer to an appropriate TimeSys.
 "
