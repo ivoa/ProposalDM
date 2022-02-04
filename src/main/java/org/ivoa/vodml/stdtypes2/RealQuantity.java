@@ -30,7 +30,7 @@
     
  @org.ivoa.vodml.annotation.VoDml(ref="ivoa:RealQuantity.value", type=org.ivoa.vodml.annotation.VodmlType.attribute)
  
-        @Basic( optional = false )
+        @Basic( optional = true ) // IMPL have changed the nullability to allow cases where it is embedded to be null - cannot override this easily in hibernate
         @Column( name = "value", nullable = false )
                             
     @javax.xml.bind.annotation.XmlElement( name = "value", required = true, type = Double.class)
