@@ -54,7 +54,7 @@ The concept of a common proposal DM was discussed in \cite{2008SPIE.7019E..0PB}.
 \url{https://www.eso.org/sci/meetings/2018/proposal-tools-workshop.html}
 
 One of the main inspirations is the Alma Project Data model
-\cite{alma:projdm} from which several ideas have been reused.
+\cite{alma:projdm} from which several ideas have been reused. Also the data model from the NorthStar tool (TODO cite)
 
 
 \subsection{Role within the VO Architecture}
@@ -76,6 +76,29 @@ One of the main inspirations is the Alma Project Data model
 Fig.~\ref{fig:archdiag} shows the role this document plays within the
 IVOA architecture \citep{2010ivoa.rept.1123A}.
 
+
+\section{Requirements}
+
+The proposal part model is primarily designed from the proposing astromomer's point-of-view, and does not contain all of the technical detail
+that would be necessary from the observatory point-of-view to actually perform detailed instrument set-up for instance, though it does
+strive to provide all the information necessary to schedule observations. Some top level requirements that follow from this approach are;
+
+\begin{enumerate}
+    \item The science goal is uppermost
+    \begin{itemize}
+        \item specify the target objects
+        \item necessary physics goals on the observation.
+    \end{itemize}
+    \item Specifics of instrumental configuration are not considered - only the broad physics of what the instrument should achieve
+    \item It should be easy to reuse the proposal for many observatories
+    \item
+    \item
+\end{enumerate}
+
+The proposal management part of the model adds extra information that the observatory needs to specify what resources are available
+and to provide a method of scoring the proposal. This is deliberately created as a separate part of the overall model to help
+to enforce the separation in functions so that the same proposal might be more easily submitted to several observatories.
+
 \section{The Model}
 
 \begin{figure}
@@ -87,10 +110,13 @@ IVOA architecture \citep{2010ivoa.rept.1123A}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{generated/proposalReview.vo-dml.png}
-    \caption{The Review Data Model}
-    \label{fig:proprevdm}
+    \includegraphics[width=\textwidth]{generated/proposalManagement.vo-dml.png}
+    \caption{The Proposal Management Data Model}
+    \label{fig:propmdm}
 \end{figure}
+
+\subsection{Model Concepts}
+
 
 \appendix
 \section{Changes from Previous Versions}

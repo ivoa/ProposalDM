@@ -1,0 +1,120 @@
+/*
+ *  created on 20 Oct 2021 // The review side of the proposal.
+ */
+ 
+ model proposalManagement (0.2) "The data model for managing the proposal review process" author "Paul Harrison" 
+ 
+ include "alt-std/IVOA-v1.0.vodsl"
+ include "alt-std/STC_coords-v1.0.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
+ include "proposaldm.vodsl"
+ 
+ 
+ otype OfferedCycles { //TODO this is temporary idea for a  "containing object" for the whole review - need to think this out more.
+ 	cycles : ProposalCycle @+ as composition "";
+ }
+ 
+ otype Reviewer  "assigned to review the proposal" {
+ 	person references proposal:Person "the person taking on the reviewer role";
+ }
+ 
+ 
+ enum TacRole "A role within the timeAllocation committee" { // IMPL is this 
+ 	TechnicalReviewer "",
+ 	ScienceReviewer "",
+ 	Chair ""
+ }
+ 
+  
+ otype CommitteeMember "a member of the TAC " {
+ 	member references Reviewer "the member";
+ 	role: TacRole "";
+ }
+ 
+ 
+ otype TAC "time allocation committee"
+ {
+ 	members : CommitteeMember @+ as composition "members of the committee";
+ 	
+ }
+ 
+ 
+ 
+ otype ProposalCycle "Defines collection of resources and proposals for a particular observing season" {
+ 	observatory references proposal:Observatory  "";
+ 	submissionDeadline : ivoa:datetime "the date by which observing proposals must be submitted to be considered for this cycle";
+ 	observationSessionStart : ivoa:datetime "the start date of the observing cycle";
+ 	observationSessionEnd: ivoa:datetime "the end date of the observing cycle";
+ 	observingModes: proposal:ObservingMode @+ as composition "the possible observing modes offered in the cycle";
+ 	availableResources : AvailableResources as composition "";
+ 	possibleGrades : AllocationGrade @+ as composition "The possible grades that can be allocated for this cycle";
+ 	tac : TAC as composition "The time allocation committee";
+ 	submittedProposals : SubmittedProposal @* as composition "the proposals that have been submitted in this cycle";
+ 	reviewedProposals : ReviewedProposal @* as composition "the proposals that have been reviewed in this cycle";
+ 	allocatedProposals : AllocatedProposal @* as composition "the proposals that have been successful and allocated time";
+}
+ 
+ otype SubmittedProposal "an instance of a proposal that has been submitted" {
+ 	proposal references proposal:ObservingProposal "the proposal";
+ 	submissionDate : ivoa:datetime "the date that the proposal was submitted";
+ }
+ 
+ otype ReviewedProposal "an instance of a proposal that is in review" {
+//	cycle references ProposalCycle ""; //IMPL does not necessarily need this back reference as owned by the cycle - might be possible to put in automatically with tooling...
+ 	proposal references proposal:ObservingProposal ""; 	
+ 	reviews : ProposalReview @+ as composition "the reviews";
+ 	successful : ivoa:boolean "the proposal can go on to allocation";
+ 	reviewsCompleteDate : ivoa:datetime "the date when all the proposals are complete";
+ }
+ 
+ otype AllocatedProposal "an instance of a proposal that is allocated observing time" {
+ 	proposal references proposal:ObservingProposal "the proposal"; 	
+ 	allocation : AllocatedBlock @+ as composition "what is allocated to the proposal";
+ }
+ 
+ otype ProposalReview "A review of a proposal" {
+ 	reviewer references Reviewer "the reviewer making this review";
+ 	comment: ivoa:string "Description";
+ 	score : ivoa:real "the review score";
+ 	technicalFeasibility: ivoa:boolean "is the proposal technically feasible";
+ 	reviewDate: ivoa:datetime "the date that the review is submitted";
+ }
+ 
+ 
+ otype ResourceType "a type of resource  " {
+ 	name : ivoa:string "the name of the resource type";
+ 	unit : ivoa:string "";
+ }
+ 
+ otype Resource "A resource that will be consumed by allocating an observation from a proposal" {
+ 	type references ResourceType "the type of the resource";
+ 	amount : ivoa:real "The amount of the resource"; 
+ }
+
+ otype AvailableResources "The list of resources that are available" {
+ 	resources  : Resource @* as composition ""; // TODO need to ensure that each resource type can occur only once.
+ }
+ 
+ 
+  otype AllocationGrade "The final grade given by the TAC" {
+  	/*
+  	 * the idea of this is to be able to define classes of allocation that have differing priorities of actually being observed.
+  	 */
+ 	name : ivoa:string "the name of the grade";
+ 	description : ivoa:string "what this grade means";
+  	
+  }
+ 
+ otype ResourceBlock  "A block of resources that can be allocated"
+ {
+ 	mode references proposal:ObservingMode "";
+ 	resource : Resource as composition  "the amount of resource";
+ }
+ 
+ otype AllocatedBlock -> ResourceBlock "A block of resources that have been allocated" {
+ 	grade references AllocationGrade "";
+ 	
+ }
+ 
+ 
+ 
+ 

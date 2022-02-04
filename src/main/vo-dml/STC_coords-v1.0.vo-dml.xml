@@ -10,7 +10,7 @@
       <title>TBD</title>
       <author>Arnold Rots, Mark Cresitello-Dittmar, Omar Laurino</author>
       <version>1.0</version>
-      <lastModified>2021-10-31T13:09:01Z</lastModified>
+      <lastModified>2022-01-27T18:00:13Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -193,6 +193,14 @@
                <extends>
                   <vodml-ref>coords:Coordinate</vodml-ref>
                </extends>
+                   <constraint xsi:type="vo-dml:SubsettedRole">
+                      <role>
+                         <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+                      </role>
+                      <datatype>
+                         <vodml-ref>coords:SpaceSys</vodml-ref>
+                      </datatype>
+                   </constraint>
             <attribute>
               <vodml-id>Point.axis1</vodml-id>
               <name>axis1</name>
@@ -237,6 +245,14 @@
                <extends>
                   <vodml-ref>coords:Coordinate</vodml-ref>
                </extends>
+                   <constraint xsi:type="vo-dml:SubsettedRole">
+                      <role>
+                         <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+                      </role>
+                      <datatype>
+                         <vodml-ref>coords:SpaceSys</vodml-ref>
+                      </datatype>
+                   </constraint>
             <attribute>
               <vodml-id>SphericalPoint.r</vodml-id>
               <name>r</name>
@@ -281,6 +297,14 @@
                <extends>
                   <vodml-ref>coords:Coordinate</vodml-ref>
                </extends>
+                   <constraint xsi:type="vo-dml:SubsettedRole">
+                      <role>
+                         <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+                      </role>
+                      <datatype>
+                         <vodml-ref>coords:SpaceSys</vodml-ref>
+                      </datatype>
+                   </constraint>
             <attribute>
               <vodml-id>EquatorialPoint.lon</vodml-id>
               <name>lon</name>
@@ -306,6 +330,58 @@
               </multiplicity>
             </attribute>
             </dataType>
+            <dataType>
+              <vodml-id>GeocentricPoint</vodml-id>
+              <name>GeocentricPoint</name>
+              <description>ITRS earth coordinate</description>	    
+               <extends>
+                  <vodml-ref>coords:Coordinate</vodml-ref>
+               </extends>
+                   <constraint xsi:type="vo-dml:SubsettedRole">
+                      <role>
+                         <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+                      </role>
+                      <datatype>
+                         <vodml-ref>coords:SpaceSys</vodml-ref>
+                      </datatype>
+                   </constraint>
+            <attribute>
+              <vodml-id>GeocentricPoint.x</vodml-id>
+              <name>x</name>
+              <description>cartesian x</description>	    
+              <datatype>
+                 <vodml-ref>ivoa:RealQuantity</vodml-ref>
+              </datatype>
+              <multiplicity>
+                <minOccurs>1</minOccurs>
+                <maxOccurs>1</maxOccurs>
+              </multiplicity>
+            </attribute>
+            <attribute>
+              <vodml-id>GeocentricPoint.y</vodml-id>
+              <name>y</name>
+              <description>catesian y (+ve in east)</description>	    
+              <datatype>
+                 <vodml-ref>ivoa:RealQuantity</vodml-ref>
+              </datatype>
+              <multiplicity>
+                <minOccurs>1</minOccurs>
+                <maxOccurs>1</maxOccurs>
+              </multiplicity>
+            </attribute>
+            <attribute>
+              <vodml-id>GeocentricPoint.z</vodml-id>
+              <name>z</name>
+              <description>cartesian z</description>	    
+              <datatype>
+                 <vodml-ref>ivoa:RealQuantity</vodml-ref>
+              </datatype>
+              <multiplicity>
+                <minOccurs>1</minOccurs>
+                <maxOccurs>1</maxOccurs>
+              </multiplicity>
+            </attribute>
+            </dataType>
             <dataType abstract='true'>
               <vodml-id>TimeStamp</vodml-id>
               <name>TimeStamp</name>
@@ -314,6 +390,14 @@
                <extends>
                   <vodml-ref>coords:Coordinate</vodml-ref>
                </extends>
+                   <constraint xsi:type="vo-dml:SubsettedRole">
+                      <role>
+                         <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+                      </role>
+                      <datatype>
+                         <vodml-ref>coords:TimeSys</vodml-ref>
+                      </datatype>
+                   </constraint>
             </dataType>
             <dataType>
               <vodml-id>TimeOffset</vodml-id>

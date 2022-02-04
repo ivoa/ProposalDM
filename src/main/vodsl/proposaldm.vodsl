@@ -2,66 +2,92 @@
  *  created on 09-Jul-2021 
  */
  
- model proposal (0.1) "description" author "Paul Harrison"
+ model proposal (0.2) "description" author "Paul Harrison"
  
  include "alt-std/IVOA-v1.0.vodsl" // this is an edited version of the standard to include identifiers.
  include "alt-std/STC_coords-v1.0.vodsl"
  
- enum ProposalKind
+ enum ProposalKind  //IMPL -is this universal enough to be an enum?
  {
- 	Standard "",
+ 	Standard "Normal proposal",
  	ToO "target of opportunity",
- 	Survey ""
- 	
+ 	Survey "Part of a large programme" 	
  }
- 
- 
  
  otype Organization
  {
  	name: ivoa:string "The name of the organization";
  	address : ivoa:string "";
- 	ivoid : ivoa:ivorn @? "the registry identifier for the organization";
- 	
+ 	ivoid : ivoa:ivorn @? "the registry identifier for the organization"; 	
  }
  
  otype Observatory -> Organization {
+ 	
+ 	telescopes : Telescope @+ as composition "the telescopes that the observatory controls";
+ 	instruments : Instrument @+ as composition "the instruments that are available for the telescopes";
+ 	backends : Backend @+ as composition "the backends that exist";
+ 	arrays: TelescopeArray @* as composition "any arrays of telescopes";
  	
  }
  
  otype Telescope {
  	name : ivoa:string "telescope name";
- 	observatory references Observatory "the observatory that hosts the telescope";
- 	
+ 	location : coords:GeocentricPoint "the location of the telescope" ;
+ }
+ 
+ otype TelescopeArrayMember "" {
+ 	telescope references Telescope "";
  }
  
  otype TelescopeArray "a set of telescopes that are operated together for an observation" {
  	name : ivoa:string "the array name";
-    telescopes: Telescope @+ as composition "the telescopes that make up the array"; 	
+    arrayMembers: TelescopeArrayMember @+ as composition "the telescopes that make up the array"; 	
  }
  
- otype Instrument {
+ 
+ enum InstrumentKind {
+ 	continuum,
+ 	spectroscopic
+ }
+ 
+ otype Instrument "An instrument that can be attached to a telescope - e.g. CCD, Radio Receiver"{
  	name : ivoa:string "the instrument name";
- 	telescope references Telescope "";
+ 	kind : InstrumentKind "the kind of instrument";
+ 	frequencyCoverage : SpectralWindowSetup as composition "the frequency range that the instrument covers";
+ }
+ 
+ otype Backend "a processing backend /pipeline- e.g. correlator" {
+ 	name : ivoa:string "the backend name"; 	
+ 	parallel : ivoa:boolean "is capable of being run at same time as other backends";
  	
  }
+ 
+ otype ObservingConfiguration "A particular observation combination that is possible" {
+ 	telescope references Telescope "";
+ 	instrument references Instrument "";
+ 	backend references Backend "";
+ }
+ 
+ otype ObservingMode "a collection of configs that can be chosen to observe with." {
+ 	name : ivoa:string "";
+ 	description: ivoa:string "";
+ 	configurations : ObservingConfiguration @+ as composition "";
+ }
+  
  otype Person "person connected with the proposal" {
  	fullName : ivoa:string "";
  	eMail : ivoa:string "";
  	homeInstitute references Organization "";
  }
  
- otype Investigator -> Person "a person involved in creating the proposal" {
- 	
- }
  
  enum InvestigatorKind {
  	PI "principal investigator",
  	COI "co-investigator"
  }
  
- otype ObservingInvestigator {
- 	investigator references Investigator "the investigator";
+ otype Investigator { // note that the key that is the surrogate key for this object would be a good candidate for an anonymous key
+ 	investigator references Person "the investigator";
  	type : InvestigatorKind "the investigator type";
  }
  
@@ -70,12 +96,12 @@
  	title: ivoa:string   "the proposal title" ;
     code: ivoa:string iskey  "a code that can be used to refer to the proposal" ;
     summary: ivoa:string   "a short summary/abstract of the proposal" ;
-    investigators: ObservingInvestigator @+ as composition  "the person(s) making the proposal";
+    investigators: Investigator @+ as composition  "the person(s) making the proposal";
     kind : ProposalKind "the type of proposal";
     relatedProposals: RelatedProposal @* as composition "";
     dateSubmitted : ivoa:datetime "date that the proposal is submitted";
     supportingDocuments: SupportingDocument @* as composition "any additional documents";
-    targets: Target  @+ as composition "The observing targets";
+    observations : Observation @+ as composition "the proposed observations";
  }
  
  otype RelatedProposal "a related proposal" // note that this is being done to follow the vodml aggregation pattern
@@ -86,22 +112,30 @@
  
  otype SupportingDocument "a document" {
  	title : ivoa:string "document title";
- 	location : ivoa:anyURI "location of document";
+ 	location : ivoa:anyURI "location of document";//IMPL might want this in-line
  }
  
  
  abstract otype Field  "Definition of an observing field pointing"
   {   
         name: ivoa:string   "" ;
-        centre: coords:Point   "" ;
+        
   }
   
-  otype Point -> Field "Single point on the sky" {}
+  otype TargetField -> Field "the field points to the associated target"
+  {
+  	
+  }
+  
+  otype Point -> Field "Single point on the sky" {
+  	  centre: coords:Point   "" ;
+  }
   
   otype Polygon  -> Field  "Polygonal map"
   {   
         points: coords:EquatorialPoint   @*   "an array of points...." ; 
   }
+  
   otype Ellipse  -> Field "Specialization of a Field for an elliptical map."
   {   
         semiMajor: ivoa:RealQuantity   "" ;
@@ -109,7 +143,12 @@
         pAMajor: ivoa:RealQuantity   "" ;
   }
   
-  abstract otype TimingConstraint  "Any specific timing requirements for the observing"
+  
+  abstract otype Constraint "a form of constraint on the observation" {
+  	
+  }
+  
+  abstract otype TimingConstraint -> Constraint  "Any specific timing requirements for the observing"
   {   
         note: ivoa:string  @?   "" ;
         isAvoidConstraint: ivoa:boolean  @?   "" ;
@@ -135,18 +174,18 @@
  
   otype SpectralWindowSetup  "Science oriented definition of a spectral window."
   {   
-        centerFrequency: ivoa:RealQuantity   "" ;
-        bandWidth: ivoa:RealQuantity    "" ;
-        spectralResolution: ivoa:RealQuantity    "" ;
-        isSkyFrequency: ivoa:boolean   "" ;
-        polarization: coords:PolStateEnum "desired polarization";
+        start: ivoa:RealQuantity   "The start of the spectral window" ;
+        end: ivoa:RealQuantity    "The end of the spectral window" ;
+        spectralResolution: ivoa:RealQuantity @?  "channel width" ; //IMPL would like this to be optional, but cannot have optional embedded in JPA - if resolution not important then set same as width.
+        isSkyFrequency: ivoa:boolean   "represents an observed frequency" ;
+        polarization: coords:PolStateEnum  "desired polarization"; //FIXME - in general the STC polstate enum is not enough - how to say L circular for instance. - also do want multiple pol states in same window defn.
    }  
  
   
   otype ExpectedSpectralLine  "Brief description of a spectral line."
   {   
         restFrequency: ivoa:RealQuantity   "" ;
-        transition: ivoa:string   "" ;
+        transition: ivoa:string @?  "" ;
         splatalogId: ivoa:stringIdentifier   "" ; // IMPL is VAMDC more client friendly?
         description: ivoa:string   "" ;
   }
@@ -161,10 +200,11 @@
   otype CelestialTarget -> Target  "The basic target setup for a celestial Target."
   {   //most of these source parameters should be in an ivoa source model.
         sourceCoordinates: coords:EquatorialPoint   "" ;
-        pmRA: ivoa:RealQuantity  "" ;
-        pmDec: ivoa:RealQuantity   "" ;
-        parallax: ivoa:RealQuantity  "" ;
-        sourceVelocity: ivoa:RealQuantity   "" ;
+        positionEpoch : coords:Epoch "the epoch at which the position was measured";
+        pmRA: ivoa:RealQuantity @?  "" ;
+        pmDec: ivoa:RealQuantity @?  "" ;
+        parallax: ivoa:RealQuantity @? "" ;
+        sourceVelocity: ivoa:RealQuantity @?   "" ;
  }
  
  otype SolarSystemTarget -> Target ""
@@ -172,30 +212,30 @@
  	// needs ephemeris data.
  }
   
- otype PerformanceParameters "The parameters required for observation" // should probably be attached to each target
+ otype PerformanceParameters "The parameters required for observation to be useful for the science goal" 
  {
- 	desiredAngularResolution: ivoa:RealQuantity "";
- 	desiredLargestScale:  ivoa:RealQuantity "";
- 	desiredSensitivity:  ivoa:RealQuantity "";
- 	desiredDynamicRange:  ivoa:RealQuantity "";  // sensitivity or dynamic range?
+ 	desiredAngularResolution: ivoa:RealQuantity @?  "";
+ 	desiredLargestScale:  ivoa:RealQuantity @?  "";
+ 	desiredSensitivity:  ivoa:RealQuantity @?  "";
+ 	desiredDynamicRange:  ivoa:RealQuantity @?  "";  //TODO sensitivity or dynamic range?
  	representativeFreq: ivoa:RealQuantity "the frequency at which these pertain";
  }
  
  abstract otype Observation "" {
- 	target references Target "";
+ 	target references  Target  "The actual target of the observation";
  	field references Field "";
- 	scienceGoal references ScienceGoal "";
- 	
+ 	tech references TechnicalGoal "";
+ 	constraints: Constraint @* as composition "";
  }
  
- otype TargetObservation -> Observation{
+ otype TargetObservation -> Observation "an observation of the scientific target "{
  }
  
- otype CalibrationObservation -> Observation {
- 	
+ otype CalibrationObservation -> Observation "an observation that is intended for calibration"{
+ 	intent : CalibrationTarget_intendedUse "";
  }
  
- enum CalibrationTarget_intendedUse  "" 
+ enum CalibrationTarget_intendedUse  "" //should this be an enum
 {
 Amplitude  "" ,
 Atmospheric  "" ,
@@ -208,7 +248,9 @@ Delay  ""
 }
  
  
- otype ScienceGoal "collects together the science goal of the proposal" {
+ otype TechnicalGoal "collects together the technical goals of the proposal" {
+ 	performance : PerformanceParameters as composition "";
+ 	spectrum: ScienceSpectralWindow @+ as composition "";
  	
  }
  
