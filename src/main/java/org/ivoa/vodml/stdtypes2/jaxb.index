@@ -3,3 +3,6 @@ IntIdentifier
 StringIdentifier
 Ivorn
 Unit
+Quantity
+RealQuantity
+IntegerQuantity

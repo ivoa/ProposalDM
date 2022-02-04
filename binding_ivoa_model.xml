@@ -81,8 +81,20 @@ Ultimately this file should be bundled up with a jar for the IVOA model, and not
   </type-mapping>
   <type-mapping>
     <vodml-id>Unit</vodml-id>
-    <java-type>org.ivoa.vodml.stdtypes2.Unit</java-type>
+    <java-type primitive-value-field="value">org.ivoa.vodml.stdtypes2.Unit</java-type>
     <xsd-type>xsd:string</xsd-type>
+  </type-mapping>
+  <type-mapping>
+    <vodml-id>Quantity</vodml-id>
+    <java-type>org.ivoa.vodml.stdtypes2.Quantity</java-type>
+  </type-mapping>
+  <type-mapping>
+    <vodml-id>RealQuantity</vodml-id>
+    <java-type>org.ivoa.vodml.stdtypes2.RealQuantity</java-type>
+  </type-mapping>
+  <type-mapping>
+    <vodml-id>IntegerQuantity</vodml-id>
+    <java-type>org.ivoa.vodml.stdtypes2.IntegerQuantity</java-type>
   </type-mapping>
 </model>
 
