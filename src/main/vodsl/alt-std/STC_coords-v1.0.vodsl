@@ -1,6 +1,7 @@
 
 model coords (1.0) "This model defines objects which describe the coordinate space, coordinates within that space, and frames, which provide additional metadata regarding the origin, orientation, etc, of the coordinate space. The model also defines a coordinate system, bundling frames into associated groups.
-"
+- note that this is an extended version for proposalDM including some concrete point types that will hopefully make it into the main
+release"
      
  author "Arnold Rots, Mark Cresitello-Dittmar, Omar Laurino"
        include "IVOA-v1.0.vodsl"

@@ -4,12 +4,15 @@
               xsi:schemaLocation="http://www.ivoa.net/xml/VODML/v1 https://www.ivoa.net/xml/VODML/vo-dml-v1.xsd" 
               vodmlVersion="1.1">	<!-- file generated from VODSL - needs validatate against v1.1 of schema  --> 
       <name>proposal</name>
-      <description>description</description> 
+      <description>A model to represent an application for observing time. The model is intended to express all 
+      of the concepts required to specify the scientific parameters of the application in sufficient detail to allow the 
+      proposal to be reviewed and allocated time. It does not cover all the technical detail of instrument setup that would be needed to actually schedule the 
+      observations, although the intention is that information about targets etc. could be automatically transferred to an observing system.</description> 
       <uri/>
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.2</version>
-      <lastModified>2022-02-07T14:57:18Z</lastModified>
+      <lastModified>2022-02-11T10:48:42Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -202,7 +205,7 @@
                <composition>
                  <vodml-id>Observatory.arrays</vodml-id>
                  <name>arrays</name>
-                 <description>any arrays of telescopes</description>	    
+                 <description>any arrays of telescopes that typically operate together</description>	    
                  <datatype>
                     <vodml-ref>proposal:TelescopeArray</vodml-ref>
                  </datatype>

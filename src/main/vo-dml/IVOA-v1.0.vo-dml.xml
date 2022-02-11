@@ -4,11 +4,14 @@
               xsi:schemaLocation="http://www.ivoa.net/xml/VODML/v1 https://www.ivoa.net/xml/VODML/vo-dml-v1.xsd" 
               vodmlVersion="1.1">	<!-- file generated from VODSL - needs validatate against v1.1 of schema  --> 
       <name>ivoa</name>
-      <description>This is the main reference data model containing primitive types used in other data models.</description> 
+      <description>This is the main reference data model containing primitive types used in other data models.
+      - note that this is an extended version for proposalDM including some identifier types that will hopefully make it into the main
+      release
+      </description> 
       <uri/>
       <title>TBD</title>
       <version>1.0</version>
-      <lastModified>2022-02-04T16:58:16Z</lastModified>
+      <lastModified>2022-02-10T11:52:48Z</lastModified>
       <primitiveType>
         <vodml-id>Unit</vodml-id>
         <name>Unit</name>

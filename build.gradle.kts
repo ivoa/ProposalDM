@@ -1,6 +1,6 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.2.2"
+        id("net.ivoa.vo-dml.vodmltools") version "0.2.3"
 }
 
 group = "org.javastro.ivoa.dm"
@@ -22,6 +22,8 @@ vodml {
                 )
         )
         outputDocDir.set(layout.projectDirectory.dir("std/generated"))
+
+        modelsToDocument.set("proposal,proposalManagement")
 }
 
 java {

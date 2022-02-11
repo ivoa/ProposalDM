@@ -1,5 +1,8 @@
 
-model ivoa (1.0) "This is the main reference data model containing primitive types used in other data models."
+model ivoa (1.0) "This is the main reference data model containing primitive types used in other data models.
+- note that this is an extended version for proposalDM including some identifier types that will hopefully make it into the main
+release
+"
      
     primitive Unit  "Must conform to definition of unit in VOUnit spec."
     primitive anyURI  "Represents a URI in the same way as the datatype of the same nam in XML Schema is used."

@@ -43,6 +43,7 @@ jobs:
     - name: Build the document
       run: |
         ./gradlew vodmlDoc
+        make -C std biblio
         make -C std ${{ env.doc_name }}-draft.pdf
     
     - name: Check the output

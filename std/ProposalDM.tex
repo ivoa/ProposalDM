@@ -1,8 +1,11 @@
-\documentclass[11pt,a4paper]{ivoa}
+\documentclass[10pt,a4paper]{ivoa}
+\usepackage[top=1in, bottom=0.75in, left=0.75in, right=0.75in]{geometry}
 \usepackage{hyperref}
+\usepackage{parskip}
 \input tthdefs
+\input gitmeta
 
-\title{ProposalDM: A Datamodel for Observation Proposals}
+\title{ProposalDM: A Data model for Observation Proposals}
 
 % see ivoatexDoc for what group names to use here; use \ivoagroup[IG] for
 % interest groups.
@@ -49,12 +52,17 @@ infrastructure that enable VO applications.
 \section{Introduction}
 
 
-The concept of a common proposal DM was discussed in \cite{2008SPIE.7019E..0PB}.
+The concept of a common project DM was discussed in \cite{2008SPIE.7019E..0PB}, and whilst this model limits itself to
+only the proposal part, the general concept of attempting this level of interoperability is inspired by that paper.
 
-\url{https://www.eso.org/sci/meetings/2018/proposal-tools-workshop.html}
+There was a workshop held at ESO \url{https://www.eso.org/sci/meetings/2018/proposal-tools-workshop.html} which reviewed
+proposal systems, and this model tries to benefit from the lessons learnt during that workshop.
 
-One of the main inspirations is the Alma Project Data model
-\cite{alma:projdm} from which several ideas have been reused. Also the data model from the NorthStar tool (TODO cite)
+The detail of the model derives inspiration from two particular sources;
+\begin{enumerate}
+    \item The data model from the NorthStar tool (TODO cite)
+    \item The Alma Project Data model \cite{alma:projdm}.
+\end{enumerate}
 
 
 \subsection{Role within the VO Architecture}
@@ -77,29 +85,34 @@ Fig.~\ref{fig:archdiag} shows the role this document plays within the
 IVOA architecture \citep{2010ivoa.rept.1123A}.
 
 
-\section{Requirements}
+\section{High-level design requirements}
 
-The proposal part model is primarily designed from the proposing astromomer's point-of-view, and does not contain all of the technical detail
+The proposal part model is primarily designed from the proposing astronomer's point-of-view, and does not contain all of the technical detail
 that would be necessary from the observatory point-of-view to actually perform detailed instrument set-up for instance, though it does
-strive to provide all the information necessary to schedule observations. Some top level requirements that follow from this approach are;
+strive to provide all the information necessary to schedule observations. Some top-level requirements that follow from this approach are;
 
 \begin{enumerate}
     \item The science goal is uppermost
     \begin{itemize}
-        \item specify the target objects
+        \item specify the target objects.
         \item necessary physics goals on the observation.
     \end{itemize}
     \item Specifics of instrumental configuration are not considered - only the broad physics of what the instrument should achieve
-    \item It should be easy to reuse the proposal for many observatories
-    \item
-    \item
 \end{enumerate}
+
+In addition there are some other high level requirements of how the review should work that have driven the design;
+
+\begin{enumerate}
+    \item It should be easy to reuse the proposal for many observatories.
+    \item Proposers should be anonymous to the reviewers (who indeed should be anonymous to the proposers).
+\end{enumerate}
+
 
 The proposal management part of the model adds extra information that the observatory needs to specify what resources are available
 and to provide a method of scoring the proposal. This is deliberately created as a separate part of the overall model to help
 to enforce the separation in functions so that the same proposal might be more easily submitted to several observatories.
 
-\section{The Model}
+\include{generated/proposaldm.vo-dml_desc}
 
 \begin{figure}
     \centering
@@ -108,6 +121,7 @@ to enforce the separation in functions so that the same proposal might be more e
 \label{fig:propdm}
 \end{figure}
 
+\include{generated/proposalManagement.vo-dml_desc}
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{generated/proposalManagement.vo-dml.png}
@@ -115,13 +129,12 @@ to enforce the separation in functions so that the same proposal might be more e
     \label{fig:propmdm}
 \end{figure}
 
-\subsection{Model Concepts}
 
 
 \appendix
 \section{Changes from Previous Versions}
 
-No previous versions yet.  
+No published versions yet.
 % these would be subsections "Changes from v. WD-..."
 % Use itemize environments.
 

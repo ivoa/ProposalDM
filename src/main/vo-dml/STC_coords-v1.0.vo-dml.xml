@@ -5,12 +5,13 @@
               vodmlVersion="1.1">	<!-- file generated from VODSL - needs validatate against v1.1 of schema  --> 
       <name>coords</name>
       <description>This model defines objects which describe the coordinate space, coordinates within that space, and frames, which provide additional metadata regarding the origin, orientation, etc, of the coordinate space. The model also defines a coordinate system, bundling frames into associated groups.
-      </description> 
+      - note that this is an extended version for proposalDM including some concrete point types that will hopefully make it into the main
+      release</description> 
       <uri/>
       <title>TBD</title>
       <author>Arnold Rots, Mark Cresitello-Dittmar, Omar Laurino</author>
       <version>1.0</version>
-      <lastModified>2022-01-27T18:00:13Z</lastModified>
+      <lastModified>2022-02-10T11:53:03Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>

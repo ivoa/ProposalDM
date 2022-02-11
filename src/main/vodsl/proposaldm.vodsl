@@ -2,10 +2,14 @@
  *  created on 09-Jul-2021 
  */
  
- model proposal (0.2) "description" author "Paul Harrison"
+ model proposal (0.2) "A model to represent an application for observing time. The model is intended to express all 
+of the concepts required to specify the scientific parameters of the application in sufficient detail to allow the 
+proposal to be reviewed and allocated time. It does not cover all the technical detail of instrument setup that would be needed to actually schedule the 
+observations, although the intention is that information about targets etc. could be automatically transferred to an observing system."
+ author "Paul Harrison"
  
  include "alt-std/IVOA-v1.0.vodsl" // this is an edited version of the standard to include identifiers.
- include "alt-std/STC_coords-v1.0.vodsl"
+ include "alt-std/STC_coords-v1.0.vodsl" // this is also edited to include some extra concrete point types.
  
  enum ProposalKind  //IMPL -is this universal enough to be an enum?
  {
@@ -18,7 +22,7 @@
  {
  	name: ivoa:string "The name of the organization";
  	address : ivoa:string "";
- 	ivoid : ivoa:ivorn @? "the registry identifier for the organization"; 	
+ 	ivoid : ivoa:ivorn @? "the registry identifier for the organization"; 	// IMPL perhaps do this more
  }
  
  otype Observatory -> Organization {
@@ -26,7 +30,7 @@
  	telescopes : Telescope @+ as composition "the telescopes that the observatory controls";
  	instruments : Instrument @+ as composition "the instruments that are available for the telescopes";
  	backends : Backend @+ as composition "the backends that exist";
- 	arrays: TelescopeArray @* as composition "any arrays of telescopes";
+ 	arrays: TelescopeArray @* as composition "any arrays of telescopes that typically operate together";
  	
  }
  
@@ -39,7 +43,7 @@
  	telescope references Telescope "";
  }
  
- otype TelescopeArray "a set of telescopes that are operated together for an observation" {
+ otype TelescopeArray "a set of telescopes that are operated together for an observation" { // IMPL might not be necessary with ObservingConfiguration doing the same sort of thing.
  	name : ivoa:string "the array name";
     arrayMembers: TelescopeArrayMember @+ as composition "the telescopes that make up the array"; 	
  }
