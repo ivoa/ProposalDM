@@ -4,12 +4,12 @@
               xsi:schemaLocation="http://www.ivoa.net/xml/VODML/v1 https://www.ivoa.net/xml/VODML/vo-dml-v1.xsd" 
               vodmlVersion="1.1">	<!-- file generated from VODSL - needs validatate against v1.1 of schema  --> 
       <name>proposalManagement</name>
-      <description>The data model for managing the proposal review process</description> 
+      <description>The data model for managing the proposal review process. Intended to work for phase 1</description> 
       <uri/>
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.2</version>
-      <lastModified>2022-02-08T18:13:52Z</lastModified>
+      <lastModified>2022-02-17T15:46:19Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -55,69 +55,6 @@
                  <description></description>	    
                  <datatype>
                     <vodml-ref>proposalManagement:ProposalCycle</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>-1</maxOccurs>
-                 </multiplicity>
-               </composition>
-            </objectType>
-            <objectType>
-               <vodml-id>Reviewer</vodml-id>
-               <name>Reviewer</name>
-               <description>assigned to review the proposal</description>	    
-               <reference>
-                 <vodml-id>Reviewer.person</vodml-id>
-                 <name>person</name>
-                 <description>the person taking on the reviewer role</description>	    
-                 <datatype>
-                   <vodml-ref>proposal:Person</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </reference>
-            </objectType>
-            <objectType>
-               <vodml-id>CommitteeMember</vodml-id>
-               <name>CommitteeMember</name>
-               <description>a member of the TAC </description>	    
-               <attribute>
-                 <vodml-id>CommitteeMember.role</vodml-id>
-                 <name>role</name>
-                 <description></description>	    
-                 <datatype>
-                    <vodml-ref>proposalManagement:TacRole</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
-               <reference>
-                 <vodml-id>CommitteeMember.member</vodml-id>
-                 <name>member</name>
-                 <description>the member</description>	    
-                 <datatype>
-                   <vodml-ref>proposalManagement:Reviewer</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </reference>
-            </objectType>
-            <objectType>
-               <vodml-id>TAC</vodml-id>
-               <name>TAC</name>
-               <description>time allocation committee</description>	    
-               <composition>
-                 <vodml-id>TAC.members</vodml-id>
-                 <name>members</name>
-                 <description>members of the committee</description>	    
-                 <datatype>
-                    <vodml-ref>proposalManagement:CommitteeMember</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -261,6 +198,69 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </reference>
+            </objectType>
+            <objectType>
+               <vodml-id>Reviewer</vodml-id>
+               <name>Reviewer</name>
+               <description>assigned to review the proposal</description>	    
+               <reference>
+                 <vodml-id>Reviewer.person</vodml-id>
+                 <name>person</name>
+                 <description>the person taking on the reviewer role</description>	    
+                 <datatype>
+                   <vodml-ref>proposal:Person</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
+            </objectType>
+            <objectType>
+               <vodml-id>CommitteeMember</vodml-id>
+               <name>CommitteeMember</name>
+               <description>a member of the TAC </description>	    
+               <attribute>
+                 <vodml-id>CommitteeMember.role</vodml-id>
+                 <name>role</name>
+                 <description></description>	    
+                 <datatype>
+                    <vodml-ref>proposalManagement:TacRole</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <reference>
+                 <vodml-id>CommitteeMember.member</vodml-id>
+                 <name>member</name>
+                 <description>the member</description>	    
+                 <datatype>
+                   <vodml-ref>proposalManagement:Reviewer</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
+            </objectType>
+            <objectType>
+               <vodml-id>TAC</vodml-id>
+               <name>TAC</name>
+               <description>time allocation committee</description>	    
+               <composition>
+                 <vodml-id>TAC.members</vodml-id>
+                 <name>members</name>
+                 <description>members of the committee</description>	    
+                 <datatype>
+                    <vodml-ref>proposalManagement:CommitteeMember</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </composition>
             </objectType>
             <objectType>
                <vodml-id>SubmittedProposal</vodml-id>

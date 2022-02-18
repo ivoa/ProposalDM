@@ -39,6 +39,7 @@ import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalCycle.ProposalCycleBuilder;
 import org.ivoa.vodml.stdtypes2.Ivorn;
 import org.ivoa.vodml.stdtypes2.RealQuantity;
+import org.ivoa.vodml.stdtypes2.StringIdentifier;
 import org.ivoa.vodml.stdtypes2.Unit;
 import org.javastro.ivoa.jaxb.DescriptionValidator;
 import org.javastro.ivoa.jaxb.JaxbAnnotationMeta;
@@ -71,16 +72,16 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
     };
     
     protected Person[] people = {
-            new Person("PI", "pi@unreal.not.email", institutes[0]),
-            new Person("CO-I", "coi@unreal.not.email", institutes[1]),
-            new Person("TAC Chair", "tacchair@unreal.not.email", institutes[1]),
-            new Person("TAC member", "tacmamber@unreal.not.email", institutes[0]),
-            new Person("reviewer", "reviewer@unreal.not.email", institutes[1]),
+            new Person("PI", "pi@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-003"), institutes[0]),
+            new Person("CO-I", "coi@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-004"), institutes[1]),
+            new Person("TAC Chair", "tacchair@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-005"), institutes[1]),
+            new Person("TAC member", "tacmamber@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-006"), institutes[0]),
+            new Person("reviewer", "reviewer@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-007"), institutes[1]),
 
     };
     protected List<Investigator> investigators = Arrays.asList(
-            new Investigator ( InvestigatorKind.PI, people[0] ),
-            new Investigator ( InvestigatorKind.COI, people[1] ));
+            new Investigator ( InvestigatorKind.PI, false, people[0] ),
+            new Investigator ( InvestigatorKind.COI, true, people[1] ));
     protected ProposalCycle cycle;
     
     protected Reviewer[] reviewers = {new Reviewer(people[2]),

@@ -1,6 +1,6 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.2.3"
+        id("net.ivoa.vo-dml.vodmltools") version "0.3.0"
 }
 
 group = "org.javastro.ivoa.dm"
@@ -25,6 +25,14 @@ vodml {
 
         modelsToDocument.set("proposal,proposalManagement")
 }
+
+/* uncomment this if not using the eclipse vodsl plugin to edit the vodsl
+*  or just run the vodslToVodml task manually as necessary */
+//tasks.named("vodmlGenerateJava") {
+//        dependsOn("vodslToVodml")
+//}
+
+
 
 java {
         toolchain {

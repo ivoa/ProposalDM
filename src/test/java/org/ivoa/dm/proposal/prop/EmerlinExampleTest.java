@@ -166,7 +166,7 @@ class EmerlinExampleTest extends AbstractProposalTest {
                             g.performance = createPerformanceParameters(p -> {
                                 p.desiredAngularResolution = new RealQuantity(25., arcsec);
                                 p.desiredLargestScale = new RealQuantity(0.1, degrees);
-                                p.representativeFreq = new RealQuantity(1.5, ghz);                                
+                                p.representativeSpectralPoint = new RealQuantity(1.5, ghz);                                
                             });
                             g.spectrum = Arrays.asList( 
                                     createScienceSpectralWindow(ssw->{

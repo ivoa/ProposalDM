@@ -2,16 +2,31 @@
  *  created on 20 Oct 2021 // The review side of the proposal.
  */
  
- model proposalManagement (0.2) "The data model for managing the proposal review process" author "Paul Harrison" 
+ model proposalManagement (0.2) "The data model for managing the proposal review process. Intended to work for phase 1" 
+ author "Paul Harrison" 
  
  include "alt-std/IVOA-v1.0.vodsl"
  include "alt-std/STC_coords-v1.0.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
  include "proposaldm.vodsl"
  
  
- otype OfferedCycles { //TODO this is temporary idea for a  "containing object" for the whole review - need to think this out more.
+ otype OfferedCycles { //TODO this is temporary idea for a  "containing object" for the whole review - need to think this out more, not really necessary
  	cycles : ProposalCycle @+ as composition "";
  }
+ 
+otype ProposalCycle "Defines collection of resources and proposals for a particular observing season" {
+ 	observatory references proposal:Observatory  "";
+ 	submissionDeadline : ivoa:datetime "the date by which observing proposals must be submitted to be considered for this cycle";
+ 	observationSessionStart : ivoa:datetime "the start date of the observing cycle";
+ 	observationSessionEnd: ivoa:datetime "the end date of the observing cycle";
+ 	observingModes: proposal:ObservingMode @+ as composition "the possible observing modes offered in the cycle";
+ 	availableResources : AvailableResources as composition "";
+ 	possibleGrades : AllocationGrade @+ as composition "The possible grades that can be allocated for this cycle";
+ 	tac : TAC as composition "The time allocation committee";
+ 	submittedProposals : SubmittedProposal @* as composition "the proposals that have been submitted in this cycle";
+ 	reviewedProposals : ReviewedProposal @* as composition "the proposals that have been reviewed in this cycle";
+ 	allocatedProposals : AllocatedProposal @* as composition "the proposals that have been successful and allocated time";
+}
  
  otype Reviewer  "assigned to review the proposal" {
  	person references proposal:Person "the person taking on the reviewer role";
@@ -33,26 +48,10 @@
  
  otype TAC "time allocation committee"
  {
- 	members : CommitteeMember @+ as composition "members of the committee";
- 	
+ 	members : CommitteeMember @+ as composition "members of the committee"; 	
  }
  
- 
- 
- otype ProposalCycle "Defines collection of resources and proposals for a particular observing season" {
- 	observatory references proposal:Observatory  "";
- 	submissionDeadline : ivoa:datetime "the date by which observing proposals must be submitted to be considered for this cycle";
- 	observationSessionStart : ivoa:datetime "the start date of the observing cycle";
- 	observationSessionEnd: ivoa:datetime "the end date of the observing cycle";
- 	observingModes: proposal:ObservingMode @+ as composition "the possible observing modes offered in the cycle";
- 	availableResources : AvailableResources as composition "";
- 	possibleGrades : AllocationGrade @+ as composition "The possible grades that can be allocated for this cycle";
- 	tac : TAC as composition "The time allocation committee";
- 	submittedProposals : SubmittedProposal @* as composition "the proposals that have been submitted in this cycle";
- 	reviewedProposals : ReviewedProposal @* as composition "the proposals that have been reviewed in this cycle";
- 	allocatedProposals : AllocatedProposal @* as composition "the proposals that have been successful and allocated time";
-}
- 
+  
  otype SubmittedProposal "an instance of a proposal that has been submitted" {
  	proposal references proposal:ObservingProposal "the proposal";
  	submissionDate : ivoa:datetime "the date that the proposal was submitted";
@@ -85,6 +84,7 @@
  	unit : ivoa:string "";
  }
  
+ //TODO is the idea of a "resource" too general?
  otype Resource "A resource that will be consumed by allocating an observation from a proposal" {
  	type references ResourceType "the type of the resource";
  	amount : ivoa:real "The amount of the resource"; 

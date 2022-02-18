@@ -18,6 +18,47 @@ observations, although the intention is that information about targets etc. coul
  	Survey "Part of a large programme" 	
  }
  
+ otype ObservingProposal "a complete proposal"
+ {
+ 	title: ivoa:string   "the proposal title" ;
+    code: ivoa:string iskey  "a code that can be used to refer to the proposal" ;
+    summary: ivoa:string   "a short summary/abstract of the proposal" ;
+    justification: Justification as composition "scientific justification";
+    investigators: Investigator @+ as composition  "the person(s) making the proposal";
+    kind : ProposalKind "the type of proposal";
+    relatedProposals: RelatedProposal @* as composition "";
+    dateSubmitted : ivoa:datetime "date that the proposal is submitted";
+    supportingDocuments: SupportingDocument @* as composition "any additional documents";
+    observations : Observation @+ as composition "the proposed observations";
+ }
+ 
+ otype RelatedProposal "a related proposal" // note that this is being done to follow the vodml aggregation pattern
+ {
+ 	proposal references ObservingProposal "the related proposal" ;
+ 	//IMPL could also put information about the type of relationship
+ }
+ 
+  otype Person "person connected with the proposal" {
+ 	fullName : ivoa:string "";
+ 	eMail : ivoa:string "";
+ 	homeInstitute references Organization "";
+    orchidId : ivoa:stringIdentifier @? "orchid id"; // are there other possibilities for identifiers - IMPL perhaps this should be composition of identifiers
+ }
+ 
+ 
+ enum InvestigatorKind {
+ 	PI "principal investigator",
+ 	COI "co-investigator"
+ }
+ 
+ //REQ - anonymity of proposers
+ otype Investigator { // note that the key that is the surrogate key for this object would be a good candidate for an anonymous key
+ 	investigator references Person "the investigator";
+ 	type : InvestigatorKind "the investigator type";
+ 	forPhD : ivoa:boolean @? "is the investigator making proposal for their PhD"; //IMPL - might be better attached to ObservingProposal directly
+ }
+ 
+ 
  otype Organization
  {
  	name: ivoa:string "The name of the organization";
@@ -78,52 +119,50 @@ observations, although the intention is that information about targets etc. coul
  	configurations : ObservingConfiguration @+ as composition "";
  }
   
- otype Person "person connected with the proposal" {
- 	fullName : ivoa:string "";
- 	eMail : ivoa:string "";
- 	homeInstitute references Organization "";
+  
+  enum TextFormats "acceptable text formats for document submission"{ //IMPL this list is up for debate
+ 	latex "LaTeX using standard document style" ,//IMPL document sytle to be specified
+ 	rst "restructured text",
+ 	asciidoc ""
  }
  
- 
- enum InvestigatorKind {
- 	PI "principal investigator",
- 	COI "co-investigator"
+ //REQ - don't use pdf as document submission standard
+ otype Justification  "the scientific justification for the proposal." {
+ 	text: ivoa:string "the full text of the justification";
+ 	format: TextFormats "the format of the text";	
  }
  
- otype Investigator { // note that the key that is the surrogate key for this object would be a good candidate for an anonymous key
- 	investigator references Person "the investigator";
- 	type : InvestigatorKind "the investigator type";
- }
- 
- otype ObservingProposal "a complete proposal"
- {
- 	title: ivoa:string   "the proposal title" ;
-    code: ivoa:string iskey  "a code that can be used to refer to the proposal" ;
-    summary: ivoa:string   "a short summary/abstract of the proposal" ;
-    investigators: Investigator @+ as composition  "the person(s) making the proposal";
-    kind : ProposalKind "the type of proposal";
-    relatedProposals: RelatedProposal @* as composition "";
-    dateSubmitted : ivoa:datetime "date that the proposal is submitted";
-    supportingDocuments: SupportingDocument @* as composition "any additional documents";
-    observations : Observation @+ as composition "the proposed observations";
- }
- 
- otype RelatedProposal "a related proposal" // note that this is being done to follow the vodml aggregation pattern
- {
- 	proposal references ObservingProposal "the related proposal" ;
- 	//IMPL could also put information about the type of relationship
- }
- 
- otype SupportingDocument "a document" {
+ otype SupportingDocument "a document" { //IMPL might want to restrict to this being only graphics files
  	title : ivoa:string "document title";
- 	location : ivoa:anyURI "location of document";//IMPL might want this in-line
+ 	location : ivoa:anyURI "location of document";//IMPL might want this in-line with code only blobs
+ 	//IMPL could have acceptable mime types.
  }
  
+  abstract otype Target "A target source" {
+     sourceName: ivoa:string   "" ;
+  	
+  }
+  
+  otype CelestialTarget -> Target  "The basic target setup for a celestial Target."
+  {   //IMPL most of these source parameters should be in an ivoa source model.
+        sourceCoordinates: coords:EquatorialPoint   "" ;
+        positionEpoch : coords:Epoch "the epoch at which the position was measured";
+        pmRA: ivoa:RealQuantity @?  "" ;
+        pmDec: ivoa:RealQuantity @?  "" ;
+        parallax: ivoa:RealQuantity @? "" ;
+        sourceVelocity: ivoa:RealQuantity @?   "" ;
+ }
+ 
+ otype SolarSystemTarget -> Target ""
+ {
+ 	//TODO needs ephemeris data.
+ }
+ 
+ //TODO more target specializations?
  
  abstract otype Field  "Definition of an observing field pointing"
   {   
         name: ivoa:string   "" ;
-        
   }
   
   otype TargetField -> Field "the field points to the associated target"
@@ -166,7 +205,12 @@ observations, although the intention is that information about targets etc. coul
  
  otype SimultaneityConstraint -> TimingConstraint "A constraint that requires that two observations occur simultaneously"
  {
- 	
+ 	//TODO needs more thought
+ }
+ 
+ abstract otype PointingConstaint -> Constraint "A constraint that limits the telescope pointing"
+ {
+ 	//TODO needs some concrete types
  }
   
   otype ScienceSpectralWindow  "A spectral window for science use."
@@ -194,35 +238,14 @@ observations, although the intention is that information about targets etc. coul
         description: ivoa:string   "" ;
   }
   
- 
-  
-  abstract otype Target "A target source" {
-     sourceName: ivoa:string   "" ;
-  	
-  }
-  
-  otype CelestialTarget -> Target  "The basic target setup for a celestial Target."
-  {   //most of these source parameters should be in an ivoa source model.
-        sourceCoordinates: coords:EquatorialPoint   "" ;
-        positionEpoch : coords:Epoch "the epoch at which the position was measured";
-        pmRA: ivoa:RealQuantity @?  "" ;
-        pmDec: ivoa:RealQuantity @?  "" ;
-        parallax: ivoa:RealQuantity @? "" ;
-        sourceVelocity: ivoa:RealQuantity @?   "" ;
- }
- 
- otype SolarSystemTarget -> Target ""
- {
- 	// needs ephemeris data.
- }
-  
  otype PerformanceParameters "The parameters required for observation to be useful for the science goal" 
  {
+ 	//TODO these need to be fleshed out.
  	desiredAngularResolution: ivoa:RealQuantity @?  "";
  	desiredLargestScale:  ivoa:RealQuantity @?  "";
  	desiredSensitivity:  ivoa:RealQuantity @?  "";
  	desiredDynamicRange:  ivoa:RealQuantity @?  "";  //TODO sensitivity or dynamic range?
- 	representativeFreq: ivoa:RealQuantity "the frequency at which these pertain";
+ 	representativeSpectralPoint: ivoa:RealQuantity "the the point in the EM where these parameters should be evaluated";
  }
  
  abstract otype Observation "" {
@@ -239,7 +262,7 @@ observations, although the intention is that information about targets etc. coul
  	intent : CalibrationTarget_intendedUse "";
  }
  
- enum CalibrationTarget_intendedUse  "" //should this be an enum
+ enum CalibrationTarget_intendedUse  "" //IMPL is this enum sufficient - does it cover the range of values is it more appropriate to have an extensible type?
 {
 Amplitude  "" ,
 Atmospheric  "" ,
@@ -251,7 +274,7 @@ Polarization  "" ,
 Delay  "" 
 }
  
- 
+ //REQ define technical aspects in science terms
  otype TechnicalGoal "collects together the technical goals of the proposal" {
  	performance : PerformanceParameters as composition "";
  	spectrum: ScienceSpectralWindow @+ as composition "";
