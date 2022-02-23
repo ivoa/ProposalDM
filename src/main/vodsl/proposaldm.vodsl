@@ -23,7 +23,8 @@ observations, although the intention is that information about targets etc. coul
  	title: ivoa:string   "the proposal title" ;
     code: ivoa:string iskey  "a code that can be used to refer to the proposal" ;
     summary: ivoa:string   "a short summary/abstract of the proposal" ;
-    justification: Justification as composition "scientific justification";
+    scientificJustification: Justification as composition "scientific justification";
+    technicalJustification: Justification as composition "technical justification"; //IMPL this probably needs to be attached to each observatory as likely to be different for each.
     investigators: Investigator @+ as composition  "the person(s) making the proposal";
     kind : ProposalKind "the type of proposal";
     relatedProposals: RelatedProposal @* as composition "";
@@ -90,7 +91,7 @@ observations, although the intention is that information about targets etc. coul
  }
  
  
- enum InstrumentKind {
+ enum InstrumentKind { //IMPL is this extensive enough to be useful?
  	continuum,
  	spectroscopic
  }
@@ -116,7 +117,7 @@ observations, although the intention is that information about targets etc. coul
  otype ObservingMode "a collection of configs that can be chosen to observe with." {
  	name : ivoa:string "";
  	description: ivoa:string "";
- 	configurations : ObservingConfiguration @+ as composition "";
+ 	configurations : ObservingConfiguration @+ as composition ""; //Note that the overall observing mode is a sort of cartesian outer product of the possible telescope,instrument,backend combinations
  }
   
   
@@ -127,7 +128,9 @@ observations, although the intention is that information about targets etc. coul
  }
  
  //REQ - don't use pdf as document submission standard
- otype Justification  "the scientific justification for the proposal." {
+ otype Justification  "The justification for the proposal. Note that the justification is for reading by humans 
+                       and is not parsed to extract things like source lists - that sort of information
+                       must be entered in the correct place in the model." {
  	text: ivoa:string "the full text of the justification";
  	format: TextFormats "the format of the text";	
  }

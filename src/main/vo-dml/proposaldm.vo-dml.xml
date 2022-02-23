@@ -12,7 +12,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.2</version>
-      <lastModified>2022-02-18T12:18:35Z</lastModified>
+      <lastModified>2022-02-23T17:48:28Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -206,9 +206,21 @@
                  </multiplicity>
                </attribute>
                <composition>
-                 <vodml-id>ObservingProposal.justification</vodml-id>
-                 <name>justification</name>
+                 <vodml-id>ObservingProposal.scientificJustification</vodml-id>
+                 <name>scientificJustification</name>
                  <description>scientific justification</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:Justification</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </composition>
+               <composition>
+                 <vodml-id>ObservingProposal.technicalJustification</vodml-id>
+                 <name>technicalJustification</name>
+                 <description>technical justification</description>	    
                  <datatype>
                     <vodml-ref>proposal:Justification</vodml-ref>
                  </datatype>
@@ -704,7 +716,9 @@
             <objectType>
                <vodml-id>Justification</vodml-id>
                <name>Justification</name>
-               <description>the scientific justification for the proposal.</description>	    
+               <description>The justification for the proposal. Note that the justification is for reading by humans 
+                                      and is not parsed to extract things like source lists - that sort of information
+                                      must be entered in the correct place in the model.</description>	    
                <attribute>
                  <vodml-id>Justification.text</vodml-id>
                  <name>text</name>
