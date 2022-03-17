@@ -1,6 +1,8 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.3.3"
+        id("net.ivoa.vo-dml.vodmltools") version "0.3.4"
+        java
+        `maven-publish`
 }
 
 group = "org.javastro.ivoa.dm"
@@ -38,6 +40,8 @@ java {
         toolchain {
                 languageVersion.set(JavaLanguageVersion.of(8)) // make it explicit that we are still at 1.8
         }
+        withJavadocJar()
+        withSourcesJar()
 }
 
 repositories {
@@ -51,6 +55,7 @@ tasks.test {
         useJUnitPlatform()
 }
 
+tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE } //IMPL bugfix - see https://stackoverflow.com/questions/67265308/gradle-entry-classpath-is-a-duplicate-but-no-duplicate-handling-strategy-has-b
 
 dependencies {
 //    implementation("org.javastro:ivoa-entities:0.9.3-SNAPSHOT")
@@ -64,4 +69,52 @@ dependencies {
         testImplementation("org.javastro:jaxbjpa-utils:0.1.1")
         testImplementation("org.javastro:jaxbjpa-utils:0.1.1:test")
 
+        testRuntimeOnly("com.h2database:h2:2.1.210")
+}
+
+tasks.register<Exec>("createTestData")
+{
+        dependsOn(tasks.build)
+        description = "creates test data to import into database"
+        commandLine = listOf("java","-classpath",sourceSets.test.get().runtimeClasspath.asPath,"org.ivoa.dm.proposal.prop.DataGenerator")
+
+}
+
+publishing {
+        publications {
+                create<MavenPublication>("mavenJava") {
+                        from(components["java"])
+                        versionMapping {
+                                usage("java-api") {
+                                        fromResolutionOf("runtimeClasspath")
+                                }
+                                usage("java-runtime") {
+                                        fromResolutionResult()
+                                }
+                        }
+                        pom {
+                                name.set("Proposal Data Model")
+                                description.set("Code generated from the IVOA ProposalDM VO-DML")
+                                url.set("https://www.ivoa.net/documents/ProposalDM/")
+                                licenses {
+                                        license {
+                                                name.set("The Apache License, Version 2.0")
+                                                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                                        }
+                                }
+                                developers {
+                                        developer {
+                                                id.set("pahjbo")
+                                                name.set("Paul Harrison")
+                                                email.set("paul.harrison@manchester.ac.uk")
+                                        }
+                                }
+                                scm {
+                                        connection.set("scm:git:git://github.com/ivoa/ProposalDM.git")
+                                        developerConnection.set("scm:git:ssh://github.com/ivoa/ProposalDM.git")
+                                        url.set("https://github.com/ivoa/ProposalDM")
+                                }
+                        }
+                }
+        }
 }

@@ -11,11 +11,7 @@ package org.ivoa.dm.proposal.prop;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.function.Consumer;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -24,29 +20,14 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
-import org.ivoa.dm.proposal.prop.ObservingProposal.ObservingProposalBuilder;
-import org.ivoa.dm.stc.coords.CartesianCoordSpace;
-import org.ivoa.dm.stc.coords.SpaceFrame;
-import org.ivoa.dm.stc.coords.SpaceSys;
-import org.ivoa.dm.stc.coords.StdRefLocation;
-import org.ivoa.dm.proposal.management.Reviewer;
-import org.ivoa.dm.proposal.management.SubmittedProposal;
-import org.ivoa.dm.proposal.management.TAC;
-import org.ivoa.dm.proposal.management.TacRole;
-import org.ivoa.dm.proposal.management.CommitteeMember;
 import org.ivoa.dm.proposal.management.OfferedCycles;
 import org.ivoa.dm.proposal.management.ProposalCycle;
-import org.ivoa.dm.proposal.management.ProposalCycle.ProposalCycleBuilder;
-import org.ivoa.vodml.stdtypes2.Ivorn;
-import org.ivoa.vodml.stdtypes2.RealQuantity;
-import org.ivoa.vodml.stdtypes2.StringIdentifier;
-import org.ivoa.vodml.stdtypes2.Unit;
+import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.javastro.ivoa.jaxb.DescriptionValidator;
 import org.javastro.ivoa.jaxb.JaxbAnnotationMeta;
 import org.javastro.ivoa.tests.AbstractJAXBJPATest;
-
-import static org.ivoa.dm.proposal.management.ProposalCycle.createProposalCycle;
-import static org.ivoa.dm.stc.coords.GeocentricPoint.createGeocentricPoint;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  * An abstract base class that creates entities that would be similar for all proposals.
@@ -55,119 +36,72 @@ import static org.ivoa.dm.stc.coords.GeocentricPoint.createGeocentricPoint;
  */
 public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
 
-    /** SPACE_SYS.
-     */
-    protected final SpaceSys GEO_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTRE"), "ICRF", null, ""));//FIXME - this should really define the frame better - STC coords library should have some standard model instances...
-    
-    protected final SpaceSys ICRS_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTRE"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
     /** logger for this class */
     static final org.slf4j.Logger logger = org.slf4j.LoggerFactory
-                .getLogger(ProposalDMTest.class);
-    protected ObservingProposal proposal;
-    
-    protected Organization[] institutes = {
-            new Organization("org", "org address",new Ivorn("ivo://org/anorg")),
-            new Organization("org2", "org2 address",new Ivorn("ivo://org/org2"))
-           
-    };
-    
-    protected Person[] people = {
-            new Person("PI", "pi@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-003"), institutes[0]),
-            new Person("CO-I", "coi@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-004"), institutes[1]),
-            new Person("TAC Chair", "tacchair@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-005"), institutes[1]),
-            new Person("TAC member", "tacmamber@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-006"), institutes[0]),
-            new Person("reviewer", "reviewer@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-007"), institutes[1]),
+            .getLogger(AbstractProposalTest.class);
 
-    };
-    protected List<Investigator> investigators = Arrays.asList(
-            new Investigator ( InvestigatorKind.PI, false, people[0] ),
-            new Investigator ( InvestigatorKind.COI, true, people[1] ));
-    protected ProposalCycle cycle;
-    
-    protected Reviewer[] reviewers = {new Reviewer(people[2]),
-            new Reviewer(people[3]),
-            new Reviewer(people[4])// reviewer not on TAC
-            }; 
-    
-    protected TAC tac = new TAC( Arrays.asList(
-            new CommitteeMember ( TacRole.CHAIR, reviewers[0]),
-            new CommitteeMember ( TacRole.SCIENCEREVIEWER, reviewers[1])
-            ));
-    protected Unit metres = new Unit("m");
-    protected Unit degrees = new Unit("degrees");
-   
-
-    protected Consumer<ObservingProposalBuilder> proposalCommonSetup() {
-        return pr -> {
-            pr.code = "pr1";
-            pr.dateSubmitted = new Date();
-            pr.kind = ProposalKind.STANDARD;
-            pr.title = "the proposal title";
-            pr.summary = "a test proposal";
-            pr.investigators = investigators ;
-    
-        };
-    }
-    protected Consumer<ProposalCycleBuilder> cycleCommonSetup() {
-        return c -> {
-                c.submissionDeadline = new GregorianCalendar(2022, 3, 15).getTime();
-                c.observationSessionStart = new GregorianCalendar(2022, 6, 1).getTime();
-                c.observationSessionEnd = new GregorianCalendar(2022, 9, 1).getTime();
-                c.tac = tac; 
-        };
-        
-    }
+    protected ExampleGenerator ex;
+    private exampleFactory ef;
 
     /**
-     * Create telescope with cartesian coordinates.
-     * @param name
-     * @param x
-     * @param y
-     * @param z
-     * @return
+     * @throws java.lang.Exception
      */
-    protected Telescope createTelescope(String name, double x, double y, double z) {
-        return new Telescope(name, createGeocentricPoint(p ->{
-            p.x = new RealQuantity(x, metres);
-            p.y = new RealQuantity(y, metres);
-            p.z = new RealQuantity(z, metres);
-            p.coordSys = GEO_SYS;
-        }));
-
+    @BeforeEach
+    void setUp() throws Exception {
+        ex = ef.create();       
     }
- 
-    
+       /**
+     * @throws java.lang.Exception
+     */
+    @AfterEach
+    void tearDown() throws Exception {
+    }
+
+
+
+    public interface exampleFactory {
+        ExampleGenerator create();
+    }
+
+    public AbstractProposalTest(exampleFactory ef) {
+        this.ef= ef;
+    }
+
     @org.junit.jupiter.api.Test
     void proposalDmJaxbTest() throws JAXBException, TransformerConfigurationException,
-            ParserConfigurationException, TransformerFactoryConfigurationError,
-            TransformerException {
-                logger.debug("starting test");
-                JAXBContext jc = ProposalModel.contextFactory();
-                JaxbAnnotationMeta<ObservingProposal> meta = JaxbAnnotationMeta.of(ObservingProposal.class);
-                DescriptionValidator<ObservingProposal> validator = new DescriptionValidator<>(jc, meta);
-                DescriptionValidator.Validation validation = validator.validate(proposal);
-                if(!validation.valid) {
-                    System.err.println(validation.message);
-                }
-                assertTrue(validation.valid);
-                ProposalModel model = new ProposalModel();
-                model.addContent(proposal);
-                model.makeRefIDsUnique();
-                
-                ProposalModel modelin = roundtripXML(jc, model, ProposalModel.class);
-                List<ObservingProposal> props = modelin.getContent(ObservingProposal.class);
-                assertEquals(1, props.size());
-                
-            }
+    ParserConfigurationException, TransformerFactoryConfigurationError,
+    TransformerException {
+        logger.debug("starting test");
+        JAXBContext jc = ProposalModel.contextFactory();
+        JaxbAnnotationMeta<ObservingProposal> meta = JaxbAnnotationMeta.of(ObservingProposal.class);
+        DescriptionValidator<ObservingProposal> validator = new DescriptionValidator<>(jc, meta);
+        DescriptionValidator.Validation validation = validator.validate(ex.getProposal());
+        if(!validation.valid) {
+            System.err.println(validation.message);
+        }
+        assertTrue(validation.valid);
+        ProposalModel model = new ProposalModel();
+        model.addContent(ex.getProposal());
+        model.makeRefIDsUnique();
 
-  @org.junit.jupiter.api.Test
+        ProposalModel modelin = roundtripXML(jc, model, ProposalModel.class);
+        List<ObservingProposal> props = modelin.getContent(ObservingProposal.class);
+        assertEquals(1, props.size());
+
+    }
+
+    @org.junit.jupiter.api.Test
     void proposalDmJPATest() {
-                javax.persistence.EntityManager em = setupDB("vodml_coords"); // FIXME - need the vodml generation to tell us this name - also, it is not the most appropriate name in this case....
+        javax.persistence.EntityManager em = setupDB("vodml_coords"); // FIXME - need the vodml generation to tell us this name - also, it is not the most appropriate name in this case....
         em.getTransaction().begin();
-        em.persist(proposal);
+        em.persist(ex.getProposal());
         em.getTransaction().commit();
-        String id = proposal.getCode(); //FIXME - need to add something in VO-DML gen to know what the "natural key" is for db work.
-        
+
+
+
+        //now read in again
+        String id = ex.getProposal().getCode(); //FIXME - need to add something in VO-DML gen to know what the "natural key" is for db work.
+
         em.getTransaction().begin();
         List<ObservingProposal> props = em.createNamedQuery("ObservingProposal.findById", ObservingProposal.class)
                 .setParameter("id", id).getResultList();
@@ -176,7 +110,50 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
         em.getTransaction().commit();
         assertEquals( 2, prop.getInvestigators().size(),"number of investigators"); // trivial test      
 
+    }
+
+    @org.junit.jupiter.api.Test
+    void reviewJaxbTest() throws JAXBException,
+            TransformerConfigurationException, ParserConfigurationException,
+            TransformerFactoryConfigurationError, TransformerException {
+                logger.debug("starting test");
+                JAXBContext jc = ProposalManagementModel.contextFactory();
+                OfferedCycles oc = new OfferedCycles();
+                oc.addCycles(ex.getCycle());
+                JaxbAnnotationMeta<OfferedCycles> meta = JaxbAnnotationMeta.of(OfferedCycles.class);
+                DescriptionValidator<OfferedCycles> validator = new DescriptionValidator<>(jc, meta);
+                DescriptionValidator.Validation validation = validator.validate(oc);
+                if(!validation.valid) {
+                    System.err.println(validation.message);
+                }
+                assertTrue(validation.valid);
+                ProposalManagementModel model = new ProposalManagementModel();
+                model.addContent(oc);
+                model.makeRefIDsUnique();
+            
+                ProposalManagementModel modelin = roundtripXML(jc, model, ProposalManagementModel.class);
+                List<OfferedCycles> revs = modelin.getContent(OfferedCycles.class);
+                assertEquals(1, revs.size());
+                assertEquals(1, revs.get(0).getCycles().size());
+            
+            }
+
+    @org.junit.jupiter.api.Test
+    void reviewDmJPATest() {
+        javax.persistence.EntityManager em = setupDB("vodml_coords"); // FIXME - need the vodml generation to tell us this name - also, it is not the most appropriate name in this case....
+        em.getTransaction().begin();
+        em.persist(ex.getCycle());
+        em.getTransaction().commit();
+        Long id = ex.getCycle().getId(); //FIXME - need to add something in VO-DML gen to know what the "natural key" is for db work.
+    
+        em.getTransaction().begin();
+        List<ProposalCycle> props = em.createNamedQuery("ProposalCycle.findById", ProposalCycle.class)
+                .setParameter("id", id).getResultList();
+        assertEquals(1, props.size());
+        ProposalCycle pc = props.get(0);
+        em.getTransaction().commit();
+        assertEquals( 1, pc.getSubmittedProposals().size(),"number submitted proposals"); // trivial test      
+    
     }}
 
 
- 

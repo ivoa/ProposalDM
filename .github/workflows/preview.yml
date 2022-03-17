@@ -65,7 +65,7 @@ jobs:
       uses: Xotl/cool-github-releases@v1
       with:
         mode: update
-        isPrerelease: true
+        isPrerelease: false
         tag_name: auto-pdf-preview
         release_name: "Auto PDF Preview"
         body_mrkdwn: |
