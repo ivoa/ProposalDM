@@ -4,3 +4,15 @@
 # Ignore Gradle build output directory
 build
 /std/generated/
+/derby.log
+/bin/
+/std/gitmeta.log
+/std/gitmeta.tex
+/std/ivoatexmeta.tex
+/std/ProposalDM.aux
+/std/ProposalDM.bbl
+/std/ProposalDM.blg
+/std/ProposalDM.html
+/std/ProposalDM.log
+/std/ProposalDM.out
+/std/ProposalDM.toc

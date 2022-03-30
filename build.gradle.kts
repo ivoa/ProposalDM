@@ -1,7 +1,7 @@
+import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.3.4"
-        java
+        id("net.ivoa.vo-dml.vodmltools") version "0.3.6"
         `maven-publish`
 }
 
@@ -50,9 +50,26 @@ repositories {
 }
 
 
+//make the fact that sources are generated explicit (gets rid of warning that it will not work in gradle 8)- see https://melix.github.io/blog/2021/10/gradle-quickie-dependson.html
+tasks.named<Jar>("sourcesJar") {
+        from(tasks.named("vodmlGenerateJava"))
+}
+
+
 
 tasks.test {
         useJUnitPlatform()
+}
+
+//create jar with the test classes in - this is added as artifact to maven publication below, so automatically created
+val tjar = tasks.register<Jar>("testJar") {
+        from(sourceSets.test.get().output)
+        archiveClassifier.set("test")
+}
+val pjar = tasks.register<Jar>("JarWithoutPersistence") {
+        from(sourceSets.main.get().output)
+        archiveClassifier.set("quarkus")
+        exclude("META-INF/persistence.xml")
 }
 
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE } //IMPL bugfix - see https://stackoverflow.com/questions/67265308/gradle-entry-classpath-is-a-duplicate-but-no-duplicate-handling-strategy-has-b
@@ -69,21 +86,23 @@ dependencies {
         testImplementation("org.javastro:jaxbjpa-utils:0.1.1")
         testImplementation("org.javastro:jaxbjpa-utils:0.1.1:test")
 
-        testRuntimeOnly("com.h2database:h2:2.1.210")
+        testRuntimeOnly("org.postgresql:postgresql:42.3.3")
 }
 
 tasks.register<Exec>("createTestData")
 {
         dependsOn(tasks.build)
-        description = "creates test data to import into database"
+        description = "creates test data in local postgres database"
         commandLine = listOf("java","-classpath",sourceSets.test.get().runtimeClasspath.asPath,"org.ivoa.dm.proposal.prop.DataGenerator")
-
+// run pg_dump -a vodml_proposal -f testData.sql to extract the data
 }
 
 publishing {
         publications {
                 create<MavenPublication>("mavenJava") {
                         from(components["java"])
+                        artifact(tjar)
+                        artifact(pjar)
                         versionMapping {
                                 usage("java-api") {
                                         fromResolutionOf("runtimeClasspath")
