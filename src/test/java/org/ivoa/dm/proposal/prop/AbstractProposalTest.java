@@ -92,11 +92,25 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
 
     @org.junit.jupiter.api.Test
     void proposalDmJPATest() {
-        javax.persistence.EntityManager em = setupDB("vodml_coords"); // FIXME - need the vodml generation to tell us this name - also, it is not the most appropriate name in this case....
+        ObservingProposal prop = propDbInOut();
+        assertEquals( 2, prop.getInvestigators().size(),"number of investigators"); // trivial test     
+        assertEquals( 1,prop.getObservations().size(), "number of observations");
+        Observation obs = prop.getObservations().get(0);
+        TechnicalGoal tech = obs.getTech();
+        assertNotNull(tech);
+        assertEquals( 2,tech.spectrum.size(), "number of spectral setups");
+                
+
+    }
+    protected ObservingProposal propDbInOut() {
+        javax.persistence.EntityManager em = setupDB(ProposalModel.pu_name());
         em.getTransaction().begin();
         em.persist(ex.getProposal());
         em.getTransaction().commit();
 
+        //flush any existing entities
+        em.clear();
+        em.getEntityManagerFactory().getCache().evictAll();
 
 
         //now read in again
@@ -108,8 +122,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
         assertEquals(1, props.size());
         ObservingProposal prop = props.get(0);
         em.getTransaction().commit();
-        assertEquals( 2, prop.getInvestigators().size(),"number of investigators"); // trivial test      
-
+        return prop;
     }
 
     @org.junit.jupiter.api.Test
@@ -140,10 +153,16 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
 
     @org.junit.jupiter.api.Test
     void reviewDmJPATest() {
-        javax.persistence.EntityManager em = setupDB("vodml_coords"); // FIXME - need the vodml generation to tell us this name - also, it is not the most appropriate name in this case....
+        javax.persistence.EntityManager em = setupDB(ProposalModel.pu_name());
         em.getTransaction().begin();
         em.persist(ex.getCycle());
         em.getTransaction().commit();
+        
+                //flush any existing entities
+        em.clear();
+        em.getEntityManagerFactory().getCache().evictAll();
+
+        //read in again
         Long id = ex.getCycle().getId(); //FIXME - need to add something in VO-DML gen to know what the "natural key" is for db work.
     
         em.getTransaction().begin();

@@ -25,20 +25,20 @@ import java.util.Map;
 public class DataGenerator {
     public static void main(String[] args) {
         Map<String, String> props = new HashMap();
-        // this is done with h2 db as that seems to be the only one that has a command to do this to sql insert statements
-        String puname = "vodml_coords";
-        props.put("javax.persistence.jdbc.url", "jdbc:h2:./h2test2:" + puname + ";DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_UPPER=false;");
-        props.put("javax.persistence.jdbc.driver", "org.h2.Driver");
-        props.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        // this is done with done to local postgres which obviously needs to be running beforehand.
+        String puname = ProposalModel.pu_name();
+        props.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/" + puname + "");
+        props.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
+        props.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
         props.put("hibernate.globally_quoted_identifiers", "true");
         props.put("hibernate.hbm2ddl.schema-generation.script.append", "false");
         props.put("javax.persistence.schema-generation.create-source", "metadata");
         props.put("javax.persistence.schema-generation.database.action", "drop-and-create");
         props.put("javax.persistence.schema-generation.scripts.action", "drop-and-create");
-        props.put("javax.persistence.schema-generation.scripts.create-target", "h2test.sql");
-        props.put("javax.persistence.schema-generation.scripts.drop-target", "h2test-drop.sql");
+        props.put("javax.persistence.schema-generation.scripts.create-target", "test.sql");
+        props.put("javax.persistence.schema-generation.scripts.drop-target", "test-drop.sql");
 
-        props.put("javax.persistence.jdbc.user", "sa");
+        props.put("javax.persistence.jdbc.user", System.getProperty("user.name"));
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(puname, props);
         EntityManager em = emf.createEntityManager();
 
@@ -46,17 +46,6 @@ public class DataGenerator {
         em.getTransaction().begin();
         em.persist(ex.getCycle());
         em.getTransaction().commit();
-
-        Session session = em.unwrap(Session.class);
-        session.doWork(new Work() {
-
-            @Override
-            public void execute(Connection con) throws SQLException {
-               Statement stmt = con.createStatement();
-               stmt.execute("SCRIPT simple TO 'testData.sql'");
-            }
-        });
-
 
 
 

@@ -66,6 +66,8 @@ public abstract class BaseExample implements ExampleGenerator {
             pr.title = "the proposal title";
             pr.summary = "a test proposal";
             pr.investigators = investigators ;
+            pr.scientificJustification = new Justification("scientific justification", TextFormats.ASCIIDOC);
+            pr.technicalJustification = new Justification("technical justification", TextFormats.ASCIIDOC);
 
         };
     }
