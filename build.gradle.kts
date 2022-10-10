@@ -1,7 +1,7 @@
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.3.6"
+        id("net.ivoa.vo-dml.vodmltools") version "0.3.9"
         `maven-publish`
 }
 
@@ -33,8 +33,6 @@ vodml {
 //tasks.named("vodmlGenerateJava") {
 //        dependsOn("vodslToVodml")
 //}
-
-
 
 java {
         toolchain {
@@ -83,8 +81,8 @@ dependencies {
         testRuntimeOnly("ch.qos.logback:logback-classic:1.2.3")
 
         testImplementation("org.apache.derby:derby:10.14.2.0")
-        testImplementation("org.javastro:jaxbjpa-utils:0.1.1")
-        testImplementation("org.javastro:jaxbjpa-utils:0.1.1:test")
+        testImplementation("org.javastro:jaxbjpa-utils:0.1.2")
+        testImplementation("org.javastro:jaxbjpa-utils:0.1.2:test")
 
         testRuntimeOnly("org.postgresql:postgresql:42.3.3")
 }

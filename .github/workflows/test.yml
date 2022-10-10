@@ -1,5 +1,5 @@
 
-name: Run ProposalDM tests
+name: Run ProposalDM testsuite
 
 env:
   doc_name: ProposalDM

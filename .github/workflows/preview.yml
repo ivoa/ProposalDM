@@ -4,7 +4,7 @@
 #    git commit
 #    git push
 #
-name: Update PDF Preview
+name: Standard Document PDF Preview generation
 
 env:
   doc_name: ProposalDM

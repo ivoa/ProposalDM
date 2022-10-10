@@ -35,7 +35,7 @@ class EmerlinExampleTest extends AbstractProposalTest {
    @org.junit.jupiter.api.Test 
    public  void testObservations() {
        ObservingProposal prop = propDbInOut();
-       assertEquals( 1, prop.observations.size(), "nuimber of observatins");
+       assertEquals( 1, prop.observations.size(), "number of observations");
        Observation obs = prop.observations.get(0);
        assertNotNull(obs.target);
        assertTrue(obs.target instanceof CelestialTarget);

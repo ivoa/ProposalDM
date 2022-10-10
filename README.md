@@ -8,6 +8,9 @@ The IVOA standard in development is a Working Draft at version 0.2 and a
 [![PDF-Preview](https://img.shields.io/badge/Preview-PDF-blue)](../../releases/download/auto-pdf-preview/ProposalDM-draft.pdf)
 is automatically produced from this repository when changes are made.
 
+![main test](https://github.com/ivoa/ProposalDM/actions/workflows/test.yml/badge.svg)
+![preview generation](https://github.com/ivoa/ProposalDM/actions/workflows/preview.yml/badge.svg)
+
 Latest Model Diagrams
 --------------------
 The proposal part

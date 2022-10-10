@@ -41,10 +41,10 @@ public class EmerlinExample extends BaseExample {
 
     };
     Set<String > notK = new HashSet<>(Arrays.asList("Lovell","Defford"));
-    private static final Unit arcsec = new Unit("arcsec");
+    private final Unit arcsec = new Unit("arcsec");
     private Observatory observatory;
-    private Unit ghz = new Unit("GHz");
-    private Unit khz = new Unit("kHz");
+    private final Unit ghz = new Unit("GHz");
+    private final Unit khz = new Unit("kHz");
 
     protected SpectralWindowSetup simpleSpecRange(double start, double end) {
         return createSpectralWindowSetup(sw -> {

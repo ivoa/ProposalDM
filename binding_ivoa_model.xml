@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<m:mappedModels xmlns:m="http://www.ivoa.net/xml/vodml-binding/v0.9">
+<m:mappedModels xmlns:m="http://www.ivoa.net/xml/vodml-binding/v0.9.1">
 <!-- ========================================
 Ultimately this file should be bundled up with a jar for the IVOA model, and not a dependency here.
  -->
@@ -8,7 +8,7 @@ Ultimately this file should be bundled up with a jar for the IVOA model, and not
 <name>ivoa</name>
 <file>IVOA-v1.0.vo-dml.xml</file>
 <java-package>org.ivoa.dm.ivoa</java-package>
-<xml-targetnamespace prefix="ivoa">http://ivoa.net/dm/models/vo-dml/xsd/ivoa</xml-targetnamespace>
+<xml-targetnamespace prefix="ivoa" schemaFilename="ivoa.xsd">http://ivoa.net/dm/ivoa</xml-targetnamespace>
 <type-mapping>
   <vodml-id>real</vodml-id>
   <java-type jpa-atomic="true">Double</java-type>
