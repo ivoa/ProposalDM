@@ -36,7 +36,7 @@ vodml {
 
 java {
         toolchain {
-                languageVersion.set(JavaLanguageVersion.of(8)) // make it explicit that we are still at 1.8
+                languageVersion.set(JavaLanguageVersion.of(11)) // moved to Java 11
         }
         withJavadocJar()
         withSourcesJar()
