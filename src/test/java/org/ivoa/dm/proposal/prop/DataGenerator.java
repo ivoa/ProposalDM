@@ -3,19 +3,12 @@ package org.ivoa.dm.proposal.prop;
  * Created on 17/03/2022 by Paul Harrison (paul.harrison@manchester.ac.uk).
  */
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-
-import org.hibernate.Session;
-import org.hibernate.jdbc.Work;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Creates some test data that can be imported via sql.
@@ -24,7 +17,7 @@ import java.util.Map;
  */
 public class DataGenerator {
     public static void main(String[] args) {
-        Map<String, String> props = new HashMap();
+        Map<String, String> props = new HashMap<String, String>();
         // this is done with done to local postgres which obviously needs to be running beforehand.
         String puname = ProposalModel.pu_name();
         props.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/" + puname + "");
