@@ -8,7 +8,7 @@
       <uri/>
       <title>TBD</title>
       <author>Paul Harrison</author>
-      <version>0.2</version>
+      <version>0.3</version>
       <lastModified>2022-02-17T15:46:19Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->

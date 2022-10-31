@@ -2,7 +2,7 @@
  *  created on 20 Oct 2021 // The review side of the proposal.
  */
  
- model proposalManagement (0.2) "The data model for managing the proposal review process. Intended to work for phase 1" 
+ model proposalManagement (0.3) "The data model for managing the proposal review process. Intended to work for phase 1"
  author "Paul Harrison" 
  
  include "alt-std/IVOA-v1.0.vodsl"
