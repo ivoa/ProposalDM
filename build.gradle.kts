@@ -1,7 +1,7 @@
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.3.12"
+        id("net.ivoa.vo-dml.vodmltools") version "0.3.13"
         `maven-publish`
 }
 

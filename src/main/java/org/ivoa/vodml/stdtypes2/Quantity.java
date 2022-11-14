@@ -22,7 +22,7 @@
   @javax.xml.bind.annotation.XmlAccessorType( javax.xml.bind.annotation.XmlAccessType.NONE )  
   @javax.xml.bind.annotation.XmlType( name = "Quantity")
     
- @org.ivoa.vodml.annotation.VoDml(ref="ivoa:Quantity", type=org.ivoa.vodml.annotation.VodmlType.dataType)
+ @org.ivoa.vodml.annotation.VoDml(id="ivoa:Quantity", role=org.ivoa.vodml.annotation.VodmlRole.dataType)
  
        public abstract class Quantity  {
       
@@ -31,7 +31,7 @@
     *
     */
     
- @org.ivoa.vodml.annotation.VoDml(ref="ivoa:Quantity.unit", type=org.ivoa.vodml.annotation.VodmlType.attribute)
+ @org.ivoa.vodml.annotation.VoDml(id="ivoa:Quantity.unit", role=org.ivoa.vodml.annotation.VodmlRole.attribute)
  
         @Basic( optional = true )
         @Column( name = "unit", nullable = true )

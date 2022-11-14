@@ -12,7 +12,7 @@ import javax.persistence.*;
       *  @author Paul Harrison
       */
       
- @org.ivoa.vodml.annotation.VoDml(ref="ivoa:Identifier", type=org.ivoa.vodml.annotation.VodmlType.primitiveType)
+ @org.ivoa.vodml.annotation.VoDml(id="ivoa:Identifier", role=org.ivoa.vodml.annotation.VodmlRole.primitiveType)
  @Embeddable
 
     @javax.xml.bind.annotation.XmlType( name = "Identifier")

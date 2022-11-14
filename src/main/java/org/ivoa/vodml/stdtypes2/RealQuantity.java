@@ -19,7 +19,7 @@
   @javax.xml.bind.annotation.XmlAccessorType( javax.xml.bind.annotation.XmlAccessType.NONE )  
   @javax.xml.bind.annotation.XmlType( name = "RealQuantity")
     
- @org.ivoa.vodml.annotation.VoDml(ref="ivoa:RealQuantity", type=org.ivoa.vodml.annotation.VodmlType.dataType)
+ @org.ivoa.vodml.annotation.VoDml(id="ivoa:RealQuantity", role=org.ivoa.vodml.annotation.VodmlRole.dataType)
  
        public  class RealQuantity extends Quantity {
       
@@ -28,7 +28,7 @@
     *
     */
     
- @org.ivoa.vodml.annotation.VoDml(ref="ivoa:RealQuantity.value", type=org.ivoa.vodml.annotation.VodmlType.attribute)
+ @org.ivoa.vodml.annotation.VoDml(id="ivoa:RealQuantity.value", role=org.ivoa.vodml.annotation.VodmlRole.attribute)
  
         @Basic( optional = true ) // IMPL have changed the nullability to allow cases where it is embedded to be null - cannot override this easily in hibernate
         @Column( name = "value", nullable = false )

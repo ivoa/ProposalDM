@@ -12,7 +12,7 @@ package org.ivoa.vodml.stdtypes2;
       *  @author Paul Harrison
       */
       
- @org.ivoa.vodml.annotation.VoDml(ref="ivoa:IntIdentifier", type=org.ivoa.vodml.annotation.VodmlType.primitiveType)
+ @org.ivoa.vodml.annotation.VoDml(id="ivoa:IntIdentifier", role=org.ivoa.vodml.annotation.VodmlRole.primitiveType)
  @Embeddable
 
     @javax.xml.bind.annotation.XmlType( name = "IntIdentifier")
