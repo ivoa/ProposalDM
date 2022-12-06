@@ -11,8 +11,8 @@
       <uri/>
       <title>TBD</title>
       <author>Paul Harrison</author>
-      <version>0.3</version>
-      <lastModified>2022-02-25T15:47:27Z</lastModified>
+      <version>0.2</version>
+      <lastModified>2022-12-02T15:52:16Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -324,9 +324,9 @@
                  </multiplicity>
                </attribute>
                <attribute>
-                 <vodml-id>Person.orchidId</vodml-id>
-                 <name>orchidId</name>
-                 <description>orchid id</description>	    
+                 <vodml-id>Person.orcidId</vodml-id>
+                 <name>orcidId</name>
+                 <description>orcid id see https://orcid.org</description>	    
                  <datatype>
                     <vodml-ref>ivoa:stringIdentifier</vodml-ref>
                  </datatype>
@@ -392,7 +392,7 @@
             <objectType>
                <vodml-id>Organization</vodml-id>
                <name>Organization</name>
-               <description></description>	    
+               <description>An institution that is a collection of people</description>	    
                <attribute>
                  <vodml-id>Organization.name</vodml-id>
                  <name>name</name>
@@ -433,7 +433,7 @@
             <objectType>
                <vodml-id>Observatory</vodml-id>
                <name>Observatory</name>
-               <description></description>	    
+               <description>An organisation that can perform astronomical observations</description>	    
                <extends>
                   <vodml-ref>proposal:Organization</vodml-ref>
                </extends>

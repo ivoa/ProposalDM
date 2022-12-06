@@ -43,7 +43,8 @@ observations, although the intention is that information about targets etc. coul
  	fullName : ivoa:string "";
  	eMail : ivoa:string "";
  	homeInstitute references Organization "";
-    orchidId : ivoa:stringIdentifier @? "orchid id"; // are there other possibilities for identifiers - IMPL perhaps this should be composition of identifiers
+  orcidId : ivoa:stringIdentifier @? "orcid id see https://orcid.org"; /* something like ORCID this is going to have to be the globally unique identifier that can be used with different AAI systems  */
+  
  }
  
  
@@ -60,14 +61,14 @@ observations, although the intention is that information about targets etc. coul
  }
  
  
- otype Organization
+ otype Organization "An institution that is a collection of people"
  {
  	name: ivoa:string "The name of the organization";
  	address : ivoa:string "";
  	ivoid : ivoa:ivorn @? "the registry identifier for the organization"; 	// IMPL perhaps do this more
  }
  
- otype Observatory -> Organization {
+ otype Observatory -> Organization "An organisation that can perform astronomical observations" {
  	
  	telescopes : Telescope @+ as composition "the telescopes that the observatory controls";
  	instruments : Instrument @+ as composition "the instruments that are available for the telescopes";
