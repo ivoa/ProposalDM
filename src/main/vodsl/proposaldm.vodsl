@@ -40,9 +40,9 @@ observations, although the intention is that information about targets etc. coul
  }
  
   otype Person "person connected with the proposal" {
- 	fullName : ivoa:string "";
- 	eMail : ivoa:string "";
- 	homeInstitute references Organization "";
+ 	fullName : ivoa:string "The given names for the person";
+ 	eMail : ivoa:string "an email that can be used to communicate with the person"; // note that this is not considered a unique identifier for the person in any fashion.
+ 	homeInstitute references Organization ""; //IMPL - this might not be necessary - could probably be learned from ORCID if needed
   orcidId : ivoa:stringIdentifier @? "orcid id see https://orcid.org"; /* something like ORCID this is going to have to be the globally unique identifier that can be used with different AAI systems  */
   
  }
@@ -99,6 +99,8 @@ observations, although the intention is that information about targets etc. coul
  
  otype Instrument "An instrument that can be attached to a telescope - e.g. CCD, Radio Receiver"{
  	name : ivoa:string "the instrument name";
+ 	description: ivoa:string "short human readable description";
+ 	reference : ivoa:anyURI @? " a URL that points to a more detailed description of the instrument";
  	kind : InstrumentKind "the kind of instrument";
  	frequencyCoverage : SpectralWindowSetup as composition "the frequency range that the instrument covers";
  }
