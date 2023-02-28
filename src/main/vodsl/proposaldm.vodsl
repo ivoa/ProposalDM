@@ -11,6 +11,8 @@ observations, although the intention is that information about targets etc. coul
  include "alt-std/IVOA-v1.0.vodsl" // this is an edited version of the standard to include identifiers.
  include "alt-std/STC_coords-v1.0.vodsl" // this is also edited to include some extra concrete point types.
  
+ 
+ primitive WikiDataId -> ivoa:stringIdentifier "a WikiData identifier"
  enum ProposalKind  //IMPL -is this universal enough to be an enum?
  {
  	Standard "Normal proposal",
@@ -66,6 +68,8 @@ observations, although the intention is that information about targets etc. coul
  	name: ivoa:string "The name of the organization";
  	address : ivoa:string "";
  	ivoid : ivoa:ivorn @? "the registry identifier for the organization"; 	// IMPL perhaps do this more
+ 	wikiId : WikiDataId @? "the wikidata id for the Organization";
+ 	
  }
  
  otype Observatory -> Organization "An organisation that can perform astronomical observations" {
@@ -79,6 +83,8 @@ observations, although the intention is that information about targets etc. coul
  
  otype Telescope {
  	name : ivoa:string "telescope name";
+ 	wikiId : WikiDataId @? "the wikidata id for the Instrument";
+ 	
  	location : coords:GeocentricPoint "the location of the telescope" ;
  }
  
@@ -98,8 +104,9 @@ observations, although the intention is that information about targets etc. coul
  }
  
  otype Instrument "An instrument that can be attached to a telescope - e.g. CCD, Radio Receiver"{
- 	name : ivoa:string "the instrument name";
- 	description: ivoa:string "short human readable description";
+ 	name : ivoa:string "the instrument name - human readable";
+ 	description: ivoa:string @? "short human readable description";
+ 	wikiId : WikiDataId @? "the wikidata id for the Instrument";
  	reference : ivoa:anyURI @? " a URL that points to a more detailed description of the instrument";
  	kind : InstrumentKind "the kind of instrument";
  	frequencyCoverage : SpectralWindowSetup as composition "the frequency range that the instrument covers";
@@ -145,7 +152,7 @@ observations, although the intention is that information about targets etc. coul
  }
  
   abstract otype Target "A target source" {
-     sourceName: ivoa:string   "" ;
+     sourceName: ivoa:string   "A common name for the source" ;// perhaps could be used for Vizier search?
   	
   }
   

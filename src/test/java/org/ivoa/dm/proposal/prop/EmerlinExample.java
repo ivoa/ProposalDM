@@ -73,9 +73,10 @@ public class EmerlinExample extends BaseExample {
         Resource availableObservingTime = new Resource(100 * 24.0, observingTime);
 
         Instrument[] instruments = {
-              new Instrument("L-Band Receiver", InstrumentKind.CONTINUUM, simpleSpecRange(1.2, 1.7)),
-              new Instrument("C-Band Receiver", InstrumentKind.CONTINUUM, simpleSpecRange(4.0, 7.0)),
-              new Instrument("K-Band Receiver", InstrumentKind.CONTINUUM, simpleSpecRange(20.0, 24.0))
+             
+              Instrument.createInstrument( i -> {i.name="L-Band Receiver"; i.kind= InstrumentKind.CONTINUUM; i.frequencyCoverage=simpleSpecRange(1.2, 1.7);}), 
+              Instrument.createInstrument( i -> {i.name="C-Band Receiver"; i.kind=InstrumentKind.CONTINUUM; i.frequencyCoverage=simpleSpecRange(4.0, 7.0);}),
+              Instrument.createInstrument( i -> {i.name="K-Band Receiver"; i.kind=InstrumentKind.CONTINUUM; i.frequencyCoverage=simpleSpecRange(20.0, 24.0);})
         };
 
         Backend backend = new Backend("Widar Correlator", true);

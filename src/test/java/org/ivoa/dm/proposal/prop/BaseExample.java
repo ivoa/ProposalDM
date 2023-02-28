@@ -28,8 +28,8 @@ public abstract class BaseExample implements ExampleGenerator {
 
     protected final SpaceSys ICRS_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTRE"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
     protected Organization[] institutes = {
-            new Organization("org", "org address",new Ivorn("ivo://org/anorg")),
-            new Organization("org2", "org2 address",new Ivorn("ivo://org/org2"))
+            new Organization("org", "org address",new Ivorn("ivo://org/anorg"), null),//TODO is null same as not setting?
+            new Organization("org2", "org2 address",new Ivorn("ivo://org/org2"), null)
 
     };
 
@@ -90,7 +90,7 @@ public abstract class BaseExample implements ExampleGenerator {
      * @return
      */
     protected Telescope createTelescope(String name, double x, double y, double z) {
-        return new Telescope(name, createGeocentricPoint(p ->{
+        return new Telescope(name, null, createGeocentricPoint(p ->{
             p.x = new RealQuantity(x, metres);
             p.y = new RealQuantity(y, metres);
             p.z = new RealQuantity(z, metres);
