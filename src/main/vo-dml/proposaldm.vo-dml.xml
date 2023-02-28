@@ -12,7 +12,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.2</version>
-      <lastModified>2022-12-06T18:18:31Z</lastModified>
+      <lastModified>2023-02-24T16:18:07Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -23,6 +23,11 @@
         <url>STC_coords-v1.0.vo-dml.xml</url>
         <documentationURL>not known</documentationURL>
       </import>
+      <primitiveType>
+        <vodml-id>WikiDataId</vodml-id>
+        <name>WikiDataId</name>
+        <description>a WikiData identifier</description>	    
+      </primitiveType>
             <enumeration>
                <vodml-id>ProposalKind</vodml-id>
                <name>ProposalKind</name>
@@ -429,6 +434,18 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
+               <attribute>
+                 <vodml-id>Organization.wikiId</vodml-id>
+                 <name>wikiId</name>
+                 <description>the wikidata id for the Organization</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:WikiDataId</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
             </objectType>
             <objectType>
                <vodml-id>Observatory</vodml-id>
@@ -503,6 +520,18 @@
                  </multiplicity>
                </attribute>
                <attribute>
+                 <vodml-id>Telescope.wikiId</vodml-id>
+                 <name>wikiId</name>
+                 <description>the wikidata id for the Instrument</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:WikiDataId</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
                  <vodml-id>Telescope.location</vodml-id>
                  <name>location</name>
                  <description>the location of the telescope</description>	    
@@ -568,7 +597,7 @@
                <attribute>
                  <vodml-id>Instrument.name</vodml-id>
                  <name>name</name>
-                 <description>the instrument name</description>	    
+                 <description>the instrument name - human readable</description>	    
                  <datatype>
                     <vodml-ref>ivoa:string</vodml-ref>
                  </datatype>
@@ -586,6 +615,18 @@
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>Instrument.wikiId</vodml-id>
+                 <name>wikiId</name>
+                 <description>the wikidata id for the Instrument</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:WikiDataId</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
@@ -804,7 +845,7 @@
                <attribute>
                  <vodml-id>Target.sourceName</vodml-id>
                  <name>sourceName</name>
-                 <description></description>	    
+                 <description>A common name for the source</description>	    
                  <datatype>
                     <vodml-ref>ivoa:string</vodml-ref>
                  </datatype>
