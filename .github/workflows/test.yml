@@ -33,5 +33,5 @@ jobs:
 
     - name: Run the tests
       run: |
-         ./gradlew test
+         ./gradlew test -PskipSigning=True
 

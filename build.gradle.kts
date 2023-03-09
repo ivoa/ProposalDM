@@ -1,12 +1,14 @@
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.3.13"
+        id("net.ivoa.vo-dml.vodmltools") version "0.3.14"
         `maven-publish`
+        id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
+        signing
 }
 
 group = "org.javastro.ivoa.dm"
-version = "0.3-SNAPSHOT"
+version = "0.3.1-SNAPSHOT"
 
 
 vodml {
@@ -95,6 +97,7 @@ tasks.register<Exec>("createTestData")
 // run pg_dump -a vodml_proposal -f testData.sql to extract the data
 }
 
+
 publishing {
         publications {
                 create<MavenPublication>("mavenJava") {
@@ -133,5 +136,24 @@ publishing {
                                 }
                         }
                 }
+        }
+}
+nexusPublishing {
+        repositories {
+                sonatype()
+        }
+}
+
+//do not generate extra load on Nexus with new staging repository if signing fails
+tasks.withType<io.github.gradlenexus.publishplugin.InitializeNexusStagingRepository>().configureEach{
+        shouldRunAfter(tasks.withType<Sign>())
+}
+
+signing {
+        setRequired { !project.version.toString().endsWith("-SNAPSHOT") && !project.hasProperty("skipSigning") }
+
+        if (!project.hasProperty("skipSigning")) {
+                useGpgCmd()
+                sign(publishing.publications["mavenJava"])
         }
 }
