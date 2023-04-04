@@ -41,6 +41,18 @@ class EmerlinExampleTest extends AbstractProposalTest {
        assertTrue(obs.target instanceof CelestialTarget);
       
    }
+   
+     @org.junit.jupiter.api.Test 
+   public  void testDbCreate() {
+       
+        javax.persistence.EntityManager em = setupDB(ProposalModel.pu_name());
+        em.getTransaction().begin();
+        em.persist(ex.getProposal());
+        em.persist(ex.getCycle());
+        em.getTransaction().commit();
+
+   }
+   
  
 }
 

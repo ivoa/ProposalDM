@@ -118,7 +118,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
 
 
         //now read in again
-        String id = ex.getProposal().getCode(); //FIXME - need to add something in VO-DML gen to know what the "natural key" is for db work.
+        Long id = ex.getProposal().getId(); 
 
         em.getTransaction().begin();
         List<ObservingProposal> props = em.createNamedQuery("ObservingProposal.findById", ObservingProposal.class)

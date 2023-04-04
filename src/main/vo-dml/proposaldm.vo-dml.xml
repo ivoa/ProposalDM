@@ -12,7 +12,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.2</version>
-      <lastModified>2023-04-03T06:31:44Z</lastModified>
+      <lastModified>2023-04-04T16:51:51Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -158,21 +158,6 @@
                    <minOccurs>1</minOccurs>
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
-               </attribute>
-               <attribute>
-                 <vodml-id>ObservingProposal.code</vodml-id>
-                 <name>code</name>
-                 <description>a code that can be used to refer to the proposal</description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:string</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-                 <constraint xsi:type="vo-dml:NaturalKey">
-                 	<position>1</position>
-                 </constraint>
                </attribute>
                <attribute>
                  <vodml-id>ObservingProposal.summary</vodml-id>
