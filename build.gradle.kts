@@ -44,10 +44,6 @@ java {
         withSourcesJar()
 }
 
-repositories {
-        mavenCentral()
-        mavenLocal() // TODO remove this when releasing - just here to pick up local vodml-runtime
-}
 
 
 //make the fact that sources are generated explicit (gets rid of warning that it will not work in gradle 8)- see https://melix.github.io/blog/2021/10/gradle-quickie-dependson.html
