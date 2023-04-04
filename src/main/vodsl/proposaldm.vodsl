@@ -22,7 +22,7 @@ observations, although the intention is that information about targets etc. coul
  
  otype ObservingProposal "a complete proposal"
  {
- 	title: ivoa:string   "the proposal title" ;
+ 	  title: ivoa:string   "the proposal title" ;
     code: ivoa:string iskey  "a code that can be used to refer to the proposal" ;
     summary: ivoa:string   "a short summary/abstract of the proposal" ;
     scientificJustification: Justification as composition "scientific justification";

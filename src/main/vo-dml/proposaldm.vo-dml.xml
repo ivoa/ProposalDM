@@ -12,7 +12,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.2</version>
-      <lastModified>2023-02-28T15:59:06Z</lastModified>
+      <lastModified>2023-04-03T06:31:44Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>

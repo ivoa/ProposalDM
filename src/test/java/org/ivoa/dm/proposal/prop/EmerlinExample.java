@@ -7,10 +7,10 @@ import org.ivoa.dm.proposal.management.*;
 import org.ivoa.dm.stc.coords.Epoch;
 import org.ivoa.dm.stc.coords.EquatorialPoint;
 import org.ivoa.dm.stc.coords.PolStateEnum;
-import org.ivoa.vodml.stdtypes2.Ivorn;
-import org.ivoa.vodml.stdtypes2.RealQuantity;
-import org.ivoa.vodml.stdtypes2.StringIdentifier;
-import org.ivoa.vodml.stdtypes2.Unit;
+import org.ivoa.dm.ivoa.Ivorn;
+import org.ivoa.dm.ivoa.RealQuantity;
+import org.ivoa.dm.ivoa.StringIdentifier;
+import org.ivoa.vodml.stdtypes.Unit;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -24,6 +24,7 @@ import static org.ivoa.dm.proposal.prop.PerformanceParameters.createPerformanceP
 import static org.ivoa.dm.proposal.prop.ScienceSpectralWindow.createScienceSpectralWindow;
 import static org.ivoa.dm.proposal.prop.SpectralWindowSetup.createSpectralWindowSetup;
 import static org.ivoa.dm.proposal.prop.TargetObservation.createTargetObservation;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class EmerlinExample extends BaseExample {
 
@@ -57,22 +58,7 @@ public class EmerlinExample extends BaseExample {
     }
 
     public  EmerlinExample () {
-        observatory = createObservatory(obs -> {
-            obs.address = "on earth";
-            obs.ivoid = new Ivorn("ivo://obs/anobs");
-            obs.name = "Jodrell Bank";
-            obs.telescopes = Arrays.asList(telescopes);
-            obs.arrays = Arrays.asList(new TelescopeArray("e-MERLIN",
-                  Stream.of(telescopes).map(t -> new TelescopeArrayMember(t)).collect(Collectors.toList())));
-
-        });
-
-
-        ResourceType observingTime = new ResourceType("observing time", "hours");
-
-        Resource availableObservingTime = new Resource(100 * 24.0, observingTime);
-
-        Instrument[] instruments = {
+         Instrument[] instruments = {
              
               Instrument.createInstrument( i -> {i.name="L-Band Receiver"; i.kind= InstrumentKind.CONTINUUM; i.frequencyCoverage=simpleSpecRange(1.2, 1.7);}), 
               Instrument.createInstrument( i -> {i.name="C-Band Receiver"; i.kind=InstrumentKind.CONTINUUM; i.frequencyCoverage=simpleSpecRange(4.0, 7.0);}),
@@ -80,6 +66,23 @@ public class EmerlinExample extends BaseExample {
         };
 
         Backend backend = new Backend("Widar Correlator", true);
+
+       observatory = createObservatory(obs -> {
+            obs.address = "on earth";
+            obs.ivoid = new Ivorn("ivo://obs/anobs");
+            obs.name = "Jodrell Bank";
+            obs.telescopes = Arrays.asList(telescopes);
+            obs.arrays = Arrays.asList(new TelescopeArray("e-MERLIN",
+                  Stream.of(telescopes).map(t -> new TelescopeArrayMember(t)).collect(Collectors.toList())));
+            obs.instruments = Arrays.asList(instruments);
+            obs.backends =Arrays.asList(backend);
+
+        });
+
+
+        ResourceType observingTime = new ResourceType("observing time", "hours");
+
+        Resource availableObservingTime = new Resource(100 * 24.0, observingTime);
 
         //for e-merlin the modes use use the same backend and instrument on all the telescopes
         // there is also the special case of not tying up the Lovell telescope - would be 2 extra modes for L and C Bands
@@ -164,13 +167,14 @@ public class EmerlinExample extends BaseExample {
               }
         ));
         // "submit" proposal
+        final SubmittedProposal submittedProposal = new SubmittedProposal(proposal, new GregorianCalendar(2022, 3, 14).getTime());
         cycle.setSubmittedProposals(
-              Arrays.asList(new SubmittedProposal(new GregorianCalendar(2022, 3, 14).getTime(), proposal)));
+              Arrays.asList(submittedProposal));
 
         // "review" proposal
 
         cycle.setReviewedProposals(Arrays.asList(ReviewedProposal.createReviewedProposal(r -> {
-                  r.proposal = proposal;
+                  r.proposal = submittedProposal;
                   r.reviewsCompleteDate = new GregorianCalendar(2022, 4, 14).getTime();
                   r.successful = true;
                   r.reviews = Arrays.asList(ProposalReview.createProposalReview(pr -> {
@@ -182,14 +186,14 @@ public class EmerlinExample extends BaseExample {
                   }));
               })
         ));
-
+        
 
         // "allocate" proposal
 
         cycle.setAllocatedProposals(Arrays.asList(
               AllocatedProposal.createAllocatedProposal(ap -> {
-                  ap.proposal = proposal;
-
+                  ap.proposal = submittedProposal;
+        
                   ap.allocation = Arrays.asList(
                         AllocatedBlock.createAllocatedBlock(
                               a -> {

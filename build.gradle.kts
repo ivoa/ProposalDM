@@ -1,21 +1,21 @@
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.3.14"
+        id("net.ivoa.vo-dml.vodmltools") version "0.3.15"
         `maven-publish`
         id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
         signing
 }
 
 group = "org.javastro.ivoa.dm"
-version = "0.3.1-SNAPSHOT"
+version = "0.3.2-SNAPSHOT"
 
 
 vodml {
         vodmlFiles.setFrom(project.files (
                 vodmlDir.file("proposaldm.vo-dml.xml"),
                 vodmlDir.file("proposalManagement.vo-dml.xml"),
-                vodmlDir.file("IVOA-v1.0.vo-dml.xml"),
+ //               vodmlDir.file("IVOA-v1.0.vo-dml.xml"),
                 vodmlDir.file("STC_coords-v1.0.vo-dml.xml")
         ))
         bindingFiles.setFrom(
@@ -75,6 +75,7 @@ val pjar = tasks.register<Jar>("JarWithoutPersistence") {
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE } //IMPL bugfix - see https://stackoverflow.com/questions/67265308/gradle-entry-classpath-is-a-duplicate-but-no-duplicate-handling-strategy-has-b
 
 dependencies {
+        api("org.javastro.ivoa.vo-dml:ivoa-base:1.1-SNAPSHOT")
 //    implementation("org.javastro:ivoa-entities:0.9.3-SNAPSHOT")
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")

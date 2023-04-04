@@ -20,9 +20,13 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.ivoa.dm.proposal.management.OfferedCycles;
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
+import org.ivoa.vodml.ModelManagement;
 import org.javastro.ivoa.jaxb.DescriptionValidator;
 import org.javastro.ivoa.jaxb.JaxbAnnotationMeta;
 import org.javastro.ivoa.tests.AbstractJAXBJPATest;
@@ -171,8 +175,66 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
         assertEquals(1, props.size());
         ProposalCycle pc = props.get(0);
         em.getTransaction().commit();
-        assertEquals( 1, pc.getSubmittedProposals().size(),"number submitted proposals"); // trivial test      
+        
+        em.getTransaction().begin();
+        Long i = em.createQuery("select count(o) from SubmittedProposal o", Long.class).getSingleResult().longValue();
+        em.getTransaction().commit();
+        assertEquals( 1,i.longValue(),"number submitted proposals"); // trivial test      
     
-    }}
+    }
+    @org.junit.jupiter.api.Test
+    void proposalDmJSONTest() throws JsonProcessingException {
+        ProposalModel model = new ProposalModel();
+        model.addContent(ex.getProposal());
+        model.makeRefIDsUnique();
+        ProposalModel modelin = roundTripJSON(model.management());
+        List<ObservingProposal> props = modelin.getContent(ObservingProposal.class);
+        assertEquals(1, props.size());
+    }
+  @org.junit.jupiter.api.Test
+  void reviewJSONTest() throws JsonProcessingException  {
+
+      OfferedCycles oc = new OfferedCycles();
+      oc.addCycles(ex.getCycle());
+      ProposalManagementModel model = new ProposalManagementModel();
+      model.addContent(oc);
+      model.makeRefIDsUnique();
+
+      ProposalManagementModel modelin = roundTripJSON(model.management());
+      List<OfferedCycles> revs = modelin.getContent(OfferedCycles.class);
+      assertEquals(1, revs.size());
+      assertEquals(1, revs.get(0).getCycles().size());
+
+  }
+  
+  @org.junit.jupiter.api.Test
+  void proposalOnlyJSONTest() throws JsonProcessingException {
+     ProposalModel model = new ProposalModel();
+     ObjectMapper mapper = ProposalModel.jsonMapper();
+     model.addContent(ex.getProposal());
+     model.makeRefIDsUnique();
+     String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(model.getContent(ObservingProposal.class).get(0));
+        System.out.println("JSON output"); 
+        System.out.println(json);
+        ObservingProposal retval = mapper.readValue(json, ObservingProposal.class);
+        assertNotNull(retval);
+  }
+
+    //
+   protected  <T> T roundTripJSON(ModelManagement<T> m) throws JsonProcessingException {
+        T model = m.theModel();
+        @SuppressWarnings("unchecked")
+        Class<T> clazz =  (Class<T>) model.getClass();
+        ObjectMapper mapper = m.jsonMapper();
+        String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(model);
+        System.out.println("JSON output"); 
+        System.out.println(json);
+        T retval = mapper.readValue(json, clazz);
+        assertNotNull(retval);
+        return retval;
+
+    }    
+
+}
 
 

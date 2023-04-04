@@ -8,10 +8,10 @@ import org.ivoa.dm.stc.coords.CartesianCoordSpace;
 import org.ivoa.dm.stc.coords.SpaceFrame;
 import org.ivoa.dm.stc.coords.SpaceSys;
 import org.ivoa.dm.stc.coords.StdRefLocation;
-import org.ivoa.vodml.stdtypes2.Ivorn;
-import org.ivoa.vodml.stdtypes2.RealQuantity;
-import org.ivoa.vodml.stdtypes2.StringIdentifier;
-import org.ivoa.vodml.stdtypes2.Unit;
+import org.ivoa.dm.ivoa.Ivorn;
+import org.ivoa.dm.ivoa.RealQuantity;
+import org.ivoa.dm.ivoa.StringIdentifier;
+import org.ivoa.vodml.stdtypes.Unit;
 
 import java.util.Arrays;
 import java.util.Date;

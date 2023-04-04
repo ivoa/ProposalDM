@@ -9,7 +9,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.3</version>
-      <lastModified>2022-10-31T10:38:28Z</lastModified>
+      <lastModified>2023-04-03T07:18:06Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -266,6 +266,9 @@
                <vodml-id>SubmittedProposal</vodml-id>
                <name>SubmittedProposal</name>
                <description>an instance of a proposal that has been submitted</description>	    
+               <extends>
+                  <vodml-ref>proposal:ObservingProposal</vodml-ref>
+               </extends>
                <attribute>
                  <vodml-id>SubmittedProposal.submissionDate</vodml-id>
                  <name>submissionDate</name>
@@ -278,18 +281,6 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
-               <reference>
-                 <vodml-id>SubmittedProposal.proposal</vodml-id>
-                 <name>proposal</name>
-                 <description>the proposal</description>	    
-                 <datatype>
-                   <vodml-ref>proposal:ObservingProposal</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </reference>
             </objectType>
             <objectType>
                <vodml-id>ReviewedProposal</vodml-id>
@@ -336,7 +327,7 @@
                  <name>proposal</name>
                  <description></description>	    
                  <datatype>
-                   <vodml-ref>proposal:ObservingProposal</vodml-ref>
+                   <vodml-ref>proposalManagement:SubmittedProposal</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -365,7 +356,7 @@
                  <name>proposal</name>
                  <description>the proposal</description>	    
                  <datatype>
-                   <vodml-ref>proposal:ObservingProposal</vodml-ref>
+                   <vodml-ref>proposalManagement:SubmittedProposal</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
