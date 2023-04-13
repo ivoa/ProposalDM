@@ -2,7 +2,7 @@
  *  created on 09-Jul-2021 
  */
  
- model proposal (0.2) "A model to represent an application for observing time. The model is intended to express all 
+ model proposal (0.3) "A model to represent an application for observing time. The model is intended to express all 
 of the concepts required to specify the scientific parameters of the application in sufficient detail to allow the 
 proposal to be reviewed and allocated time. It does not cover all the technical detail of instrument setup that would be needed to actually schedule the 
 observations, although the intention is that information about targets etc. could be automatically transferred to an observing system."
@@ -23,14 +23,12 @@ observations, although the intention is that information about targets etc. coul
  otype ObservingProposal "a complete proposal"
  {
  	  title: ivoa:string   "the proposal title" ;
-//    code: ivoa:string iskey  "a code that can be used to refer to the proposal" ;
     summary: ivoa:string   "a short summary/abstract of the proposal" ;
     scientificJustification: Justification as composition "scientific justification";
     technicalJustification: Justification as composition "technical justification"; //IMPL this probably needs to be attached to each observatory as likely to be different for each.
     investigators: Investigator @+ as composition  "the person(s) making the proposal";
     kind : ProposalKind "the type of proposal";
     relatedProposals: RelatedProposal @* as composition "";
-    dateSubmitted : ivoa:datetime "date that the proposal is submitted";
     supportingDocuments: SupportingDocument @* as composition "any additional documents";
     observations : Observation @+ as composition "the proposed observations";
  }

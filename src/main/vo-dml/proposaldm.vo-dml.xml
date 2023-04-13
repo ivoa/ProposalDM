@@ -11,8 +11,8 @@
       <uri/>
       <title>TBD</title>
       <author>Paul Harrison</author>
-      <version>0.2</version>
-      <lastModified>2023-04-04T16:51:51Z</lastModified>
+      <version>0.3</version>
+      <lastModified>2023-04-13T14:20:21Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -177,18 +177,6 @@
                  <description>the type of proposal</description>	    
                  <datatype>
                     <vodml-ref>proposal:ProposalKind</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
-               <attribute>
-                 <vodml-id>ObservingProposal.dateSubmitted</vodml-id>
-                 <name>dateSubmitted</name>
-                 <description>date that the proposal is submitted</description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:datetime</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>

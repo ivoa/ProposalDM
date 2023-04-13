@@ -60,7 +60,6 @@ public abstract class BaseExample implements ExampleGenerator {
 
     protected Consumer<ObservingProposal.ObservingProposalBuilder> proposalCommonSetup() {
         return pr -> {
-            pr.dateSubmitted = new Date();
             pr.kind = ProposalKind.STANDARD;
             pr.title = "the proposal title";
             pr.summary = "a test proposal";
