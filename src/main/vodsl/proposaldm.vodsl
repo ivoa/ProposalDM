@@ -261,22 +261,22 @@ observations, although the intention is that information about targets etc. coul
  
  abstract otype Observation "" {
  	target references  Target  "The actual target of the observation";
- 	field references Field "";
- 	tech references TechnicalGoal "";
- 	constraints: Constraint @* as composition "";
+ 	field references Field "The Field for the observation";
+ 	tech references TechnicalGoal "The technical goals of the observation";
+ 	constraints: Constraint @* as composition "any constraints on the observation";
  }
  
  otype TargetObservation -> Observation "an observation of the scientific target "{
  }
  
- otype CalibrationObservation -> Observation "an observation that is intended for calibration"{
- 	intent : CalibrationTarget_intendedUse "";
+ otype CalibrationObservation -> Observation "An observation that is intended for calibration"{
+ 	intent : CalibrationTarget_intendedUse "The use of the calibration observation";
  }
  
  enum CalibrationTarget_intendedUse  "" //IMPL is this enum sufficient - does it cover the range of values is it more appropriate to have an extensible type?
 {
 Amplitude  "" ,
-Atmospheric  "" ,
+Atmospheric  "used to measure atmospheric effects" ,
 Bandpass  "" ,
 Phase  "" ,
 Pointing  "" ,

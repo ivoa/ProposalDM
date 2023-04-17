@@ -109,7 +109,9 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
     protected ObservingProposal propDbInOut() {
         javax.persistence.EntityManager em = setupDB(ProposalModel.pu_name());
         em.getTransaction().begin();
-        em.persist(ex.getProposal());
+        final ObservingProposal proposal = ex.getProposal();
+        proposal.persistRefs(em);
+        em.persist(proposal);
         em.getTransaction().commit();
 
         //flush any existing entities
@@ -118,7 +120,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
 
 
         //now read in again
-        Long id = ex.getProposal().getId(); 
+        Long id = proposal.getId(); 
 
         em.getTransaction().begin();
         List<ObservingProposal> props = em.createNamedQuery("ObservingProposal.findById", ObservingProposal.class)
@@ -159,7 +161,10 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
     void reviewDmJPATest() {
         javax.persistence.EntityManager em = setupDB(ProposalModel.pu_name());
         em.getTransaction().begin();
-        em.persist(ex.getCycle());
+        
+        final ProposalCycle cycle = ex.getCycle();
+        cycle.persistRefs(em);
+        em.persist(cycle);
         em.getTransaction().commit();
         
                 //flush any existing entities
@@ -167,7 +172,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
         em.getEntityManagerFactory().getCache().evictAll();
 
         //read in again
-        Long id = ex.getCycle().getId(); //FIXME - need to add something in VO-DML gen to know what the "natural key" is for db work.
+        Long id = cycle.getId(); //FIXME - need to add something in VO-DML gen to know what the "natural key" is for db work.
     
         em.getTransaction().begin();
         List<ProposalCycle> props = em.createNamedQuery("ProposalCycle.findById", ProposalCycle.class)

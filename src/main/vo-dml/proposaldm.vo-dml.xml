@@ -12,7 +12,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.3</version>
-      <lastModified>2023-04-13T14:20:21Z</lastModified>
+      <lastModified>2023-04-14T13:50:09Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -110,7 +110,7 @@
                   <literal>
                     <vodml-id>CalibrationTarget_intendedUse.Atmospheric</vodml-id>
                     <name>Atmospheric</name>
-                    <description></description>	    
+                    <description>used to measure atmospheric effects</description>	    
                   </literal>	
                   <literal>
                     <vodml-id>CalibrationTarget_intendedUse.Bandpass</vodml-id>
@@ -1341,7 +1341,7 @@
                <composition>
                  <vodml-id>Observation.constraints</vodml-id>
                  <name>constraints</name>
-                 <description></description>	    
+                 <description>any constraints on the observation</description>	    
                  <datatype>
                     <vodml-ref>proposal:Constraint</vodml-ref>
                  </datatype>
@@ -1365,7 +1365,7 @@
                <reference>
                  <vodml-id>Observation.field</vodml-id>
                  <name>field</name>
-                 <description></description>	    
+                 <description>The Field for the observation</description>	    
                  <datatype>
                    <vodml-ref>proposal:Field</vodml-ref>
                  </datatype>
@@ -1377,7 +1377,7 @@
                <reference>
                  <vodml-id>Observation.tech</vodml-id>
                  <name>tech</name>
-                 <description></description>	    
+                 <description>The technical goals of the observation</description>	    
                  <datatype>
                    <vodml-ref>proposal:TechnicalGoal</vodml-ref>
                  </datatype>
@@ -1398,14 +1398,14 @@
             <objectType>
                <vodml-id>CalibrationObservation</vodml-id>
                <name>CalibrationObservation</name>
-               <description>an observation that is intended for calibration</description>	    
+               <description>An observation that is intended for calibration</description>	    
                <extends>
                   <vodml-ref>proposal:Observation</vodml-ref>
                </extends>
                <attribute>
                  <vodml-id>CalibrationObservation.intent</vodml-id>
                  <name>intent</name>
-                 <description></description>	    
+                 <description>The use of the calibration observation</description>	    
                  <datatype>
                     <vodml-ref>proposal:CalibrationTarget_intendedUse</vodml-ref>
                  </datatype>

@@ -11,6 +11,8 @@ package org.ivoa.dm.proposal.prop;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.ivoa.dm.proposal.management.ProposalCycle;
+
 
 /**
  * Tests concepts needed for e-MERLIN configuration.
@@ -47,8 +49,12 @@ class EmerlinExampleTest extends AbstractProposalTest {
        
         javax.persistence.EntityManager em = setupDB(ProposalModel.pu_name());
         em.getTransaction().begin();
-        em.persist(ex.getProposal());
-        em.persist(ex.getCycle());
+        final ObservingProposal proposal = ex.getProposal();
+        proposal.persistRefs(em);
+        em.persist(proposal);
+        final ProposalCycle cycle = ex.getCycle();
+        cycle.persistRefs(em);
+        em.persist(cycle);
         em.getTransaction().commit();
 
    }
