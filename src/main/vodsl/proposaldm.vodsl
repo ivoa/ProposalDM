@@ -31,6 +31,7 @@ observations, although the intention is that information about targets etc. coul
     relatedProposals: RelatedProposal @* as composition "";
     supportingDocuments: SupportingDocument @* as composition "any additional documents";
     observations : Observation @+ as composition "the proposed observations";
+    submitted: ivoa:boolean @? "whether the proposal is submitted"; //note that submitted proposals are not expected to be editable..  made optional to allow for not setting for not submitted proposals
  }
  
  otype RelatedProposal "a related proposal" // note that this is being done to follow the vodml aggregation pattern

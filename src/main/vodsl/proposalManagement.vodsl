@@ -16,6 +16,7 @@
  
 otype ProposalCycle "Defines collection of resources and proposals for a particular observing season" {
  	observatory references proposal:Observatory  "";
+ 	title: ivoa:string "a human readable description of the cycle";
  	submissionDeadline : ivoa:datetime "the date by which observing proposals must be submitted to be considered for this cycle";
  	observationSessionStart : ivoa:datetime "the start date of the observing cycle";
  	observationSessionEnd: ivoa:datetime "the end date of the observing cycle";
@@ -52,7 +53,8 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  }
  
   
- otype SubmittedProposal -> proposal:ObservingProposal "an instance of a proposal that has been submitted" {
+ otype SubmittedProposal "an instance of a proposal that has been submitted" {
+ 	proposal references proposal:ObservingProposal "the proposal that was submitted"; //note although this is a reference, the proposal is "frozen" when submitted.
  	submissionDate : ivoa:datetime "the date that the proposal was submitted";
  }
  

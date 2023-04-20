@@ -74,6 +74,7 @@ public abstract class BaseExample implements ExampleGenerator {
             c.submissionDeadline = new GregorianCalendar(2022, 3, 15).getTime();
             c.observationSessionStart = new GregorianCalendar(2022, 6, 1).getTime();
             c.observationSessionEnd = new GregorianCalendar(2022, 9, 1).getTime();
+            c.title="test cycle";
             c.tac = tac;
         };
 
