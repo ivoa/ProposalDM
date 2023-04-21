@@ -9,7 +9,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.3</version>
-      <lastModified>2023-04-20T16:39:14Z</lastModified>
+      <lastModified>2023-04-21T07:21:44Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -322,7 +322,7 @@
                <attribute>
                  <vodml-id>ReviewedProposal.reviewsCompleteDate</vodml-id>
                  <name>reviewsCompleteDate</name>
-                 <description>the date when all the proposals are complete</description>	    
+                 <description>the date when all the proposals are due</description>	    
                  <datatype>
                     <vodml-ref>ivoa:datetime</vodml-ref>
                  </datatype>
@@ -344,8 +344,8 @@
                  </multiplicity>
                </composition>
                <reference>
-                 <vodml-id>ReviewedProposal.proposal</vodml-id>
-                 <name>proposal</name>
+                 <vodml-id>ReviewedProposal.submitted</vodml-id>
+                 <name>submitted</name>
                  <description></description>	    
                  <datatype>
                    <vodml-ref>proposalManagement:SubmittedProposal</vodml-ref>
@@ -373,8 +373,8 @@
                  </multiplicity>
                </composition>
                <reference>
-                 <vodml-id>AllocatedProposal.proposal</vodml-id>
-                 <name>proposal</name>
+                 <vodml-id>AllocatedProposal.submitted</vodml-id>
+                 <name>submitted</name>
                  <description>the proposal</description>	    
                  <datatype>
                    <vodml-ref>proposalManagement:SubmittedProposal</vodml-ref>

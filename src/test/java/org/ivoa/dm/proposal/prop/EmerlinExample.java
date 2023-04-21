@@ -174,7 +174,7 @@ public class EmerlinExample extends BaseExample {
         // "review" proposal
 
         cycle.setReviewedProposals(Arrays.asList(ReviewedProposal.createReviewedProposal(r -> {
-                  r.proposal = submittedProposal;
+                  r.submitted = submittedProposal;
                   r.reviewsCompleteDate = new GregorianCalendar(2022, 4, 14).getTime();
                   r.successful = true;
                   r.reviews = Arrays.asList(ProposalReview.createProposalReview(pr -> {
@@ -192,7 +192,7 @@ public class EmerlinExample extends BaseExample {
 
         cycle.setAllocatedProposals(Arrays.asList(
               AllocatedProposal.createAllocatedProposal(ap -> {
-                  ap.proposal = submittedProposal;
+                  ap.submitted = submittedProposal;
         
                   ap.allocation = Arrays.asList(
                         AllocatedBlock.createAllocatedBlock(

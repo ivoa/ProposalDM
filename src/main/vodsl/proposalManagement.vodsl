@@ -60,14 +60,14 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  
  otype ReviewedProposal "an instance of a proposal that is in review" {
 //	cycle references ProposalCycle ""; //IMPL does not necessarily need this back reference as owned by the cycle - might be possible to put in automatically with tooling...
- 	proposal references SubmittedProposal ""; 	
+ 	submitted references SubmittedProposal ""; 	
  	reviews : ProposalReview @+ as composition "the reviews";
  	successful : ivoa:boolean "the proposal can go on to allocation";
- 	reviewsCompleteDate : ivoa:datetime "the date when all the proposals are complete";
+ 	reviewsCompleteDate : ivoa:datetime "the date when all the proposals are due";
  }
  
  otype AllocatedProposal "an instance of a proposal that is allocated observing time" {
- 	proposal references SubmittedProposal "the proposal"; 	
+ 	submitted references SubmittedProposal "the proposal"; 	
  	allocation : AllocatedBlock @+ as composition "what is allocated to the proposal";
  }
  
