@@ -110,18 +110,14 @@ public class EmerlinExample extends BaseExample {
 
         }));
 
-        // set up the specific proposal
-        proposal = createObservingProposal(proposalCommonSetup().andThen(pr -> {
-                  List<Observation> obs = Arrays.asList(
-                        createTargetObservation(t -> {
-
-                                  t.target = CelestialTarget.createCelestialTarget(c -> {
-                                      c.sourceName = "fictonal";
+        final Target target =  CelestialTarget.createCelestialTarget(c -> {
+                                      c.sourceName = "fictional";
                                       c.sourceCoordinates = new EquatorialPoint(new RealQuantity(45.0, degrees), new RealQuantity(60.0, degrees), ICRS_SYS);//IMPL it would actually be nice to be able to input sexagesimal - that is the most human readable
                                       c.positionEpoch = new Epoch("J2013.123");//FIXME - this is not really what epoch means
                                   });
-                                  t.field = new TargetField("source1");
-                                  t.tech = TechnicalGoal.createTechnicalGoal(g -> {
+        
+        final Field field = new TargetField("source1");
+        final TechnicalGoal tgoal = TechnicalGoal.createTechnicalGoal(g -> {
                                       g.performance = createPerformanceParameters(p -> {
                                           p.desiredAngularResolution = new RealQuantity(25., arcsec);
                                           p.desiredLargestScale = new RealQuantity(0.1, degrees);
@@ -159,6 +155,16 @@ public class EmerlinExample extends BaseExample {
                                             })
                                       );
                                   });
+        // set up the specific proposal
+        proposal = createObservingProposal(proposalCommonSetup().andThen(pr -> {
+            pr.targets = Arrays.asList(target);
+            pr.fields = Arrays.asList(field);
+            pr.technicalGoals = Arrays.asList(tgoal);
+                  List<Observation> obs = Arrays.asList(
+                        createTargetObservation(t -> {
+                                  t.target = target;
+                                  t.field = field;
+                                  t.technicalGoal = tgoal;
                               }
 
 

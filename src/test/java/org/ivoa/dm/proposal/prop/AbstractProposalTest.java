@@ -100,7 +100,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
         assertEquals( 2, prop.getInvestigators().size(),"number of investigators"); // trivial test     
         assertEquals( 1,prop.getObservations().size(), "number of observations");
         Observation obs = prop.getObservations().get(0);
-        TechnicalGoal tech = obs.getTech();
+        TechnicalGoal tech = obs.getTechnicalGoal();
         assertNotNull(tech);
         assertEquals( 2,tech.spectrum.size(), "number of spectral setups");
                 
@@ -138,7 +138,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
                 logger.debug("starting test");
                 JAXBContext jc = ProposalManagementModel.contextFactory();
                 OfferedCycles oc = new OfferedCycles();
-                oc.addCycles(ex.getCycle());
+                oc.addToCycles(ex.getCycle());
                 JaxbAnnotationMeta<OfferedCycles> meta = JaxbAnnotationMeta.of(OfferedCycles.class);
                 DescriptionValidator<OfferedCycles> validator = new DescriptionValidator<>(jc, meta);
                 DescriptionValidator.Validation validation = validator.validate(oc);
@@ -200,7 +200,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
   void reviewJSONTest() throws JsonProcessingException  {
 
       OfferedCycles oc = new OfferedCycles();
-      oc.addCycles(ex.getCycle());
+      oc.addToCycles(ex.getCycle());
       ProposalManagementModel model = new ProposalManagementModel();
       model.addContent(oc);
       model.makeRefIDsUnique();

@@ -11,7 +11,13 @@ package org.ivoa.dm.proposal.prop;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+import java.util.List;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import org.ivoa.dm.proposal.management.ProposalCycle;
+import org.ivoa.random.FHelper;
 
 
 /**
@@ -57,6 +63,21 @@ class EmerlinExampleTest extends AbstractProposalTest {
         em.persist(cycle);
         em.getTransaction().commit();
 
+   }
+   
+      @org.junit.jupiter.api.Test 
+   public void testJackson() throws JsonProcessingException
+   {
+   
+       List<Field> fields = Arrays.asList(new TargetField("first"), new TargetField("second"),
+               new Point(new org.ivoa.dm.stc.coords.Point(),"a point") );
+       
+       FHelper fh = new FHelper();
+       fh.field = fields.get(0);
+       
+       String json = ProposalModel.jsonMapper().writeValueAsString(fields.get(0));
+       System.out.println(json);
+       
    }
    
  

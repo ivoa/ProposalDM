@@ -12,7 +12,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.3</version>
-      <lastModified>2023-04-20T16:43:33Z</lastModified>
+      <lastModified>2023-04-24T10:53:18Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -256,6 +256,42 @@
                  </multiplicity>
                </composition>
                <composition>
+                 <vodml-id>ObservingProposal.targets</vodml-id>
+                 <name>targets</name>
+                 <description>the targets of the proposal</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:Target</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </composition>
+               <composition>
+                 <vodml-id>ObservingProposal.fields</vodml-id>
+                 <name>fields</name>
+                 <description>the fields observed in the proposal</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:Field</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </composition>
+               <composition>
+                 <vodml-id>ObservingProposal.technicalGoals</vodml-id>
+                 <name>technicalGoals</name>
+                 <description>the technical goals of the proposal</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:TechnicalGoal</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </composition>
+               <composition>
                  <vodml-id>ObservingProposal.observations</vodml-id>
                  <name>observations</name>
                  <description>the proposed observations</description>	    
@@ -367,8 +403,8 @@
                  </multiplicity>
                </attribute>
                <reference>
-                 <vodml-id>Investigator.investigator</vodml-id>
-                 <name>investigator</name>
+                 <vodml-id>Investigator.person</vodml-id>
+                 <name>person</name>
                  <description>the investigator</description>	    
                  <datatype>
                    <vodml-ref>proposal:Person</vodml-ref>
@@ -1387,8 +1423,8 @@
                  </multiplicity>
                </reference>
                <reference>
-                 <vodml-id>Observation.tech</vodml-id>
-                 <name>tech</name>
+                 <vodml-id>Observation.technicalGoal</vodml-id>
+                 <name>technicalGoal</name>
                  <description>The technical goals of the observation</description>	    
                  <datatype>
                    <vodml-ref>proposal:TechnicalGoal</vodml-ref>

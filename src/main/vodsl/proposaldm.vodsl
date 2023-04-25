@@ -30,6 +30,9 @@ observations, although the intention is that information about targets etc. coul
     kind : ProposalKind "the type of proposal";
     relatedProposals: RelatedProposal @* as composition "";
     supportingDocuments: SupportingDocument @* as composition "any additional documents";
+    targets: Target @+ as composition "the targets of the proposal";
+    fields: Field @+ as composition "the fields observed in the proposal";
+    technicalGoals: TechnicalGoal @+ as composition "the technical goals of the proposal";
     observations : Observation @+ as composition "the proposed observations";
     submitted: ivoa:boolean @? "whether the proposal is submitted"; //note that submitted proposals are not expected to be editable..  made optional to allow for not setting for not submitted proposals
  }
@@ -56,7 +59,7 @@ observations, although the intention is that information about targets etc. coul
  
  //REQ - anonymity of proposers
  otype Investigator { // note that the key that is the surrogate key for this object would be a good candidate for an anonymous key
- 	investigator references Person "the investigator";
+ 	person references Person "the investigator";
  	type : InvestigatorKind "the investigator type";
  	forPhD : ivoa:boolean @? "is the investigator making proposal for their PhD"; //IMPL - might be better attached to ObservingProposal directly
  }
@@ -263,7 +266,7 @@ observations, although the intention is that information about targets etc. coul
  abstract otype Observation "" {
  	target references  Target  "The actual target of the observation";
  	field references Field "The Field for the observation";
- 	tech references TechnicalGoal "The technical goals of the observation";
+ 	technicalGoal references TechnicalGoal "The technical goals of the observation";
  	constraints: Constraint @* as composition "any constraints on the observation";
  }
  
