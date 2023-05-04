@@ -86,7 +86,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
         assertTrue(validation.valid);
         ProposalModel model = new ProposalModel();
         model.addContent(ex.getProposal());
-        model.makeRefIDsUnique();
+        model.processReferences();
 
         ProposalModel modelin = roundtripXML(jc, model, ProposalModel.class);
         List<ObservingProposal> props = modelin.getContent(ObservingProposal.class);
@@ -148,7 +148,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
                 assertTrue(validation.valid);
                 ProposalManagementModel model = new ProposalManagementModel();
                 model.addContent(oc);
-                model.makeRefIDsUnique();
+                model.processReferences();
             
                 ProposalManagementModel modelin = roundtripXML(jc, model, ProposalManagementModel.class);
                 List<OfferedCycles> revs = modelin.getContent(OfferedCycles.class);
@@ -191,7 +191,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
     void proposalDmJSONTest() throws JsonProcessingException {
         ProposalModel model = new ProposalModel();
         model.addContent(ex.getProposal());
-        model.makeRefIDsUnique();
+        model.processReferences();
         ProposalModel modelin = roundTripJSON(model.management());
         List<ObservingProposal> props = modelin.getContent(ObservingProposal.class);
         assertEquals(1, props.size());
@@ -203,7 +203,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
       oc.addToCycles(ex.getCycle());
       ProposalManagementModel model = new ProposalManagementModel();
       model.addContent(oc);
-      model.makeRefIDsUnique();
+      model.processReferences();
 
       ProposalManagementModel modelin = roundTripJSON(model.management());
       List<OfferedCycles> revs = modelin.getContent(OfferedCycles.class);
@@ -217,7 +217,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
      ProposalModel model = new ProposalModel();
      ObjectMapper mapper = ProposalModel.jsonMapper();
      model.addContent(ex.getProposal());
-     model.makeRefIDsUnique();
+     model.processReferences();
      String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(model.getContent(ObservingProposal.class).get(0));
         System.out.println("JSON output"); 
         System.out.println(json);
