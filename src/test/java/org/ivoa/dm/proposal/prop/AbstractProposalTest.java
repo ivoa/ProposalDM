@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
@@ -26,10 +25,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ivoa.dm.proposal.management.OfferedCycles;
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
-import org.ivoa.vodml.ModelManagement;
-import org.javastro.ivoa.jaxb.DescriptionValidator;
-import org.javastro.ivoa.jaxb.JaxbAnnotationMeta;
-import org.javastro.ivoa.tests.AbstractJAXBJPATest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -38,7 +33,7 @@ import org.junit.jupiter.api.BeforeEach;
  * @author Paul Harrison (paul.harrison@manchester.ac.uk) 
  * @since 20 Jan 2022
  */
-public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
+public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.AbstractTest {
 
     /** logger for this class */
     static final org.slf4j.Logger logger = org.slf4j.LoggerFactory
@@ -76,19 +71,13 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
     ParserConfigurationException, TransformerFactoryConfigurationError,
     TransformerException {
         logger.debug("starting test");
-        JAXBContext jc = ProposalModel.contextFactory();
-        JaxbAnnotationMeta<ObservingProposal> meta = JaxbAnnotationMeta.of(ObservingProposal.class);
-        DescriptionValidator<ObservingProposal> validator = new DescriptionValidator<>(jc, meta);
-        DescriptionValidator.Validation validation = validator.validate(ex.getProposal());
-        if(!validation.valid) {
-            System.err.println(validation.message);
-        }
-        assertTrue(validation.valid);
+        
         ProposalModel model = new ProposalModel();
         model.addContent(ex.getProposal());
         model.processReferences();
+        validateModel(model);
 
-        ProposalModel modelin = roundtripXML(jc, model, ProposalModel.class);
+        ProposalModel modelin = modelRoundTripXMLwithTest(model);
         List<ObservingProposal> props = modelin.getContent(ObservingProposal.class);
         assertEquals(1, props.size());
 
@@ -107,7 +96,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
 
     }
     protected ObservingProposal propDbInOut() {
-        javax.persistence.EntityManager em = setupDB(ProposalModel.pu_name());
+        javax.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
         em.getTransaction().begin();
         final ObservingProposal proposal = ex.getProposal();
         proposal.persistRefs(em);
@@ -136,21 +125,15 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
             TransformerConfigurationException, ParserConfigurationException,
             TransformerFactoryConfigurationError, TransformerException {
                 logger.debug("starting test");
-                JAXBContext jc = ProposalManagementModel.contextFactory();
+                
                 OfferedCycles oc = new OfferedCycles();
                 oc.addToCycles(ex.getCycle());
-                JaxbAnnotationMeta<OfferedCycles> meta = JaxbAnnotationMeta.of(OfferedCycles.class);
-                DescriptionValidator<OfferedCycles> validator = new DescriptionValidator<>(jc, meta);
-                DescriptionValidator.Validation validation = validator.validate(oc);
-                if(!validation.valid) {
-                    System.err.println(validation.message);
-                }
-                assertTrue(validation.valid);
+                
                 ProposalManagementModel model = new ProposalManagementModel();
                 model.addContent(oc);
                 model.processReferences();
-            
-                ProposalManagementModel modelin = roundtripXML(jc, model, ProposalManagementModel.class);
+                validateModel(model);
+                ProposalManagementModel modelin = modelRoundTripXMLwithTest(model);
                 List<OfferedCycles> revs = modelin.getContent(OfferedCycles.class);
                 assertEquals(1, revs.size());
                 assertEquals(1, revs.get(0).getCycles().size());
@@ -159,7 +142,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
 
     @org.junit.jupiter.api.Test
     void reviewDmJPATest() {
-        javax.persistence.EntityManager em = setupDB(ProposalModel.pu_name());
+        javax.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
         em.getTransaction().begin();
         
         final ProposalCycle cycle = ex.getCycle();
@@ -180,6 +163,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
         assertEquals(1, props.size());
         ProposalCycle pc = props.get(0);
         em.getTransaction().commit();
+        assertNotNull(pc);
         
         em.getTransaction().begin();
         Long i = em.createQuery("select count(o) from SubmittedProposal o", Long.class).getSingleResult().longValue();
@@ -192,7 +176,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
         ProposalModel model = new ProposalModel();
         model.addContent(ex.getProposal());
         model.processReferences();
-        ProposalModel modelin = roundTripJSON(model.management());
+        ProposalModel modelin = modelRoundTripJSONwithTest(model);
         List<ObservingProposal> props = modelin.getContent(ObservingProposal.class);
         assertEquals(1, props.size());
     }
@@ -205,7 +189,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
       model.addContent(oc);
       model.processReferences();
 
-      ProposalManagementModel modelin = roundTripJSON(model.management());
+      ProposalManagementModel modelin = modelRoundTripJSONwithTest(model);
       List<OfferedCycles> revs = modelin.getContent(OfferedCycles.class);
       assertEquals(1, revs.size());
       assertEquals(1, revs.get(0).getCycles().size());
@@ -225,20 +209,7 @@ public abstract class AbstractProposalTest extends AbstractJAXBJPATest {
         assertNotNull(retval);
   }
 
-    //
-   protected  <T> T roundTripJSON(ModelManagement<T> m) throws JsonProcessingException {
-        T model = m.theModel();
-        @SuppressWarnings("unchecked")
-        Class<T> clazz =  (Class<T>) model.getClass();
-        ObjectMapper mapper = m.jsonMapper();
-        String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(model);
-        System.out.println("JSON output"); 
-        System.out.println(json);
-        T retval = mapper.readValue(json, clazz);
-        assertNotNull(retval);
-        return retval;
-
-    }    
+ 
 
 }
 

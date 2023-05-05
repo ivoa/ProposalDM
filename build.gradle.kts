@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "org.javastro.ivoa.dm"
-version = "0.3.2-SNAPSHOT"
+version = "0.3.3-SNAPSHOT"
 
 
 vodml {
@@ -79,9 +79,9 @@ dependencies {
         implementation("org.slf4j:slf4j-api:1.7.32")
         testRuntimeOnly("ch.qos.logback:logback-classic:1.2.3")
 
-        testImplementation("org.apache.derby:derby:10.14.2.0")
+        testImplementation("com.h2database:h2:2.1.214") // try out h2
+//        testImplementation("org.apache.derby:derby:10.14.2.0")
         testImplementation("org.javastro:jaxbjpa-utils:0.1.2")
-        testImplementation("org.javastro:jaxbjpa-utils:0.1.2:test")
 
         testRuntimeOnly("org.postgresql:postgresql:42.3.3")
 }
