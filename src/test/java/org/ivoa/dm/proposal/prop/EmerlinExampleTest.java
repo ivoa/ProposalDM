@@ -71,7 +71,10 @@ class EmerlinExampleTest extends AbstractProposalTest {
        List<Field> fields = Arrays.asList(new TargetField("first"), new TargetField("second"),
                new Point(new org.ivoa.dm.stc.coords.Point(),"a point") );
        String json = ProposalModel.jsonMapper().writeValueAsString(fields.get(0));
+       assertEquals("{\"@type\":\"proposal:TargetField\",\"_id\":0,\"name\":\"first\"}", json);
        System.out.println(json);
+       System.out.println(ProposalModel.jsonMapper().writeValueAsString(new TargetField("targetField")));
+       
        
    }
    
