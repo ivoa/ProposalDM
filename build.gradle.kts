@@ -1,7 +1,7 @@
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.3.21"
+        id("net.ivoa.vo-dml.vodmltools") version "0.3.22"
         `maven-publish`
         id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
         signing
@@ -26,6 +26,7 @@ vodml {
                 )
         )
         outputDocDir.set(layout.projectDirectory.dir("std/generated"))
+        outputSiteDir.set(layout.projectDirectory.dir("docs/generated"))
 
         modelsToDocument.set("proposal,proposalManagement")
 }
@@ -53,6 +54,7 @@ tasks.named<Jar>("sourcesJar") {
 
 
 
+
 tasks.test {
         useJUnitPlatform()
 }
@@ -67,6 +69,17 @@ val pjar = tasks.register<Jar>("JarWithoutPersistence") {
         archiveClassifier.set("quarkus")
         exclude("META-INF/persistence.xml")
 }
+
+tasks.register<Copy>("copyJavaDocForSite") {
+        from(layout.buildDirectory.dir("docs/javadoc"))
+        into(vodml.outputSiteDir.dir("javadoc"))
+        dependsOn(tasks.javadoc)
+}
+tasks.register<Exec>("doSite"){
+        commandLine("mkdocs", "build")
+        dependsOn("copyJavaDocForSite")
+}
+
 
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE } //IMPL bugfix - see https://stackoverflow.com/questions/67265308/gradle-entry-classpath-is-a-duplicate-but-no-duplicate-handling-strategy-has-b
 
