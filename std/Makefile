@@ -26,10 +26,10 @@ FIGURES = role_diagram.svg
 
 # List of PDF figures (figures that must be converted to pixel images to
 # work in web browsers).
-VECTORFIGURES = 
+VECTORFIGURES = generated/proposaldm.vo-dml.png
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
-AUX_FILES = 
+AUX_FILES = generated/proposaldm.vo-dml.png
 
 -include ivoatex/Makefile
 
@@ -37,3 +37,6 @@ ivoatex/Makefile:
 	@echo "*** ivoatex submodule not found.  Initialising submodules."
 	@echo
 	git submodule update --init
+
+generated/proposaldm.vo-dml.png: generated/proposaldm.vo-dml.svg
+	rsvg $< -o $@
