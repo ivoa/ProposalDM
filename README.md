@@ -4,12 +4,16 @@ ProposalDM
 The Proposal Data Model is a IVOA data model for making Observation Proposals. It is being created as project within
 The Opticon RadioNet Pilot (https://www.orp-h2020.eu).
 
+The model is described in more detail [here](https://ivoa.github.io/ProposalDM/)
+
+
+[![main test](https://github.com/ivoa/ProposalDM/actions/workflows/test.yml/badge.svg)](https://github.com/ivoa/ProposalDM/actions/workflows/test.yml/)
+[![preview generation](https://github.com/ivoa/ProposalDM/actions/workflows/preview.yml/badge.svg)](https://github.com/ivoa/ProposalDM/actions/workflows/preview.yml/)
+
+
 The IVOA standard in development is a Working Draft at version 0.3 and a
 [![PDF-Preview](https://img.shields.io/badge/Preview-PDF-blue)](../../releases/download/auto-pdf-preview/ProposalDM-draft.pdf)
 is automatically produced from this repository when changes are made.
-
-![main test](https://github.com/ivoa/ProposalDM/actions/workflows/test.yml/badge.svg)
-![preview generation](https://github.com/ivoa/ProposalDM/actions/workflows/preview.yml/badge.svg)
 
 Latest Model Diagrams
 --------------------

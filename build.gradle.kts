@@ -75,11 +75,14 @@ tasks.register<Copy>("copyJavaDocForSite") {
         into(vodml.outputSiteDir.dir("javadoc"))
         dependsOn(tasks.javadoc)
 }
-tasks.register<Exec>("doSite"){
-        commandLine("mkdocs", "build")
+tasks.register<Exec>("testSite"){
+        commandLine("mkdocs", "serve")
         dependsOn("copyJavaDocForSite")
 }
-
+tasks.register<Exec>("doSite"){
+        commandLine("mkdocs", "gh-deploy", "--force")
+        dependsOn("copyJavaDocForSite")
+}
 
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE } //IMPL bugfix - see https://stackoverflow.com/questions/67265308/gradle-entry-classpath-is-a-duplicate-but-no-duplicate-handling-strategy-has-b
 
