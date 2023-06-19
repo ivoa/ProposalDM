@@ -74,13 +74,16 @@ tasks.register<Copy>("copyJavaDocForSite") {
         from(layout.buildDirectory.dir("docs/javadoc"))
         into(vodml.outputSiteDir.dir("javadoc"))
         dependsOn(tasks.javadoc)
+
 }
 tasks.register<Exec>("testSite"){
         commandLine("mkdocs", "serve")
+        dependsOn("vodmlSite")
         dependsOn("copyJavaDocForSite")
 }
 tasks.register<Exec>("doSite"){
         commandLine("mkdocs", "gh-deploy", "--force")
+        dependsOn("vodmlSite")
         dependsOn("copyJavaDocForSite")
 }
 
