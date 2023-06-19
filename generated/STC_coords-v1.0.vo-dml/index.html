@@ -1,0 +1,774 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
+    
+    
+      
+        <title>coords - Model Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#coords" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Model Documentation" class="md-header__button md-logo" aria-label="Model Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Model Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              coords
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ivoa/ProposalDM" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Introduction
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../proposaldm.vo-dml/" class="md-tabs__link">
+        AutoGenerated Documentation
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Model Documentation" class="md-nav__button md-logo" aria-label="Model Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Model Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ivoa/ProposalDM" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          AutoGenerated Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          AutoGenerated Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposaldm.vo-dml/" class="md-nav__link">
+        ProposalDM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposalManagement.vo-dml/" class="md-nav__link">
+        ProposalManagement DM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javadoc/" class="md-nav__link">
+        Javadoc
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authors" class="md-nav__link">
+    Authors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overview-diagram" class="md-nav__link">
+    Overview diagram
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primitives" class="md-nav__link">
+    Primitives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    Enums
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datatypes" class="md-nav__link">
+    DataTypes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objecttypes" class="md-nav__link">
+    ObjectTypes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="coords">coords</h1>
+<p>version 1.0 <em>2022-02-10</em></p>
+<h2 id="introduction">Introduction</h2>
+<p>This model defines objects which describe the coordinate space, coordinates within that space, and frames, which provide additional metadata regarding the origin, orientation, etc, of the coordinate space. The model also defines a coordinate system, bundling frames into associated groups.
+      - note that this is an extended version for proposalDM including some concrete point types that will hopefully make it into the main
+      release</p>
+<h3 id="authors">Authors</h3>
+<p>Arnold Rots, Mark Cresitello-Dittmar, Omar Laurino</p>
+<h3 id="overview-diagram">Overview diagram</h3>
+<p>The whole model is represented in a model diagram below</p>
+<div xmlns:bnd="http://www.ivoa.net/xml/vodml-binding/v0.9.1" xmlns:vf="http://www.ivoa.net/xml/VODML/functions" xmlns:vo-dml="http://www.ivoa.net/xml/VODML/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1981pt" height="789pt" viewBox="0.00 0.00 1981.00 789.00" preserveAspectRatio="xMidYMid meet" zoomAndPan="magnify" version="1.1" contentScriptType="text/ecmascript" contentStyleType="text/css"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 785)"><title>GVmap</title><polygon fill="white" stroke="transparent" points="-4,4 -4,-785 1977,-785 1977,4 -4,4"/><text text-anchor="middle" x="986.5" y="-7.8" font-family="Times,serif" font-size="14.00">coords data model</text><g id="node1" class="node"><title>coords:Epoch</title><g id="a_node1"><a xlink:href="../coords/Epoch" xlink:title="{&amp;lt;&amp;lt;primitive type&amp;gt;&amp;gt;\nEpoch}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="357,-678 357,-714 455,-714 455,-678 357,-678"/>
+<text text-anchor="middle" x="406" y="-698.6" font-family="Times,serif" font-size="8.00">&lt;&lt;primitive type&gt;&gt;</text>
+<text text-anchor="middle" x="406" y="-689.6" font-family="Times,serif" font-size="8.00">Epoch</text>
+</a></g></g><g id="node2" class="node"><title>coords:Handedness</title><g id="a_node2"><a xlink:href="../coords/Handedness" xlink:title="{&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;\nHandedness|+left\l+right\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="473,-670 473,-722 567,-722 567,-670 473,-670"/>
+<text text-anchor="middle" x="520" y="-711.6" font-family="Times,serif" font-size="8.00">&lt;&lt;enumeration&gt;&gt;</text>
+<text text-anchor="middle" x="520" y="-702.6" font-family="Times,serif" font-size="8.00">Handedness</text>
+<polyline fill="none" stroke="black" points="473,-696 567,-696 "/>
+<text text-anchor="start" x="481" y="-685.6" font-family="Times,serif" font-size="8.00">+left</text>
+<text text-anchor="start" x="481" y="-676.6" font-family="Times,serif" font-size="8.00">+right</text>
+</a></g></g><g id="node3" class="node"><title>coords:PolStateEnum</title><g id="a_node3"><a xlink:href="../coords/PolStateEnum" xlink:title="{&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;\nPolStateEnum|+I\l+Q\l+U\l+V\l+RR\l+LL\l+RL\l+LR\l+XX\l+YY\l+XY\l+YX\l+PF\l+PP\l+PA\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="585,-611.5 585,-780.5 679,-780.5 679,-611.5 585,-611.5"/>
+<text text-anchor="middle" x="632" y="-770.1" font-family="Times,serif" font-size="8.00">&lt;&lt;enumeration&gt;&gt;</text>
+<text text-anchor="middle" x="632" y="-761.1" font-family="Times,serif" font-size="8.00">PolStateEnum</text>
+<polyline fill="none" stroke="black" points="585,-754.5 679,-754.5 "/>
+<text text-anchor="start" x="593" y="-744.1" font-family="Times,serif" font-size="8.00">+I</text>
+<text text-anchor="start" x="593" y="-735.1" font-family="Times,serif" font-size="8.00">+Q</text>
+<text text-anchor="start" x="593" y="-726.1" font-family="Times,serif" font-size="8.00">+U</text>
+<text text-anchor="start" x="593" y="-717.1" font-family="Times,serif" font-size="8.00">+V</text>
+<text text-anchor="start" x="593" y="-708.1" font-family="Times,serif" font-size="8.00">+RR</text>
+<text text-anchor="start" x="593" y="-699.1" font-family="Times,serif" font-size="8.00">+LL</text>
+<text text-anchor="start" x="593" y="-690.1" font-family="Times,serif" font-size="8.00">+RL</text>
+<text text-anchor="start" x="593" y="-681.1" font-family="Times,serif" font-size="8.00">+LR</text>
+<text text-anchor="start" x="593" y="-672.1" font-family="Times,serif" font-size="8.00">+XX</text>
+<text text-anchor="start" x="593" y="-663.1" font-family="Times,serif" font-size="8.00">+YY</text>
+<text text-anchor="start" x="593" y="-654.1" font-family="Times,serif" font-size="8.00">+XY</text>
+<text text-anchor="start" x="593" y="-645.1" font-family="Times,serif" font-size="8.00">+YX</text>
+<text text-anchor="start" x="593" y="-636.1" font-family="Times,serif" font-size="8.00">+PF</text>
+<text text-anchor="start" x="593" y="-627.1" font-family="Times,serif" font-size="8.00">+PP</text>
+<text text-anchor="start" x="593" y="-618.1" font-family="Times,serif" font-size="8.00">+PA</text>
+</a></g></g><g id="node4" class="node"><title>coords:Coordinate</title><g id="a_node4"><a xlink:href="../coords/Coordinate" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nCoordinate}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="647,-326 647,-362 725,-362 725,-326 647,-326"/>
+<text text-anchor="middle" x="686" y="-346.6" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="686" y="-337.6" font-family="Times,serif" font-size="8.00">Coordinate</text>
+</a></g></g><g id="node35" class="node"><title>coords:CoordSys</title><g id="a_node35"><a xlink:href="../coords/CoordSys" xlink:title="{CoordSys}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="912,-229.5 912,-265.5 966,-265.5 966,-229.5 912,-229.5"/>
+<text text-anchor="middle" x="939" y="-245.6" font-family="Times,serif" font-size="8.00">CoordSys</text>
+</a></g></g><g id="edge40" class="edge"><title>coords:Coordinate-&gt;coords:CoordSys</title><path fill="none" stroke="green" d="M725.1,-329.33C751.88,-319.88 788.18,-306.91 820,-295 847.63,-284.66 878.67,-272.51 902.12,-263.22"/><polygon fill="green" stroke="green" points="911.67,-259.43 904.04,-267.31 907.02,-261.28 902.38,-263.12 902.38,-263.12 902.38,-263.12 907.02,-261.28 900.72,-258.94 911.67,-259.43 911.67,-259.43"/><text text-anchor="middle" x="870.5" y="-287" font-family="Times,serif" font-size="10.00">coordSys</text><text text-anchor="middle" x="908.17" y="-262.43" font-family="Times,serif" font-size="10.00">1</text></g><g id="node5" class="node"><title>coords:BinnedCoordinate</title><g id="a_node5"><a xlink:href="../coords/BinnedCoordinate" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nBinnedCoordinate|+cval : ivoa:integer\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="137,-431.5 137,-474.5 231,-474.5 231,-431.5 137,-431.5"/>
+<text text-anchor="middle" x="184" y="-464.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="184" y="-455.1" font-family="Times,serif" font-size="8.00">BinnedCoordinate</text>
+<polyline fill="none" stroke="black" points="137,-448.5 231,-448.5 "/>
+<text text-anchor="start" x="145" y="-438.1" font-family="Times,serif" font-size="8.00">+cval : ivoa:integer</text>
+</a></g></g><g id="edge1" class="edge"><title>coords:BinnedCoordinate-&gt;coords:Coordinate</title><path fill="none" stroke="red" d="M217.79,-431.39C224.92,-427.77 232.54,-424.39 240,-422 335.16,-391.46 363.72,-404.56 463,-393 540.66,-383.96 564.04,-400.38 638,-375 643.6,-373.08 649.22,-370.4 654.54,-367.43"/><polygon fill="none" stroke="red" points="656.4,-370.39 663.16,-362.23 652.79,-364.4 656.4,-370.39"/></g><g id="node6" class="node"><title>coords:PixelIndex</title><g id="a_node6"><a xlink:href="../coords/PixelIndex" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nPixelIndex}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="150,-529.5 150,-565.5 228,-565.5 228,-529.5 150,-529.5"/>
+<text text-anchor="middle" x="189" y="-550.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="189" y="-541.1" font-family="Times,serif" font-size="8.00">PixelIndex</text>
+</a></g></g><g id="edge2" class="edge"><title>coords:PixelIndex-&gt;coords:BinnedCoordinate</title><path fill="none" stroke="red" d="M188.06,-529.1C187.39,-516.64 186.46,-499.52 185.66,-484.77"/><polygon fill="none" stroke="red" points="189.15,-484.35 185.11,-474.55 182.16,-484.72 189.15,-484.35"/></g><g id="node7" class="node"><title>coords:PhysicalCoordinate</title><g id="a_node7"><a xlink:href="../coords/PhysicalCoordinate" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nPhysicalCoordinate|+cval : ivoa:Quantity\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="249,-431.5 249,-474.5 349,-474.5 349,-431.5 249,-431.5"/>
+<text text-anchor="middle" x="299" y="-464.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="299" y="-455.1" font-family="Times,serif" font-size="8.00">PhysicalCoordinate</text>
+<polyline fill="none" stroke="black" points="249,-448.5 349,-448.5 "/>
+<text text-anchor="start" x="257" y="-438.1" font-family="Times,serif" font-size="8.00">+cval : ivoa:Quantity</text>
+</a></g></g><g id="edge3" class="edge"><title>coords:PhysicalCoordinate-&gt;coords:Coordinate</title><path fill="none" stroke="red" d="M335.08,-431.49C342.49,-427.9 350.36,-424.52 358,-422 372.98,-417.06 623.25,-380.59 638,-375 643.28,-373 648.62,-370.38 653.71,-367.53"/><polygon fill="none" stroke="red" points="655.78,-370.36 662.55,-362.21 652.18,-364.36 655.78,-370.36"/></g><g id="node8" class="node"><title>coords:Point</title><g id="a_node8"><a xlink:href="../coords/Point" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nPoint|+axis1 : ivoa:Quantity\l+axis2 : ivoa:Quantity\l+axis3 : ivoa:Quantity\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="367,-422.5 367,-483.5 471,-483.5 471,-422.5 367,-422.5"/>
+<text text-anchor="middle" x="419" y="-473.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="419" y="-464.1" font-family="Times,serif" font-size="8.00">Point</text>
+<polyline fill="none" stroke="black" points="367,-457.5 471,-457.5 "/>
+<text text-anchor="start" x="375" y="-447.1" font-family="Times,serif" font-size="8.00">+axis1 : ivoa:Quantity</text>
+<text text-anchor="start" x="375" y="-438.1" font-family="Times,serif" font-size="8.00">+axis2 : ivoa:Quantity</text>
+<text text-anchor="start" x="375" y="-429.1" font-family="Times,serif" font-size="8.00">+axis3 : ivoa:Quantity</text>
+</a></g></g><g id="edge4" class="edge"><title>coords:Point-&gt;coords:Coordinate</title><path fill="none" stroke="red" d="M471.32,-425.57C474.24,-424.32 477.14,-423.12 480,-422 548.22,-395.3 571.22,-405.13 638,-375 642.8,-372.83 647.7,-370.26 652.44,-367.54"/><polygon fill="none" stroke="red" points="654.54,-370.36 661.3,-362.21 650.93,-364.37 654.54,-370.36"/></g><g id="node9" class="node"><title>coords:SphericalPoint</title><g id="a_node9"><a xlink:href="../coords/SphericalPoint" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nSphericalPoint|+r : ivoa:RealQuantity\l+theta : ivoa:RealQuantity\l+phi : ivoa:RealQuantity\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="489,-422.5 489,-483.5 611,-483.5 611,-422.5 489,-422.5"/>
+<text text-anchor="middle" x="550" y="-473.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="550" y="-464.1" font-family="Times,serif" font-size="8.00">SphericalPoint</text>
+<polyline fill="none" stroke="black" points="489,-457.5 611,-457.5 "/>
+<text text-anchor="start" x="497" y="-447.1" font-family="Times,serif" font-size="8.00">+r : ivoa:RealQuantity</text>
+<text text-anchor="start" x="497" y="-438.1" font-family="Times,serif" font-size="8.00">+theta : ivoa:RealQuantity</text>
+<text text-anchor="start" x="497" y="-429.1" font-family="Times,serif" font-size="8.00">+phi : ivoa:RealQuantity</text>
+</a></g></g><g id="edge5" class="edge"><title>coords:SphericalPoint-&gt;coords:Coordinate</title><path fill="none" stroke="red" d="M587.52,-422.48C609.22,-405.41 636.14,-384.23 656.35,-368.33"/><polygon fill="none" stroke="red" points="658.59,-371.02 664.28,-362.08 654.26,-365.52 658.59,-371.02"/></g><g id="node10" class="node"><title>coords:EquatorialPoint</title><g id="a_node10"><a xlink:href="../coords/EquatorialPoint" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nEquatorialPoint|+lon : ivoa:RealQuantity\l+lat : ivoa:RealQuantity\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="629.5,-427 629.5,-479 742.5,-479 742.5,-427 629.5,-427"/>
+<text text-anchor="middle" x="686" y="-468.6" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="686" y="-459.6" font-family="Times,serif" font-size="8.00">EquatorialPoint</text>
+<polyline fill="none" stroke="black" points="629.5,-453 742.5,-453 "/>
+<text text-anchor="start" x="637.5" y="-442.6" font-family="Times,serif" font-size="8.00">+lon : ivoa:RealQuantity</text>
+<text text-anchor="start" x="637.5" y="-433.6" font-family="Times,serif" font-size="8.00">+lat : ivoa:RealQuantity</text>
+</a></g></g><g id="edge6" class="edge"><title>coords:EquatorialPoint-&gt;coords:Coordinate</title><path fill="none" stroke="red" d="M686,-426.91C686,-410.6 686,-389.31 686,-372.53"/><polygon fill="none" stroke="red" points="689.5,-372.25 686,-362.25 682.5,-372.25 689.5,-372.25"/></g><g id="node11" class="node"><title>coords:GeocentricPoint</title><g id="a_node11"><a xlink:href="../coords/GeocentricPoint" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nGeocentricPoint|+x : ivoa:RealQuantity\l+y : ivoa:RealQuantity\l+z : ivoa:RealQuantity\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="761,-422.5 761,-483.5 867,-483.5 867,-422.5 761,-422.5"/>
+<text text-anchor="middle" x="814" y="-473.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="814" y="-464.1" font-family="Times,serif" font-size="8.00">GeocentricPoint</text>
+<polyline fill="none" stroke="black" points="761,-457.5 867,-457.5 "/>
+<text text-anchor="start" x="769" y="-447.1" font-family="Times,serif" font-size="8.00">+x : ivoa:RealQuantity</text>
+<text text-anchor="start" x="769" y="-438.1" font-family="Times,serif" font-size="8.00">+y : ivoa:RealQuantity</text>
+<text text-anchor="start" x="769" y="-429.1" font-family="Times,serif" font-size="8.00">+z : ivoa:RealQuantity</text>
+</a></g></g><g id="edge7" class="edge"><title>coords:GeocentricPoint-&gt;coords:Coordinate</title><path fill="none" stroke="red" d="M778.68,-422.48C758.35,-405.48 733.15,-384.42 714.16,-368.54"/><polygon fill="none" stroke="red" points="716.36,-365.81 706.44,-362.08 711.87,-371.18 716.36,-365.81"/></g><g id="node12" class="node"><title>coords:TimeStamp</title><g id="a_node12"><a xlink:href="../coords/TimeStamp" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nTimeStamp}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="885,-435 885,-471 963,-471 963,-435 885,-435"/>
+<text text-anchor="middle" x="924" y="-455.6" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="924" y="-446.6" font-family="Times,serif" font-size="8.00">TimeStamp</text>
+</a></g></g><g id="edge8" class="edge"><title>coords:TimeStamp-&gt;coords:Coordinate</title><path fill="none" stroke="red" d="M898.57,-434.96C891.42,-430.49 883.53,-425.84 876,-422 829.38,-398.21 773.64,-376.35 734.63,-362.05"/><polygon fill="none" stroke="red" points="735.68,-358.7 725.08,-358.58 733.29,-365.28 735.68,-358.7"/></g><g id="node13" class="node"><title>coords:TimeOffset</title><g id="a_node13"><a xlink:href="../coords/TimeOffset" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nTimeOffset|+time : ivoa:RealQuantity\l+time0 : coords:TimeInstant\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="895,-521.5 895,-573.5 1025,-573.5 1025,-521.5 895,-521.5"/>
+<text text-anchor="middle" x="960" y="-563.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="960" y="-554.1" font-family="Times,serif" font-size="8.00">TimeOffset</text>
+<polyline fill="none" stroke="black" points="895,-547.5 1025,-547.5 "/>
+<text text-anchor="start" x="903" y="-537.1" font-family="Times,serif" font-size="8.00">+time : ivoa:RealQuantity</text>
+<text text-anchor="start" x="903" y="-528.1" font-family="Times,serif" font-size="8.00">+time0 : coords:TimeInstant</text>
+</a></g></g><g id="edge9" class="edge"><title>coords:TimeOffset-&gt;coords:TimeStamp</title><path fill="none" stroke="red" d="M950.16,-521.22C945.27,-508.65 939.35,-493.44 934.38,-480.68"/><polygon fill="none" stroke="red" points="937.53,-479.11 930.64,-471.06 931,-481.65 937.53,-479.11"/></g><g id="node14" class="node"><title>coords:TimeInstant</title><g id="a_node14"><a xlink:href="../coords/TimeInstant" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nTimeInstant}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="799,-529.5 799,-565.5 877,-565.5 877,-529.5 799,-529.5"/>
+<text text-anchor="middle" x="838" y="-550.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="838" y="-541.1" font-family="Times,serif" font-size="8.00">TimeInstant</text>
+</a></g></g><g id="edge10" class="edge"><title>coords:TimeInstant-&gt;coords:TimeStamp</title><path fill="none" stroke="red" d="M854.18,-529.1C867.47,-514.8 886.47,-494.37 901.29,-478.43"/><polygon fill="none" stroke="red" points="903.94,-480.71 908.19,-471.01 898.81,-475.95 903.94,-480.71"/></g><g id="node15" class="node"><title>coords:JD</title><g id="a_node15"><a xlink:href="../coords/JD" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nJD|+date : ivoa:real\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="697,-674.5 697,-717.5 779,-717.5 779,-674.5 697,-674.5"/>
+<text text-anchor="middle" x="738" y="-707.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="738" y="-698.1" font-family="Times,serif" font-size="8.00">JD</text>
+<polyline fill="none" stroke="black" points="697,-691.5 779,-691.5 "/>
+<text text-anchor="start" x="705" y="-681.1" font-family="Times,serif" font-size="8.00">+date : ivoa:real</text>
+</a></g></g><g id="edge11" class="edge"><title>coords:JD-&gt;coords:TimeInstant</title><path fill="none" stroke="red" d="M749.16,-674.48C758.83,-657.17 773.5,-631.93 788,-611 796.91,-598.13 807.67,-584.49 816.91,-573.24"/><polygon fill="none" stroke="red" points="819.63,-575.45 823.33,-565.52 814.24,-570.97 819.63,-575.45"/></g><g id="node16" class="node"><title>coords:MJD</title><g id="a_node16"><a xlink:href="../coords/MJD" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nMJD|+date : ivoa:real\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="797,-674.5 797,-717.5 879,-717.5 879,-674.5 797,-674.5"/>
+<text text-anchor="middle" x="838" y="-707.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="838" y="-698.1" font-family="Times,serif" font-size="8.00">MJD</text>
+<polyline fill="none" stroke="black" points="797,-691.5 879,-691.5 "/>
+<text text-anchor="start" x="805" y="-681.1" font-family="Times,serif" font-size="8.00">+date : ivoa:real</text>
+</a></g></g><g id="edge12" class="edge"><title>coords:MJD-&gt;coords:TimeInstant</title><path fill="none" stroke="red" d="M838,-674.32C838,-648.58 838,-604.55 838,-575.99"/><polygon fill="none" stroke="red" points="841.5,-575.87 838,-565.87 834.5,-575.87 841.5,-575.87"/></g><g id="node17" class="node"><title>coords:ISOTime</title><g id="a_node17"><a xlink:href="../coords/ISOTime" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nISOTime|+date : ivoa:datetime\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="897.5,-674.5 897.5,-717.5 998.5,-717.5 998.5,-674.5 897.5,-674.5"/>
+<text text-anchor="middle" x="948" y="-707.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="948" y="-698.1" font-family="Times,serif" font-size="8.00">ISOTime</text>
+<polyline fill="none" stroke="black" points="897.5,-691.5 998.5,-691.5 "/>
+<text text-anchor="start" x="905.5" y="-681.1" font-family="Times,serif" font-size="8.00">+date : ivoa:datetime</text>
+</a></g></g><g id="edge13" class="edge"><title>coords:ISOTime-&gt;coords:TimeInstant</title><path fill="none" stroke="red" d="M933.76,-674.41C921.79,-657.26 904.11,-632.3 888,-611 878.49,-598.42 867.59,-584.72 858.4,-573.36"/><polygon fill="none" stroke="red" points="861.07,-571.1 852.05,-565.55 855.64,-575.51 861.07,-571.1"/></g><g id="node18" class="node"><title>coords:PolCoordinate</title><g id="a_node18"><a xlink:href="../coords/PolCoordinate" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nPolCoordinate}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="36,-435 36,-471 114,-471 114,-435 36,-435"/>
+<text text-anchor="middle" x="75" y="-455.6" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="75" y="-446.6" font-family="Times,serif" font-size="8.00">PolCoordinate</text>
+</a></g></g><g id="edge14" class="edge"><title>coords:PolCoordinate-&gt;coords:Coordinate</title><path fill="none" stroke="red" d="M100.81,-434.94C109.18,-430.08 118.72,-425.24 128,-422 206.17,-394.73 229.68,-401.74 312,-393 384.15,-385.34 568.83,-396.92 638,-375 643.76,-373.17 649.52,-370.49 654.96,-367.48"/><polygon fill="none" stroke="red" points="656.98,-370.34 663.73,-362.17 653.36,-364.35 656.98,-370.34"/></g><g id="node19" class="node"><title>coords:PolState</title><g id="a_node19"><a xlink:href="../coords/PolState" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nPolState|+cval : coords:PolStateEnum\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="0,-526 0,-569 132,-569 132,-526 0,-526"/>
+<text text-anchor="middle" x="66" y="-558.6" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="66" y="-549.6" font-family="Times,serif" font-size="8.00">PolState</text>
+<polyline fill="none" stroke="black" points="0,-543 132,-543 "/>
+<text text-anchor="start" x="8" y="-532.6" font-family="Times,serif" font-size="8.00">+cval : coords:PolStateEnum</text>
+</a></g></g><g id="edge15" class="edge"><title>coords:PolState-&gt;coords:PolCoordinate</title><path fill="none" stroke="red" d="M68,-525.97C69.28,-512.82 70.95,-495.61 72.34,-481.31"/><polygon fill="none" stroke="red" points="75.85,-481.36 73.34,-471.06 68.89,-480.68 75.85,-481.36"/></g><g id="node20" class="node"><title>coords:RefLocation</title><g id="a_node20"><a xlink:href="../coords/RefLocation" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nRefLocation}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1099,-529.5 1099,-565.5 1177,-565.5 1177,-529.5 1099,-529.5"/>
+<text text-anchor="middle" x="1138" y="-550.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="1138" y="-541.1" font-family="Times,serif" font-size="8.00">RefLocation</text>
+</a></g></g><g id="node21" class="node"><title>coords:StdRefLocation</title><g id="a_node21"><a xlink:href="../coords/StdRefLocation" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nStdRefLocation|+position : ivoa:string\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1051,-674.5 1051,-717.5 1155,-717.5 1155,-674.5 1051,-674.5"/>
+<text text-anchor="middle" x="1103" y="-707.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="1103" y="-698.1" font-family="Times,serif" font-size="8.00">StdRefLocation</text>
+<polyline fill="none" stroke="black" points="1051,-691.5 1155,-691.5 "/>
+<text text-anchor="start" x="1059" y="-681.1" font-family="Times,serif" font-size="8.00">+position : ivoa:string</text>
+</a></g></g><g id="edge16" class="edge"><title>coords:StdRefLocation-&gt;coords:RefLocation</title><path fill="none" stroke="red" d="M1107.94,-674.32C1114.12,-648.47 1124.7,-604.16 1131.52,-575.61"/><polygon fill="none" stroke="red" points="1134.93,-576.41 1133.85,-565.87 1128.12,-574.78 1134.93,-576.41"/></g><g id="node22" class="node"><title>coords:CustomRefLocation</title><g id="a_node22"><a xlink:href="../coords/CustomRefLocation" xlink:title="{&amp;lt;&amp;lt;datatype&amp;gt;&amp;gt;\nCustomRefLocation|+epoch : coords:Epoch\l+position : coords:Point\l+velocity : coords:Point\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1173.5,-665.5 1173.5,-726.5 1284.5,-726.5 1284.5,-665.5 1173.5,-665.5"/>
+<text text-anchor="middle" x="1229" y="-716.1" font-family="Times,serif" font-size="8.00">&lt;&lt;datatype&gt;&gt;</text>
+<text text-anchor="middle" x="1229" y="-707.1" font-family="Times,serif" font-size="8.00">CustomRefLocation</text>
+<polyline fill="none" stroke="black" points="1173.5,-700.5 1284.5,-700.5 "/>
+<text text-anchor="start" x="1181.5" y="-690.1" font-family="Times,serif" font-size="8.00">+epoch : coords:Epoch</text>
+<text text-anchor="start" x="1181.5" y="-681.1" font-family="Times,serif" font-size="8.00">+position : coords:Point</text>
+<text text-anchor="start" x="1181.5" y="-672.1" font-family="Times,serif" font-size="8.00">+velocity : coords:Point</text>
+</a></g></g><g id="edge17" class="edge"><title>coords:CustomRefLocation-&gt;coords:RefLocation</title><path fill="none" stroke="red" d="M1210.58,-665.35C1194.03,-638.7 1169.94,-599.92 1154.13,-574.46"/><polygon fill="none" stroke="red" points="1156.95,-572.38 1148.7,-565.73 1151.01,-576.07 1156.95,-572.38"/></g><g id="node23" class="node"><title>coords:CoordSpace</title><g id="a_node23"><a xlink:href="../coords/CoordSpace" xlink:title="{CoordSpace}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1167.5,-147.5 1167.5,-183.5 1232.5,-183.5 1232.5,-147.5 1167.5,-147.5"/>
+<text text-anchor="middle" x="1200" y="-163.6" font-family="Times,serif" font-size="8.00">CoordSpace</text>
+</a></g></g><g id="node24" class="node"><title>coords:Axis</title><g id="a_node24"><a xlink:href="../coords/Axis" xlink:title="{Axis|+name : ivoa:string\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1348.5,-55.5 1348.5,-91.5 1443.5,-91.5 1443.5,-55.5 1348.5,-55.5"/>
+<text text-anchor="middle" x="1396" y="-80.6" font-family="Times,serif" font-size="8.00">Axis</text>
+<polyline fill="none" stroke="black" points="1348.5,-73.5 1443.5,-73.5 "/>
+<text text-anchor="start" x="1356.5" y="-62.6" font-family="Times,serif" font-size="8.00">+name : ivoa:string</text>
+</a></g></g><g id="edge35" class="edge"><title>coords:CoordSpace-&gt;coords:Axis</title><path fill="none" stroke="blue" d="M1237.25,-141.5C1238.84,-140.63 1240.43,-139.8 1242,-139 1274.05,-122.68 1311.2,-107.02 1340.99,-95.23"/><polygon fill="blue" stroke="blue" points="1237.21,-141.52 1233.97,-147.95 1226.77,-147.43 1230.02,-141 1237.21,-141.52"/><polygon fill="blue" stroke="blue" points="1350.39,-91.54 1342.72,-99.38 1345.73,-93.37 1341.08,-95.19 1341.08,-95.19 1341.08,-95.19 1345.73,-93.37 1339.43,-91 1350.39,-91.54 1350.39,-91.54"/><text text-anchor="middle" x="1314.5" y="-113" font-family="Times,serif" font-size="10.00">axis</text><text text-anchor="middle" x="1341.39" y="-94.54" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="node25" class="node"><title>coords:ContinuousAxis</title><g id="a_node25"><a xlink:href="../coords/ContinuousAxis" xlink:title="{ContinuousAxis|+domainMin : ivoa:Quantity\l+domainMax : ivoa:Quantity\l+cyclic : ivoa:boolean\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1250.5,-139.5 1250.5,-191.5 1381.5,-191.5 1381.5,-139.5 1250.5,-139.5"/>
+<text text-anchor="middle" x="1316" y="-181.1" font-family="Times,serif" font-size="8.00">ContinuousAxis</text>
+<polyline fill="none" stroke="black" points="1250.5,-174.5 1381.5,-174.5 "/>
+<text text-anchor="start" x="1258.5" y="-164.1" font-family="Times,serif" font-size="8.00">+domainMin : ivoa:Quantity</text>
+<text text-anchor="start" x="1258.5" y="-155.1" font-family="Times,serif" font-size="8.00">+domainMax : ivoa:Quantity</text>
+<text text-anchor="start" x="1258.5" y="-146.1" font-family="Times,serif" font-size="8.00">+cyclic : ivoa:boolean</text>
+</a></g></g><g id="edge18" class="edge"><title>coords:ContinuousAxis-&gt;coords:Axis</title><path fill="none" stroke="red" d="M1338.28,-139.43C1349.36,-126.97 1362.7,-111.96 1373.77,-99.51"/><polygon fill="none" stroke="red" points="1376.64,-101.55 1380.67,-91.75 1371.41,-96.9 1376.64,-101.55"/></g><g id="node26" class="node"><title>coords:BinnedAxis</title><g id="a_node26"><a xlink:href="../coords/BinnedAxis" xlink:title="{BinnedAxis|+length : ivoa:nonnegativeInteger\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1399.5,-147.5 1399.5,-183.5 1552.5,-183.5 1552.5,-147.5 1399.5,-147.5"/>
+<text text-anchor="middle" x="1476" y="-172.6" font-family="Times,serif" font-size="8.00">BinnedAxis</text>
+<polyline fill="none" stroke="black" points="1399.5,-165.5 1552.5,-165.5 "/>
+<text text-anchor="start" x="1407.5" y="-154.6" font-family="Times,serif" font-size="8.00">+length : ivoa:nonnegativeInteger</text>
+</a></g></g><g id="edge19" class="edge"><title>coords:BinnedAxis-&gt;coords:Axis</title><path fill="none" stroke="red" d="M1460.58,-147.15C1448.51,-133.58 1431.58,-114.53 1418.08,-99.34"/><polygon fill="none" stroke="red" points="1420.64,-96.95 1411.38,-91.8 1415.41,-101.6 1420.64,-96.95"/></g><g id="node27" class="node"><title>coords:DiscreteSetAxis</title><g id="a_node27"><a xlink:href="../coords/DiscreteSetAxis" xlink:title="{DiscreteSetAxis}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1570.5,-147.5 1570.5,-183.5 1649.5,-183.5 1649.5,-147.5 1570.5,-147.5"/>
+<text text-anchor="middle" x="1610" y="-163.6" font-family="Times,serif" font-size="8.00">DiscreteSetAxis</text>
+</a></g></g><g id="edge20" class="edge"><title>coords:DiscreteSetAxis-&gt;coords:Axis</title><path fill="none" stroke="red" d="M1579.28,-147.5C1573.6,-144.54 1567.66,-141.59 1562,-139 1526.59,-122.78 1485.83,-106.91 1453.57,-94.97"/><polygon fill="none" stroke="red" points="1454.44,-91.56 1443.84,-91.39 1452.02,-98.13 1454.44,-91.56"/></g><g id="node28" class="node"><title>coords:CoordFrame</title><g id="a_node28"><a xlink:href="../coords/CoordFrame" xlink:title="{CoordFrame}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1259,-229.5 1259,-265.5 1325,-265.5 1325,-229.5 1259,-229.5"/>
+<text text-anchor="middle" x="1292" y="-245.6" font-family="Times,serif" font-size="8.00">CoordFrame</text>
+</a></g></g><g id="node29" class="node"><title>coords:GenericFrame</title><g id="a_node29"><a xlink:href="../coords/GenericFrame" xlink:title="{GenericFrame|+refPosition : coords:RefLocation\l+planetaryEphem : ivoa:string\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1469.5,-322.5 1469.5,-365.5 1618.5,-365.5 1618.5,-322.5 1469.5,-322.5"/>
+<text text-anchor="middle" x="1544" y="-355.1" font-family="Times,serif" font-size="8.00">GenericFrame</text>
+<polyline fill="none" stroke="black" points="1469.5,-348.5 1618.5,-348.5 "/>
+<text text-anchor="start" x="1477.5" y="-338.1" font-family="Times,serif" font-size="8.00">+refPosition : coords:RefLocation</text>
+<text text-anchor="start" x="1477.5" y="-329.1" font-family="Times,serif" font-size="8.00">+planetaryEphem : ivoa:string</text>
+</a></g></g><g id="edge21" class="edge"><title>coords:GenericFrame-&gt;coords:CoordFrame</title><path fill="none" stroke="red" d="M1489.32,-322.49C1442.99,-305.12 1377.47,-280.55 1334.86,-264.57"/><polygon fill="none" stroke="red" points="1335.94,-261.24 1325.34,-261 1333.48,-267.79 1335.94,-261.24"/></g><g id="node30" class="node"><title>coords:SpaceFrame</title><g id="a_node30"><a xlink:href="../coords/SpaceFrame" xlink:title="{SpaceFrame|+refPosition : coords:RefLocation\l+spaceRefFrame : ivoa:string\l+equinox : coords:Epoch\l+planetaryEphem : ivoa:string\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1302.5,-313.5 1302.5,-374.5 1451.5,-374.5 1451.5,-313.5 1302.5,-313.5"/>
+<text text-anchor="middle" x="1377" y="-364.1" font-family="Times,serif" font-size="8.00">SpaceFrame</text>
+<polyline fill="none" stroke="black" points="1302.5,-357.5 1451.5,-357.5 "/>
+<text text-anchor="start" x="1310.5" y="-347.1" font-family="Times,serif" font-size="8.00">+refPosition : coords:RefLocation</text>
+<text text-anchor="start" x="1310.5" y="-338.1" font-family="Times,serif" font-size="8.00">+spaceRefFrame : ivoa:string</text>
+<text text-anchor="start" x="1310.5" y="-329.1" font-family="Times,serif" font-size="8.00">+equinox : coords:Epoch</text>
+<text text-anchor="start" x="1310.5" y="-320.1" font-family="Times,serif" font-size="8.00">+planetaryEphem : ivoa:string</text>
+</a></g></g><g id="edge22" class="edge"><title>coords:SpaceFrame-&gt;coords:CoordFrame</title><path fill="none" stroke="red" d="M1350.34,-313.36C1338.76,-300.48 1325.34,-285.57 1314.3,-273.29"/><polygon fill="none" stroke="red" points="1316.72,-270.75 1307.43,-265.65 1311.51,-275.43 1316.72,-270.75"/></g><g id="node31" class="node"><title>coords:TimeFrame</title><g id="a_node31"><a xlink:href="../coords/TimeFrame" xlink:title="{TimeFrame|+refPosition : coords:RefLocation\l+timescale : ivoa:string\l+refDirection : coords:RefLocation\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1129.5,-318 1129.5,-370 1284.5,-370 1284.5,-318 1129.5,-318"/>
+<text text-anchor="middle" x="1207" y="-359.6" font-family="Times,serif" font-size="8.00">TimeFrame</text>
+<polyline fill="none" stroke="black" points="1129.5,-353 1284.5,-353 "/>
+<text text-anchor="start" x="1137.5" y="-342.6" font-family="Times,serif" font-size="8.00">+refPosition : coords:RefLocation</text>
+<text text-anchor="start" x="1137.5" y="-333.6" font-family="Times,serif" font-size="8.00">+timescale : ivoa:string</text>
+<text text-anchor="start" x="1137.5" y="-324.6" font-family="Times,serif" font-size="8.00">+refDirection : coords:RefLocation</text>
+</a></g></g><g id="edge23" class="edge"><title>coords:TimeFrame-&gt;coords:CoordFrame</title><path fill="none" stroke="red" d="M1229.78,-317.68C1242.19,-303.87 1257.49,-286.86 1269.81,-273.17"/><polygon fill="none" stroke="red" points="1272.59,-275.31 1276.68,-265.53 1267.39,-270.63 1272.59,-275.31"/></g><g id="node32" class="node"><title>coords:AstroCoordSystem</title><g id="a_node32"><a xlink:href="../coords/AstroCoordSystem" xlink:title="{AstroCoordSystem}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="981,-435 981,-471 1071,-471 1071,-435 981,-435"/>
+<text text-anchor="middle" x="1026" y="-451.1" font-family="Times,serif" font-size="8.00">AstroCoordSystem</text>
+</a></g></g><g id="edge24" class="edge"><title>coords:AstroCoordSystem-&gt;coords:CoordSys</title><path fill="none" stroke="red" d="M1018.73,-435C1003.57,-399.54 968.48,-317.45 950.33,-275"/><polygon fill="none" stroke="red" points="953.46,-273.41 946.31,-265.6 947.02,-276.17 953.46,-273.41"/></g><g id="node36" class="node"><title>coords:PhysicalCoordSys</title><g id="a_node36"><a xlink:href="../coords/PhysicalCoordSys" xlink:title="{PhysicalCoordSys}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1025,-326 1025,-362 1111,-362 1111,-326 1025,-326"/>
+<text text-anchor="middle" x="1068" y="-342.1" font-family="Times,serif" font-size="8.00">PhysicalCoordSys</text>
+</a></g></g><g id="edge36" class="edge"><title>coords:AstroCoordSystem-&gt;coords:PhysicalCoordSys</title><path fill="none" stroke="blue" d="M1037.18,-423.51C1043.48,-407.48 1051.29,-387.57 1057.47,-371.82"/><polygon fill="blue" stroke="blue" points="1037.13,-423.64 1038.66,-430.69 1032.75,-434.81 1031.22,-427.76 1037.13,-423.64"/><polygon fill="blue" stroke="blue" points="1061.27,-362.15 1061.8,-373.1 1059.44,-366.8 1057.61,-371.46 1057.61,-371.46 1057.61,-371.46 1059.44,-366.8 1053.43,-369.81 1061.27,-362.15 1061.27,-362.15"/><text text-anchor="middle" x="1072.5" y="-396" font-family="Times,serif" font-size="10.00">coordSys</text><text text-anchor="middle" x="1052.27" y="-365.15" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="node33" class="node"><title>coords:PixelCoordSystem</title><g id="a_node33"><a xlink:href="../coords/PixelCoordSystem" xlink:title="{PixelCoordSystem}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="541,-326 541,-362 629,-362 629,-326 541,-326"/>
+<text text-anchor="middle" x="585" y="-342.1" font-family="Times,serif" font-size="8.00">PixelCoordSystem</text>
+</a></g></g><g id="node34" class="node"><title>coords:PixelSpace</title><g id="a_node34"><a xlink:href="../coords/PixelSpace" xlink:title="{PixelSpace|+handedness : coords:Handedness\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="717,-229.5 717,-265.5 873,-265.5 873,-229.5 717,-229.5"/>
+<text text-anchor="middle" x="795" y="-254.6" font-family="Times,serif" font-size="8.00">PixelSpace</text>
+<polyline fill="none" stroke="black" points="717,-247.5 873,-247.5 "/>
+<text text-anchor="start" x="725" y="-236.6" font-family="Times,serif" font-size="8.00">+handedness : coords:Handedness</text>
+</a></g></g><g id="edge37" class="edge"><title>coords:PixelCoordSystem-&gt;coords:PixelSpace</title><path fill="none" stroke="blue" d="M624.12,-320.13C628.76,-317.64 633.45,-315.21 638,-313 671.12,-296.9 709.32,-281.15 739.75,-269.24"/><polygon fill="blue" stroke="blue" points="624.04,-320.18 620.72,-326.58 613.53,-325.98 616.85,-319.58 624.04,-320.18"/><polygon fill="blue" stroke="blue" points="749.34,-265.51 741.64,-273.33 744.68,-267.33 740.01,-269.14 740.01,-269.14 740.01,-269.14 744.68,-267.33 738.38,-264.94 749.34,-265.51 749.34,-265.51"/><text text-anchor="middle" x="730" y="-287" font-family="Times,serif" font-size="10.00">pixelSpace</text><text text-anchor="middle" x="745.84" y="-268.51" font-family="Times,serif" font-size="10.00">1</text></g><g id="edge25" class="edge"><title>coords:PixelCoordSystem-&gt;coords:CoordSys</title><path fill="none" stroke="red" d="M610.78,-325.87C619.16,-321.01 628.7,-316.18 638,-313 690.69,-294.97 707.32,-305.55 762,-295 815.87,-284.6 829.08,-280.5 882,-266 888.57,-264.2 895.54,-262.17 902.25,-260.14"/><polygon fill="none" stroke="red" points="903.31,-263.48 911.84,-257.21 901.26,-256.78 903.31,-263.48"/></g><g id="edge26" class="edge"><title>coords:PixelSpace-&gt;coords:CoordSpace</title><path fill="none" stroke="red" d="M873.09,-231.08C957.92,-214.32 1090.31,-188.17 1157.62,-174.87"/><polygon fill="none" stroke="red" points="1158.32,-178.3 1167.46,-172.93 1156.97,-171.43 1158.32,-178.3"/></g><g id="edge39" class="edge"><title>coords:PhysicalCoordSys-&gt;coords:CoordFrame</title><path fill="none" stroke="blue" d="M1065.71,-313.91C1066.43,-303.2 1069.31,-291.79 1077,-284 1100.35,-260.36 1192.9,-252.45 1248.68,-249.81"/><polygon fill="blue" stroke="blue" points="1065.71,-313.91 1069.69,-319.92 1065.68,-325.91 1061.69,-319.91 1065.71,-313.91"/><polygon fill="blue" stroke="blue" points="1258.98,-249.36 1249.18,-254.29 1253.98,-249.58 1248.99,-249.8 1248.99,-249.8 1248.99,-249.8 1253.98,-249.58 1248.79,-245.3 1258.98,-249.36 1258.98,-249.36"/><text text-anchor="middle" x="1092.5" y="-287" font-family="Times,serif" font-size="10.00">frame</text><text text-anchor="middle" x="1249.48" y="-252.36" font-family="Times,serif" font-size="10.00">0..1</text></g><g id="edge27" class="edge"><title>coords:PhysicalCoordSys-&gt;coords:CoordSys</title><path fill="none" stroke="red" d="M1049.01,-325.94C1035.05,-313.72 1015.37,-297.15 997,-284 989.96,-278.96 982.2,-273.9 974.7,-269.24"/><polygon fill="none" stroke="red" points="976.44,-266.2 966.08,-263.97 972.8,-272.17 976.44,-266.2"/></g><g id="node40" class="node"><title>coords:PhysicalCoordSpace</title><g id="a_node40"><a xlink:href="../coords/PhysicalCoordSpace" xlink:title="{PhysicalCoordSpace}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1636.5,-229.5 1636.5,-265.5 1733.5,-265.5 1733.5,-229.5 1636.5,-229.5"/>
+<text text-anchor="middle" x="1685" y="-245.6" font-family="Times,serif" font-size="8.00">PhysicalCoordSpace</text>
+</a></g></g><g id="edge38" class="edge"><title>coords:PhysicalCoordSys-&gt;coords:PhysicalCoordSpace</title><path fill="none" stroke="blue" d="M1103.53,-320C1108.89,-317.27 1114.48,-314.82 1120,-313 1213.02,-282.33 1501.27,-260.46 1626.23,-252.17"/><polygon fill="blue" stroke="blue" points="1103.44,-320.05 1100.12,-326.45 1092.94,-325.85 1096.25,-319.45 1103.44,-320.05"/><polygon fill="blue" stroke="blue" points="1636.37,-251.5 1626.69,-256.65 1631.38,-251.83 1626.39,-252.16 1626.39,-252.16 1626.39,-252.16 1631.38,-251.83 1626.1,-247.67 1636.37,-251.5 1636.37,-251.5"/><text text-anchor="middle" x="1295" y="-287" font-family="Times,serif" font-size="10.00">coordSpace</text><text text-anchor="middle" x="1626.87" y="-254.5" font-family="Times,serif" font-size="10.00">0..1</text></g><g id="node37" class="node"><title>coords:GenericSys</title><g id="a_node37"><a xlink:href="../coords/GenericSys" xlink:title="{GenericSys}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1089,-435 1089,-471 1151,-471 1151,-435 1089,-435"/>
+<text text-anchor="middle" x="1120" y="-451.1" font-family="Times,serif" font-size="8.00">GenericSys</text>
+</a></g></g><g id="edge28" class="edge"><title>coords:GenericSys-&gt;coords:PhysicalCoordSys</title><path fill="none" stroke="red" d="M1115.45,-434.75C1111.97,-422.72 1106.64,-406.49 1100,-393 1096.27,-385.42 1091.52,-377.62 1086.83,-370.57"/><polygon fill="none" stroke="red" points="1089.56,-368.36 1081,-362.12 1083.8,-372.34 1089.56,-368.36"/></g><g id="node38" class="node"><title>coords:SpaceSys</title><g id="a_node38"><a xlink:href="../coords/SpaceSys" xlink:title="{SpaceSys}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1169,-435 1169,-471 1223,-471 1223,-435 1169,-435"/>
+<text text-anchor="middle" x="1196" y="-451.1" font-family="Times,serif" font-size="8.00">SpaceSys</text>
+</a></g></g><g id="edge29" class="edge"><title>coords:SpaceSys-&gt;coords:PhysicalCoordSys</title><path fill="none" stroke="red" d="M1175.43,-434.81C1153.97,-416.87 1120.18,-388.62 1096.23,-368.6"/><polygon fill="none" stroke="red" points="1098.43,-365.88 1088.51,-362.15 1093.94,-371.25 1098.43,-365.88"/></g><g id="node39" class="node"><title>coords:TimeSys</title><g id="a_node39"><a xlink:href="../coords/TimeSys" xlink:title="{TimeSys}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1241,-435 1241,-471 1295,-471 1295,-435 1241,-435"/>
+<text text-anchor="middle" x="1268" y="-451.1" font-family="Times,serif" font-size="8.00">TimeSys</text>
+</a></g></g><g id="edge30" class="edge"><title>coords:TimeSys-&gt;coords:PhysicalCoordSys</title><path fill="none" stroke="red" d="M1249.37,-434.69C1244,-430.21 1237.98,-425.63 1232,-422 1185.87,-393.97 1168.36,-398.98 1120,-375 1115.04,-372.54 1109.9,-369.81 1104.87,-367.03"/><polygon fill="none" stroke="red" points="1106.41,-363.88 1095.98,-362.01 1102.97,-369.97 1106.41,-363.88"/></g><g id="edge31" class="edge"><title>coords:PhysicalCoordSpace-&gt;coords:CoordSpace</title><path fill="none" stroke="red" d="M1636.3,-247.11C1553.1,-246.73 1379.26,-239.64 1242,-192 1239.11,-191 1236.21,-189.78 1233.35,-188.42"/><polygon fill="none" stroke="red" points="1234.93,-185.29 1224.46,-183.7 1231.65,-191.48 1234.93,-185.29"/></g><g id="node41" class="node"><title>coords:GenericCoordSpace</title><g id="a_node41"><a xlink:href="../coords/GenericCoordSpace" xlink:title="{GenericCoordSpace}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1637,-326 1637,-362 1733,-362 1733,-326 1637,-326"/>
+<text text-anchor="middle" x="1685" y="-342.1" font-family="Times,serif" font-size="8.00">GenericCoordSpace</text>
+</a></g></g><g id="edge32" class="edge"><title>coords:GenericCoordSpace-&gt;coords:PhysicalCoordSpace</title><path fill="none" stroke="red" d="M1685,-325.67C1685,-311.81 1685,-292.13 1685,-276.11"/><polygon fill="none" stroke="red" points="1688.5,-275.72 1685,-265.72 1681.5,-275.72 1688.5,-275.72"/></g><g id="node42" class="node"><title>coords:SphericalCoordSpace</title><g id="a_node42"><a xlink:href="../coords/SphericalCoordSpace" xlink:title="{SphericalCoordSpace}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1751,-326 1751,-362 1853,-362 1853,-326 1751,-326"/>
+<text text-anchor="middle" x="1802" y="-342.1" font-family="Times,serif" font-size="8.00">SphericalCoordSpace</text>
+</a></g></g><g id="edge33" class="edge"><title>coords:SphericalCoordSpace-&gt;coords:PhysicalCoordSpace</title><path fill="none" stroke="red" d="M1780.81,-325.89C1762.21,-310.86 1734.97,-288.86 1714.28,-272.15"/><polygon fill="none" stroke="red" points="1716.4,-269.37 1706.43,-265.81 1712.01,-274.81 1716.4,-269.37"/></g><g id="node43" class="node"><title>coords:CartesianCoordSpace</title><g id="a_node43"><a xlink:href="../coords/CartesianCoordSpace" xlink:title="{CartesianCoordSpace}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1871,-326 1871,-362 1973,-362 1973,-326 1871,-326"/>
+<text text-anchor="middle" x="1922" y="-342.1" font-family="Times,serif" font-size="8.00">CartesianCoordSpace</text>
+</a></g></g><g id="edge34" class="edge"><title>coords:CartesianCoordSpace-&gt;coords:PhysicalCoordSpace</title><path fill="none" stroke="red" d="M1889.62,-325.97C1880.76,-321.54 1871.09,-316.91 1862,-313 1823.01,-296.21 1778.06,-279.87 1743.21,-267.83"/><polygon fill="none" stroke="red" points="1744.26,-264.49 1733.66,-264.55 1741.98,-271.11 1744.26,-264.49"/></g></g></svg></div>
+<h2 id="primitives">Primitives</h2>
+<ul>
+<li><a href="../coords/Epoch/">Epoch</a></li>
+</ul>
+<h2 id="enums">Enums</h2>
+<ul>
+<li><a href="../coords/Handedness/">Handedness</a></li>
+<li><a href="../coords/PolStateEnum/">PolStateEnum</a></li>
+</ul>
+<h2 id="datatypes">DataTypes</h2>
+<ul>
+<li><a href="../coords/BinnedCoordinate/">BinnedCoordinate</a></li>
+<li><a href="../coords/Coordinate/">Coordinate</a></li>
+<li><a href="../coords/CustomRefLocation/">CustomRefLocation</a></li>
+<li><a href="../coords/EquatorialPoint/">EquatorialPoint</a></li>
+<li><a href="../coords/GeocentricPoint/">GeocentricPoint</a></li>
+<li><a href="../coords/ISOTime/">ISOTime</a></li>
+<li><a href="../coords/JD/">JD</a></li>
+<li><a href="../coords/MJD/">MJD</a></li>
+<li><a href="../coords/PhysicalCoordinate/">PhysicalCoordinate</a></li>
+<li><a href="../coords/PixelIndex/">PixelIndex</a></li>
+<li><a href="../coords/Point/">Point</a></li>
+<li><a href="../coords/PolCoordinate/">PolCoordinate</a></li>
+<li><a href="../coords/PolState/">PolState</a></li>
+<li><a href="../coords/RefLocation/">RefLocation</a></li>
+<li><a href="../coords/SphericalPoint/">SphericalPoint</a></li>
+<li><a href="../coords/StdRefLocation/">StdRefLocation</a></li>
+<li><a href="../coords/TimeInstant/">TimeInstant</a></li>
+<li><a href="../coords/TimeOffset/">TimeOffset</a></li>
+<li><a href="../coords/TimeStamp/">TimeStamp</a></li>
+</ul>
+<h2 id="objecttypes">ObjectTypes</h2>
+<ul>
+<li><a href="../coords/AstroCoordSystem/">AstroCoordSystem</a></li>
+<li><a href="../coords/Axis/">Axis</a></li>
+<li><a href="../coords/BinnedAxis/">BinnedAxis</a></li>
+<li><a href="../coords/CartesianCoordSpace/">CartesianCoordSpace</a></li>
+<li><a href="../coords/ContinuousAxis/">ContinuousAxis</a></li>
+<li><a href="../coords/CoordFrame/">CoordFrame</a></li>
+<li><a href="../coords/CoordSpace/">CoordSpace</a></li>
+<li><a href="../coords/CoordSys/">CoordSys</a></li>
+<li><a href="../coords/DiscreteSetAxis/">DiscreteSetAxis</a></li>
+<li><a href="../coords/GenericCoordSpace/">GenericCoordSpace</a></li>
+<li><a href="../coords/GenericFrame/">GenericFrame</a></li>
+<li><a href="../coords/GenericSys/">GenericSys</a></li>
+<li><a href="../coords/PhysicalCoordSpace/">PhysicalCoordSpace</a></li>
+<li><a href="../coords/PhysicalCoordSys/">PhysicalCoordSys</a></li>
+<li><a href="../coords/PixelCoordSystem/">PixelCoordSystem</a></li>
+<li><a href="../coords/PixelSpace/">PixelSpace</a></li>
+<li><a href="../coords/SpaceFrame/">SpaceFrame</a></li>
+<li><a href="../coords/SpaceSys/">SpaceSys</a></li>
+<li><a href="../coords/SphericalCoordSpace/">SphericalCoordSpace</a></li>
+<li><a href="../coords/TimeFrame/">TimeFrame</a></li>
+<li><a href="../coords/TimeSys/">TimeSys</a></li>
+</ul>
+<h2 id="imports">Imports</h2>
+<ul>
+<li>ivoa</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a51614de.min.js"></script>
+      
+    
+  </body>
+</html>

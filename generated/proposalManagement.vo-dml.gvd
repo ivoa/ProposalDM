@@ -1,0 +1,165 @@
+
+digraph GVmap {  
+	label = "\n\nproposalManagement data model"
+	rankdir=TB
+	
+	node [ 
+	  shape=tab
+	  style=filled
+	]
+	subgraph cluster_packages {
+	  label="Model"
+	  rankdir=TB
+      style=filled
+      fillcolor="/set312/1"
+	  
+	}
+	
+	node [
+	shape=record
+	fontsize=8
+	style=filled] 
+    
+  "proposal:ObservingMode" [
+    URL="#ObservingMode"
+    label = "{proposal:ObservingMode}"
+    fillcolor="grey"
+    ] ;
+      
+    
+  "proposal:Observatory" [
+    URL="#Observatory"
+    label = "{proposal:Observatory}"
+    fillcolor="grey"
+    ] ;
+      
+    
+  "proposal:Person" [
+    URL="#Person"
+    label = "{proposal:Person}"
+    fillcolor="grey"
+    ] ;
+      
+    
+  "proposal:ObservingProposal" [
+    URL="#ObservingProposal"
+    label = "{proposal:ObservingProposal}"
+    fillcolor="grey"
+    ] ;
+      
+    "proposalManagement:TacRole" [
+    URL="../proposalManagement/TacRole"
+    label = "{&lt;&lt;enumeration&gt;&gt;\nTacRole|+TechnicalReviewer\l+ScienceReviewer\l+Chair\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:OfferedCycles" [
+    URL="../proposalManagement/OfferedCycles"
+    label = "{OfferedCycles}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:ProposalCycle" [
+    URL="../proposalManagement/ProposalCycle"
+    label = "{ProposalCycle|+title : ivoa:string\l+submissionDeadline : ivoa:datetime\l+observationSessionStart : ivoa:datetime\l+observationSessionEnd : ivoa:datetime\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:Reviewer" [
+    URL="../proposalManagement/Reviewer"
+    label = "{Reviewer}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:CommitteeMember" [
+    URL="../proposalManagement/CommitteeMember"
+    label = "{CommitteeMember|+role : proposalManagement:TacRole\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:TAC" [
+    URL="../proposalManagement/TAC"
+    label = "{TAC}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:SubmittedProposal" [
+    URL="../proposalManagement/SubmittedProposal"
+    label = "{SubmittedProposal|+submissionDate : ivoa:datetime\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:ReviewedProposal" [
+    URL="../proposalManagement/ReviewedProposal"
+    label = "{ReviewedProposal|+successful : ivoa:boolean\l+reviewsCompleteDate : ivoa:datetime\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:AllocatedProposal" [
+    URL="../proposalManagement/AllocatedProposal"
+    label = "{AllocatedProposal}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:ProposalReview" [
+    URL="../proposalManagement/ProposalReview"
+    label = "{ProposalReview|+comment : ivoa:string\l+score : ivoa:real\l+technicalFeasibility : ivoa:boolean\l+reviewDate : ivoa:datetime\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:ResourceType" [
+    URL="../proposalManagement/ResourceType"
+    label = "{ResourceType|+name : ivoa:string\l+unit : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:Resource" [
+    URL="../proposalManagement/Resource"
+    label = "{Resource|+amount : ivoa:real\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:AvailableResources" [
+    URL="../proposalManagement/AvailableResources"
+    label = "{AvailableResources}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:AllocationGrade" [
+    URL="../proposalManagement/AllocationGrade"
+    label = "{AllocationGrade|+name : ivoa:string\l+description : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:ResourceBlock" [
+    URL="../proposalManagement/ResourceBlock"
+    label = "{ResourceBlock}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:AllocatedBlock" [
+    URL="../proposalManagement/AllocatedBlock"
+    label = "{AllocatedBlock}"
+    fillcolor="/set312/1"
+    ] ;
+  
+ 
+    edge [color="red", arrowtail="none", arrowhead="empty"]
+    "proposalManagement:AllocatedBlock" -> "proposalManagement:ResourceBlock" ;
+  
+ 
+    edge [color="blue", arrowhead="open", arrowtail="diamond",dir="both",fontsize="10"]
+    "proposalManagement:OfferedCycles" -> "proposalManagement:ProposalCycle" [headlabel="1..*",label="cycles",labelfontsize=10] ;
+  "proposalManagement:ProposalCycle" -> "proposal:ObservingMode" [headlabel="1..*",label="observingModes",labelfontsize=10] ;
+  "proposalManagement:ProposalCycle" -> "proposalManagement:AvailableResources" [headlabel="1",label="availableResources",labelfontsize=10] ;
+  "proposalManagement:ProposalCycle" -> "proposalManagement:AllocationGrade" [headlabel="1..*",label="possibleGrades",labelfontsize=10] ;
+  "proposalManagement:ProposalCycle" -> "proposalManagement:TAC" [headlabel="1",label="tac",labelfontsize=10] ;
+  "proposalManagement:ProposalCycle" -> "proposalManagement:SubmittedProposal" [headlabel="0..*",label="submittedProposals",labelfontsize=10] ;
+  "proposalManagement:ProposalCycle" -> "proposalManagement:ReviewedProposal" [headlabel="0..*",label="reviewedProposals",labelfontsize=10] ;
+  "proposalManagement:ProposalCycle" -> "proposalManagement:AllocatedProposal" [headlabel="0..*",label="allocatedProposals",labelfontsize=10] ;
+  "proposalManagement:TAC" -> "proposalManagement:CommitteeMember" [headlabel="1..*",label="members",labelfontsize=10] ;
+  "proposalManagement:ReviewedProposal" -> "proposalManagement:ProposalReview" [headlabel="1..*",label="reviews",labelfontsize=10] ;
+  "proposalManagement:AllocatedProposal" -> "proposalManagement:AllocatedBlock" [headlabel="1..*",label="allocation",labelfontsize=10] ;
+  "proposalManagement:AvailableResources" -> "proposalManagement:Resource" [headlabel="0..*",label="resources",labelfontsize=10] ;
+  "proposalManagement:ResourceBlock" -> "proposalManagement:Resource" [headlabel="1",label="resource",labelfontsize=10] ;
+  
+ 
+    edge [color="green", arrowhead="open", arrowtail="none"]
+    "proposalManagement:ProposalCycle" -> "proposal:Observatory" [headlabel="1",label="observatory",labelfontsize=10] ;
+  "proposalManagement:Reviewer" -> "proposal:Person" [headlabel="1",label="person",labelfontsize=10] ;
+  "proposalManagement:CommitteeMember" -> "proposalManagement:Reviewer" [headlabel="1",label="member",labelfontsize=10] ;
+  "proposalManagement:SubmittedProposal" -> "proposal:ObservingProposal" [headlabel="1",label="proposal",labelfontsize=10] ;
+  "proposalManagement:ReviewedProposal" -> "proposalManagement:SubmittedProposal" [headlabel="1",label="submitted",labelfontsize=10] ;
+  "proposalManagement:AllocatedProposal" -> "proposalManagement:SubmittedProposal" [headlabel="1",label="submitted",labelfontsize=10] ;
+  "proposalManagement:ProposalReview" -> "proposalManagement:Reviewer" [headlabel="1",label="reviewer",labelfontsize=10] ;
+  "proposalManagement:Resource" -> "proposalManagement:ResourceType" [headlabel="1",label="type",labelfontsize=10] ;
+  "proposalManagement:ResourceBlock" -> "proposal:ObservingMode" [headlabel="1",label="mode",labelfontsize=10] ;
+  "proposalManagement:AllocatedBlock" -> "proposalManagement:AllocationGrade" [headlabel="1",label="grade",labelfontsize=10] ;
+    
+}
+  

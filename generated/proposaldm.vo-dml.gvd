@@ -1,0 +1,287 @@
+
+digraph GVmap {  
+	label = "\n\nproposal data model"
+	rankdir=TB
+	
+	node [ 
+	  shape=tab
+	  style=filled
+	]
+	subgraph cluster_packages {
+	  label="Model"
+	  rankdir=TB
+      style=filled
+      fillcolor="/set312/1"
+	  
+	}
+	
+	node [
+	shape=record
+	fontsize=8
+	style=filled] 
+    "proposal:WikiDataId"[
+    URL="../proposal/WikiDataId"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nWikiDataId}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:ProposalKind" [
+    URL="../proposal/ProposalKind"
+    label = "{&lt;&lt;enumeration&gt;&gt;\nProposalKind|+Standard\l+ToO\l+Survey\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:InvestigatorKind" [
+    URL="../proposal/InvestigatorKind"
+    label = "{&lt;&lt;enumeration&gt;&gt;\nInvestigatorKind|+PI\l+COI\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:InstrumentKind" [
+    URL="../proposal/InstrumentKind"
+    label = "{&lt;&lt;enumeration&gt;&gt;\nInstrumentKind|+continuum\l+spectroscopic\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:TextFormats" [
+    URL="../proposal/TextFormats"
+    label = "{&lt;&lt;enumeration&gt;&gt;\nTextFormats|+latex\l+rst\l+asciidoc\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:CalibrationTarget_intendedUse" [
+    URL="../proposal/CalibrationTarget_intendedUse"
+    label = "{&lt;&lt;enumeration&gt;&gt;\nCalibrationTarget_intendedUse|+Amplitude\l+Atmospheric\l+Bandpass\l+Phase\l+Pointing\l+Focus\l+Polarization\l+Delay\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:ObservingProposal" [
+    URL="../proposal/ObservingProposal"
+    label = "{ObservingProposal|+title : ivoa:string\l+summary : ivoa:string\l+kind : proposal:ProposalKind\l+submitted : ivoa:boolean\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:RelatedProposal" [
+    URL="../proposal/RelatedProposal"
+    label = "{RelatedProposal}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Person" [
+    URL="../proposal/Person"
+    label = "{Person|+fullName : ivoa:string\l+eMail : ivoa:string\l+orcidId : ivoa:stringIdentifier\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Investigator" [
+    URL="../proposal/Investigator"
+    label = "{Investigator|+type : proposal:InvestigatorKind\l+forPhD : ivoa:boolean\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Organization" [
+    URL="../proposal/Organization"
+    label = "{Organization|+name : ivoa:string\l+address : ivoa:string\l+ivoid : ivoa:ivorn\l+wikiId : proposal:WikiDataId\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Observatory" [
+    URL="../proposal/Observatory"
+    label = "{Observatory}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Telescope" [
+    URL="../proposal/Telescope"
+    label = "{Telescope|+name : ivoa:string\l+wikiId : proposal:WikiDataId\l+location : coords:GeocentricPoint\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:TelescopeArrayMember" [
+    URL="../proposal/TelescopeArrayMember"
+    label = "{TelescopeArrayMember}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:TelescopeArray" [
+    URL="../proposal/TelescopeArray"
+    label = "{TelescopeArray|+name : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Instrument" [
+    URL="../proposal/Instrument"
+    label = "{Instrument|+name : ivoa:string\l+description : ivoa:string\l+wikiId : proposal:WikiDataId\l+reference : ivoa:anyURI\l+kind : proposal:InstrumentKind\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Backend" [
+    URL="../proposal/Backend"
+    label = "{Backend|+name : ivoa:string\l+parallel : ivoa:boolean\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:ObservingConfiguration" [
+    URL="../proposal/ObservingConfiguration"
+    label = "{ObservingConfiguration}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:ObservingMode" [
+    URL="../proposal/ObservingMode"
+    label = "{ObservingMode|+name : ivoa:string\l+description : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Justification" [
+    URL="../proposal/Justification"
+    label = "{Justification|+text : ivoa:string\l+format : proposal:TextFormats\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:SupportingDocument" [
+    URL="../proposal/SupportingDocument"
+    label = "{SupportingDocument|+title : ivoa:string\l+location : ivoa:anyURI\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Target" [
+    URL="../proposal/Target"
+    label = "{Target|+sourceName : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:CelestialTarget" [
+    URL="../proposal/CelestialTarget"
+    label = "{CelestialTarget|+sourceCoordinates : coords:EquatorialPoint\l+positionEpoch : coords:Epoch\l+pmRA : ivoa:RealQuantity\l+pmDec : ivoa:RealQuantity\l+parallax : ivoa:RealQuantity\l+sourceVelocity : ivoa:RealQuantity\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:SolarSystemTarget" [
+    URL="../proposal/SolarSystemTarget"
+    label = "{SolarSystemTarget}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Field" [
+    URL="../proposal/Field"
+    label = "{Field|+name : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:TargetField" [
+    URL="../proposal/TargetField"
+    label = "{TargetField}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Point" [
+    URL="../proposal/Point"
+    label = "{Point|+centre : coords:Point\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Polygon" [
+    URL="../proposal/Polygon"
+    label = "{Polygon|+points : coords:EquatorialPoint\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Ellipse" [
+    URL="../proposal/Ellipse"
+    label = "{Ellipse|+semiMajor : ivoa:RealQuantity\l+semiMinor : ivoa:RealQuantity\l+pAMajor : ivoa:RealQuantity\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Constraint" [
+    URL="../proposal/Constraint"
+    label = "{Constraint}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:TimingConstraint" [
+    URL="../proposal/TimingConstraint"
+    label = "{TimingConstraint|+note : ivoa:string\l+isAvoidConstraint : ivoa:boolean\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:TimingWindow" [
+    URL="../proposal/TimingWindow"
+    label = "{TimingWindow|+startTime : ivoa:datetime\l+endTime : ivoa:datetime\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:SimultaneityConstraint" [
+    URL="../proposal/SimultaneityConstraint"
+    label = "{SimultaneityConstraint}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:PointingConstaint" [
+    URL="../proposal/PointingConstaint"
+    label = "{PointingConstaint}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:ScienceSpectralWindow" [
+    URL="../proposal/ScienceSpectralWindow"
+    label = "{ScienceSpectralWindow|+index : ivoa:integer\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:SpectralWindowSetup" [
+    URL="../proposal/SpectralWindowSetup"
+    label = "{SpectralWindowSetup|+start : ivoa:RealQuantity\l+end : ivoa:RealQuantity\l+spectralResolution : ivoa:RealQuantity\l+isSkyFrequency : ivoa:boolean\l+polarization : coords:PolStateEnum\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:ExpectedSpectralLine" [
+    URL="../proposal/ExpectedSpectralLine"
+    label = "{ExpectedSpectralLine|+restFrequency : ivoa:RealQuantity\l+transition : ivoa:string\l+splatalogId : ivoa:stringIdentifier\l+description : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:PerformanceParameters" [
+    URL="../proposal/PerformanceParameters"
+    label = "{PerformanceParameters|+desiredAngularResolution : ivoa:RealQuantity\l+desiredLargestScale : ivoa:RealQuantity\l+desiredSensitivity : ivoa:RealQuantity\l+desiredDynamicRange : ivoa:RealQuantity\l+representativeSpectralPoint : ivoa:RealQuantity\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:Observation" [
+    URL="../proposal/Observation"
+    label = "{Observation}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:TargetObservation" [
+    URL="../proposal/TargetObservation"
+    label = "{TargetObservation}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:CalibrationObservation" [
+    URL="../proposal/CalibrationObservation"
+    label = "{CalibrationObservation|+intent : proposal:CalibrationTarget_intendedUse\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposal:TechnicalGoal" [
+    URL="../proposal/TechnicalGoal"
+    label = "{TechnicalGoal}"
+    fillcolor="/set312/1"
+    ] ;
+  
+ 
+    edge [color="red", arrowtail="none", arrowhead="empty"]
+    "proposal:Observatory" -> "proposal:Organization" ;
+  "proposal:CelestialTarget" -> "proposal:Target" ;
+  "proposal:SolarSystemTarget" -> "proposal:Target" ;
+  "proposal:TargetField" -> "proposal:Field" ;
+  "proposal:Point" -> "proposal:Field" ;
+  "proposal:Polygon" -> "proposal:Field" ;
+  "proposal:Ellipse" -> "proposal:Field" ;
+  "proposal:TimingConstraint" -> "proposal:Constraint" ;
+  "proposal:TimingWindow" -> "proposal:TimingConstraint" ;
+  "proposal:SimultaneityConstraint" -> "proposal:TimingConstraint" ;
+  "proposal:PointingConstaint" -> "proposal:Constraint" ;
+  "proposal:TargetObservation" -> "proposal:Observation" ;
+  "proposal:CalibrationObservation" -> "proposal:Observation" ;
+  
+ 
+    edge [color="blue", arrowhead="open", arrowtail="diamond",dir="both",fontsize="10"]
+    "proposal:ObservingProposal" -> "proposal:Justification" [headlabel="1",label="scientificJustification",labelfontsize=10] ;
+  "proposal:ObservingProposal" -> "proposal:Justification" [headlabel="1",label="technicalJustification",labelfontsize=10] ;
+  "proposal:ObservingProposal" -> "proposal:Investigator" [headlabel="1..*",label="investigators",labelfontsize=10] ;
+  "proposal:ObservingProposal" -> "proposal:RelatedProposal" [headlabel="0..*",label="relatedProposals",labelfontsize=10] ;
+  "proposal:ObservingProposal" -> "proposal:SupportingDocument" [headlabel="0..*",label="supportingDocuments",labelfontsize=10] ;
+  "proposal:ObservingProposal" -> "proposal:Target" [headlabel="1..*",label="targets",labelfontsize=10] ;
+  "proposal:ObservingProposal" -> "proposal:Field" [headlabel="1..*",label="fields",labelfontsize=10] ;
+  "proposal:ObservingProposal" -> "proposal:TechnicalGoal" [headlabel="1..*",label="technicalGoals",labelfontsize=10] ;
+  "proposal:ObservingProposal" -> "proposal:Observation" [headlabel="1..*",label="observations",labelfontsize=10] ;
+  "proposal:Observatory" -> "proposal:Telescope" [headlabel="1..*",label="telescopes",labelfontsize=10] ;
+  "proposal:Observatory" -> "proposal:Instrument" [headlabel="1..*",label="instruments",labelfontsize=10] ;
+  "proposal:Observatory" -> "proposal:Backend" [headlabel="1..*",label="backends",labelfontsize=10] ;
+  "proposal:Observatory" -> "proposal:TelescopeArray" [headlabel="0..*",label="arrays",labelfontsize=10] ;
+  "proposal:TelescopeArray" -> "proposal:TelescopeArrayMember" [headlabel="1..*",label="arrayMembers",labelfontsize=10] ;
+  "proposal:Instrument" -> "proposal:SpectralWindowSetup" [headlabel="1",label="frequencyCoverage",labelfontsize=10] ;
+  "proposal:ObservingMode" -> "proposal:ObservingConfiguration" [headlabel="1..*",label="configurations",labelfontsize=10] ;
+  "proposal:ScienceSpectralWindow" -> "proposal:SpectralWindowSetup" [headlabel="0..1",label="spectralWindowSetup",labelfontsize=10] ;
+  "proposal:ScienceSpectralWindow" -> "proposal:ExpectedSpectralLine" [headlabel="0..*",label="expectedSpectralLine",labelfontsize=10] ;
+  "proposal:Observation" -> "proposal:Constraint" [headlabel="0..*",label="constraints",labelfontsize=10] ;
+  "proposal:TechnicalGoal" -> "proposal:PerformanceParameters" [headlabel="1",label="performance",labelfontsize=10] ;
+  "proposal:TechnicalGoal" -> "proposal:ScienceSpectralWindow" [headlabel="1..*",label="spectrum",labelfontsize=10] ;
+  
+ 
+    edge [color="green", arrowhead="open", arrowtail="none"]
+    "proposal:RelatedProposal" -> "proposal:ObservingProposal" [headlabel="1",label="proposal",labelfontsize=10] ;
+  "proposal:Person" -> "proposal:Organization" [headlabel="1",label="homeInstitute",labelfontsize=10] ;
+  "proposal:Investigator" -> "proposal:Person" [headlabel="1",label="person",labelfontsize=10] ;
+  "proposal:TelescopeArrayMember" -> "proposal:Telescope" [headlabel="1",label="telescope",labelfontsize=10] ;
+  "proposal:ObservingConfiguration" -> "proposal:Telescope" [headlabel="1",label="telescope",labelfontsize=10] ;
+  "proposal:ObservingConfiguration" -> "proposal:Instrument" [headlabel="1",label="instrument",labelfontsize=10] ;
+  "proposal:ObservingConfiguration" -> "proposal:Backend" [headlabel="1",label="backend",labelfontsize=10] ;
+  "proposal:Observation" -> "proposal:Target" [headlabel="1",label="target",labelfontsize=10] ;
+  "proposal:Observation" -> "proposal:Field" [headlabel="1",label="field",labelfontsize=10] ;
+  "proposal:Observation" -> "proposal:TechnicalGoal" [headlabel="1",label="technicalGoal",labelfontsize=10] ;
+    
+}
+  

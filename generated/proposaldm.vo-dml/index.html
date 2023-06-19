@@ -1,0 +1,880 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../proposalManagement.vo-dml/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
+    
+    
+      
+        <title>ProposalDM - Model Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#proposal" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Model Documentation" class="md-header__button md-logo" aria-label="Model Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Model Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ProposalDM
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ivoa/ProposalDM" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Introduction
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        AutoGenerated Documentation
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Model Documentation" class="md-nav__button md-logo" aria-label="Model Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Model Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ivoa/ProposalDM" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          AutoGenerated Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          AutoGenerated Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ProposalDM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        ProposalDM
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authors" class="md-nav__link">
+    Authors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overview-diagram" class="md-nav__link">
+    Overview diagram
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primitives" class="md-nav__link">
+    Primitives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    Enums
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objecttypes" class="md-nav__link">
+    ObjectTypes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposalManagement.vo-dml/" class="md-nav__link">
+        ProposalManagement DM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javadoc/" class="md-nav__link">
+        Javadoc
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authors" class="md-nav__link">
+    Authors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overview-diagram" class="md-nav__link">
+    Overview diagram
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primitives" class="md-nav__link">
+    Primitives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    Enums
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objecttypes" class="md-nav__link">
+    ObjectTypes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imports" class="md-nav__link">
+    Imports
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="proposal">proposal</h1>
+<p>version 0.3 <em>2023-04-24</em></p>
+<h2 id="introduction">Introduction</h2>
+<p>A model to represent an application for observing time. The model is intended to express all 
+      of the concepts required to specify the scientific parameters of the application in sufficient detail to allow the 
+      proposal to be reviewed and allocated time. It does not cover all the technical detail of instrument setup that would be needed to actually schedule the 
+      observations, although the intention is that information about targets etc. could be automatically transferred to an observing system.</p>
+<h3 id="authors">Authors</h3>
+<p>Paul Harrison</p>
+<h3 id="overview-diagram">Overview diagram</h3>
+<p>The whole model is represented in a model diagram below</p>
+<div xmlns:bnd="http://www.ivoa.net/xml/vodml-binding/v0.9.1" xmlns:vf="http://www.ivoa.net/xml/VODML/functions" xmlns:vo-dml="http://www.ivoa.net/xml/VODML/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2246pt" height="733pt" viewBox="0.00 0.00 2246.00 733.00" preserveAspectRatio="xMidYMid meet" zoomAndPan="magnify" version="1.1" contentScriptType="text/ecmascript" contentStyleType="text/css"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 729)"><title>GVmap</title><polygon fill="white" stroke="transparent" points="-4,4 -4,-729 2242,-729 2242,4 -4,4"/><text text-anchor="middle" x="1119" y="-7.8" font-family="Times,serif" font-size="14.00">proposal data model</text><g id="node1" class="node"><title>proposal:WikiDataId</title><g id="a_node1"><a xlink:href="../proposal/WikiDataId" xlink:title="{&amp;lt;&amp;lt;primitive type&amp;gt;&amp;gt;\nWikiDataId}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="0,-653.5 0,-689.5 98,-689.5 98,-653.5 0,-653.5"/>
+<text text-anchor="middle" x="49" y="-674.1" font-family="Times,serif" font-size="8.00">&lt;&lt;primitive type&gt;&gt;</text>
+<text text-anchor="middle" x="49" y="-665.1" font-family="Times,serif" font-size="8.00">WikiDataId</text>
+</a></g></g><g id="node2" class="node"><title>proposal:ProposalKind</title><g id="a_node2"><a xlink:href="../proposal/ProposalKind" xlink:title="{&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;\nProposalKind|+Standard\l+ToO\l+Survey\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="116,-641 116,-702 210,-702 210,-641 116,-641"/>
+<text text-anchor="middle" x="163" y="-691.6" font-family="Times,serif" font-size="8.00">&lt;&lt;enumeration&gt;&gt;</text>
+<text text-anchor="middle" x="163" y="-682.6" font-family="Times,serif" font-size="8.00">ProposalKind</text>
+<polyline fill="none" stroke="black" points="116,-676 210,-676 "/>
+<text text-anchor="start" x="124" y="-665.6" font-family="Times,serif" font-size="8.00">+Standard</text>
+<text text-anchor="start" x="124" y="-656.6" font-family="Times,serif" font-size="8.00">+ToO</text>
+<text text-anchor="start" x="124" y="-647.6" font-family="Times,serif" font-size="8.00">+Survey</text>
+</a></g></g><g id="node3" class="node"><title>proposal:InvestigatorKind</title><g id="a_node3"><a xlink:href="../proposal/InvestigatorKind" xlink:title="{&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;\nInvestigatorKind|+PI\l+COI\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="228,-645.5 228,-697.5 322,-697.5 322,-645.5 228,-645.5"/>
+<text text-anchor="middle" x="275" y="-687.1" font-family="Times,serif" font-size="8.00">&lt;&lt;enumeration&gt;&gt;</text>
+<text text-anchor="middle" x="275" y="-678.1" font-family="Times,serif" font-size="8.00">InvestigatorKind</text>
+<polyline fill="none" stroke="black" points="228,-671.5 322,-671.5 "/>
+<text text-anchor="start" x="236" y="-661.1" font-family="Times,serif" font-size="8.00">+PI</text>
+<text text-anchor="start" x="236" y="-652.1" font-family="Times,serif" font-size="8.00">+COI</text>
+</a></g></g><g id="node4" class="node"><title>proposal:InstrumentKind</title><g id="a_node4"><a xlink:href="../proposal/InstrumentKind" xlink:title="{&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;\nInstrumentKind|+continuum\l+spectroscopic\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="340,-645.5 340,-697.5 434,-697.5 434,-645.5 340,-645.5"/>
+<text text-anchor="middle" x="387" y="-687.1" font-family="Times,serif" font-size="8.00">&lt;&lt;enumeration&gt;&gt;</text>
+<text text-anchor="middle" x="387" y="-678.1" font-family="Times,serif" font-size="8.00">InstrumentKind</text>
+<polyline fill="none" stroke="black" points="340,-671.5 434,-671.5 "/>
+<text text-anchor="start" x="348" y="-661.1" font-family="Times,serif" font-size="8.00">+continuum</text>
+<text text-anchor="start" x="348" y="-652.1" font-family="Times,serif" font-size="8.00">+spectroscopic</text>
+</a></g></g><g id="node5" class="node"><title>proposal:TextFormats</title><g id="a_node5"><a xlink:href="../proposal/TextFormats" xlink:title="{&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;\nTextFormats|+latex\l+rst\l+asciidoc\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="452,-641 452,-702 546,-702 546,-641 452,-641"/>
+<text text-anchor="middle" x="499" y="-691.6" font-family="Times,serif" font-size="8.00">&lt;&lt;enumeration&gt;&gt;</text>
+<text text-anchor="middle" x="499" y="-682.6" font-family="Times,serif" font-size="8.00">TextFormats</text>
+<polyline fill="none" stroke="black" points="452,-676 546,-676 "/>
+<text text-anchor="start" x="460" y="-665.6" font-family="Times,serif" font-size="8.00">+latex</text>
+<text text-anchor="start" x="460" y="-656.6" font-family="Times,serif" font-size="8.00">+rst</text>
+<text text-anchor="start" x="460" y="-647.6" font-family="Times,serif" font-size="8.00">+asciidoc</text>
+</a></g></g><g id="node6" class="node"><title>proposal:CalibrationTarget_intendedUse</title><g id="a_node6"><a xlink:href="../proposal/CalibrationTarget_intendedUse" xlink:title="{&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;\nCalibrationTarget_intendedUse|+Amplitude\l+Atmospheric\l+Bandpass\l+Phase\l+Pointing\l+Focus\l+Polarization\l+Delay\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="564,-618.5 564,-724.5 704,-724.5 704,-618.5 564,-618.5"/>
+<text text-anchor="middle" x="634" y="-714.1" font-family="Times,serif" font-size="8.00">&lt;&lt;enumeration&gt;&gt;</text>
+<text text-anchor="middle" x="634" y="-705.1" font-family="Times,serif" font-size="8.00">CalibrationTarget_intendedUse</text>
+<polyline fill="none" stroke="black" points="564,-698.5 704,-698.5 "/>
+<text text-anchor="start" x="572" y="-688.1" font-family="Times,serif" font-size="8.00">+Amplitude</text>
+<text text-anchor="start" x="572" y="-679.1" font-family="Times,serif" font-size="8.00">+Atmospheric</text>
+<text text-anchor="start" x="572" y="-670.1" font-family="Times,serif" font-size="8.00">+Bandpass</text>
+<text text-anchor="start" x="572" y="-661.1" font-family="Times,serif" font-size="8.00">+Phase</text>
+<text text-anchor="start" x="572" y="-652.1" font-family="Times,serif" font-size="8.00">+Pointing</text>
+<text text-anchor="start" x="572" y="-643.1" font-family="Times,serif" font-size="8.00">+Focus</text>
+<text text-anchor="start" x="572" y="-634.1" font-family="Times,serif" font-size="8.00">+Polarization</text>
+<text text-anchor="start" x="572" y="-625.1" font-family="Times,serif" font-size="8.00">+Delay</text>
+</a></g></g><g id="node7" class="node"><title>proposal:ObservingProposal</title><g id="a_node7"><a xlink:href="../proposal/ObservingProposal" xlink:title="{ObservingProposal|+title : ivoa:string\l+summary : ivoa:string\l+kind : proposal:ProposalKind\l+submitted : ivoa:boolean\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="722.5,-641 722.5,-702 859.5,-702 859.5,-641 722.5,-641"/>
+<text text-anchor="middle" x="791" y="-691.6" font-family="Times,serif" font-size="8.00">ObservingProposal</text>
+<polyline fill="none" stroke="black" points="722.5,-685 859.5,-685 "/>
+<text text-anchor="start" x="730.5" y="-674.6" font-family="Times,serif" font-size="8.00">+title : ivoa:string</text>
+<text text-anchor="start" x="730.5" y="-665.6" font-family="Times,serif" font-size="8.00">+summary : ivoa:string</text>
+<text text-anchor="start" x="730.5" y="-656.6" font-family="Times,serif" font-size="8.00">+kind : proposal:ProposalKind</text>
+<text text-anchor="start" x="730.5" y="-647.6" font-family="Times,serif" font-size="8.00">+submitted : ivoa:boolean</text>
+</a></g></g><g id="node8" class="node"><title>proposal:RelatedProposal</title><g id="a_node8"><a xlink:href="../proposal/RelatedProposal" xlink:title="{RelatedProposal}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="86,-513 86,-549 166,-549 166,-513 86,-513"/>
+<text text-anchor="middle" x="126" y="-529.1" font-family="Times,serif" font-size="8.00">RelatedProposal</text>
+</a></g></g><g id="edge17" class="edge"><title>proposal:ObservingProposal-&gt;proposal:RelatedProposal</title><path fill="none" stroke="blue" d="M745.67,-633.97C735.46,-627.51 724.29,-621.68 713,-618 613,-585.39 342.44,-623.86 240,-600 209.19,-592.82 202.04,-587.43 175,-571 167.52,-566.46 159.9,-560.91 152.97,-555.45"/><polygon fill="blue" stroke="blue" points="745.96,-634.16 753.17,-634.19 755.92,-640.86 748.71,-640.83 745.96,-634.16"/><polygon fill="blue" stroke="blue" points="145.19,-549.14 155.79,-551.95 149.07,-552.29 152.95,-555.44 152.95,-555.44 152.95,-555.44 149.07,-552.29 150.12,-558.93 145.19,-549.14 145.19,-549.14"/><text text-anchor="middle" x="283" y="-592" font-family="Times,serif" font-size="10.00">relatedProposals</text><text text-anchor="middle" x="136.19" y="-552.14" font-family="Times,serif" font-size="10.00">0..*</text></g><g id="node10" class="node"><title>proposal:Investigator</title><g id="a_node10"><a xlink:href="../proposal/Investigator" xlink:title="{Investigator|+type : proposal:InvestigatorKind\l+forPhD : ivoa:boolean\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="184.5,-509.5 184.5,-552.5 335.5,-552.5 335.5,-509.5 184.5,-509.5"/>
+<text text-anchor="middle" x="260" y="-542.1" font-family="Times,serif" font-size="8.00">Investigator</text>
+<polyline fill="none" stroke="black" points="184.5,-535.5 335.5,-535.5 "/>
+<text text-anchor="start" x="192.5" y="-525.1" font-family="Times,serif" font-size="8.00">+type : proposal:InvestigatorKind</text>
+<text text-anchor="start" x="192.5" y="-516.1" font-family="Times,serif" font-size="8.00">+forPhD : ivoa:boolean</text>
+</a></g></g><g id="edge16" class="edge"><title>proposal:ObservingProposal-&gt;proposal:Investigator</title><path fill="none" stroke="blue" d="M745.23,-634.12C735.12,-627.72 724.1,-621.87 713,-618 617.45,-584.65 586.21,-614.15 486,-600 422.22,-590.99 405.18,-591.14 344,-571 332.31,-567.15 320.1,-562.11 308.72,-556.95"/><polygon fill="blue" stroke="blue" points="745.44,-634.26 752.65,-634.28 755.41,-640.94 748.2,-640.92 745.44,-634.26"/><polygon fill="blue" stroke="blue" points="299.39,-552.6 310.36,-552.75 303.92,-554.71 308.46,-556.82 308.46,-556.82 308.46,-556.82 303.92,-554.71 306.55,-560.9 299.39,-552.6 299.39,-552.6"/><text text-anchor="middle" x="519.5" y="-592" font-family="Times,serif" font-size="10.00">investigators</text><text text-anchor="middle" x="290.39" y="-555.6" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="node20" class="node"><title>proposal:Justification</title><g id="a_node20"><a xlink:href="../proposal/Justification" xlink:title="{Justification|+text : ivoa:string\l+format : proposal:TextFormats\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="353.5,-509.5 353.5,-552.5 496.5,-552.5 496.5,-509.5 353.5,-509.5"/>
+<text text-anchor="middle" x="425" y="-542.1" font-family="Times,serif" font-size="8.00">Justification</text>
+<polyline fill="none" stroke="black" points="353.5,-535.5 496.5,-535.5 "/>
+<text text-anchor="start" x="361.5" y="-525.1" font-family="Times,serif" font-size="8.00">+text : ivoa:string</text>
+<text text-anchor="start" x="361.5" y="-516.1" font-family="Times,serif" font-size="8.00">+format : proposal:TextFormats</text>
+</a></g></g><g id="edge14" class="edge"><title>proposal:ObservingProposal-&gt;proposal:Justification</title><path fill="none" stroke="blue" d="M743.74,-633.99C733.99,-627.84 723.49,-622.12 713,-618 665.26,-599.24 648.97,-611.59 599,-600 556.41,-590.12 545.66,-587.07 505,-571 494.66,-566.91 483.81,-562.04 473.55,-557.15"/><polygon fill="blue" stroke="blue" points="743.98,-634.15 751.19,-634.13 753.98,-640.78 746.77,-640.8 743.98,-634.15"/><polygon fill="blue" stroke="blue" points="464.34,-552.67 475.3,-552.99 468.83,-554.86 473.33,-557.04 473.33,-557.04 473.33,-557.04 468.83,-554.86 471.37,-561.09 464.34,-552.67 464.34,-552.67"/><text text-anchor="middle" x="652" y="-592" font-family="Times,serif" font-size="10.00">scientificJustification</text><text text-anchor="middle" x="460.84" y="-555.67" font-family="Times,serif" font-size="10.00">1</text></g><g id="edge15" class="edge"><title>proposal:ObservingProposal-&gt;proposal:Justification</title><path fill="none" stroke="blue" d="M760.25,-631.51C745.37,-615.52 726.16,-598.55 705,-589 623.66,-552.27 590.97,-594.95 505,-571 493.02,-567.66 480.67,-562.57 469.36,-557.16"/><polygon fill="blue" stroke="blue" points="760.5,-631.79 767.48,-633.61 768.49,-640.75 761.51,-638.93 760.5,-631.79"/><polygon fill="blue" stroke="blue" points="460.14,-552.56 471.1,-552.99 464.62,-554.79 469.09,-557.02 469.09,-557.02 469.09,-557.02 464.62,-554.79 467.09,-561.05 460.14,-552.56 460.14,-552.56"/><text text-anchor="middle" x="775" y="-592" font-family="Times,serif" font-size="10.00">technicalJustification</text><text text-anchor="middle" x="456.64" y="-555.56" font-family="Times,serif" font-size="10.00">1</text></g><g id="node21" class="node"><title>proposal:SupportingDocument</title><g id="a_node21"><a xlink:href="../proposal/SupportingDocument" xlink:title="{SupportingDocument|+title : ivoa:string\l+location : ivoa:anyURI\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1021,-509.5 1021,-552.5 1131,-552.5 1131,-509.5 1021,-509.5"/>
+<text text-anchor="middle" x="1076" y="-542.1" font-family="Times,serif" font-size="8.00">SupportingDocument</text>
+<polyline fill="none" stroke="black" points="1021,-535.5 1131,-535.5 "/>
+<text text-anchor="start" x="1029" y="-525.1" font-family="Times,serif" font-size="8.00">+title : ivoa:string</text>
+<text text-anchor="start" x="1029" y="-516.1" font-family="Times,serif" font-size="8.00">+location : ivoa:anyURI</text>
+</a></g></g><g id="edge18" class="edge"><title>proposal:ObservingProposal-&gt;proposal:SupportingDocument</title><path fill="none" stroke="blue" d="M869.9,-636.04C911.15,-617.56 962.22,-593.92 1007,-571 1015.19,-566.81 1023.8,-562.15 1032.06,-557.55"/><polygon fill="blue" stroke="blue" points="869.78,-636.1 865.93,-642.2 858.82,-640.99 862.67,-634.89 869.78,-636.1"/><polygon fill="blue" stroke="blue" points="1040.85,-552.61 1034.34,-561.43 1036.49,-555.06 1032.13,-557.51 1032.13,-557.51 1032.13,-557.51 1036.49,-555.06 1029.93,-553.59 1040.85,-552.61 1040.85,-552.61"/><text text-anchor="middle" x="1023.5" y="-592" font-family="Times,serif" font-size="10.00">supportingDocuments</text><text text-anchor="middle" x="1031.85" y="-555.61" font-family="Times,serif" font-size="10.00">0..*</text></g><g id="node22" class="node"><title>proposal:Target</title><g id="a_node22"><a xlink:href="../proposal/Target" xlink:title="{Target|+sourceName : ivoa:string\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="727,-399.5 727,-435.5 849,-435.5 849,-399.5 727,-399.5"/>
+<text text-anchor="middle" x="788" y="-424.6" font-family="Times,serif" font-size="8.00">Target</text>
+<polyline fill="none" stroke="black" points="727,-417.5 849,-417.5 "/>
+<text text-anchor="start" x="735" y="-406.6" font-family="Times,serif" font-size="8.00">+sourceName : ivoa:string</text>
+</a></g></g><g id="edge19" class="edge"><title>proposal:ObservingProposal-&gt;proposal:Target</title><path fill="none" stroke="blue" d="M819.09,-630.47C824.41,-620.9 829.19,-610.43 832,-600 838.29,-576.67 876.2,-667.23 827,-491 822.41,-474.56 813.61,-457.68 805.54,-444.35"/><polygon fill="blue" stroke="blue" points="819.06,-630.52 819.43,-637.72 812.93,-640.83 812.56,-633.63 819.06,-630.52"/><polygon fill="blue" stroke="blue" points="800.12,-435.73 809.25,-441.8 802.78,-439.96 805.44,-444.2 805.44,-444.2 805.44,-444.2 802.78,-439.96 801.63,-446.59 800.12,-435.73 800.12,-435.73"/><text text-anchor="middle" x="865.5" y="-528.5" font-family="Times,serif" font-size="10.00">targets</text><text text-anchor="middle" x="791.12" y="-438.73" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="node25" class="node"><title>proposal:Field</title><g id="a_node25"><a xlink:href="../proposal/Field" xlink:title="{Field|+name : ivoa:string\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1384.5,-399.5 1384.5,-435.5 1479.5,-435.5 1479.5,-399.5 1384.5,-399.5"/>
+<text text-anchor="middle" x="1432" y="-424.6" font-family="Times,serif" font-size="8.00">Field</text>
+<polyline fill="none" stroke="black" points="1384.5,-417.5 1479.5,-417.5 "/>
+<text text-anchor="start" x="1392.5" y="-406.6" font-family="Times,serif" font-size="8.00">+name : ivoa:string</text>
+</a></g></g><g id="edge20" class="edge"><title>proposal:ObservingProposal-&gt;proposal:Field</title><path fill="none" stroke="blue" d="M872.1,-662.25C990.83,-648.73 1204.32,-618.52 1264,-571 1294.65,-546.6 1274.32,-519.68 1301,-491 1321.73,-468.71 1350.92,-451.64 1376.47,-439.68"/><polygon fill="blue" stroke="blue" points="871.79,-662.28 866.28,-666.93 859.87,-663.62 865.38,-658.98 871.79,-662.28"/><polygon fill="blue" stroke="blue" points="1385.7,-435.51 1378.45,-443.73 1381.15,-437.57 1376.59,-439.63 1376.59,-439.63 1376.59,-439.63 1381.15,-437.57 1374.74,-435.53 1385.7,-435.51 1385.7,-435.51"/><text text-anchor="middle" x="1315" y="-528.5" font-family="Times,serif" font-size="10.00">fields</text><text text-anchor="middle" x="1376.7" y="-438.51" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="node39" class="node"><title>proposal:Observation</title><g id="a_node39"><a xlink:href="../proposal/Observation" xlink:title="{Observation}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1337.5,-513 1337.5,-549 1402.5,-549 1402.5,-513 1337.5,-513"/>
+<text text-anchor="middle" x="1370" y="-529.1" font-family="Times,serif" font-size="8.00">Observation</text>
+</a></g></g><g id="edge22" class="edge"><title>proposal:ObservingProposal-&gt;proposal:Observation</title><path fill="none" stroke="blue" d="M871.78,-665.63C996.22,-657.07 1228.17,-636.69 1302,-600 1321.93,-590.09 1339.54,-572.06 1351.85,-557.06"/><polygon fill="blue" stroke="blue" points="871.68,-665.63 865.97,-670.03 859.71,-666.44 865.43,-662.05 871.68,-665.63"/><polygon fill="blue" stroke="blue" points="1358.12,-549.1 1355.46,-559.74 1355.02,-553.03 1351.93,-556.96 1351.93,-556.96 1351.93,-556.96 1355.02,-553.03 1348.39,-554.17 1358.12,-549.1 1358.12,-549.1"/><text text-anchor="middle" x="1350" y="-592" font-family="Times,serif" font-size="10.00">observations</text><text text-anchor="middle" x="1349.12" y="-552.1" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="node42" class="node"><title>proposal:TechnicalGoal</title><g id="a_node42"><a xlink:href="../proposal/TechnicalGoal" xlink:title="{TechnicalGoal}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1083,-399.5 1083,-435.5 1155,-435.5 1155,-399.5 1083,-399.5"/>
+<text text-anchor="middle" x="1119" y="-415.6" font-family="Times,serif" font-size="8.00">TechnicalGoal</text>
+</a></g></g><g id="edge21" class="edge"><title>proposal:ObservingProposal-&gt;proposal:TechnicalGoal</title><path fill="none" stroke="blue" d="M832.11,-632.39C850.24,-614.59 871.2,-592.6 888,-571 913.6,-538.09 905.11,-517.87 937,-491 976.6,-457.63 1033.47,-438.31 1073.06,-428.13"/><polygon fill="blue" stroke="blue" points="832.08,-632.42 830.56,-639.47 823.47,-640.77 824.99,-633.72 832.08,-632.42"/><polygon fill="blue" stroke="blue" points="1082.99,-425.68 1074.36,-432.45 1078.13,-426.88 1073.28,-428.08 1073.28,-428.08 1073.28,-428.08 1078.13,-426.88 1072.2,-423.71 1082.99,-425.68 1082.99,-425.68"/><text text-anchor="middle" x="974.5" y="-528.5" font-family="Times,serif" font-size="10.00">technicalGoals</text><text text-anchor="middle" x="1073.99" y="-428.68" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="edge35" class="edge"><title>proposal:RelatedProposal-&gt;proposal:ObservingProposal</title><path fill="none" stroke="green" d="M142.6,-549.07C151.44,-557.09 162.96,-565.97 175,-571 237.37,-597.04 259.81,-575.32 326,-589 342.8,-592.47 346.09,-597.09 363,-600 439.76,-613.19 639.12,-593.36 713,-618 724.97,-621.99 736.83,-628.36 747.55,-635.31"/><polygon fill="green" stroke="green" points="755.88,-640.97 745.08,-639.08 751.75,-638.16 747.61,-635.35 747.61,-635.35 747.61,-635.35 751.75,-638.16 750.14,-631.63 755.88,-640.97 755.88,-640.97"/><text text-anchor="middle" x="385.5" y="-592" font-family="Times,serif" font-size="10.00">proposal</text><text text-anchor="middle" x="752.38" y="-632.97" font-family="Times,serif" font-size="10.00">1</text></g><g id="node9" class="node"><title>proposal:Person</title><g id="a_node9"><a xlink:href="../proposal/Person" xlink:title="{Person|+fullName : ivoa:string\l+eMail : ivoa:string\l+orcidId : ivoa:stringIdentifier\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="410,-391.5 410,-443.5 548,-443.5 548,-391.5 410,-391.5"/>
+<text text-anchor="middle" x="479" y="-433.1" font-family="Times,serif" font-size="8.00">Person</text>
+<polyline fill="none" stroke="black" points="410,-426.5 548,-426.5 "/>
+<text text-anchor="start" x="418" y="-416.1" font-family="Times,serif" font-size="8.00">+fullName : ivoa:string</text>
+<text text-anchor="start" x="418" y="-407.1" font-family="Times,serif" font-size="8.00">+eMail : ivoa:string</text>
+<text text-anchor="start" x="418" y="-398.1" font-family="Times,serif" font-size="8.00">+orcidId : ivoa:stringIdentifier</text>
+</a></g></g><g id="node11" class="node"><title>proposal:Organization</title><g id="a_node11"><a xlink:href="../proposal/Organization" xlink:title="{Organization|+name : ivoa:string\l+address : ivoa:string\l+ivoid : ivoa:ivorn\l+wikiId : proposal:WikiDataId\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1267,-278 1267,-339 1403,-339 1403,-278 1267,-278"/>
+<text text-anchor="middle" x="1335" y="-328.6" font-family="Times,serif" font-size="8.00">Organization</text>
+<polyline fill="none" stroke="black" points="1267,-322 1403,-322 "/>
+<text text-anchor="start" x="1275" y="-311.6" font-family="Times,serif" font-size="8.00">+name : ivoa:string</text>
+<text text-anchor="start" x="1275" y="-302.6" font-family="Times,serif" font-size="8.00">+address : ivoa:string</text>
+<text text-anchor="start" x="1275" y="-293.6" font-family="Times,serif" font-size="8.00">+ivoid : ivoa:ivorn</text>
+<text text-anchor="start" x="1275" y="-284.6" font-family="Times,serif" font-size="8.00">+wikiId : proposal:WikiDataId</text>
+</a></g></g><g id="edge36" class="edge"><title>proposal:Person-&gt;proposal:Organization</title><path fill="none" stroke="green" d="M548.18,-407.86C595.84,-402.22 660.67,-395.15 718,-391 822.47,-383.44 1086.88,-396.29 1189,-373 1216.84,-366.65 1245.98,-355.09 1270.85,-343.55"/><polygon fill="green" stroke="green" points="1280.16,-339.14 1273.05,-347.49 1275.64,-341.28 1271.12,-343.42 1271.12,-343.42 1271.12,-343.42 1275.64,-341.28 1269.19,-339.35 1280.16,-339.14 1280.16,-339.14"/><text text-anchor="middle" x="1258" y="-365" font-family="Times,serif" font-size="10.00">homeInstitute</text><text text-anchor="middle" x="1276.66" y="-342.14" font-family="Times,serif" font-size="10.00">1</text></g><g id="edge37" class="edge"><title>proposal:Investigator-&gt;proposal:Person</title><path fill="none" stroke="green" d="M300.42,-509.42C334.18,-492.23 382.73,-467.51 420.69,-448.19"/><polygon fill="green" stroke="green" points="429.61,-443.65 422.74,-452.2 425.15,-445.92 420.69,-448.19 420.69,-448.19 420.69,-448.19 425.15,-445.92 418.65,-444.18 429.61,-443.65 429.61,-443.65"/><text text-anchor="middle" x="408" y="-465" font-family="Times,serif" font-size="10.00">person</text><text text-anchor="middle" x="426.11" y="-446.65" font-family="Times,serif" font-size="10.00">1</text></g><g id="node12" class="node"><title>proposal:Observatory</title><g id="a_node12"><a xlink:href="../proposal/Observatory" xlink:title="{Observatory}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1842.5,-399.5 1842.5,-435.5 1907.5,-435.5 1907.5,-399.5 1842.5,-399.5"/>
+<text text-anchor="middle" x="1875" y="-415.6" font-family="Times,serif" font-size="8.00">Observatory</text>
+</a></g></g><g id="edge1" class="edge"><title>proposal:Observatory-&gt;proposal:Organization</title><path fill="none" stroke="red" d="M1851.56,-399.44C1845.76,-396.04 1839.37,-392.92 1833,-391 1784.98,-376.53 1426.33,-396.46 1382,-373 1371.01,-367.19 1361.92,-357.53 1354.75,-347.48"/><polygon fill="none" stroke="red" points="1357.6,-345.45 1349.18,-339.02 1351.75,-349.3 1357.6,-345.45"/></g><g id="node13" class="node"><title>proposal:Telescope</title><g id="a_node13"><a xlink:href="../proposal/Telescope" xlink:title="{Telescope|+name : ivoa:string\l+wikiId : proposal:WikiDataId\l+location : coords:GeocentricPoint\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1967.5,-55.5 1967.5,-107.5 2122.5,-107.5 2122.5,-55.5 1967.5,-55.5"/>
+<text text-anchor="middle" x="2045" y="-97.1" font-family="Times,serif" font-size="8.00">Telescope</text>
+<polyline fill="none" stroke="black" points="1967.5,-90.5 2122.5,-90.5 "/>
+<text text-anchor="start" x="1975.5" y="-80.1" font-family="Times,serif" font-size="8.00">+name : ivoa:string</text>
+<text text-anchor="start" x="1975.5" y="-71.1" font-family="Times,serif" font-size="8.00">+wikiId : proposal:WikiDataId</text>
+<text text-anchor="start" x="1975.5" y="-62.1" font-family="Times,serif" font-size="8.00">+location : coords:GeocentricPoint</text>
+</a></g></g><g id="edge23" class="edge"><title>proposal:Observatory-&gt;proposal:Telescope</title><path fill="none" stroke="blue" d="M1840.34,-392.01C1819.01,-376.09 1794.7,-356.13 1789,-344 1753.26,-267.98 1737.3,-221.98 1788,-155 1808.69,-127.66 1891.26,-107.71 1957.3,-95.74"/><polygon fill="blue" stroke="blue" points="1840.49,-392.11 1847.69,-392.44 1850.16,-399.21 1842.96,-398.89 1840.49,-392.11"/><polygon fill="blue" stroke="blue" points="1967.33,-93.96 1958.27,-100.14 1962.41,-94.83 1957.49,-95.71 1957.49,-95.71 1957.49,-95.71 1962.41,-94.83 1956.7,-91.28 1967.33,-93.96 1967.33,-93.96"/><text text-anchor="middle" x="1783" y="-247" font-family="Times,serif" font-size="10.00">telescopes</text><text text-anchor="middle" x="1958.33" y="-96.96" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="node15" class="node"><title>proposal:TelescopeArray</title><g id="a_node15"><a xlink:href="../proposal/TelescopeArray" xlink:title="{TelescopeArray|+name : ivoa:string\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1797.5,-290.5 1797.5,-326.5 1892.5,-326.5 1892.5,-290.5 1797.5,-290.5"/>
+<text text-anchor="middle" x="1845" y="-315.6" font-family="Times,serif" font-size="8.00">TelescopeArray</text>
+<polyline fill="none" stroke="black" points="1797.5,-308.5 1892.5,-308.5 "/>
+<text text-anchor="start" x="1805.5" y="-297.6" font-family="Times,serif" font-size="8.00">+name : ivoa:string</text>
+</a></g></g><g id="edge26" class="edge"><title>proposal:Observatory-&gt;proposal:TelescopeArray</title><path fill="none" stroke="blue" d="M1855.01,-388.87C1852.19,-383.8 1849.68,-378.4 1848,-373 1844.43,-361.5 1843.35,-348.26 1843.3,-336.86"/><polygon fill="blue" stroke="blue" points="1855.17,-389.11 1861.73,-392.1 1861.5,-399.3 1854.94,-396.32 1855.17,-389.11"/><polygon fill="blue" stroke="blue" points="1843.51,-326.61 1847.8,-336.7 1843.41,-331.61 1843.3,-336.61 1843.3,-336.61 1843.3,-336.61 1843.41,-331.61 1838.81,-336.52 1843.51,-326.61 1843.51,-326.61"/><text text-anchor="middle" x="1864.5" y="-365" font-family="Times,serif" font-size="10.00">arrays</text><text text-anchor="middle" x="1834.51" y="-329.61" font-family="Times,serif" font-size="10.00">0..*</text></g><g id="node16" class="node"><title>proposal:Instrument</title><g id="a_node16"><a xlink:href="../proposal/Instrument" xlink:title="{Instrument|+name : ivoa:string\l+description : ivoa:string\l+wikiId : proposal:WikiDataId\l+reference : ivoa:anyURI\l+kind : proposal:InstrumentKind\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1911,-273.5 1911,-343.5 2059,-343.5 2059,-273.5 1911,-273.5"/>
+<text text-anchor="middle" x="1985" y="-333.1" font-family="Times,serif" font-size="8.00">Instrument</text>
+<polyline fill="none" stroke="black" points="1911,-326.5 2059,-326.5 "/>
+<text text-anchor="start" x="1919" y="-316.1" font-family="Times,serif" font-size="8.00">+name : ivoa:string</text>
+<text text-anchor="start" x="1919" y="-307.1" font-family="Times,serif" font-size="8.00">+description : ivoa:string</text>
+<text text-anchor="start" x="1919" y="-298.1" font-family="Times,serif" font-size="8.00">+wikiId : proposal:WikiDataId</text>
+<text text-anchor="start" x="1919" y="-289.1" font-family="Times,serif" font-size="8.00">+reference : ivoa:anyURI</text>
+<text text-anchor="start" x="1919" y="-280.1" font-family="Times,serif" font-size="8.00">+kind : proposal:InstrumentKind</text>
+</a></g></g><g id="edge24" class="edge"><title>proposal:Observatory-&gt;proposal:Instrument</title><path fill="none" stroke="blue" d="M1891.57,-389.01C1897.71,-379.91 1905.11,-370.06 1913,-362 1917.02,-357.89 1921.39,-353.87 1925.93,-350"/><polygon fill="blue" stroke="blue" points="1891.5,-389.11 1891.6,-396.32 1884.99,-399.19 1884.88,-391.98 1891.5,-389.11"/><polygon fill="blue" stroke="blue" points="1933.68,-343.63 1928.81,-353.46 1929.81,-346.8 1925.95,-349.98 1925.95,-349.98 1925.95,-349.98 1929.81,-346.8 1923.09,-346.5 1933.68,-343.63 1933.68,-343.63"/><text text-anchor="middle" x="1944" y="-365" font-family="Times,serif" font-size="10.00">instruments</text><text text-anchor="middle" x="1924.68" y="-346.63" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="node17" class="node"><title>proposal:Backend</title><g id="a_node17"><a xlink:href="../proposal/Backend" xlink:title="{Backend|+name : ivoa:string\l+parallel : ivoa:boolean\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="2077,-287 2077,-330 2187,-330 2187,-287 2077,-287"/>
+<text text-anchor="middle" x="2132" y="-319.6" font-family="Times,serif" font-size="8.00">Backend</text>
+<polyline fill="none" stroke="black" points="2077,-313 2187,-313 "/>
+<text text-anchor="start" x="2085" y="-302.6" font-family="Times,serif" font-size="8.00">+name : ivoa:string</text>
+<text text-anchor="start" x="2085" y="-293.6" font-family="Times,serif" font-size="8.00">+parallel : ivoa:boolean</text>
+</a></g></g><g id="edge25" class="edge"><title>proposal:Observatory-&gt;proposal:Backend</title><path fill="none" stroke="blue" d="M1919.67,-412.04C1958.28,-406.8 2014.69,-395.73 2059,-373 2076.49,-364.03 2093.25,-349.99 2106.28,-337.39"/><polygon fill="blue" stroke="blue" points="1919.45,-412.07 1914,-416.79 1907.55,-413.58 1913,-408.86 1919.45,-412.07"/><polygon fill="blue" stroke="blue" points="2113.51,-330.19 2109.6,-340.43 2109.97,-333.72 2106.42,-337.25 2106.42,-337.25 2106.42,-337.25 2109.97,-333.72 2103.25,-334.06 2113.51,-330.19 2113.51,-330.19"/><text text-anchor="middle" x="2098.5" y="-365" font-family="Times,serif" font-size="10.00">backends</text><text text-anchor="middle" x="2104.51" y="-333.19" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="node14" class="node"><title>proposal:TelescopeArrayMember</title><g id="a_node14"><a xlink:href="../proposal/TelescopeArrayMember" xlink:title="{TelescopeArrayMember}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1989.5,-172.5 1989.5,-208.5 2100.5,-208.5 2100.5,-172.5 1989.5,-172.5"/>
+<text text-anchor="middle" x="2045" y="-188.6" font-family="Times,serif" font-size="8.00">TelescopeArrayMember</text>
+</a></g></g><g id="edge38" class="edge"><title>proposal:TelescopeArrayMember-&gt;proposal:Telescope</title><path fill="none" stroke="green" d="M2045,-172.31C2045,-157.62 2045,-136.03 2045,-117.69"/><polygon fill="green" stroke="green" points="2045,-107.63 2049.5,-117.63 2045,-112.63 2045,-117.63 2045,-117.63 2045,-117.63 2045,-112.63 2040.5,-117.63 2045,-107.63 2045,-107.63"/><text text-anchor="middle" x="2069.5" y="-129" font-family="Times,serif" font-size="10.00">telescope</text><text text-anchor="middle" x="2041.5" y="-110.63" font-family="Times,serif" font-size="10.00">1</text></g><g id="edge27" class="edge"><title>proposal:TelescopeArray-&gt;proposal:TelescopeArrayMember</title><path fill="none" stroke="blue" d="M1878.93,-284.08C1886.28,-279.84 1894.19,-275.87 1902,-273 1949.33,-255.63 1973.5,-285.03 2014,-255 2026.01,-246.09 2033.62,-231.27 2038.28,-218.18"/><polygon fill="blue" stroke="blue" points="1878.88,-284.11 1875.85,-290.66 1868.64,-290.38 1871.67,-283.83 1878.88,-284.11"/><polygon fill="blue" stroke="blue" points="2041.31,-208.64 2042.58,-219.53 2039.8,-213.4 2038.29,-218.17 2038.29,-218.17 2038.29,-218.17 2039.8,-213.4 2034,-216.81 2041.31,-208.64 2041.31,-208.64"/><text text-anchor="middle" x="2062" y="-247" font-family="Times,serif" font-size="10.00">arrayMembers</text><text text-anchor="middle" x="2032.31" y="-211.64" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="node36" class="node"><title>proposal:SpectralWindowSetup</title><g id="a_node36"><a xlink:href="../proposal/SpectralWindowSetup" xlink:title="{SpectralWindowSetup|+start : ivoa:RealQuantity\l+end : ivoa:RealQuantity\l+spectralResolution : ivoa:RealQuantity\l+isSkyFrequency : ivoa:boolean\l+polarization : coords:PolStateEnum\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1797,-155.5 1797,-225.5 1971,-225.5 1971,-155.5 1797,-155.5"/>
+<text text-anchor="middle" x="1884" y="-215.1" font-family="Times,serif" font-size="8.00">SpectralWindowSetup</text>
+<polyline fill="none" stroke="black" points="1797,-208.5 1971,-208.5 "/>
+<text text-anchor="start" x="1805" y="-198.1" font-family="Times,serif" font-size="8.00">+start : ivoa:RealQuantity</text>
+<text text-anchor="start" x="1805" y="-189.1" font-family="Times,serif" font-size="8.00">+end : ivoa:RealQuantity</text>
+<text text-anchor="start" x="1805" y="-180.1" font-family="Times,serif" font-size="8.00">+spectralResolution : ivoa:RealQuantity</text>
+<text text-anchor="start" x="1805" y="-171.1" font-family="Times,serif" font-size="8.00">+isSkyFrequency : ivoa:boolean</text>
+<text text-anchor="start" x="1805" y="-162.1" font-family="Times,serif" font-size="8.00">+polarization : coords:PolStateEnum</text>
+</a></g></g><g id="edge28" class="edge"><title>proposal:Instrument-&gt;proposal:SpectralWindowSetup</title><path fill="none" stroke="blue" d="M1922.33,-265.14C1919,-261.89 1915.86,-258.5 1913,-255 1908.04,-248.93 1903.74,-241.87 1900.07,-234.71"/><polygon fill="blue" stroke="blue" points="1922.59,-265.37 1929.72,-266.43 1931.49,-273.42 1924.36,-272.36 1922.59,-265.37"/><polygon fill="blue" stroke="blue" points="1895.78,-225.66 1904.13,-232.76 1897.92,-230.17 1900.07,-234.69 1900.07,-234.69 1900.07,-234.69 1897.92,-230.17 1896,-236.62 1895.78,-225.66 1895.78,-225.66"/><text text-anchor="middle" x="1963.5" y="-247" font-family="Times,serif" font-size="10.00">frequencyCoverage</text><text text-anchor="middle" x="1892.28" y="-228.66" font-family="Times,serif" font-size="10.00">1</text></g><g id="node18" class="node"><title>proposal:ObservingConfiguration</title><g id="a_node18"><a xlink:href="../proposal/ObservingConfiguration" xlink:title="{ObservingConfiguration}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="2099.5,-399.5 2099.5,-435.5 2212.5,-435.5 2212.5,-399.5 2099.5,-399.5"/>
+<text text-anchor="middle" x="2156" y="-415.6" font-family="Times,serif" font-size="8.00">ObservingConfiguration</text>
+</a></g></g><g id="edge39" class="edge"><title>proposal:ObservingConfiguration-&gt;proposal:Telescope</title><path fill="none" stroke="green" d="M2175.65,-399.31C2182.71,-391.96 2189.93,-382.82 2194,-373 2201.37,-355.25 2202.18,-293.4 2196,-273 2173.25,-197.85 2150.7,-184.21 2098,-126 2094.35,-121.97 2090.33,-118 2086.16,-114.19"/><polygon fill="green" stroke="green" points="2078.59,-107.53 2089.07,-110.75 2082.34,-110.83 2086.1,-114.13 2086.1,-114.13 2086.1,-114.13 2082.34,-110.83 2083.13,-117.51 2078.59,-107.53 2078.59,-107.53"/><text text-anchor="middle" x="2213.5" y="-247" font-family="Times,serif" font-size="10.00">telescope</text><text text-anchor="middle" x="2075.09" y="-110.53" font-family="Times,serif" font-size="10.00">1</text></g><g id="edge40" class="edge"><title>proposal:ObservingConfiguration-&gt;proposal:Instrument</title><path fill="none" stroke="green" d="M2099.24,-413.95C2066.68,-409.53 2027.36,-398.71 2002,-373 1996.71,-367.64 1993.02,-360.82 1990.45,-353.65"/><polygon fill="green" stroke="green" points="1987.6,-343.77 1994.7,-352.13 1988.99,-348.57 1990.37,-353.38 1990.37,-353.38 1990.37,-353.38 1988.99,-348.57 1986.05,-354.62 1987.6,-343.77 1987.6,-343.77"/><text text-anchor="middle" x="2030.5" y="-365" font-family="Times,serif" font-size="10.00">instrument</text><text text-anchor="middle" x="1984.1" y="-346.77" font-family="Times,serif" font-size="10.00">1</text></g><g id="edge41" class="edge"><title>proposal:ObservingConfiguration-&gt;proposal:Backend</title><path fill="none" stroke="green" d="M2152.14,-399.31C2148.57,-383.38 2143.18,-359.34 2138.87,-340.13"/><polygon fill="green" stroke="green" points="2136.67,-330.32 2143.25,-339.09 2137.76,-335.2 2138.86,-340.08 2138.86,-340.08 2138.86,-340.08 2137.76,-335.2 2134.47,-341.06 2136.67,-330.32 2136.67,-330.32"/><text text-anchor="middle" x="2168" y="-365" font-family="Times,serif" font-size="10.00">backend</text><text text-anchor="middle" x="2133.17" y="-333.32" font-family="Times,serif" font-size="10.00">1</text></g><g id="node19" class="node"><title>proposal:ObservingMode</title><g id="a_node19"><a xlink:href="../proposal/ObservingMode" xlink:title="{ObservingMode|+name : ivoa:string\l+description : ivoa:string\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="2098.5,-509.5 2098.5,-552.5 2215.5,-552.5 2215.5,-509.5 2098.5,-509.5"/>
+<text text-anchor="middle" x="2157" y="-542.1" font-family="Times,serif" font-size="8.00">ObservingMode</text>
+<polyline fill="none" stroke="black" points="2098.5,-535.5 2215.5,-535.5 "/>
+<text text-anchor="start" x="2106.5" y="-525.1" font-family="Times,serif" font-size="8.00">+name : ivoa:string</text>
+<text text-anchor="start" x="2106.5" y="-516.1" font-family="Times,serif" font-size="8.00">+description : ivoa:string</text>
+</a></g></g><g id="edge29" class="edge"><title>proposal:ObservingMode-&gt;proposal:ObservingConfiguration</title><path fill="none" stroke="blue" d="M2156.71,-497.21C2156.56,-480.87 2156.38,-461.34 2156.25,-445.82"/><polygon fill="blue" stroke="blue" points="2156.71,-497.29 2160.76,-503.25 2156.81,-509.29 2152.76,-503.33 2156.71,-497.29"/><polygon fill="blue" stroke="blue" points="2156.16,-435.81 2160.74,-445.77 2156.2,-440.81 2156.25,-445.81 2156.25,-445.81 2156.25,-445.81 2156.2,-440.81 2151.75,-445.85 2156.16,-435.81 2156.16,-435.81"/><text text-anchor="middle" x="2193" y="-465" font-family="Times,serif" font-size="10.00">configurations</text><text text-anchor="middle" x="2147.16" y="-438.81" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="node23" class="node"><title>proposal:CelestialTarget</title><g id="a_node23"><a xlink:href="../proposal/CelestialTarget" xlink:title="{CelestialTarget|+sourceCoordinates : coords:EquatorialPoint\l+positionEpoch : coords:Epoch\l+pmRA : ivoa:RealQuantity\l+pmDec : ivoa:RealQuantity\l+parallax : ivoa:RealQuantity\l+sourceVelocity : ivoa:RealQuantity\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="623.5,-491.5 623.5,-570.5 818.5,-570.5 818.5,-491.5 623.5,-491.5"/>
+<text text-anchor="middle" x="721" y="-560.1" font-family="Times,serif" font-size="8.00">CelestialTarget</text>
+<polyline fill="none" stroke="black" points="623.5,-553.5 818.5,-553.5 "/>
+<text text-anchor="start" x="631.5" y="-543.1" font-family="Times,serif" font-size="8.00">+sourceCoordinates : coords:EquatorialPoint</text>
+<text text-anchor="start" x="631.5" y="-534.1" font-family="Times,serif" font-size="8.00">+positionEpoch : coords:Epoch</text>
+<text text-anchor="start" x="631.5" y="-525.1" font-family="Times,serif" font-size="8.00">+pmRA : ivoa:RealQuantity</text>
+<text text-anchor="start" x="631.5" y="-516.1" font-family="Times,serif" font-size="8.00">+pmDec : ivoa:RealQuantity</text>
+<text text-anchor="start" x="631.5" y="-507.1" font-family="Times,serif" font-size="8.00">+parallax : ivoa:RealQuantity</text>
+<text text-anchor="start" x="631.5" y="-498.1" font-family="Times,serif" font-size="8.00">+sourceVelocity : ivoa:RealQuantity</text>
+</a></g></g><g id="edge2" class="edge"><title>proposal:CelestialTarget-&gt;proposal:Target</title><path fill="none" stroke="red" d="M744.25,-491.32C753.61,-475.73 764.15,-458.18 772.55,-444.22"/><polygon fill="none" stroke="red" points="775.57,-445.99 777.72,-435.61 769.57,-442.38 775.57,-445.99"/></g><g id="node24" class="node"><title>proposal:SolarSystemTarget</title><g id="a_node24"><a xlink:href="../proposal/SolarSystemTarget" xlink:title="{SolarSystemTarget}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="514.5,-513 514.5,-549 605.5,-549 605.5,-513 514.5,-513"/>
+<text text-anchor="middle" x="560" y="-529.1" font-family="Times,serif" font-size="8.00">SolarSystemTarget</text>
+</a></g></g><g id="edge3" class="edge"><title>proposal:SolarSystemTarget-&gt;proposal:Target</title><path fill="none" stroke="red" d="M581.31,-512.87C590.95,-505.58 602.7,-497.32 614,-491 650.81,-470.4 694.66,-452.17 729.13,-439.14"/><polygon fill="none" stroke="red" points="730.44,-442.38 738.59,-435.61 727.99,-435.83 730.44,-442.38"/></g><g id="node26" class="node"><title>proposal:TargetField</title><g id="a_node26"><a xlink:href="../proposal/TargetField" xlink:title="{TargetField}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1747,-513 1747,-549 1809,-549 1809,-513 1747,-513"/>
+<text text-anchor="middle" x="1778" y="-529.1" font-family="Times,serif" font-size="8.00">TargetField</text>
+</a></g></g><g id="edge4" class="edge"><title>proposal:TargetField-&gt;proposal:Field</title><path fill="none" stroke="red" d="M1763.93,-512.82C1756.86,-505.17 1747.74,-496.64 1738,-491 1659.52,-445.55 1554.05,-428.56 1489.66,-422.23"/><polygon fill="none" stroke="red" points="1489.97,-418.74 1479.69,-421.3 1489.32,-425.71 1489.97,-418.74"/></g><g id="node27" class="node"><title>proposal:Point</title><g id="a_node27"><a xlink:href="../proposal/Point" xlink:title="{Point|+centre : coords:Point\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1149,-513 1149,-549 1255,-549 1255,-513 1149,-513"/>
+<text text-anchor="middle" x="1202" y="-538.1" font-family="Times,serif" font-size="8.00">Point</text>
+<polyline fill="none" stroke="black" points="1149,-531 1255,-531 "/>
+<text text-anchor="start" x="1157" y="-520.1" font-family="Times,serif" font-size="8.00">+centre : coords:Point</text>
+</a></g></g><g id="edge5" class="edge"><title>proposal:Point-&gt;proposal:Field</title><path fill="none" stroke="red" d="M1216.68,-512.75C1230.69,-497.33 1253.16,-475.18 1277,-462 1307.11,-445.35 1344.09,-434.66 1374.39,-428.04"/><polygon fill="none" stroke="red" points="1375.31,-431.42 1384.38,-425.95 1373.88,-424.57 1375.31,-431.42"/></g><g id="node28" class="node"><title>proposal:Polygon</title><g id="a_node28"><a xlink:href="../proposal/Polygon" xlink:title="{Polygon|+points : coords:EquatorialPoint\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1421,-513 1421,-549 1567,-549 1567,-513 1421,-513"/>
+<text text-anchor="middle" x="1494" y="-538.1" font-family="Times,serif" font-size="8.00">Polygon</text>
+<polyline fill="none" stroke="black" points="1421,-531 1567,-531 "/>
+<text text-anchor="start" x="1429" y="-520.1" font-family="Times,serif" font-size="8.00">+points : coords:EquatorialPoint</text>
+</a></g></g><g id="edge6" class="edge"><title>proposal:Polygon-&gt;proposal:Field</title><path fill="none" stroke="red" d="M1484.31,-512.58C1474.21,-494.41 1458.26,-465.73 1446.63,-444.8"/><polygon fill="none" stroke="red" points="1449.54,-442.84 1441.62,-435.8 1443.42,-446.24 1449.54,-442.84"/></g><g id="node29" class="node"><title>proposal:Ellipse</title><g id="a_node29"><a xlink:href="../proposal/Ellipse" xlink:title="{Ellipse|+semiMajor : ivoa:RealQuantity\l+semiMinor : ivoa:RealQuantity\l+pAMajor : ivoa:RealQuantity\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1585.5,-505 1585.5,-557 1728.5,-557 1728.5,-505 1585.5,-505"/>
+<text text-anchor="middle" x="1657" y="-546.6" font-family="Times,serif" font-size="8.00">Ellipse</text>
+<polyline fill="none" stroke="black" points="1585.5,-540 1728.5,-540 "/>
+<text text-anchor="start" x="1593.5" y="-529.6" font-family="Times,serif" font-size="8.00">+semiMajor : ivoa:RealQuantity</text>
+<text text-anchor="start" x="1593.5" y="-520.6" font-family="Times,serif" font-size="8.00">+semiMinor : ivoa:RealQuantity</text>
+<text text-anchor="start" x="1593.5" y="-511.6" font-family="Times,serif" font-size="8.00">+pAMajor : ivoa:RealQuantity</text>
+</a></g></g><g id="edge7" class="edge"><title>proposal:Ellipse-&gt;proposal:Field</title><path fill="none" stroke="red" d="M1648.03,-504.81C1641.58,-490.2 1631.44,-472.64 1617,-462 1580.18,-434.87 1529,-424.37 1489.8,-420.44"/><polygon fill="none" stroke="red" points="1489.86,-416.93 1479.59,-419.54 1489.25,-423.9 1489.86,-416.93"/></g><g id="node30" class="node"><title>proposal:Constraint</title><g id="a_node30"><a xlink:href="../proposal/Constraint" xlink:title="{Constraint}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1766,-399.5 1766,-435.5 1824,-435.5 1824,-399.5 1766,-399.5"/>
+<text text-anchor="middle" x="1795" y="-415.6" font-family="Times,serif" font-size="8.00">Constraint</text>
+</a></g></g><g id="node31" class="node"><title>proposal:TimingConstraint</title><g id="a_node31"><a xlink:href="../proposal/TimingConstraint" xlink:title="{TimingConstraint|+note : ivoa:string\l+isAvoidConstraint : ivoa:boolean\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1826.5,-509.5 1826.5,-552.5 1975.5,-552.5 1975.5,-509.5 1826.5,-509.5"/>
+<text text-anchor="middle" x="1901" y="-542.1" font-family="Times,serif" font-size="8.00">TimingConstraint</text>
+<polyline fill="none" stroke="black" points="1826.5,-535.5 1975.5,-535.5 "/>
+<text text-anchor="start" x="1834.5" y="-525.1" font-family="Times,serif" font-size="8.00">+note : ivoa:string</text>
+<text text-anchor="start" x="1834.5" y="-516.1" font-family="Times,serif" font-size="8.00">+isAvoidConstraint : ivoa:boolean</text>
+</a></g></g><g id="edge8" class="edge"><title>proposal:TimingConstraint-&gt;proposal:Constraint</title><path fill="none" stroke="red" d="M1881.31,-509.29C1863.55,-490.61 1837.4,-463.1 1818.54,-443.26"/><polygon fill="none" stroke="red" points="1820.88,-440.64 1811.45,-435.81 1815.81,-445.47 1820.88,-440.64"/></g><g id="node32" class="node"><title>proposal:TimingWindow</title><g id="a_node32"><a xlink:href="../proposal/TimingWindow" xlink:title="{TimingWindow|+startTime : ivoa:datetime\l+endTime : ivoa:datetime\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1773,-650 1773,-693 1895,-693 1895,-650 1773,-650"/>
+<text text-anchor="middle" x="1834" y="-682.6" font-family="Times,serif" font-size="8.00">TimingWindow</text>
+<polyline fill="none" stroke="black" points="1773,-676 1895,-676 "/>
+<text text-anchor="start" x="1781" y="-665.6" font-family="Times,serif" font-size="8.00">+startTime : ivoa:datetime</text>
+<text text-anchor="start" x="1781" y="-656.6" font-family="Times,serif" font-size="8.00">+endTime : ivoa:datetime</text>
+</a></g></g><g id="edge9" class="edge"><title>proposal:TimingWindow-&gt;proposal:TimingConstraint</title><path fill="none" stroke="red" d="M1844.03,-649.77C1855.28,-626.51 1873.62,-588.59 1886.45,-562.08"/><polygon fill="none" stroke="red" points="1889.7,-563.4 1890.9,-552.88 1883.4,-560.35 1889.7,-563.4"/></g><g id="node33" class="node"><title>proposal:SimultaneityConstraint</title><g id="a_node33"><a xlink:href="../proposal/SimultaneityConstraint" xlink:title="{SimultaneityConstraint}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1913.5,-653.5 1913.5,-689.5 2020.5,-689.5 2020.5,-653.5 1913.5,-653.5"/>
+<text text-anchor="middle" x="1967" y="-669.6" font-family="Times,serif" font-size="8.00">SimultaneityConstraint</text>
+</a></g></g><g id="edge10" class="edge"><title>proposal:SimultaneityConstraint-&gt;proposal:TimingConstraint</title><path fill="none" stroke="red" d="M1958.77,-653.24C1947.89,-630.41 1928.55,-589.8 1915.26,-561.92"/><polygon fill="none" stroke="red" points="1918.3,-560.16 1910.84,-552.64 1911.98,-563.17 1918.3,-560.16"/></g><g id="node34" class="node"><title>proposal:PointingConstaint</title><g id="a_node34"><a xlink:href="../proposal/PointingConstaint" xlink:title="{PointingConstaint}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1993.5,-513 1993.5,-549 2080.5,-549 2080.5,-513 1993.5,-513"/>
+<text text-anchor="middle" x="2037" y="-529.1" font-family="Times,serif" font-size="8.00">PointingConstaint</text>
+</a></g></g><g id="edge11" class="edge"><title>proposal:PointingConstaint-&gt;proposal:Constraint</title><path fill="none" stroke="red" d="M2017.32,-512.72C2008.02,-505.23 1996.45,-496.86 1985,-491 1922.42,-459 1897.58,-473.96 1834,-444 1831.98,-443.05 1829.94,-442 1827.91,-440.9"/><polygon fill="none" stroke="red" points="1829.55,-437.8 1819.16,-435.76 1826.01,-443.84 1829.55,-437.8"/></g><g id="node35" class="node"><title>proposal:ScienceSpectralWindow</title><g id="a_node35"><a xlink:href="../proposal/ScienceSpectralWindow" xlink:title="{ScienceSpectralWindow|+index : ivoa:integer\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1433.5,-290.5 1433.5,-326.5 1546.5,-326.5 1546.5,-290.5 1433.5,-290.5"/>
+<text text-anchor="middle" x="1490" y="-315.6" font-family="Times,serif" font-size="8.00">ScienceSpectralWindow</text>
+<polyline fill="none" stroke="black" points="1433.5,-308.5 1546.5,-308.5 "/>
+<text text-anchor="start" x="1441.5" y="-297.6" font-family="Times,serif" font-size="8.00">+index : ivoa:integer</text>
+</a></g></g><g id="edge30" class="edge"><title>proposal:ScienceSpectralWindow-&gt;proposal:SpectralWindowSetup</title><path fill="none" stroke="blue" d="M1538.01,-285.21C1572.51,-269.43 1616.13,-250.05 1635,-244 1684.09,-228.26 1740.16,-215.96 1786.65,-207.24"/><polygon fill="blue" stroke="blue" points="1537.62,-285.39 1533.83,-291.53 1526.71,-290.39 1530.5,-284.26 1537.62,-285.39"/><polygon fill="blue" stroke="blue" points="1796.72,-205.37 1787.71,-211.62 1791.81,-206.28 1786.89,-207.19 1786.89,-207.19 1786.89,-207.19 1791.81,-206.28 1786.07,-202.77 1796.72,-205.37 1796.72,-205.37"/><text text-anchor="middle" x="1691" y="-247" font-family="Times,serif" font-size="10.00">spectralWindowSetup</text><text text-anchor="middle" x="1787.22" y="-208.37" font-family="Times,serif" font-size="10.00">0..1</text></g><g id="node37" class="node"><title>proposal:ExpectedSpectralLine</title><g id="a_node37"><a xlink:href="../proposal/ExpectedSpectralLine" xlink:title="{ExpectedSpectralLine|+restFrequency : ivoa:RealQuantity\l+transition : ivoa:string\l+splatalogId : ivoa:stringIdentifier\l+description : ivoa:string\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1410.5,-160 1410.5,-221 1569.5,-221 1569.5,-160 1410.5,-160"/>
+<text text-anchor="middle" x="1490" y="-210.6" font-family="Times,serif" font-size="8.00">ExpectedSpectralLine</text>
+<polyline fill="none" stroke="black" points="1410.5,-204 1569.5,-204 "/>
+<text text-anchor="start" x="1418.5" y="-193.6" font-family="Times,serif" font-size="8.00">+restFrequency : ivoa:RealQuantity</text>
+<text text-anchor="start" x="1418.5" y="-184.6" font-family="Times,serif" font-size="8.00">+transition : ivoa:string</text>
+<text text-anchor="start" x="1418.5" y="-175.6" font-family="Times,serif" font-size="8.00">+splatalogId : ivoa:stringIdentifier</text>
+<text text-anchor="start" x="1418.5" y="-166.6" font-family="Times,serif" font-size="8.00">+description : ivoa:string</text>
+</a></g></g><g id="edge31" class="edge"><title>proposal:ScienceSpectralWindow-&gt;proposal:ExpectedSpectralLine</title><path fill="none" stroke="blue" d="M1490,-278.13C1490,-264 1490,-246.84 1490,-231.54"/><polygon fill="blue" stroke="blue" points="1490,-278.38 1494,-284.38 1490,-290.38 1486,-284.38 1490,-278.38"/><polygon fill="blue" stroke="blue" points="1490,-221.3 1494.5,-231.3 1490,-226.3 1490,-231.3 1490,-231.3 1490,-231.3 1490,-226.3 1485.5,-231.3 1490,-221.3 1490,-221.3"/><text text-anchor="middle" x="1546" y="-247" font-family="Times,serif" font-size="10.00">expectedSpectralLine</text><text text-anchor="middle" x="1481" y="-224.3" font-family="Times,serif" font-size="10.00">0..*</text></g><g id="node38" class="node"><title>proposal:PerformanceParameters</title><g id="a_node38"><a xlink:href="../proposal/PerformanceParameters" xlink:title="{PerformanceParameters|+desiredAngularResolution : ivoa:RealQuantity\l+desiredLargestScale : ivoa:RealQuantity\l+desiredSensitivity : ivoa:RealQuantity\l+desiredDynamicRange : ivoa:RealQuantity\l+representativeSpectralPoint : ivoa:RealQuantity\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1013,-273.5 1013,-343.5 1225,-343.5 1225,-273.5 1013,-273.5"/>
+<text text-anchor="middle" x="1119" y="-333.1" font-family="Times,serif" font-size="8.00">PerformanceParameters</text>
+<polyline fill="none" stroke="black" points="1013,-326.5 1225,-326.5 "/>
+<text text-anchor="start" x="1021" y="-316.1" font-family="Times,serif" font-size="8.00">+desiredAngularResolution : ivoa:RealQuantity</text>
+<text text-anchor="start" x="1021" y="-307.1" font-family="Times,serif" font-size="8.00">+desiredLargestScale : ivoa:RealQuantity</text>
+<text text-anchor="start" x="1021" y="-298.1" font-family="Times,serif" font-size="8.00">+desiredSensitivity : ivoa:RealQuantity</text>
+<text text-anchor="start" x="1021" y="-289.1" font-family="Times,serif" font-size="8.00">+desiredDynamicRange : ivoa:RealQuantity</text>
+<text text-anchor="start" x="1021" y="-280.1" font-family="Times,serif" font-size="8.00">+representativeSpectralPoint : ivoa:RealQuantity</text>
+</a></g></g><g id="edge42" class="edge"><title>proposal:Observation-&gt;proposal:Target</title><path fill="none" stroke="green" d="M1353.74,-512.6C1345.34,-504.71 1334.46,-496.03 1323,-491 1302,-481.78 1000.38,-444.28 859.51,-427.13"/><polygon fill="green" stroke="green" points="849.25,-425.88 859.72,-422.62 854.21,-426.49 859.17,-427.09 859.17,-427.09 859.17,-427.09 854.21,-426.49 858.63,-431.56 849.25,-425.88 849.25,-425.88"/><text text-anchor="middle" x="1223.5" y="-465" font-family="Times,serif" font-size="10.00">target</text><text text-anchor="middle" x="852.75" y="-428.88" font-family="Times,serif" font-size="10.00">1</text></g><g id="edge43" class="edge"><title>proposal:Observation-&gt;proposal:Field</title><path fill="none" stroke="green" d="M1379.69,-512.58C1389.79,-494.41 1405.74,-465.73 1417.37,-444.8"/><polygon fill="green" stroke="green" points="1422.38,-435.8 1421.45,-446.73 1419.95,-440.17 1417.52,-444.54 1417.52,-444.54 1417.52,-444.54 1419.95,-440.17 1413.59,-442.35 1422.38,-435.8 1422.38,-435.8"/><text text-anchor="middle" x="1417.5" y="-465" font-family="Times,serif" font-size="10.00">field</text><text text-anchor="middle" x="1418.88" y="-438.8" font-family="Times,serif" font-size="10.00">1</text></g><g id="edge32" class="edge"><title>proposal:Observation-&gt;proposal:Constraint</title><path fill="none" stroke="blue" d="M1393.17,-504.25C1398.87,-499.18 1405.29,-494.39 1412,-491 1527.2,-432.81 1683.31,-421.08 1755.45,-418.89"/><polygon fill="blue" stroke="blue" points="1392.93,-504.48 1391.41,-511.53 1384.32,-512.83 1385.84,-505.79 1392.93,-504.48"/><polygon fill="blue" stroke="blue" points="1765.88,-418.62 1756,-423.37 1760.88,-418.75 1755.88,-418.88 1755.88,-418.88 1755.88,-418.88 1760.88,-418.75 1755.77,-414.38 1765.88,-418.62 1765.88,-418.62"/><text text-anchor="middle" x="1508.5" y="-465" font-family="Times,serif" font-size="10.00">constraints</text><text text-anchor="middle" x="1756.88" y="-421.62" font-family="Times,serif" font-size="10.00">0..*</text></g><g id="edge44" class="edge"><title>proposal:Observation-&gt;proposal:TechnicalGoal</title><path fill="none" stroke="green" d="M1352.36,-512.83C1343.98,-505.36 1333.51,-496.98 1323,-491 1272.18,-462.1 1207.81,-441.56 1165.12,-429.88"/><polygon fill="green" stroke="green" points="1155.29,-427.25 1166.11,-425.49 1160.11,-428.54 1164.94,-429.84 1164.94,-429.84 1164.94,-429.84 1160.11,-428.54 1163.78,-434.18 1155.29,-427.25 1155.29,-427.25"/><text text-anchor="middle" x="1321" y="-465" font-family="Times,serif" font-size="10.00">technicalGoal</text><text text-anchor="middle" x="1158.79" y="-430.25" font-family="Times,serif" font-size="10.00">1</text></g><g id="node40" class="node"><title>proposal:TargetObservation</title><g id="a_node40"><a xlink:href="../proposal/TargetObservation" xlink:title="{TargetObservation}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1360,-653.5 1360,-689.5 1450,-689.5 1450,-653.5 1360,-653.5"/>
+<text text-anchor="middle" x="1405" y="-669.6" font-family="Times,serif" font-size="8.00">TargetObservation</text>
+</a></g></g><g id="edge12" class="edge"><title>proposal:TargetObservation-&gt;proposal:Observation</title><path fill="none" stroke="red" d="M1402.99,-653.45C1400.82,-636.82 1396.87,-610.91 1391,-589 1388.32,-578.97 1384.59,-568.23 1381.03,-558.81"/><polygon fill="none" stroke="red" points="1384.17,-557.24 1377.27,-549.2 1377.65,-559.78 1384.17,-557.24"/></g><g id="node41" class="node"><title>proposal:CalibrationObservation</title><g id="a_node41"><a xlink:href="../proposal/CalibrationObservation" xlink:title="{CalibrationObservation|+intent : proposal:CalibrationTarget_intendedUse\l}" xlink:type="simple" xlink:show="replace" xlink:actuate="onRequest">
+<polygon fill="#8dd3c7" stroke="black" points="1468,-653.5 1468,-689.5 1682,-689.5 1682,-653.5 1468,-653.5"/>
+<text text-anchor="middle" x="1575" y="-678.6" font-family="Times,serif" font-size="8.00">CalibrationObservation</text>
+<polyline fill="none" stroke="black" points="1468,-671.5 1682,-671.5 "/>
+<text text-anchor="start" x="1476" y="-660.6" font-family="Times,serif" font-size="8.00">+intent : proposal:CalibrationTarget_intendedUse</text>
+</a></g></g><g id="edge13" class="edge"><title>proposal:CalibrationObservation-&gt;proposal:Observation</title><path fill="none" stroke="red" d="M1542.84,-653.39C1509.05,-634.85 1454.95,-603.53 1412,-571 1406,-566.46 1399.88,-561.19 1394.24,-556.03"/><polygon fill="none" stroke="red" points="1396.57,-553.43 1386.89,-549.14 1391.78,-558.53 1396.57,-553.43"/></g><g id="edge34" class="edge"><title>proposal:TechnicalGoal-&gt;proposal:ScienceSpectralWindow</title><path fill="none" stroke="blue" d="M1167.07,-410.78C1214.17,-404.39 1287.62,-392.33 1349,-373 1383.74,-362.06 1421.26,-344.88 1448.85,-331.15"/><polygon fill="blue" stroke="blue" points="1167,-410.79 1161.58,-415.54 1155.1,-412.35 1160.53,-407.6 1167,-410.79"/><polygon fill="blue" stroke="blue" points="1457.81,-326.64 1450.9,-335.16 1453.35,-328.89 1448.88,-331.14 1448.88,-331.14 1448.88,-331.14 1453.35,-328.89 1446.86,-327.12 1457.81,-326.64 1457.81,-326.64"/><text text-anchor="middle" x="1400.5" y="-365" font-family="Times,serif" font-size="10.00">spectrum</text><text text-anchor="middle" x="1448.81" y="-329.64" font-family="Times,serif" font-size="10.00">1..*</text></g><g id="edge33" class="edge"><title>proposal:TechnicalGoal-&gt;proposal:PerformanceParameters</title><path fill="none" stroke="blue" d="M1119,-387.29C1119,-376.93 1119,-365.02 1119,-353.69"/><polygon fill="blue" stroke="blue" points="1119,-387.31 1123,-393.31 1119,-399.31 1115,-393.31 1119,-387.31"/><polygon fill="blue" stroke="blue" points="1119,-343.5 1123.5,-353.5 1119,-348.5 1119,-353.5 1119,-353.5 1119,-353.5 1119,-348.5 1114.5,-353.5 1119,-343.5 1119,-343.5"/><text text-anchor="middle" x="1152" y="-365" font-family="Times,serif" font-size="10.00">performance</text><text text-anchor="middle" x="1115.5" y="-346.5" font-family="Times,serif" font-size="10.00">1</text></g></g></svg></div>
+<h2 id="primitives">Primitives</h2>
+<ul>
+<li><a href="../proposal/WikiDataId/">WikiDataId</a></li>
+</ul>
+<h2 id="enums">Enums</h2>
+<ul>
+<li><a href="../proposal/CalibrationTarget_intendedUse/">CalibrationTarget_intendedUse</a></li>
+<li><a href="../proposal/InstrumentKind/">InstrumentKind</a></li>
+<li><a href="../proposal/InvestigatorKind/">InvestigatorKind</a></li>
+<li><a href="../proposal/ProposalKind/">ProposalKind</a></li>
+<li><a href="../proposal/TextFormats/">TextFormats</a></li>
+</ul>
+<h2 id="objecttypes">ObjectTypes</h2>
+<ul>
+<li><a href="../proposal/Backend/">Backend</a></li>
+<li><a href="../proposal/CalibrationObservation/">CalibrationObservation</a></li>
+<li><a href="../proposal/CelestialTarget/">CelestialTarget</a></li>
+<li><a href="../proposal/Constraint/">Constraint</a></li>
+<li><a href="../proposal/Ellipse/">Ellipse</a></li>
+<li><a href="../proposal/ExpectedSpectralLine/">ExpectedSpectralLine</a></li>
+<li><a href="../proposal/Field/">Field</a></li>
+<li><a href="../proposal/Instrument/">Instrument</a></li>
+<li><a href="../proposal/Investigator/">Investigator</a></li>
+<li><a href="../proposal/Justification/">Justification</a></li>
+<li><a href="../proposal/Observation/">Observation</a></li>
+<li><a href="../proposal/Observatory/">Observatory</a></li>
+<li><a href="../proposal/ObservingConfiguration/">ObservingConfiguration</a></li>
+<li><a href="../proposal/ObservingMode/">ObservingMode</a></li>
+<li><a href="../proposal/ObservingProposal/">ObservingProposal</a></li>
+<li><a href="../proposal/Organization/">Organization</a></li>
+<li><a href="../proposal/PerformanceParameters/">PerformanceParameters</a></li>
+<li><a href="../proposal/Person/">Person</a></li>
+<li><a href="../proposal/Point/">Point</a></li>
+<li><a href="../proposal/PointingConstaint/">PointingConstaint</a></li>
+<li><a href="../proposal/Polygon/">Polygon</a></li>
+<li><a href="../proposal/RelatedProposal/">RelatedProposal</a></li>
+<li><a href="../proposal/ScienceSpectralWindow/">ScienceSpectralWindow</a></li>
+<li><a href="../proposal/SimultaneityConstraint/">SimultaneityConstraint</a></li>
+<li><a href="../proposal/SolarSystemTarget/">SolarSystemTarget</a></li>
+<li><a href="../proposal/SpectralWindowSetup/">SpectralWindowSetup</a></li>
+<li><a href="../proposal/SupportingDocument/">SupportingDocument</a></li>
+<li><a href="../proposal/Target/">Target</a></li>
+<li><a href="../proposal/TargetField/">TargetField</a></li>
+<li><a href="../proposal/TargetObservation/">TargetObservation</a></li>
+<li><a href="../proposal/TechnicalGoal/">TechnicalGoal</a></li>
+<li><a href="../proposal/Telescope/">Telescope</a></li>
+<li><a href="../proposal/TelescopeArray/">TelescopeArray</a></li>
+<li><a href="../proposal/TelescopeArrayMember/">TelescopeArrayMember</a></li>
+<li><a href="../proposal/TimingConstraint/">TimingConstraint</a></li>
+<li><a href="../proposal/TimingWindow/">TimingWindow</a></li>
+</ul>
+<h2 id="imports">Imports</h2>
+<ul>
+<li>
+<p>ivoa</p>
+</li>
+<li>
+<p>coords</p>
+</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a51614de.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,288 @@
+
+digraph GVmap {  
+	label = "\n\ncoords data model"
+	rankdir=TB
+	
+	node [ 
+	  shape=tab
+	  style=filled
+	]
+	subgraph cluster_packages {
+	  label="Model"
+	  rankdir=TB
+      style=filled
+      fillcolor="/set312/1"
+	  
+	}
+	
+	node [
+	shape=record
+	fontsize=8
+	style=filled] 
+    "coords:Epoch"[
+    URL="../coords/Epoch"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nEpoch}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:Handedness" [
+    URL="../coords/Handedness"
+    label = "{&lt;&lt;enumeration&gt;&gt;\nHandedness|+left\l+right\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:PolStateEnum" [
+    URL="../coords/PolStateEnum"
+    label = "{&lt;&lt;enumeration&gt;&gt;\nPolStateEnum|+I\l+Q\l+U\l+V\l+RR\l+LL\l+RL\l+LR\l+XX\l+YY\l+XY\l+YX\l+PF\l+PP\l+PA\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:Coordinate" [
+    URL="../coords/Coordinate"
+    label = "{&lt;&lt;datatype&gt;&gt;\nCoordinate}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:BinnedCoordinate" [
+    URL="../coords/BinnedCoordinate"
+    label = "{&lt;&lt;datatype&gt;&gt;\nBinnedCoordinate|+cval : ivoa:integer\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:PixelIndex" [
+    URL="../coords/PixelIndex"
+    label = "{&lt;&lt;datatype&gt;&gt;\nPixelIndex}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:PhysicalCoordinate" [
+    URL="../coords/PhysicalCoordinate"
+    label = "{&lt;&lt;datatype&gt;&gt;\nPhysicalCoordinate|+cval : ivoa:Quantity\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:Point" [
+    URL="../coords/Point"
+    label = "{&lt;&lt;datatype&gt;&gt;\nPoint|+axis1 : ivoa:Quantity\l+axis2 : ivoa:Quantity\l+axis3 : ivoa:Quantity\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:SphericalPoint" [
+    URL="../coords/SphericalPoint"
+    label = "{&lt;&lt;datatype&gt;&gt;\nSphericalPoint|+r : ivoa:RealQuantity\l+theta : ivoa:RealQuantity\l+phi : ivoa:RealQuantity\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:EquatorialPoint" [
+    URL="../coords/EquatorialPoint"
+    label = "{&lt;&lt;datatype&gt;&gt;\nEquatorialPoint|+lon : ivoa:RealQuantity\l+lat : ivoa:RealQuantity\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:GeocentricPoint" [
+    URL="../coords/GeocentricPoint"
+    label = "{&lt;&lt;datatype&gt;&gt;\nGeocentricPoint|+x : ivoa:RealQuantity\l+y : ivoa:RealQuantity\l+z : ivoa:RealQuantity\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:TimeStamp" [
+    URL="../coords/TimeStamp"
+    label = "{&lt;&lt;datatype&gt;&gt;\nTimeStamp}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:TimeOffset" [
+    URL="../coords/TimeOffset"
+    label = "{&lt;&lt;datatype&gt;&gt;\nTimeOffset|+time : ivoa:RealQuantity\l+time0 : coords:TimeInstant\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:TimeInstant" [
+    URL="../coords/TimeInstant"
+    label = "{&lt;&lt;datatype&gt;&gt;\nTimeInstant}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:JD" [
+    URL="../coords/JD"
+    label = "{&lt;&lt;datatype&gt;&gt;\nJD|+date : ivoa:real\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:MJD" [
+    URL="../coords/MJD"
+    label = "{&lt;&lt;datatype&gt;&gt;\nMJD|+date : ivoa:real\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:ISOTime" [
+    URL="../coords/ISOTime"
+    label = "{&lt;&lt;datatype&gt;&gt;\nISOTime|+date : ivoa:datetime\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:PolCoordinate" [
+    URL="../coords/PolCoordinate"
+    label = "{&lt;&lt;datatype&gt;&gt;\nPolCoordinate}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:PolState" [
+    URL="../coords/PolState"
+    label = "{&lt;&lt;datatype&gt;&gt;\nPolState|+cval : coords:PolStateEnum\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:RefLocation" [
+    URL="../coords/RefLocation"
+    label = "{&lt;&lt;datatype&gt;&gt;\nRefLocation}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:StdRefLocation" [
+    URL="../coords/StdRefLocation"
+    label = "{&lt;&lt;datatype&gt;&gt;\nStdRefLocation|+position : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:CustomRefLocation" [
+    URL="../coords/CustomRefLocation"
+    label = "{&lt;&lt;datatype&gt;&gt;\nCustomRefLocation|+epoch : coords:Epoch\l+position : coords:Point\l+velocity : coords:Point\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:CoordSpace" [
+    URL="../coords/CoordSpace"
+    label = "{CoordSpace}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:Axis" [
+    URL="../coords/Axis"
+    label = "{Axis|+name : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:ContinuousAxis" [
+    URL="../coords/ContinuousAxis"
+    label = "{ContinuousAxis|+domainMin : ivoa:Quantity\l+domainMax : ivoa:Quantity\l+cyclic : ivoa:boolean\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:BinnedAxis" [
+    URL="../coords/BinnedAxis"
+    label = "{BinnedAxis|+length : ivoa:nonnegativeInteger\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:DiscreteSetAxis" [
+    URL="../coords/DiscreteSetAxis"
+    label = "{DiscreteSetAxis}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:CoordFrame" [
+    URL="../coords/CoordFrame"
+    label = "{CoordFrame}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:GenericFrame" [
+    URL="../coords/GenericFrame"
+    label = "{GenericFrame|+refPosition : coords:RefLocation\l+planetaryEphem : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:SpaceFrame" [
+    URL="../coords/SpaceFrame"
+    label = "{SpaceFrame|+refPosition : coords:RefLocation\l+spaceRefFrame : ivoa:string\l+equinox : coords:Epoch\l+planetaryEphem : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:TimeFrame" [
+    URL="../coords/TimeFrame"
+    label = "{TimeFrame|+refPosition : coords:RefLocation\l+timescale : ivoa:string\l+refDirection : coords:RefLocation\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:AstroCoordSystem" [
+    URL="../coords/AstroCoordSystem"
+    label = "{AstroCoordSystem}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:PixelCoordSystem" [
+    URL="../coords/PixelCoordSystem"
+    label = "{PixelCoordSystem}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:PixelSpace" [
+    URL="../coords/PixelSpace"
+    label = "{PixelSpace|+handedness : coords:Handedness\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:CoordSys" [
+    URL="../coords/CoordSys"
+    label = "{CoordSys}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:PhysicalCoordSys" [
+    URL="../coords/PhysicalCoordSys"
+    label = "{PhysicalCoordSys}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:GenericSys" [
+    URL="../coords/GenericSys"
+    label = "{GenericSys}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:SpaceSys" [
+    URL="../coords/SpaceSys"
+    label = "{SpaceSys}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:TimeSys" [
+    URL="../coords/TimeSys"
+    label = "{TimeSys}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:PhysicalCoordSpace" [
+    URL="../coords/PhysicalCoordSpace"
+    label = "{PhysicalCoordSpace}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:GenericCoordSpace" [
+    URL="../coords/GenericCoordSpace"
+    label = "{GenericCoordSpace}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:SphericalCoordSpace" [
+    URL="../coords/SphericalCoordSpace"
+    label = "{SphericalCoordSpace}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:CartesianCoordSpace" [
+    URL="../coords/CartesianCoordSpace"
+    label = "{CartesianCoordSpace}"
+    fillcolor="/set312/1"
+    ] ;
+  
+ 
+    edge [color="red", arrowtail="none", arrowhead="empty"]
+    "coords:BinnedCoordinate" -> "coords:Coordinate" ;
+  "coords:PixelIndex" -> "coords:BinnedCoordinate" ;
+  "coords:PhysicalCoordinate" -> "coords:Coordinate" ;
+  "coords:Point" -> "coords:Coordinate" ;
+  "coords:SphericalPoint" -> "coords:Coordinate" ;
+  "coords:EquatorialPoint" -> "coords:Coordinate" ;
+  "coords:GeocentricPoint" -> "coords:Coordinate" ;
+  "coords:TimeStamp" -> "coords:Coordinate" ;
+  "coords:TimeOffset" -> "coords:TimeStamp" ;
+  "coords:TimeInstant" -> "coords:TimeStamp" ;
+  "coords:JD" -> "coords:TimeInstant" ;
+  "coords:MJD" -> "coords:TimeInstant" ;
+  "coords:ISOTime" -> "coords:TimeInstant" ;
+  "coords:PolCoordinate" -> "coords:Coordinate" ;
+  "coords:PolState" -> "coords:PolCoordinate" ;
+  "coords:StdRefLocation" -> "coords:RefLocation" ;
+  "coords:CustomRefLocation" -> "coords:RefLocation" ;
+  "coords:ContinuousAxis" -> "coords:Axis" ;
+  "coords:BinnedAxis" -> "coords:Axis" ;
+  "coords:DiscreteSetAxis" -> "coords:Axis" ;
+  "coords:GenericFrame" -> "coords:CoordFrame" ;
+  "coords:SpaceFrame" -> "coords:CoordFrame" ;
+  "coords:TimeFrame" -> "coords:CoordFrame" ;
+  "coords:AstroCoordSystem" -> "coords:CoordSys" ;
+  "coords:PixelCoordSystem" -> "coords:CoordSys" ;
+  "coords:PixelSpace" -> "coords:CoordSpace" ;
+  "coords:PhysicalCoordSys" -> "coords:CoordSys" ;
+  "coords:GenericSys" -> "coords:PhysicalCoordSys" ;
+  "coords:SpaceSys" -> "coords:PhysicalCoordSys" ;
+  "coords:TimeSys" -> "coords:PhysicalCoordSys" ;
+  "coords:PhysicalCoordSpace" -> "coords:CoordSpace" ;
+  "coords:GenericCoordSpace" -> "coords:PhysicalCoordSpace" ;
+  "coords:SphericalCoordSpace" -> "coords:PhysicalCoordSpace" ;
+  "coords:CartesianCoordSpace" -> "coords:PhysicalCoordSpace" ;
+  
+ 
+    edge [color="blue", arrowhead="open", arrowtail="diamond",dir="both",fontsize="10"]
+    "coords:CoordSpace" -> "coords:Axis" [headlabel="1..*",label="axis",labelfontsize=10] ;
+  "coords:AstroCoordSystem" -> "coords:PhysicalCoordSys" [headlabel="1..*",label="coordSys",labelfontsize=10] ;
+  "coords:PixelCoordSystem" -> "coords:PixelSpace" [headlabel="1",label="pixelSpace",labelfontsize=10] ;
+  "coords:PhysicalCoordSys" -> "coords:PhysicalCoordSpace" [headlabel="0..1",label="coordSpace",labelfontsize=10] ;
+  "coords:PhysicalCoordSys" -> "coords:CoordFrame" [headlabel="0..1",label="frame",labelfontsize=10] ;
+  
+ 
+    edge [color="green", arrowhead="open", arrowtail="none"]
+    "coords:Coordinate" -> "coords:CoordSys" [headlabel="1",label="coordSys",labelfontsize=10] ;
+    
+}
+  
