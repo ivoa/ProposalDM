@@ -1,0 +1,26 @@
+
+
+            {
+            "proposalManagement model": [
+            {
+            "Overview": "generated/proposalManagement.vo-dml.md"
+            }
+
+            
+                ,{
+                "ObjectTypes": [
+
+                {"AllocatedBlock" : "generated/proposalManagement/AllocatedBlock.md"},{"AllocatedProposal" : "generated/proposalManagement/AllocatedProposal.md"},{"AllocationGrade" : "generated/proposalManagement/AllocationGrade.md"},{"AvailableResources" : "generated/proposalManagement/AvailableResources.md"},{"CommitteeMember" : "generated/proposalManagement/CommitteeMember.md"},{"OfferedCycles" : "generated/proposalManagement/OfferedCycles.md"},{"ProposalCycle" : "generated/proposalManagement/ProposalCycle.md"},{"ProposalReview" : "generated/proposalManagement/ProposalReview.md"},{"Resource" : "generated/proposalManagement/Resource.md"},{"ResourceBlock" : "generated/proposalManagement/ResourceBlock.md"},{"ResourceType" : "generated/proposalManagement/ResourceType.md"},{"ReviewedProposal" : "generated/proposalManagement/ReviewedProposal.md"},{"Reviewer" : "generated/proposalManagement/Reviewer.md"},{"SubmittedProposal" : "generated/proposalManagement/SubmittedProposal.md"},{"TAC" : "generated/proposalManagement/TAC.md"}
+                ]
+                }
+            
+                ,{
+                "Enumerations": [
+                {"TacRole" : "generated/proposalManagement/TacRole.md"}
+                ]
+                }
+            
+            ]
+            }
+
+        
