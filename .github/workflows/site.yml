@@ -23,7 +23,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install graphviz
-          sudo snap install yq  --channel=v3/stable
+          sudo snap install yq 
 
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
       - uses: actions/cache@v3
