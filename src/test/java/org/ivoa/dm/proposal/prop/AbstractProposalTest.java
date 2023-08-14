@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -96,7 +96,7 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
 
     }
     protected ObservingProposal propDbInOut() {
-        javax.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
         em.getTransaction().begin();
         final ObservingProposal proposal = ex.getProposal();
         proposal.persistRefs(em);
@@ -142,7 +142,7 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
 
     @org.junit.jupiter.api.Test
     void reviewDmJPATest() {
-        javax.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
         em.getTransaction().begin();
         
         final ProposalCycle cycle = ex.getCycle();

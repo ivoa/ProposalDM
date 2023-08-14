@@ -52,7 +52,7 @@ class EmerlinExampleTest extends AbstractProposalTest {
      @org.junit.jupiter.api.Test 
    public  void testDbCreate() {
        
-        javax.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
         em.getTransaction().begin();
         final ObservingProposal proposal = ex.getProposal();
         proposal.persistRefs(em);
