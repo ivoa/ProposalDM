@@ -17,6 +17,11 @@ import java.util.List;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.ivoa.dm.proposal.management.ProposalCycle;
+import org.ivoa.dm.proposal.management.ProposalManagementModel;
+import org.ivoa.dm.proposal.management.TAC;
+
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 
 /**
@@ -77,7 +82,93 @@ class EmerlinExampleTest extends AbstractProposalTest {
        
        
    }
+      @org.junit.jupiter.api.Test 
+      public void testJacksonOjectIds( ) throws JsonProcessingException {
+          
+          ProposalManagementModel pm = new ProposalManagementModel();
+          pm.addContent(ex.getCycle());
+          pm.processReferences();
+          TAC tac = pm.getContent(ProposalCycle.class).get(0).getTac();
+          String json = ProposalManagementModel.jsonMapper().writeValueAsString(tac);
+          System.out.println(json);
+          TAC ntac = ProposalModel.jsonMapper().readValue(json, TAC.class);
+          
+          String njn = "{\n"
+                  + "    \"members\": [\n"
+                  + "        {\n"
+                  + "            \"role\": \"CHAIR\",\n"
+                  + "            \"member\": {\n"
+                  + "                \"_id\": 1,\n"
+                  + "                \"person\": {\n"
+                  + "                    \"_id\": 1,\n"
+                  + "                    \"fullName\": \"TAC Chair\",\n"
+                  + "                    \"eMail\": \"tacchair@unreal.not.email\",\n"
+                  + "                    \"orcidId\": {\n"
+                  + "                        \"value\": \"https://notreallyorcid.org/0000-0001-0002-005\"\n"
+                  + "                    },\n"
+                  + "                    \"homeInstitute\": {\n"
+                  + "                        \"@type\": \"proposal:Organization\",\n"
+                  + "                        \"_id\": 1,\n"
+                  + "                        \"name\": \"org2\",\n"
+                  + "                        \"address\": \"org2 address\",\n"
+                  + "                        \"ivoid\": {\n"
+                  + "                            \"value\": \"ivo://org/org2\"\n"
+                  + "                        },\n"
+                  + "                        \"wikiId\": null\n"
+                  + "                    }\n"
+                  + "                }\n"
+                  + "            }\n"
+                  + "        },\n"
+                  + "        {\n"
+                  + "            \"role\": \"SCIENCEREVIEWER\",\n"
+                  + "            \"member\": {\n"
+                  + "                \"_id\": 2,\n"
+                  + "                \"person\": {\n"
+                  + "                    \"_id\": 2,\n"
+                  + "                    \"fullName\": \"TAC member\",\n"
+                  + "                    \"eMail\": \"tacmamber@unreal.not.email\",\n"
+                  + "                    \"orcidId\": {\n"
+                  + "                        \"value\": \"https://notreallyorcid.org/0000-0001-0002-006\"\n"
+                  + "                    },\n"
+                  + "                    \"homeInstitute\": {\n"
+                  + "                        \"@type\": \"proposal:Organization\",\n"
+                  + "                        \"_id\": 2,\n"
+                  + "                        \"name\": \"org\",\n"
+                  + "                        \"address\": \"org address\",\n"
+                  + "                        \"ivoid\": {\n"
+                  + "                            \"value\": \"ivo://org/anorg\"\n"
+                  + "                        },\n"
+                  + "                        \"wikiId\": null\n"
+                  + "                    }\n"
+                  + "                }\n"
+                  + "            }\n"
+                  + "        }\n"
+                  + "    ]\n"
+                  + "}\n";
+          
+          TAC ntac2 = ProposalModel.jsonMapper().readValue(njn, TAC.class);
+                  
+      }
    
+   @org.junit.jupiter.api.Test 
+   public  void testDbQuery() throws JsonProcessingException {
+       
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        em.getTransaction().begin();
+  
+        final ProposalCycle cycle = ex.getCycle();
+        cycle.persistRefs(em);
+        em.persist(cycle);
+        em.getTransaction().commit();
+        
+       TypedQuery<TAC> q = em.createQuery("SELECT o FROM TAC o", TAC.class);
+       TAC tac = q.getSingleResult();
+       System.out.println(tac.getMembers().get(0).getId());
+       String json = ProposalManagementModel.jsonMapper().writeValueAsString(tac);
+       System.out.println(json);
+
+   }
+  
  
 }
 
