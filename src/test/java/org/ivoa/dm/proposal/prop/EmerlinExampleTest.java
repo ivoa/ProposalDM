@@ -53,6 +53,24 @@ class EmerlinExampleTest extends AbstractProposalTest {
        assertTrue(obs.target instanceof CelestialTarget);
       
    }
+     @org.junit.jupiter.api.Test 
+   public  void testDeleteTarget() {
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        em.getTransaction().begin();
+        final ObservingProposal proposal = ex.getProposal();
+        proposal.persistRefs(em);
+        em.persist(proposal);
+        em.getTransaction().commit();
+        em.getTransaction().begin();
+        Observation obs = proposal.observations.get(0);
+       assertNotNull(obs.target);
+      
+       assertTrue(obs.target instanceof CelestialTarget);
+       em.remove(obs.target);
+       em.getTransaction().commit();
+       
+       
+   }
    
      @org.junit.jupiter.api.Test 
    public  void testDbCreate() {

@@ -12,7 +12,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.3</version>
-      <lastModified>2023-04-24T10:53:18Z</lastModified>
+      <lastModified>2023-11-28T09:40:15Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -1162,18 +1162,6 @@
                <vodml-id>ScienceSpectralWindow</vodml-id>
                <name>ScienceSpectralWindow</name>
                <description>A spectral window for science use.</description>	    
-               <attribute>
-                 <vodml-id>ScienceSpectralWindow.index</vodml-id>
-                 <name>index</name>
-                 <description></description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:integer</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
                <composition>
                  <vodml-id>ScienceSpectralWindow.spectralWindowSetup</vodml-id>
                  <name>spectralWindowSetup</name>

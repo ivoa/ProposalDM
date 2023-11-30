@@ -125,7 +125,6 @@ public class EmerlinExample extends BaseExample {
                                       });
                                       g.spectrum = Arrays.asList(
                                             createScienceSpectralWindow(ssw -> {
-                                                ssw.index = 1; //TODO is this of any use?
                                                 ssw.spectralWindowSetup = createSpectralWindowSetup(sw -> { // continuum
                                                     sw.start = new RealQuantity(1.2, ghz);
                                                     sw.end = new RealQuantity(1.7, ghz);
@@ -137,7 +136,6 @@ public class EmerlinExample extends BaseExample {
                                             }),
 
                                             createScienceSpectralWindow(ssw -> { // narrow window for line
-                                                ssw.index = 2;
                                                 ssw.expectedSpectralLine = Arrays.asList(createExpectedSpectralLine(sl -> {
                                                     sl.restFrequency = new RealQuantity(1.4204058, ghz);
                                                     sl.description = "HI";

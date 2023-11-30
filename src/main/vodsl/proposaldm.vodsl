@@ -230,7 +230,6 @@ observations, although the intention is that information about targets etc. coul
   
   otype ScienceSpectralWindow  "A spectral window for science use."
   {   
-        index: ivoa:integer   "" ;
         spectralWindowSetup: SpectralWindowSetup  @?   as composition  "" ;
         expectedSpectralLine: ExpectedSpectralLine  @*   as composition  "" ;
   }
