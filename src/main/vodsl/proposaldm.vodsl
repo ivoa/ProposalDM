@@ -202,11 +202,11 @@ observations, although the intention is that information about targets etc. coul
   }
   
   
-  abstract otype Constraint "a form of constraint on the observation" {
+  abstract otype ObservingConstraint "a form of constraint on the observation" {
   	
   }
   
-  abstract otype TimingConstraint -> Constraint  "Any specific timing requirements for the observing"
+  abstract otype TimingConstraint -> ObservingConstraint  "Any specific timing requirements for the observing"
   {   
         note: ivoa:string  @?   "" ;
         isAvoidConstraint: ivoa:boolean  @?   "" ;
@@ -223,7 +223,7 @@ observations, although the intention is that information about targets etc. coul
  	//TODO needs more thought
  }
  
- abstract otype PointingConstaint -> Constraint "A constraint that limits the telescope pointing"
+ abstract otype PointingConstaint -> ObservingConstraint "A constraint that limits the telescope pointing"
  {
  	//TODO needs some concrete types
  }
@@ -266,7 +266,7 @@ observations, although the intention is that information about targets etc. coul
  	target references  Target  "The actual target of the observation";
  	field references Field "The Field for the observation";
  	technicalGoal references TechnicalGoal "The technical goals of the observation";
- 	constraints: Constraint @* as composition "any constraints on the observation";
+ 	constraints: ObservingConstraint @* as composition "any constraints on the observation";
  }
  
  otype TargetObservation -> Observation "an observation of the scientific target "{

@@ -12,7 +12,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.3</version>
-      <lastModified>2023-11-28T09:40:15Z</lastModified>
+      <lastModified>2023-12-01T20:15:16Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -1074,8 +1074,8 @@
                </attribute>
             </objectType>
             <objectType abstract='true'>
-               <vodml-id>Constraint</vodml-id>
-               <name>Constraint</name>
+               <vodml-id>ObservingConstraint</vodml-id>
+               <name>ObservingConstraint</name>
                <description>a form of constraint on the observation</description>	    
             </objectType>
             <objectType abstract='true'>
@@ -1083,7 +1083,7 @@
                <name>TimingConstraint</name>
                <description>Any specific timing requirements for the observing</description>	    
                <extends>
-                  <vodml-ref>proposal:Constraint</vodml-ref>
+                  <vodml-ref>proposal:ObservingConstraint</vodml-ref>
                </extends>
                <attribute>
                  <vodml-id>TimingConstraint.note</vodml-id>
@@ -1155,7 +1155,7 @@
                <name>PointingConstaint</name>
                <description>A constraint that limits the telescope pointing</description>	    
                <extends>
-                  <vodml-ref>proposal:Constraint</vodml-ref>
+                  <vodml-ref>proposal:ObservingConstraint</vodml-ref>
                </extends>
             </objectType>
             <objectType>
@@ -1379,7 +1379,7 @@
                  <name>constraints</name>
                  <description>any constraints on the observation</description>	    
                  <datatype>
-                    <vodml-ref>proposal:Constraint</vodml-ref>
+                    <vodml-ref>proposal:ObservingConstraint</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>0</minOccurs>
