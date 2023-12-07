@@ -164,9 +164,9 @@ digraph GVmap {
     label = "{Ellipse|+semiMajor : ivoa:RealQuantity\l+semiMinor : ivoa:RealQuantity\l+pAMajor : ivoa:RealQuantity\l}"
     fillcolor="/set312/1"
     ] ;
-  "proposal:Constraint" [
-    URL="../proposal/Constraint"
-    label = "{Constraint}"
+  "proposal:ObservingConstraint" [
+    URL="../proposal/ObservingConstraint"
+    label = "{ObservingConstraint}"
     fillcolor="/set312/1"
     ] ;
   "proposal:TimingConstraint" [
@@ -191,7 +191,7 @@ digraph GVmap {
     ] ;
   "proposal:ScienceSpectralWindow" [
     URL="../proposal/ScienceSpectralWindow"
-    label = "{ScienceSpectralWindow|+index : ivoa:integer\l}"
+    label = "{ScienceSpectralWindow}"
     fillcolor="/set312/1"
     ] ;
   "proposal:SpectralWindowSetup" [
@@ -239,10 +239,10 @@ digraph GVmap {
   "proposal:Point" -> "proposal:Field" ;
   "proposal:Polygon" -> "proposal:Field" ;
   "proposal:Ellipse" -> "proposal:Field" ;
-  "proposal:TimingConstraint" -> "proposal:Constraint" ;
+  "proposal:TimingConstraint" -> "proposal:ObservingConstraint" ;
   "proposal:TimingWindow" -> "proposal:TimingConstraint" ;
   "proposal:SimultaneityConstraint" -> "proposal:TimingConstraint" ;
-  "proposal:PointingConstaint" -> "proposal:Constraint" ;
+  "proposal:PointingConstaint" -> "proposal:ObservingConstraint" ;
   "proposal:TargetObservation" -> "proposal:Observation" ;
   "proposal:CalibrationObservation" -> "proposal:Observation" ;
   
@@ -266,7 +266,7 @@ digraph GVmap {
   "proposal:ObservingMode" -> "proposal:ObservingConfiguration" [headlabel="1..*",label="configurations",labelfontsize=10] ;
   "proposal:ScienceSpectralWindow" -> "proposal:SpectralWindowSetup" [headlabel="0..1",label="spectralWindowSetup",labelfontsize=10] ;
   "proposal:ScienceSpectralWindow" -> "proposal:ExpectedSpectralLine" [headlabel="0..*",label="expectedSpectralLine",labelfontsize=10] ;
-  "proposal:Observation" -> "proposal:Constraint" [headlabel="0..*",label="constraints",labelfontsize=10] ;
+  "proposal:Observation" -> "proposal:ObservingConstraint" [headlabel="0..*",label="constraints",labelfontsize=10] ;
   "proposal:TechnicalGoal" -> "proposal:PerformanceParameters" [headlabel="1",label="performance",labelfontsize=10] ;
   "proposal:TechnicalGoal" -> "proposal:ScienceSpectralWindow" [headlabel="1..*",label="spectrum",labelfontsize=10] ;
   
