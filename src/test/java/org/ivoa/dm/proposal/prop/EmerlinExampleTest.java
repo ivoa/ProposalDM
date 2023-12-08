@@ -186,6 +186,65 @@ class EmerlinExampleTest extends AbstractProposalTest {
        System.out.println(json);
 
    }
+   
+   @org.junit.jupiter.api.Test 
+   public void testListupdate() {
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        em.getTransaction().begin();
+        final ObservingProposal proposal = ex.getProposal();
+        proposal.persistRefs(em);
+        em.persist(proposal);
+        em.getTransaction().commit();
+
+        final Observation observation = proposal.observations.get(0);
+        final long obId = observation.getId();
+        TimingWindow con = (TimingWindow) observation.getConstraints().get(0);
+
+        assertNotNull(con);
+        final long conId = con.getId();
+        TimingWindow tw2 = new TimingWindow(con);
+        tw2.setNote("this is updated");
+        con.updateUsing(tw2);
+        assertEquals("this is updated", tw2.getNote());
+        em.getTransaction().begin();
+        em.merge(con);
+        em.getTransaction().commit();
+        em.clear();
+        List<ObservingProposal> props = em.createQuery("select s from ObservingProposal s", ObservingProposal.class).getResultList();
+        assertEquals("this is updated", ((TimingWindow)props.get(0).observations.get(0).getConstraints().get(0)).getNote());
+
+      String qlString = "select child from Observation "
+            + " parent join parent.constraints child "
+            + " where parent._id = :pid and child._id = :cid"
+            //  + " and Type(child) = "+ childType.getName()
+            ;
+
+
+       em.getTransaction().begin();
+      TypedQuery<TimingWindow> q = em.createQuery(
+            qlString,
+            org.ivoa.dm.proposal.prop.TimingWindow.class
+      );
+
+      q.setParameter("pid", obId);
+      q.setParameter("cid", conId);
+
+      org.ivoa.dm.proposal.prop.TimingWindow con2 = q.getSingleResult();
+      tw2.setNote("another change");
+      con2.updateUsing(tw2);
+ 
+       
+        em.merge(con2);
+        em.getTransaction().commit();
+        em.clear();
+        List<ObservingProposal> props2 = em.createQuery("select s from ObservingProposal s", ObservingProposal.class).getResultList();
+        assertEquals("another change", ((TimingWindow)props2.get(0).observations.get(0).getConstraints().get(0)).getNote());
+
+        
+        
+   }
+   
+   
   
  
 }

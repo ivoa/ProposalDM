@@ -163,6 +163,9 @@ public class EmerlinExample extends BaseExample {
                                   t.target = target;
                                   t.field = field;
                                   t.technicalGoal = tgoal;
+                                  t.constraints = Arrays.asList(
+                                          new TimingWindow(new Date(2023, 1, 1), new Date(2023, 1, 10), "t constraint", false)
+                                          );
                               }
 
 
