@@ -8,9 +8,9 @@ proposal to be reviewed and allocated time. It does not cover all the technical 
 observations, although the intention is that information about targets etc. could be automatically transferred to an observing system."
  author "Paul Harrison"
  
- include "alt-std/IVOA-v1.0.vodsl" // this is an edited version of the standard to include identifiers.
- include "alt-std/STC_coords-v1.0.vodsl" // this is also edited to include some extra concrete point types.
- 
+ include "../../../build/tmp/IVOA-v1.0.vodsl" // note that this is auto generated from dependencies by vodslToVodml command
+ include "../../../build/tmp/Coords-v1.0.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
+
  
  primitive WikiDataId -> ivoa:stringIdentifier "a WikiData identifier"
  enum ProposalKind  //IMPL -is this universal enough to be an enum?
@@ -86,8 +86,8 @@ observations, although the intention is that information about targets etc. coul
  otype Telescope {
  	name : ivoa:string "telescope name";
  	wikiId : WikiDataId @? "the wikidata id for the Instrument";
- 	
- 	location : coords:GeocentricPoint "the location of the telescope" ;
+ 
+ 	location : coords:RealCartesianPoint "the location of the telescope" ;
  }
  
  otype TelescopeArrayMember "" {

@@ -9,7 +9,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.3</version>
-      <lastModified>2023-04-21T07:21:44Z</lastModified>
+      <lastModified>2023-12-19T11:40:41Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -17,7 +17,7 @@
       </import>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
-        <url>STC_coords-v1.0.vo-dml.xml</url>
+        <url>Coords-v1.0.vo-dml.xml</url>
         <documentationURL>not known</documentationURL>
       </import>
       <import>
@@ -371,6 +371,7 @@
                    <minOccurs>1</minOccurs>
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
+                 <isOrdered>true</isOrdered>
                </composition>
                <reference>
                  <vodml-id>AllocatedProposal.submitted</vodml-id>

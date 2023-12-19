@@ -10,13 +10,13 @@
     <logger name="org.hibernate.SQL" level="debug" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
-    <logger name="org.hibernate.type.descriptor.sql" level="trace" additivity="false">
+    <logger name="org.hibernate.type.descriptor.sql" level="INFO" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
-    <logger name="org.hibernate.type" level="trace" additivity="false">
+    <logger name="org.hibernate.type" level="INFO" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
-    <root level="trace">
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>

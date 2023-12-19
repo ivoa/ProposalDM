@@ -12,7 +12,7 @@
       <title>TBD</title>
       <author>Paul Harrison</author>
       <version>0.3</version>
-      <lastModified>2023-12-01T20:15:16Z</lastModified>
+      <lastModified>2023-12-15T17:37:21Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -20,7 +20,7 @@
       </import>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
-        <url>STC_coords-v1.0.vo-dml.xml</url>
+        <url>Coords-v1.0.vo-dml.xml</url>
         <documentationURL>not known</documentationURL>
       </import>
       <primitiveType>
@@ -557,7 +557,7 @@
                  <name>location</name>
                  <description>the location of the telescope</description>	    
                  <datatype>
-                    <vodml-ref>coords:GeocentricPoint</vodml-ref>
+                    <vodml-ref>coords:RealCartesianPoint</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>

@@ -16,6 +16,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import org.hibernate.engine.spi.EffectiveEntityGraph;
+import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.ivoa.dm.proposal.management.TAC;
@@ -91,8 +93,9 @@ class EmerlinExampleTest extends AbstractProposalTest {
    public void testJackson() throws JsonProcessingException
    {
    
-       List<Field> fields = Arrays.asList(new TargetField("first"), new TargetField("second"),
-               new Point(new org.ivoa.dm.stc.coords.Point(),"a point") );
+     
+    List<Field> fields = Arrays.asList(new TargetField("first"), new TargetField("second"),
+               new Point(new org.ivoa.dm.stc.coords.EquatorialPoint(new RealQuantity(45.0, BaseExample.degrees ), new RealQuantity(45.0, BaseExample.degrees ), ex.getICRS()),"a point") );
        String json = ProposalModel.jsonMapper().writeValueAsString(fields.get(0));
        assertEquals("{\"@type\":\"proposal:TargetField\",\"_id\":0,\"name\":\"first\"}", json);
        System.out.println(json);

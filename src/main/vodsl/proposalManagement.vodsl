@@ -5,8 +5,8 @@
  model proposalManagement (0.3) "The data model for managing the proposal review process. Intended to work for phase 1"
  author "Paul Harrison" 
  
- include "alt-std/IVOA-v1.0.vodsl"
- include "alt-std/STC_coords-v1.0.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
+ include "../../../build/tmp/IVOA-v1.0.vodsl" // note that this is auto generated from dependencies during build
+ include "../../../build/tmp/Coords-v1.0.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
  include "proposaldm.vodsl"
  
  
@@ -68,7 +68,7 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  
  otype AllocatedProposal "an instance of a proposal that is allocated observing time" {
  	submitted references SubmittedProposal "the proposal"; 	
- 	allocation : AllocatedBlock @+ as composition "what is allocated to the proposal";
+ 	allocation : AllocatedBlock @+ as ordered composition "what is allocated to the proposal";
  }
  
  otype ProposalReview "A review of a proposal" {

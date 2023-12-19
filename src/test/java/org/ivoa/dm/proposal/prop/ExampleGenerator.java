@@ -4,11 +4,15 @@ package org.ivoa.dm.proposal.prop;
  */
 
 import org.ivoa.dm.proposal.management.ProposalCycle;
+import org.ivoa.dm.stc.coords.SpaceSys;
 
 public interface ExampleGenerator {
 
     ObservingProposal getProposal();
 
     ProposalCycle getCycle();
+    
+    SpaceSys getICRF();
+    SpaceSys getICRS();
 
 }

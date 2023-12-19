@@ -42,7 +42,6 @@ public class EmerlinExample extends BaseExample {
 
     };
     Set<String > notK = new HashSet<>(Arrays.asList("Lovell","Defford"));
-    private final Unit arcsec = new Unit("arcsec");
     private Observatory observatory;
     private final Unit ghz = new Unit("GHz");
     private final Unit khz = new Unit("kHz");

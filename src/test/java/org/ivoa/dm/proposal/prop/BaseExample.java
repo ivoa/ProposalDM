@@ -19,14 +19,14 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static org.ivoa.dm.stc.coords.GeocentricPoint.createGeocentricPoint;
+import static org.ivoa.dm.stc.coords.RealCartesianPoint.createRealCartesianPoint;
 
 public abstract class BaseExample implements ExampleGenerator {
     /** SPACE_SYS.
      */
-    protected final SpaceSys GEO_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTRE"), "ICRF", null, ""));//FIXME - this should really define the frame better - STC coords library should have some standard model instances...
+    protected final  SpaceSys GEO_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTRE"), "ICRF", null, ""));//FIXME - this should really define the frame better - STC coords library should have some standard model instances...
 
-    protected final SpaceSys ICRS_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTRE"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
+    protected final  SpaceSys ICRS_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTRE"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
     protected Organization[] institutes = {
             new Organization("org", "org address",new Ivorn("ivo://org/anorg"), null),//TODO is null same as not setting?
             new Organization("org2", "org2 address",new Ivorn("ivo://org/org2"), null)
@@ -54,8 +54,12 @@ public abstract class BaseExample implements ExampleGenerator {
             new CommitteeMember( TacRole.CHAIR, reviewers[0]),
             new CommitteeMember ( TacRole.SCIENCEREVIEWER, reviewers[1])
             ));
-    protected Unit metres = new Unit("m");
-    protected Unit degrees = new Unit("degrees");
+    
+    //some units
+    protected static final  Unit metres = new Unit("m");
+    protected static final Unit degrees = new Unit("degrees");
+
+    protected static final Unit arcsec = new Unit("arcsec");
 
 
     protected Consumer<ObservingProposal.ObservingProposalBuilder> proposalCommonSetup() {
@@ -89,13 +93,30 @@ public abstract class BaseExample implements ExampleGenerator {
      * @return
      */
     protected Telescope createTelescope(String name, double x, double y, double z) {
-        return new Telescope(name, null, createGeocentricPoint(p ->{
+        return new Telescope(name, null, createRealCartesianPoint(p ->{
             p.x = new RealQuantity(x, metres);
             p.y = new RealQuantity(y, metres);
             p.z = new RealQuantity(z, metres);
             p.coordSys = GEO_SYS;
         }));
 
+    }
+    /**
+     * {@inheritDoc}
+     * overrides @see org.ivoa.dm.proposal.prop.ExampleGenerator#getICRF()
+     */
+    @Override
+    public SpaceSys getICRF() {
+        return getICRF();
+    }
+    /**
+     * {@inheritDoc}
+     * overrides @see org.ivoa.dm.proposal.prop.ExampleGenerator#getICRS()
+     */
+    @Override
+    public SpaceSys getICRS() {
+        return ICRS_SYS;
+        
     }
 
 }
