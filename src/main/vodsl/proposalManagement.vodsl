@@ -92,7 +92,7 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  }
 
  otype AvailableResources "The list of resources that are available" {
- 	resources  : Resource @* as composition ""; // TODO need to ensure that each resource type can occur only once.
+ 	resources  : Resource @* as ordered composition ""; // TODO need to ensure that each resource type can occur only once.
  }
  
  

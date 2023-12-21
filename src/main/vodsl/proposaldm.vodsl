@@ -29,11 +29,11 @@ observations, although the intention is that information about targets etc. coul
     investigators: Investigator @+ as composition  "the person(s) making the proposal";
     kind : ProposalKind "the type of proposal";
     relatedProposals: RelatedProposal @* as composition "";
-    supportingDocuments: SupportingDocument @* as composition "any additional documents";
+    supportingDocuments: SupportingDocument @* as ordered composition "any additional documents";
     targets: Target @+ as composition "the targets of the proposal";
     fields: Field @+ as composition "the fields observed in the proposal";
-    technicalGoals: TechnicalGoal @+ as composition "the technical goals of the proposal";
-    observations : Observation @+ as composition "the proposed observations";
+    technicalGoals: TechnicalGoal @+ as ordered composition "the technical goals of the proposal";
+    observations : Observation @+ as ordered composition "the proposed observations";
     submitted: ivoa:boolean @? "whether the proposal is submitted"; //note that submitted proposals are not expected to be editable..  made optional to allow for not setting for not submitted proposals
  }
  
@@ -231,7 +231,7 @@ observations, although the intention is that information about targets etc. coul
   otype ScienceSpectralWindow  "A spectral window for science use."
   {   
         spectralWindowSetup: SpectralWindowSetup  @?   as composition  "" ;
-        expectedSpectralLine: ExpectedSpectralLine  @*   as composition  "" ;
+        expectedSpectralLine: ExpectedSpectralLine  @*   as ordered composition  "" ;
   }
  
   otype SpectralWindowSetup  "Science oriented definition of a spectral window."
@@ -266,7 +266,7 @@ observations, although the intention is that information about targets etc. coul
  	target references  Target  "The actual target of the observation";
  	field references Field "The Field for the observation";
  	technicalGoal references TechnicalGoal "The technical goals of the observation";
- 	constraints: ObservingConstraint @* as composition "any constraints on the observation";
+ 	constraints: ObservingConstraint @* as ordered composition "any constraints on the observation";
  }
  
  otype TargetObservation -> Observation "an observation of the scientific target "{
@@ -291,7 +291,7 @@ Delay  ""
  //REQ define technical aspects in science terms
  otype TechnicalGoal "collects together the technical goals of the proposal" {
  	performance : PerformanceParameters as composition "";
- 	spectrum: ScienceSpectralWindow @+ as composition "";
+ 	spectrum: ScienceSpectralWindow @+ as ordered composition "";
  	
  }
  

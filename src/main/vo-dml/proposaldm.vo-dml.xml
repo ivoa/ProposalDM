@@ -9,10 +9,10 @@
       proposal to be reviewed and allocated time. It does not cover all the technical detail of instrument setup that would be needed to actually schedule the 
       observations, although the intention is that information about targets etc. could be automatically transferred to an observing system.</description> 
       <uri/>
-      <title>TBD</title>
+      <title></title>
       <author>Paul Harrison</author>
       <version>0.3</version>
-      <lastModified>2023-12-15T17:37:21Z</lastModified>
+      <lastModified>2023-12-19T15:33:40Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -24,9 +24,12 @@
         <documentationURL>not known</documentationURL>
       </import>
       <primitiveType>
-        <vodml-id>WikiDataId</vodml-id>
-        <name>WikiDataId</name>
-        <description>a WikiData identifier</description>	    
+      <vodml-id>WikiDataId</vodml-id>
+      <name>WikiDataId</name>
+      <description>a WikiData identifier</description>	    
+      <extends>
+         <vodml-ref>ivoa:stringIdentifier</vodml-ref>
+      </extends>
       </primitiveType>
             <enumeration>
                <vodml-id>ProposalKind</vodml-id>
@@ -302,6 +305,7 @@
                    <minOccurs>1</minOccurs>
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
+                 <isOrdered>true</isOrdered>
                </composition>
             </objectType>
             <objectType>
@@ -859,7 +863,7 @@
                  </multiplicity>
                </attribute>
             </objectType>
-            <objectType abstract='true'>
+            <objectType abstract="true">
                <vodml-id>Target</vodml-id>
                <name>Target</name>
                <description>A target source</description>	    
@@ -964,7 +968,7 @@
                   <vodml-ref>proposal:Target</vodml-ref>
                </extends>
             </objectType>
-            <objectType abstract='true'>
+            <objectType abstract="true">
                <vodml-id>Field</vodml-id>
                <name>Field</name>
                <description>Definition of an observing field pointing</description>	    
@@ -1073,12 +1077,12 @@
                  </multiplicity>
                </attribute>
             </objectType>
-            <objectType abstract='true'>
+            <objectType abstract="true">
                <vodml-id>ObservingConstraint</vodml-id>
                <name>ObservingConstraint</name>
                <description>a form of constraint on the observation</description>	    
             </objectType>
-            <objectType abstract='true'>
+            <objectType abstract="true">
                <vodml-id>TimingConstraint</vodml-id>
                <name>TimingConstraint</name>
                <description>Any specific timing requirements for the observing</description>	    
@@ -1150,7 +1154,7 @@
                   <vodml-ref>proposal:TimingConstraint</vodml-ref>
                </extends>
             </objectType>
-            <objectType abstract='true'>
+            <objectType abstract="true">
                <vodml-id>PointingConstaint</vodml-id>
                <name>PointingConstaint</name>
                <description>A constraint that limits the telescope pointing</description>	    
@@ -1185,6 +1189,7 @@
                    <minOccurs>0</minOccurs>
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
+                 <isOrdered>true</isOrdered>
                </composition>
             </objectType>
             <objectType>
@@ -1370,7 +1375,7 @@
                  </multiplicity>
                </attribute>
             </objectType>
-            <objectType abstract='true'>
+            <objectType abstract="true">
                <vodml-id>Observation</vodml-id>
                <name>Observation</name>
                <description></description>	    
@@ -1385,6 +1390,7 @@
                    <minOccurs>0</minOccurs>
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
+                 <isOrdered>true</isOrdered>
                </composition>
                <reference>
                  <vodml-id>Observation.target</vodml-id>
@@ -1478,6 +1484,7 @@
                    <minOccurs>1</minOccurs>
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
+                 <isOrdered>true</isOrdered>
                </composition>
             </objectType>
 </vo-dml:model>

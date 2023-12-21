@@ -6,10 +6,10 @@
       <name>proposalManagement</name>
       <description>The data model for managing the proposal review process. Intended to work for phase 1</description> 
       <uri/>
-      <title>TBD</title>
+      <title></title>
       <author>Paul Harrison</author>
       <version>0.3</version>
-      <lastModified>2023-12-19T11:40:41Z</lastModified>
+      <lastModified>2023-12-19T15:37:41Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -524,6 +524,7 @@
                    <minOccurs>0</minOccurs>
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
+                 <isOrdered>true</isOrdered>
                </composition>
             </objectType>
             <objectType>
