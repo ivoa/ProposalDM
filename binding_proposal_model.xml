@@ -7,7 +7,7 @@
 <file>proposaldm.vo-dml.xml</file>s
     <java-package>org.ivoa.dm.proposal.prop</java-package>
 <xml-targetnamespace prefix="prop" schemaFilename="proposalDM.xsd">http://ivoa.net/dm/proposalDM</xml-targetnamespace>
-    <rdb inheritance-strategy="joined"
+    <rdb inheritance-strategy="single-table"
          discriminatorColumnLength="64"/>
 
 </model>
@@ -16,7 +16,7 @@
     <file>proposalManagement.vo-dml.xml</file>
     <java-package>org.ivoa.dm.proposal.management</java-package>
     <xml-targetnamespace prefix="propm" schemaFilename="proposalManagement.xsd">http://ivoa.net/dm/proposalManagment</xml-targetnamespace>
-        <rdb inheritance-strategy="joined"
+        <rdb inheritance-strategy="single-table"
              discriminatorColumnLength="64"/>
     </model>
 </m:mappedModels>
