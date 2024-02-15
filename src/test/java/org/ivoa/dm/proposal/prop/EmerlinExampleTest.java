@@ -247,6 +247,18 @@ class EmerlinExampleTest extends AbstractProposalTest {
         
    }
    
+   @org.junit.jupiter.api.Test
+   public void testCopy() {
+       
+       ProposalModel model = new ProposalModel();
+       model.createContext();
+       final ObservingProposal proposal = ex.getProposal();
+       final ObservingProposal cprop = new ObservingProposal(proposal);
+       cprop.updateClonedReferences();
+       proposal.observations.get(0).target.sourceName="changed";
+       assertEquals("fictional", cprop.observations.get(0).target.sourceName);
+       
+   }
    
   
  
