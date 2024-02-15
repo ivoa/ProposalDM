@@ -1,7 +1,7 @@
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.4.2"
+        id("net.ivoa.vo-dml.vodmltools") version "0.4.4"
         `maven-publish`
         id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
         signing
@@ -32,9 +32,9 @@ vodml {
 
 /* uncomment this if not using the eclipse vodsl plugin to edit the vodsl
 *  or just run the vodslToVodml task manually as necessary */
-//tasks.named("vodmlJavaGenerate") {
-//        dependsOn("vodslToVodml")
-//}
+tasks.named("vodmlJavaGenerate") {
+        dependsOn("vodslToVodml")
+}
 
 java {
         toolchain {
