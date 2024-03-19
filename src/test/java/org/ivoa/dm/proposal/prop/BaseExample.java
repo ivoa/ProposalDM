@@ -34,11 +34,11 @@ public abstract class BaseExample implements ExampleGenerator {
     };
 
     protected Person[] people = {
-            new Person("PI", "pi@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-003"), institutes[0]),
-            new Person("CO-I", "coi@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-004"), institutes[1]),
-            new Person("TAC Chair", "tacchair@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-005"), institutes[1]),
-            new Person("TAC member", "tacmamber@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-006"), institutes[0]),
-            new Person("reviewer", "reviewer@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-007"), institutes[1]),
+            new Person("John Flamsteed", "pi@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-003"), institutes[0]),
+            new Person("George Airy", "coi@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-004"), institutes[1]),
+            new Person("Edmond Halley", "tacchair@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-005"), institutes[1]),
+            new Person("James Bradley", "tacmamber@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-006"), institutes[0]),
+            new Person("Nevil Maskelyne ", "reviewer@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-007"), institutes[1]),
 
     };
     protected List<Investigator> investigators = Arrays.asList(
@@ -65,11 +65,11 @@ public abstract class BaseExample implements ExampleGenerator {
     protected Consumer<ObservingProposal.ObservingProposalBuilder> proposalCommonSetup() {
         return pr -> {
             pr.kind = ProposalKind.STANDARD;
-            pr.title = "the proposal title";
-            pr.summary = "a test proposal";
+            pr.title = "Observing the stars";
+            pr.summary = "measure parallax and spectra";
             pr.investigators = investigators ;
-            pr.scientificJustification = new Justification("scientific justification", TextFormats.ASCIIDOC);
-            pr.technicalJustification = new Justification("technical justification", TextFormats.ASCIIDOC);
+            pr.scientificJustification = new Justification("this will be a great contribution to our knowledge of the universe", TextFormats.ASCIIDOC);
+            pr.technicalJustification = new Justification("we can do this nowadays!", TextFormats.ASCIIDOC);
 
         };
     }
