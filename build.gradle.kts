@@ -36,6 +36,10 @@ tasks.named("vodmlJavaGenerate") {
         dependsOn("vodslToVodml")
 }
 
+tasks.named("vodmlSite") {
+        dependsOn("vodslToVodml")
+}
+
 java {
         toolchain {
                 languageVersion.set(JavaLanguageVersion.of(11)) // moved to Java 11
