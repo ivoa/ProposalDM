@@ -6,16 +6,15 @@
 <title>Telescope (proposaldm 0.4.1-SNAPSHOT API)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
-<link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.min.css" title="Style">
-<link rel="stylesheet" type="text/css" href="../../../../../jquery-ui.overrides.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.css" title="Style">
 <script type="text/javascript" src="../../../../../script.js"></script>
 <script type="text/javascript" src="../../../../../jquery/jszip/dist/jszip.min.js"></script>
 <script type="text/javascript" src="../../../../../jquery/jszip-utils/dist/jszip-utils.min.js"></script>
 <!--[if IE]>
 <script type="text/javascript" src="../../../../../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../../../../../jquery/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="../../../../../jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../../../../jquery/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="../../../../../jquery/jquery-ui.js"></script>
 </head>
 <body>
 <script type="text/javascript"><!--
@@ -151,7 +150,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 <ul class="blockList">
 <li class="blockList">
 <!-- ======== NESTED CLASS SUMMARY ======== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="nested.class.summary">
 <!--   -->
@@ -176,7 +175,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </ul>
 </section>
 <!-- =========== FIELD SUMMARY =========== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="field.summary">
 <!--   -->
@@ -197,7 +196,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../stc/coords/GeocentricPoint.html" title="class in org.ivoa.dm.stc.coords">GeocentricPoint</a></code></td>
+<td class="colFirst"><code>protected org.ivoa.dm.stc.coords.RealCartesianPoint</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#location">location</a></span></code></th>
 <td class="colLast">
 <div class="block">the location of the telescope.</div>
@@ -222,7 +221,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </ul>
 </section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="constructor.summary">
 <!--   -->
@@ -241,9 +240,9 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,org.ivoa.dm.proposal.prop.WikiDataId,org.ivoa.dm.stc.coords.GeocentricPoint)">Telescope</a></span>&#8203;(java.lang.String&nbsp;name,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,org.ivoa.dm.proposal.prop.WikiDataId,org.ivoa.dm.stc.coords.RealCartesianPoint)">Telescope</a></span>&#8203;(java.lang.String&nbsp;name,
          <a href="WikiDataId.html" title="class in org.ivoa.dm.proposal.prop">WikiDataId</a>&nbsp;wikiId,
-         <a href="../../stc/coords/GeocentricPoint.html" title="class in org.ivoa.dm.stc.coords">GeocentricPoint</a>&nbsp;location)</code></th>
+         org.ivoa.dm.stc.coords.RealCartesianPoint&nbsp;location)</code></th>
 <td class="colLast">
 <div class="block">full parameter constructor.</div>
 </td>
@@ -259,7 +258,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </ul>
 </section>
 <!-- ========== METHOD SUMMARY =========== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="method.summary">
 <!--   -->
@@ -290,7 +289,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../stc/coords/GeocentricPoint.html" title="class in org.ivoa.dm.stc.coords">GeocentricPoint</a></code></td>
+<td class="colFirst"><code>org.ivoa.dm.stc.coords.RealCartesianPoint</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLocation()">getLocation</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns location Attribute</div>
@@ -334,7 +333,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLocation(org.ivoa.dm.stc.coords.GeocentricPoint)">setLocation</a></span>&#8203;(<a href="../../stc/coords/GeocentricPoint.html" title="class in org.ivoa.dm.stc.coords">GeocentricPoint</a>&nbsp;pLocation)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLocation(org.ivoa.dm.stc.coords.RealCartesianPoint)">setLocation</a></span>&#8203;(org.ivoa.dm.stc.coords.RealCartesianPoint&nbsp;pLocation)</code></th>
 <td class="colLast">
 <div class="block">Defines location Attribute</div>
 </td>
@@ -367,7 +366,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="Telescope.html" title="class in org.ivoa.dm.proposal.prop">Telescope</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withLocation(org.ivoa.dm.stc.coords.GeocentricPoint)">withLocation</a></span>&#8203;(<a href="../../stc/coords/GeocentricPoint.html" title="class in org.ivoa.dm.stc.coords">GeocentricPoint</a>&nbsp;pLocation)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withLocation(org.ivoa.dm.stc.coords.RealCartesianPoint)">withLocation</a></span>&#8203;(org.ivoa.dm.stc.coords.RealCartesianPoint&nbsp;pLocation)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i16" class="altColor">
@@ -398,7 +397,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 <ul class="blockList">
 <li class="blockList">
 <!-- ============ FIELD DETAIL =========== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="field.detail">
 <!--   -->
@@ -450,9 +449,9 @@ protected&nbsp;<a href="WikiDataId.html" title="class in org.ivoa.dm.proposal.pr
 <h4>location</h4>
 <pre>@VoDml(id="proposal:Telescope.location",
        role=attribute,
-       type="coords:GeocentricPoint",
+       type="coords:RealCartesianPoint",
        typeRole=dataType)
-protected&nbsp;<a href="../../stc/coords/GeocentricPoint.html" title="class in org.ivoa.dm.stc.coords">GeocentricPoint</a> location</pre>
+protected&nbsp;org.ivoa.dm.stc.coords.RealCartesianPoint location</pre>
 <div class="block">the location of the telescope. : Attribute location : multiplicity 1</div>
 </li>
 </ul>
@@ -460,7 +459,7 @@ protected&nbsp;<a href="../../stc/coords/GeocentricPoint.html" title="class in o
 </ul>
 </section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="constructor.detail">
 <!--   -->
@@ -476,7 +475,7 @@ protected&nbsp;<a href="../../stc/coords/GeocentricPoint.html" title="class in o
 <div class="block">Creates a new Telescope</div>
 </li>
 </ul>
-<a id="&lt;init&gt;(java.lang.String,org.ivoa.dm.proposal.prop.WikiDataId,org.ivoa.dm.stc.coords.GeocentricPoint)">
+<a id="&lt;init&gt;(java.lang.String,org.ivoa.dm.proposal.prop.WikiDataId,org.ivoa.dm.stc.coords.RealCartesianPoint)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -484,7 +483,7 @@ protected&nbsp;<a href="../../stc/coords/GeocentricPoint.html" title="class in o
 <h4>Telescope</h4>
 <pre>public&nbsp;Telescope&#8203;(java.lang.String&nbsp;name,
                  <a href="WikiDataId.html" title="class in org.ivoa.dm.proposal.prop">WikiDataId</a>&nbsp;wikiId,
-                 <a href="../../stc/coords/GeocentricPoint.html" title="class in org.ivoa.dm.stc.coords">GeocentricPoint</a>&nbsp;location)</pre>
+                 org.ivoa.dm.stc.coords.RealCartesianPoint&nbsp;location)</pre>
 <div class="block">full parameter constructor.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -512,7 +511,7 @@ protected&nbsp;<a href="../../stc/coords/GeocentricPoint.html" title="class in o
 </ul>
 </section>
 <!-- ============ METHOD DETAIL ========== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="method.detail">
 <!--   -->
@@ -667,7 +666,7 @@ protected&nbsp;<a href="../../stc/coords/GeocentricPoint.html" title="class in o
 <ul class="blockList">
 <li class="blockList">
 <h4>getLocation</h4>
-<pre class="methodSignature">public&nbsp;<a href="../../stc/coords/GeocentricPoint.html" title="class in org.ivoa.dm.stc.coords">GeocentricPoint</a>&nbsp;getLocation()</pre>
+<pre class="methodSignature">public&nbsp;org.ivoa.dm.stc.coords.RealCartesianPoint&nbsp;getLocation()</pre>
 <div class="block">Returns location Attribute</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -675,13 +674,13 @@ protected&nbsp;<a href="../../stc/coords/GeocentricPoint.html" title="class in o
 </dl>
 </li>
 </ul>
-<a id="setLocation(org.ivoa.dm.stc.coords.GeocentricPoint)">
+<a id="setLocation(org.ivoa.dm.stc.coords.RealCartesianPoint)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setLocation</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setLocation&#8203;(<a href="../../stc/coords/GeocentricPoint.html" title="class in org.ivoa.dm.stc.coords">GeocentricPoint</a>&nbsp;pLocation)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;setLocation&#8203;(org.ivoa.dm.stc.coords.RealCartesianPoint&nbsp;pLocation)</pre>
 <div class="block">Defines location Attribute</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -689,13 +688,13 @@ protected&nbsp;<a href="../../stc/coords/GeocentricPoint.html" title="class in o
 </dl>
 </li>
 </ul>
-<a id="withLocation(org.ivoa.dm.stc.coords.GeocentricPoint)">
+<a id="withLocation(org.ivoa.dm.stc.coords.RealCartesianPoint)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>withLocation</h4>
-<pre class="methodSignature">public&nbsp;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.prop">Telescope</a>&nbsp;withLocation&#8203;(<a href="../../stc/coords/GeocentricPoint.html" title="class in org.ivoa.dm.stc.coords">GeocentricPoint</a>&nbsp;pLocation)</pre>
+<pre class="methodSignature">public&nbsp;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.prop">Telescope</a>&nbsp;withLocation&#8203;(org.ivoa.dm.stc.coords.RealCartesianPoint&nbsp;pLocation)</pre>
 </li>
 </ul>
 <a id="createTelescope(java.util.function.Consumer)">

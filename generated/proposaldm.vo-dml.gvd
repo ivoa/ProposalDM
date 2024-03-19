@@ -19,6 +19,13 @@ digraph GVmap {
 	shape=record
 	fontsize=8
 	style=filled] 
+    
+  "ivoa:stringIdentifier" [
+    URL="#stringIdentifier"
+    label = "{ivoa:stringIdentifier}"
+    fillcolor="grey"
+    ] ;
+      
     "proposal:WikiDataId"[
     URL="../proposal/WikiDataId"
     label = "{&lt;&lt;primitive type&gt;&gt;\nWikiDataId}"
@@ -81,7 +88,7 @@ digraph GVmap {
     ] ;
   "proposal:Telescope" [
     URL="../proposal/Telescope"
-    label = "{Telescope|+name : ivoa:string\l+wikiId : proposal:WikiDataId\l+location : coords:GeocentricPoint\l}"
+    label = "{Telescope|+name : ivoa:string\l+wikiId : proposal:WikiDataId\l+location : coords:RealCartesianPoint\l}"
     fillcolor="/set312/1"
     ] ;
   "proposal:TelescopeArrayMember" [
@@ -232,7 +239,8 @@ digraph GVmap {
   
  
     edge [color="red", arrowtail="none", arrowhead="empty"]
-    "proposal:Observatory" -> "proposal:Organization" ;
+    "proposal:WikiDataId" -> "ivoa:stringIdentifier" ;
+  "proposal:Observatory" -> "proposal:Organization" ;
   "proposal:CelestialTarget" -> "proposal:Target" ;
   "proposal:SolarSystemTarget" -> "proposal:Target" ;
   "proposal:TargetField" -> "proposal:Field" ;

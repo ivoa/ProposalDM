@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.ivoa.dm.proposal.management"},{"l":"org.ivoa.dm.proposal.prop"},{"l":"org.ivoa.dm.stc.coords"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.ivoa.dm.proposal.management"},{"l":"org.ivoa.dm.proposal.prop"}]

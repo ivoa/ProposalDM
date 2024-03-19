@@ -6,16 +6,15 @@
 <title>CelestialTarget (proposaldm 0.4.1-SNAPSHOT API)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
-<link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.min.css" title="Style">
-<link rel="stylesheet" type="text/css" href="../../../../../jquery-ui.overrides.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.css" title="Style">
 <script type="text/javascript" src="../../../../../script.js"></script>
 <script type="text/javascript" src="../../../../../jquery/jszip/dist/jszip.min.js"></script>
 <script type="text/javascript" src="../../../../../jquery/jszip-utils/dist/jszip-utils.min.js"></script>
 <!--[if IE]>
 <script type="text/javascript" src="../../../../../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../../../../../jquery/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="../../../../../jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../../../../jquery/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="../../../../../jquery/jquery-ui.js"></script>
 </head>
 <body>
 <script type="text/javascript"><!--
@@ -156,7 +155,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 <ul class="blockList">
 <li class="blockList">
 <!-- ======== NESTED CLASS SUMMARY ======== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="nested.class.summary">
 <!--   -->
@@ -181,7 +180,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </ul>
 </section>
 <!-- =========== FIELD SUMMARY =========== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="field.summary">
 <!--   -->
@@ -216,14 +215,14 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a></code></td>
+<td class="colFirst"><code>protected org.ivoa.dm.stc.coords.Epoch</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#positionEpoch">positionEpoch</a></span></code></th>
 <td class="colLast">
 <div class="block">the epoch at which the position was measured.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a></code></td>
+<td class="colFirst"><code>protected org.ivoa.dm.stc.coords.EquatorialPoint</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sourceCoordinates">sourceCoordinates</a></span></code></th>
 <td class="colLast">
 <div class="block">.</div>
@@ -248,7 +247,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </ul>
 </section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="constructor.summary">
 <!--   -->
@@ -274,8 +273,8 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.ivoa.dm.proposal.prop.Target,org.ivoa.dm.stc.coords.EquatorialPoint,org.ivoa.dm.stc.coords.Epoch,org.ivoa.dm.ivoa.RealQuantity,org.ivoa.dm.ivoa.RealQuantity,org.ivoa.dm.ivoa.RealQuantity,org.ivoa.dm.ivoa.RealQuantity)">CelestialTarget</a></span>&#8203;(<a href="Target.html" title="class in org.ivoa.dm.proposal.prop">Target</a>&nbsp;superinstance,
-               <a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a>&nbsp;sourceCoordinates,
-               <a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a>&nbsp;positionEpoch,
+               org.ivoa.dm.stc.coords.EquatorialPoint&nbsp;sourceCoordinates,
+               org.ivoa.dm.stc.coords.Epoch&nbsp;positionEpoch,
                org.ivoa.dm.ivoa.RealQuantity&nbsp;pmRA,
                org.ivoa.dm.ivoa.RealQuantity&nbsp;pmDec,
                org.ivoa.dm.ivoa.RealQuantity&nbsp;parallax,
@@ -285,8 +284,8 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.ivoa.dm.stc.coords.EquatorialPoint,org.ivoa.dm.stc.coords.Epoch,org.ivoa.dm.ivoa.RealQuantity,org.ivoa.dm.ivoa.RealQuantity,org.ivoa.dm.ivoa.RealQuantity,org.ivoa.dm.ivoa.RealQuantity,java.lang.String)">CelestialTarget</a></span>&#8203;(<a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a>&nbsp;sourceCoordinates,
-               <a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a>&nbsp;positionEpoch,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.ivoa.dm.stc.coords.EquatorialPoint,org.ivoa.dm.stc.coords.Epoch,org.ivoa.dm.ivoa.RealQuantity,org.ivoa.dm.ivoa.RealQuantity,org.ivoa.dm.ivoa.RealQuantity,org.ivoa.dm.ivoa.RealQuantity,java.lang.String)">CelestialTarget</a></span>&#8203;(org.ivoa.dm.stc.coords.EquatorialPoint&nbsp;sourceCoordinates,
+               org.ivoa.dm.stc.coords.Epoch&nbsp;positionEpoch,
                org.ivoa.dm.ivoa.RealQuantity&nbsp;pmRA,
                org.ivoa.dm.ivoa.RealQuantity&nbsp;pmDec,
                org.ivoa.dm.ivoa.RealQuantity&nbsp;parallax,
@@ -301,7 +300,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </ul>
 </section>
 <!-- ========== METHOD SUMMARY =========== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="method.summary">
 <!--   -->
@@ -353,14 +352,14 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a></code></td>
+<td class="colFirst"><code>org.ivoa.dm.stc.coords.Epoch</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPositionEpoch()">getPositionEpoch</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns positionEpoch Attribute</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a></code></td>
+<td class="colFirst"><code>org.ivoa.dm.stc.coords.EquatorialPoint</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSourceCoordinates()">getSourceCoordinates</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns sourceCoordinates Attribute</div>
@@ -406,14 +405,14 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPositionEpoch(org.ivoa.dm.stc.coords.Epoch)">setPositionEpoch</a></span>&#8203;(<a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a>&nbsp;pPositionEpoch)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPositionEpoch(org.ivoa.dm.stc.coords.Epoch)">setPositionEpoch</a></span>&#8203;(org.ivoa.dm.stc.coords.Epoch&nbsp;pPositionEpoch)</code></th>
 <td class="colLast">
 <div class="block">Defines positionEpoch Attribute</div>
 </td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSourceCoordinates(org.ivoa.dm.stc.coords.EquatorialPoint)">setSourceCoordinates</a></span>&#8203;(<a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a>&nbsp;pSourceCoordinates)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSourceCoordinates(org.ivoa.dm.stc.coords.EquatorialPoint)">setSourceCoordinates</a></span>&#8203;(org.ivoa.dm.stc.coords.EquatorialPoint&nbsp;pSourceCoordinates)</code></th>
 <td class="colLast">
 <div class="block">Defines sourceCoordinates Attribute</div>
 </td>
@@ -449,12 +448,12 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 </tr>
 <tr id="i21" class="rowColor">
 <td class="colFirst"><code><a href="CelestialTarget.html" title="class in org.ivoa.dm.proposal.prop">CelestialTarget</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withPositionEpoch(org.ivoa.dm.stc.coords.Epoch)">withPositionEpoch</a></span>&#8203;(<a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a>&nbsp;pPositionEpoch)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withPositionEpoch(org.ivoa.dm.stc.coords.Epoch)">withPositionEpoch</a></span>&#8203;(org.ivoa.dm.stc.coords.Epoch&nbsp;pPositionEpoch)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i22" class="altColor">
 <td class="colFirst"><code><a href="CelestialTarget.html" title="class in org.ivoa.dm.proposal.prop">CelestialTarget</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withSourceCoordinates(org.ivoa.dm.stc.coords.EquatorialPoint)">withSourceCoordinates</a></span>&#8203;(<a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a>&nbsp;pSourceCoordinates)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withSourceCoordinates(org.ivoa.dm.stc.coords.EquatorialPoint)">withSourceCoordinates</a></span>&#8203;(org.ivoa.dm.stc.coords.EquatorialPoint&nbsp;pSourceCoordinates)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i23" class="rowColor">
@@ -501,7 +500,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
 <ul class="blockList">
 <li class="blockList">
 <!-- ============ FIELD DETAIL =========== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="field.detail">
 <!--   -->
@@ -517,7 +516,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;java.lang.Long&gt
        role=attribute,
        type="coords:EquatorialPoint",
        typeRole=dataType)
-protected&nbsp;<a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a> sourceCoordinates</pre>
+protected&nbsp;org.ivoa.dm.stc.coords.EquatorialPoint sourceCoordinates</pre>
 <div class="block">. : Attribute sourceCoordinates : multiplicity 1</div>
 </li>
 </ul>
@@ -531,7 +530,7 @@ protected&nbsp;<a href="../../stc/coords/EquatorialPoint.html" title="class in o
        role=attribute,
        type="coords:Epoch",
        typeRole=primitiveType)
-protected&nbsp;<a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a> positionEpoch</pre>
+protected&nbsp;org.ivoa.dm.stc.coords.Epoch positionEpoch</pre>
 <div class="block">the epoch at which the position was measured. : Attribute positionEpoch : multiplicity 1</div>
 </li>
 </ul>
@@ -595,7 +594,7 @@ protected&nbsp;org.ivoa.dm.ivoa.RealQuantity sourceVelocity</pre>
 </ul>
 </section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="constructor.detail">
 <!--   -->
@@ -617,8 +616,8 @@ protected&nbsp;org.ivoa.dm.ivoa.RealQuantity sourceVelocity</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>CelestialTarget</h4>
-<pre>public&nbsp;CelestialTarget&#8203;(<a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a>&nbsp;sourceCoordinates,
-                       <a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a>&nbsp;positionEpoch,
+<pre>public&nbsp;CelestialTarget&#8203;(org.ivoa.dm.stc.coords.EquatorialPoint&nbsp;sourceCoordinates,
+                       org.ivoa.dm.stc.coords.Epoch&nbsp;positionEpoch,
                        org.ivoa.dm.ivoa.RealQuantity&nbsp;pmRA,
                        org.ivoa.dm.ivoa.RealQuantity&nbsp;pmDec,
                        org.ivoa.dm.ivoa.RealQuantity&nbsp;parallax,
@@ -658,8 +657,8 @@ protected&nbsp;org.ivoa.dm.ivoa.RealQuantity sourceVelocity</pre>
 <li class="blockList">
 <h4>CelestialTarget</h4>
 <pre>public&nbsp;CelestialTarget&#8203;(<a href="Target.html" title="class in org.ivoa.dm.proposal.prop">Target</a>&nbsp;superinstance,
-                       <a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a>&nbsp;sourceCoordinates,
-                       <a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a>&nbsp;positionEpoch,
+                       org.ivoa.dm.stc.coords.EquatorialPoint&nbsp;sourceCoordinates,
+                       org.ivoa.dm.stc.coords.Epoch&nbsp;positionEpoch,
                        org.ivoa.dm.ivoa.RealQuantity&nbsp;pmRA,
                        org.ivoa.dm.ivoa.RealQuantity&nbsp;pmDec,
                        org.ivoa.dm.ivoa.RealQuantity&nbsp;parallax,
@@ -681,7 +680,7 @@ protected&nbsp;org.ivoa.dm.ivoa.RealQuantity sourceVelocity</pre>
 </ul>
 </section>
 <!-- ============ METHOD DETAIL ========== -->
-<section>
+<section role="region">
 <ul class="blockList">
 <li class="blockList"><a id="method.detail">
 <!--   -->
@@ -720,7 +719,7 @@ protected&nbsp;org.ivoa.dm.ivoa.RealQuantity sourceVelocity</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getSourceCoordinates</h4>
-<pre class="methodSignature">public&nbsp;<a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a>&nbsp;getSourceCoordinates()</pre>
+<pre class="methodSignature">public&nbsp;org.ivoa.dm.stc.coords.EquatorialPoint&nbsp;getSourceCoordinates()</pre>
 <div class="block">Returns sourceCoordinates Attribute</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -734,7 +733,7 @@ protected&nbsp;org.ivoa.dm.ivoa.RealQuantity sourceVelocity</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setSourceCoordinates</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setSourceCoordinates&#8203;(<a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a>&nbsp;pSourceCoordinates)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;setSourceCoordinates&#8203;(org.ivoa.dm.stc.coords.EquatorialPoint&nbsp;pSourceCoordinates)</pre>
 <div class="block">Defines sourceCoordinates Attribute</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -748,7 +747,7 @@ protected&nbsp;org.ivoa.dm.ivoa.RealQuantity sourceVelocity</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>withSourceCoordinates</h4>
-<pre class="methodSignature">public&nbsp;<a href="CelestialTarget.html" title="class in org.ivoa.dm.proposal.prop">CelestialTarget</a>&nbsp;withSourceCoordinates&#8203;(<a href="../../stc/coords/EquatorialPoint.html" title="class in org.ivoa.dm.stc.coords">EquatorialPoint</a>&nbsp;pSourceCoordinates)</pre>
+<pre class="methodSignature">public&nbsp;<a href="CelestialTarget.html" title="class in org.ivoa.dm.proposal.prop">CelestialTarget</a>&nbsp;withSourceCoordinates&#8203;(org.ivoa.dm.stc.coords.EquatorialPoint&nbsp;pSourceCoordinates)</pre>
 </li>
 </ul>
 <a id="getPositionEpoch()">
@@ -757,7 +756,7 @@ protected&nbsp;org.ivoa.dm.ivoa.RealQuantity sourceVelocity</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getPositionEpoch</h4>
-<pre class="methodSignature">public&nbsp;<a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a>&nbsp;getPositionEpoch()</pre>
+<pre class="methodSignature">public&nbsp;org.ivoa.dm.stc.coords.Epoch&nbsp;getPositionEpoch()</pre>
 <div class="block">Returns positionEpoch Attribute</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -771,7 +770,7 @@ protected&nbsp;org.ivoa.dm.ivoa.RealQuantity sourceVelocity</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setPositionEpoch</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setPositionEpoch&#8203;(<a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a>&nbsp;pPositionEpoch)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;setPositionEpoch&#8203;(org.ivoa.dm.stc.coords.Epoch&nbsp;pPositionEpoch)</pre>
 <div class="block">Defines positionEpoch Attribute</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -785,7 +784,7 @@ protected&nbsp;org.ivoa.dm.ivoa.RealQuantity sourceVelocity</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>withPositionEpoch</h4>
-<pre class="methodSignature">public&nbsp;<a href="CelestialTarget.html" title="class in org.ivoa.dm.proposal.prop">CelestialTarget</a>&nbsp;withPositionEpoch&#8203;(<a href="../../stc/coords/Epoch.html" title="class in org.ivoa.dm.stc.coords">Epoch</a>&nbsp;pPositionEpoch)</pre>
+<pre class="methodSignature">public&nbsp;<a href="CelestialTarget.html" title="class in org.ivoa.dm.proposal.prop">CelestialTarget</a>&nbsp;withPositionEpoch&#8203;(org.ivoa.dm.stc.coords.Epoch&nbsp;pPositionEpoch)</pre>
 </li>
 </ul>
 <a id="getPmRA()">

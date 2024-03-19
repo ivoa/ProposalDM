@@ -439,7 +439,7 @@
       </node>
       <!--edges-->
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e455"
+            id="d2e457"
             source="proposalManagement:AllocatedBlock"
             target="proposalManagement:ResourceBlock">
          <data key="k3">
@@ -627,7 +627,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e398"
+            id="d2e399"
             source="proposalManagement:AvailableResources"
             target="proposalManagement:Resource">
          <data key="k3">
@@ -643,7 +643,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e433"
+            id="d2e435"
             source="proposalManagement:ResourceBlock"
             target="proposalManagement:Resource">
          <data key="k3">
@@ -739,7 +739,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e291"
+            id="d2e292"
             source="proposalManagement:AllocatedProposal"
             target="proposalManagement:SubmittedProposal">
          <data key="k3">
@@ -755,7 +755,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e340"
+            id="d2e341"
             source="proposalManagement:ProposalReview"
             target="proposalManagement:Reviewer">
          <data key="k3">
@@ -771,7 +771,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e385"
+            id="d2e386"
             source="proposalManagement:Resource"
             target="proposalManagement:ResourceType">
          <data key="k3">
@@ -787,7 +787,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e442"
+            id="d2e444"
             source="proposalManagement:ResourceBlock"
             target="proposal:ObservingMode">
          <data key="k3">
@@ -803,7 +803,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e457"
+            id="d2e459"
             source="proposalManagement:AllocatedBlock"
             target="proposalManagement:AllocationGrade">
          <data key="k3">
