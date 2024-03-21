@@ -1,4 +1,4 @@
-site_name: Model Documentation
+site_name: ProposalDM
 repo_url: 'https://github.com/ivoa/ProposalDM'
 theme:
   name: material
