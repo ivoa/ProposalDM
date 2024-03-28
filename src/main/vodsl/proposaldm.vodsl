@@ -263,7 +263,7 @@ observations, although the intention is that information about targets etc. coul
  }
  
  abstract otype Observation "" {
- 	target references  Target  "The actual target of the observation";
+ 	target references  Target  "The actual target of the observation"; //TODO this should be multiple if field is to have any separate meaning.
  	field references Field "The Field for the observation";
  	technicalGoal references TechnicalGoal "The technical goals of the observation";
  	constraints: ObservingConstraint @* as ordered composition "any constraints on the observation";

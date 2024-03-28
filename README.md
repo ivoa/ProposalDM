@@ -7,7 +7,7 @@ The Opticon RadioNet Pilot (https://www.orp-h2020.eu).
 The model is described in more detail [here](https://ivoa.github.io/ProposalDM/)
 
 <p>
-<img src="https://raw.githubusercontent.com/orppst/guide/main/content/en/eu-flag.jpg" height="30" alt="EU Flag"/> This project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No 101004719
+<img src="https://raw.githubusercontent.com/orppst/guide/main/docs/eu-flag.jpg" height="30" alt="EU Flag"/> This project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No 101004719
 </p>
 
 [![main test](https://github.com/ivoa/ProposalDM/actions/workflows/test.yml/badge.svg)](https://github.com/ivoa/ProposalDM/actions/workflows/test.yml/)
