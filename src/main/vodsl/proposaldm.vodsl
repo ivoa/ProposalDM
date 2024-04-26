@@ -2,7 +2,7 @@
  *  created on 09-Jul-2021 
  */
  
- model proposal (0.3) "A model to represent an application for observing time. The model is intended to express all 
+ model proposal (0.4) "A model to represent an application for observing time. The model is intended to express all
 of the concepts required to specify the scientific parameters of the application in sufficient detail to allow the 
 proposal to be reviewed and allocated time. It does not cover all the technical detail of instrument setup that would be needed to actually schedule the 
 observations, although the intention is that information about targets etc. could be automatically transferred to an observing system."
