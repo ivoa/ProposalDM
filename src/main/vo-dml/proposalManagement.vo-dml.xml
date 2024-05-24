@@ -9,7 +9,7 @@
       <title></title>
       <author>Paul Harrison</author>
       <version>0.4</version>
-      <lastModified>2024-04-26T17:38:33Z</lastModified>
+      <lastModified>2024-05-24T14:21:25Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -175,18 +175,6 @@
                  </multiplicity>
                </composition>
                <composition>
-                 <vodml-id>ProposalCycle.reviewedProposals</vodml-id>
-                 <name>reviewedProposals</name>
-                 <description>the proposals that have been reviewed in this cycle</description>	    
-                 <datatype>
-                    <vodml-ref>proposalManagement:ReviewedProposal</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>0</minOccurs>
-                   <maxOccurs>-1</maxOccurs>
-                 </multiplicity>
-               </composition>
-               <composition>
                  <vodml-id>ProposalCycle.allocatedProposals</vodml-id>
                  <name>allocatedProposals</name>
                  <description>the proposals that have been successful and allocated time</description>	    
@@ -290,25 +278,8 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
-               <reference>
-                 <vodml-id>SubmittedProposal.proposal</vodml-id>
-                 <name>proposal</name>
-                 <description>the proposal that was submitted</description>	    
-                 <datatype>
-                   <vodml-ref>proposal:ObservingProposal</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </reference>
-            </objectType>
-            <objectType>
-               <vodml-id>ReviewedProposal</vodml-id>
-               <name>ReviewedProposal</name>
-               <description>an instance of a proposal that is in review</description>	    
                <attribute>
-                 <vodml-id>ReviewedProposal.successful</vodml-id>
+                 <vodml-id>SubmittedProposal.successful</vodml-id>
                  <name>successful</name>
                  <description>the proposal can go on to allocation</description>	    
                  <datatype>
@@ -320,7 +291,7 @@
                  </multiplicity>
                </attribute>
                <attribute>
-                 <vodml-id>ReviewedProposal.reviewsCompleteDate</vodml-id>
+                 <vodml-id>SubmittedProposal.reviewsCompleteDate</vodml-id>
                  <name>reviewsCompleteDate</name>
                  <description>the date when all the proposals are due</description>	    
                  <datatype>
@@ -331,24 +302,12 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
-               <composition>
-                 <vodml-id>ReviewedProposal.reviews</vodml-id>
-                 <name>reviews</name>
-                 <description>the reviews</description>	    
-                 <datatype>
-                    <vodml-ref>proposalManagement:ProposalReview</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>-1</maxOccurs>
-                 </multiplicity>
-               </composition>
                <reference>
-                 <vodml-id>ReviewedProposal.submitted</vodml-id>
-                 <name>submitted</name>
-                 <description></description>	    
+                 <vodml-id>SubmittedProposal.proposal</vodml-id>
+                 <name>proposal</name>
+                 <description>the proposal that was submitted</description>	    
                  <datatype>
-                   <vodml-ref>proposalManagement:SubmittedProposal</vodml-ref>
+                   <vodml-ref>proposal:ObservingProposal</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -438,6 +397,18 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
+               <reference>
+                 <vodml-id>ProposalReview.proposal</vodml-id>
+                 <name>proposal</name>
+                 <description>the submitted proposal</description>	    
+                 <datatype>
+                   <vodml-ref>proposalManagement:SubmittedProposal</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
                <reference>
                  <vodml-id>ProposalReview.reviewer</vodml-id>
                  <name>reviewer</name>

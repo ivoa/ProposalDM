@@ -25,7 +25,6 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  	possibleGrades : AllocationGrade @+ as composition "The possible grades that can be allocated for this cycle";
  	tac : TAC as composition "The time allocation committee";
  	submittedProposals : SubmittedProposal @* as composition "the proposals that have been submitted in this cycle";
- 	reviewedProposals : ReviewedProposal @* as composition "the proposals that have been reviewed in this cycle";
  	allocatedProposals : AllocatedProposal @* as composition "the proposals that have been successful and allocated time";
  }
  
@@ -56,15 +55,10 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  otype SubmittedProposal "an instance of a proposal that has been submitted" {
  	proposal references proposal:ObservingProposal "the proposal that was submitted"; //note although this is a reference, the proposal is "frozen" when submitted.
  	submissionDate : ivoa:datetime "the date that the proposal was submitted";
- }
- 
- otype ReviewedProposal "an instance of a proposal that is in review" {
-//	cycle references ProposalCycle ""; //IMPL does not necessarily need this back reference as owned by the cycle - might be possible to put in automatically with tooling...
- 	submitted references SubmittedProposal ""; 	
- 	reviews : ProposalReview @+ as composition "the reviews";
  	successful : ivoa:boolean "the proposal can go on to allocation";
  	reviewsCompleteDate : ivoa:datetime "the date when all the proposals are due";
- }
+ 	}
+ 
  
  otype AllocatedProposal "an instance of a proposal that is allocated observing time" {
  	submitted references SubmittedProposal "the proposal"; 	
@@ -72,6 +66,7 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  }
  
  otype ProposalReview "A review of a proposal" {
+ 	proposal references SubmittedProposal "the submitted proposal";
  	reviewer references Reviewer "the reviewer making this review";
  	comment: ivoa:string "Description";
  	score : ivoa:real "the review score";

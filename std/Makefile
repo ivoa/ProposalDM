@@ -4,7 +4,7 @@
 DOCNAME = ProposalDM
 
 # count up; you probably do not want to bother with versions <1.0
-DOCVERSION = 0.3
+DOCVERSION = 0.4
 
 # Publication date, ISO format; update manually for "releases"
 DOCDATE = ???

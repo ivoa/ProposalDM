@@ -173,26 +173,21 @@ public class EmerlinExample extends BaseExample {
               }
         ));
         // "submit" proposal
-        final SubmittedProposal submittedProposal = new SubmittedProposal( new GregorianCalendar(2022, 3, 14).getTime(), proposal);
+        final SubmittedProposal submittedProposal = new SubmittedProposal( new GregorianCalendar(2022, 3, 14).getTime(), false, new GregorianCalendar(2022, 4, 30).getTime(), proposal);
         cycle.setSubmittedProposals(
               Arrays.asList(submittedProposal));
 
         // "review" proposal
-
-        cycle.setReviewedProposals(Arrays.asList(ReviewedProposal.createReviewedProposal(r -> {
-                  r.submitted = submittedProposal;
-                  r.reviewsCompleteDate = new GregorianCalendar(2022, 4, 14).getTime();
-                  r.successful = true;
-                  r.reviews = Arrays.asList(ProposalReview.createProposalReview(pr -> {
+        ProposalReview review = ProposalReview.createProposalReview(pr -> {
                       pr.comment = "it is good";
                       pr.score = 10.0;
                       pr.reviewer = new Reviewer(people[4]);
                       pr.technicalFeasibility = true;
                       pr.reviewDate = new GregorianCalendar(2022, 4, 14).getTime();
-                  }));
-              })
-        ));
-        
+                  });
+       
+       // set that the submitted proposal is ok to be allocated. 
+       submittedProposal.setSuccessful(true);
 
         // "allocate" proposal
 
