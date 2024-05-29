@@ -57,6 +57,7 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  	submissionDate : ivoa:datetime "the date that the proposal was submitted";
  	successful : ivoa:boolean "the proposal can go on to allocation";
  	reviewsCompleteDate : ivoa:datetime "the date when all the proposals are due";
+ 	reviews : ProposalReview @+ as composition "the reviews";
  	}
  
  
@@ -66,7 +67,6 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  }
  
  otype ProposalReview "A review of a proposal" {
- 	proposal references SubmittedProposal "the submitted proposal";
  	reviewer references Reviewer "the reviewer making this review";
  	comment: ivoa:string "Description";
  	score : ivoa:real "the review score";

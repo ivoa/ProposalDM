@@ -9,7 +9,7 @@
       <title></title>
       <author>Paul Harrison</author>
       <version>0.4</version>
-      <lastModified>2024-05-24T14:21:25Z</lastModified>
+      <lastModified>2024-05-29T14:57:11Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -302,6 +302,18 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
+               <composition>
+                 <vodml-id>SubmittedProposal.reviews</vodml-id>
+                 <name>reviews</name>
+                 <description>the reviews</description>	    
+                 <datatype>
+                    <vodml-ref>proposalManagement:ProposalReview</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+               </composition>
                <reference>
                  <vodml-id>SubmittedProposal.proposal</vodml-id>
                  <name>proposal</name>
@@ -397,18 +409,6 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
-               <reference>
-                 <vodml-id>ProposalReview.proposal</vodml-id>
-                 <name>proposal</name>
-                 <description>the submitted proposal</description>	    
-                 <datatype>
-                   <vodml-ref>proposalManagement:SubmittedProposal</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </reference>
                <reference>
                  <vodml-id>ProposalReview.reviewer</vodml-id>
                  <name>reviewer</name>

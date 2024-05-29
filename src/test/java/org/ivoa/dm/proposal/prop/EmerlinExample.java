@@ -173,7 +173,7 @@ public class EmerlinExample extends BaseExample {
               }
         ));
         // "submit" proposal
-        final SubmittedProposal submittedProposal = new SubmittedProposal( new GregorianCalendar(2022, 3, 14).getTime(), false, new GregorianCalendar(2022, 4, 30).getTime(), proposal);
+        final SubmittedProposal submittedProposal = new SubmittedProposal( new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(), null, proposal);
         cycle.setSubmittedProposals(
               Arrays.asList(submittedProposal));
 
