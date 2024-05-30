@@ -163,26 +163,7 @@
                       stereotype=""
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+submissionDate : ivoa:datetime
-</y:AttributeLabel>
-                  <y:MethodLabel xml:space="preserve"/>
-               </y:UML>
-            </y:UMLClassNode>
-         </data>
-      </node>
-      <node id="proposalManagement:ReviewedProposal">
-         <data key="k1">ReviewedProposal</data>
-         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
-            <y:UMLClassNode>
-               <y:Fill color="#BDB992" transparent="false"/>
-               <y:BorderStyle color="#000000" type="line" width="1.0"/>
-               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">ReviewedProposal</y:NodeLabel>
-               <y:UML clipContent="true"
-                      constraint=""
-                      hasDetailsColor="false"
-                      omitDetails="false"
-                      stereotype=""
-                      use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve">+successful : ivoa:boolean
++successful : ivoa:boolean
 +reviewsCompleteDate : ivoa:datetime
 </y:AttributeLabel>
                   <y:MethodLabel xml:space="preserve"/>
@@ -439,7 +420,7 @@
       </node>
       <!--edges-->
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e457"
+            id="d270e435"
             source="proposalManagement:AllocatedBlock"
             target="proposalManagement:ResourceBlock">
          <data key="k3">
@@ -451,7 +432,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e46"
+            id="d270e46"
             source="proposalManagement:OfferedCycles"
             target="proposalManagement:ProposalCycle">
          <data key="k3">
@@ -467,7 +448,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e95"
+            id="d270e95"
             source="proposalManagement:ProposalCycle"
             target="proposal:ObservingMode">
          <data key="k3">
@@ -483,7 +464,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e104"
+            id="d270e104"
             source="proposalManagement:ProposalCycle"
             target="proposalManagement:AvailableResources">
          <data key="k3">
@@ -499,7 +480,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e113"
+            id="d270e113"
             source="proposalManagement:ProposalCycle"
             target="proposalManagement:AllocationGrade">
          <data key="k3">
@@ -515,7 +496,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e122"
+            id="d270e122"
             source="proposalManagement:ProposalCycle"
             target="proposalManagement:TAC">
          <data key="k3">
@@ -531,7 +512,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e132"
+            id="d270e132"
             source="proposalManagement:ProposalCycle"
             target="proposalManagement:SubmittedProposal">
          <data key="k3">
@@ -547,23 +528,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e141"
-            source="proposalManagement:ProposalCycle"
-            target="proposalManagement:ReviewedProposal">
-         <data key="k3">
-            <y:PolyLineEdge>
-               <y:LineStyle color="#9393FF" type="line" width="2.0"/>
-               <y:Arrows source="diamond" target="standard"/>
-               <y:BendStyle smoothed="false"/>
-               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="head" preferredPlacement="centered" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">reviewedProposals<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="center" side="on_edge" sideReference="relative_to_edge_flow"/>
-   </y:EdgeLabel>
-               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="thead" preferredPlacement="target_on_edge" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">0..*<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="target" side="anywhere" sideReference="relative_to_edge_flow"/>
-      </y:EdgeLabel>
-            </y:PolyLineEdge>
-         </data>
-      </edge>
-      <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e150"
+            id="d270e141"
             source="proposalManagement:ProposalCycle"
             target="proposalManagement:AllocatedProposal">
          <data key="k3">
@@ -579,7 +544,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e207"
+            id="d270e198"
             source="proposalManagement:TAC"
             target="proposalManagement:CommitteeMember">
          <data key="k3">
@@ -595,8 +560,8 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e260"
-            source="proposalManagement:ReviewedProposal"
+            id="d270e238"
+            source="proposalManagement:SubmittedProposal"
             target="proposalManagement:ProposalReview">
          <data key="k3">
             <y:PolyLineEdge>
@@ -611,7 +576,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e282"
+            id="d270e260"
             source="proposalManagement:AllocatedProposal"
             target="proposalManagement:AllocatedBlock">
          <data key="k3">
@@ -627,7 +592,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e399"
+            id="d270e377"
             source="proposalManagement:AvailableResources"
             target="proposalManagement:Resource">
          <data key="k3">
@@ -643,7 +608,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e435"
+            id="d270e413"
             source="proposalManagement:ResourceBlock"
             target="proposalManagement:Resource">
          <data key="k3">
@@ -659,7 +624,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e159"
+            id="d270e150"
             source="proposalManagement:ProposalCycle"
             target="proposal:Observatory">
          <data key="k3">
@@ -675,7 +640,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e172"
+            id="d270e163"
             source="proposalManagement:Reviewer"
             target="proposal:Person">
          <data key="k3">
@@ -691,7 +656,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e194"
+            id="d270e185"
             source="proposalManagement:CommitteeMember"
             target="proposalManagement:Reviewer">
          <data key="k3">
@@ -707,7 +672,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e229"
+            id="d270e247"
             source="proposalManagement:SubmittedProposal"
             target="proposal:ObservingProposal">
          <data key="k3">
@@ -723,23 +688,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e269"
-            source="proposalManagement:ReviewedProposal"
-            target="proposalManagement:SubmittedProposal">
-         <data key="k3">
-            <y:PolyLineEdge>
-               <y:LineStyle color="#00FF00" type="line" width="2.0"/>
-               <y:Arrows source="none" target="standard"/>
-               <y:BendStyle smoothed="false"/>
-               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="head" preferredPlacement="centered" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">submitted<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="center" side="on_edge" sideReference="relative_to_edge_flow"/>
-   </y:EdgeLabel>
-               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="thead" preferredPlacement="target_on_edge" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">1<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="target" side="anywhere" sideReference="relative_to_edge_flow"/>
-      </y:EdgeLabel>
-            </y:PolyLineEdge>
-         </data>
-      </edge>
-      <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e292"
+            id="d270e270"
             source="proposalManagement:AllocatedProposal"
             target="proposalManagement:SubmittedProposal">
          <data key="k3">
@@ -755,7 +704,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e341"
+            id="d270e319"
             source="proposalManagement:ProposalReview"
             target="proposalManagement:Reviewer">
          <data key="k3">
@@ -771,7 +720,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e386"
+            id="d270e363"
             source="proposalManagement:Resource"
             target="proposalManagement:ResourceType">
          <data key="k3">
@@ -787,7 +736,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e444"
+            id="d270e422"
             source="proposalManagement:ResourceBlock"
             target="proposal:ObservingMode">
          <data key="k3">
@@ -803,7 +752,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e459"
+            id="d270e437"
             source="proposalManagement:AllocatedBlock"
             target="proposalManagement:AllocationGrade">
          <data key="k3">
