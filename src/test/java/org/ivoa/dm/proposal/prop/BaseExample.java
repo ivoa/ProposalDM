@@ -34,16 +34,16 @@ public abstract class BaseExample implements ExampleGenerator {
     };
 
     protected Person[] people = {
-            new Person("John Flamsteed", "pi@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-003"), institutes[0]),
-            new Person("George Airy", "coi@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-004"), institutes[1]),
-            new Person("Edmond Halley", "tacchair@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-005"), institutes[1]),
-            new Person("James Bradley", "tacmamber@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-006"), institutes[0]),
-            new Person("Nevil Maskelyne ", "reviewer@unreal.not.email", new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-007"), institutes[1]),
+            new Person("John Flamsteed", "pi@unreal.not.email", institutes[0], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-003")),
+            new Person("George Airy", "coi@unreal.not.email", institutes[1], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-004")),
+            new Person("Edmond Halley", "tacchair@unreal.not.email", institutes[1], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-005")),
+            new Person("James Bradley", "tacmamber@unreal.not.email", institutes[0], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-006")),
+            new Person("Nevil Maskelyne ", "reviewer@unreal.not.email", institutes[1], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-007")),
 
     };
     protected List<Investigator> investigators = Arrays.asList(
-            new Investigator ( InvestigatorKind.PI, false, people[0] ),
-            new Investigator ( InvestigatorKind.COI, true, people[1] ));
+            new Investigator ( people[0], InvestigatorKind.PI, false ),
+            new Investigator ( people[1], InvestigatorKind.COI, true  ));
 
     protected Reviewer[] reviewers = {new Reviewer(people[2]),
             new Reviewer(people[3]),
@@ -51,8 +51,8 @@ public abstract class BaseExample implements ExampleGenerator {
     };
 
     protected TAC tac = new TAC( Arrays.asList(
-            new CommitteeMember( TacRole.CHAIR, reviewers[0]),
-            new CommitteeMember ( TacRole.SCIENCEREVIEWER, reviewers[1])
+            new CommitteeMember( reviewers[0], TacRole.CHAIR ),
+            new CommitteeMember ( reviewers[1], TacRole.SCIENCEREVIEWER)
             ));
     
     //some units

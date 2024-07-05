@@ -16,7 +16,7 @@ The model is described in more detail [here](https://ivoa.github.io/ProposalDM/)
 
 
 
-The IVOA standard in development is a Working Draft at version 0.4 and a
+The IVOA standard in development is a Working Draft at version 0.5 and a
 [![PDF-Preview](https://img.shields.io/badge/Preview-PDF-blue)](../../releases/download/auto-pdf-preview/ProposalDM-draft.pdf)
 is automatically produced from this repository when changes are made.
 

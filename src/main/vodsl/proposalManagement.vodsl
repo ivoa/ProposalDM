@@ -2,8 +2,9 @@
  *  created on 20 Oct 2021 // The review side of the proposal.
  */
  
- model proposalManagement (0.4) "The data model for managing the proposal review process. Intended to work for phase 1"
+ model proposalManagement (0.5)  "The data model for managing the proposal review process. Intended to work for phase 1"
  author "Paul Harrison" 
+ title "Proposal Management"
  
  include "../../../build/tmp/IVOA-v1.0.vodsl" // note that this is auto generated from dependencies during build
  include "../../../build/tmp/Coords-v1.0.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
@@ -16,7 +17,7 @@
  
 otype ProposalCycle "Defines collection of resources and proposals for a particular observing season" {
  	observatory references proposal:Observatory  "";
- 	title: ivoa:string "a human readable description of the cycle";
+ 	^title: ivoa:string "a human readable description of the cycle";
  	submissionDeadline : ivoa:datetime "the date by which observing proposals must be submitted to be considered for this cycle";
  	observationSessionStart : ivoa:datetime "the start date of the observing cycle";
  	observationSessionEnd: ivoa:datetime "the end date of the observing cycle";
@@ -33,7 +34,7 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  }
  
  
- enum TacRole "A role within the timeAllocation committee" { // IMPL is this 
+ enum TacRole "A role within the timeAllocation committee" { // FIXME - don;t think that this really reflects the roles - either Chair or not is the only real distinction
  	TechnicalReviewer "",
  	ScienceReviewer "",
  	Chair ""
@@ -41,7 +42,7 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  
   
  otype CommitteeMember "a member of the TAC " {
- 	member references Reviewer "the member";
+ 	member references Reviewer "the member"; //IMPL reviewer could be outside the TAC
  	role: TacRole "";
  }
  

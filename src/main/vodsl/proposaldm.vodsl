@@ -2,11 +2,12 @@
  *  created on 09-Jul-2021 
  */
  
- model proposal (0.4) "A model to represent an application for observing time. The model is intended to express all
+ model proposal (0.5)  "A model to represent an application for observing time. The model is intended to express all
 of the concepts required to specify the scientific parameters of the application in sufficient detail to allow the 
 proposal to be reviewed and allocated time. It does not cover all the technical detail of instrument setup that would be needed to actually schedule the 
 observations, although the intention is that information about targets etc. could be automatically transferred to an observing system."
  author "Paul Harrison"
+ title "Proposal"
  
  include "../../../build/tmp/IVOA-v1.0.vodsl" // note that this is auto generated from dependencies by vodslToVodml command
  include "../../../build/tmp/Coords-v1.0.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
@@ -22,7 +23,7 @@ observations, although the intention is that information about targets etc. coul
  
  otype ObservingProposal "a complete proposal"
  {
- 	  title: ivoa:string   "the proposal title" ;
+ 	  ^title: ivoa:string   "the proposal title" ;
     summary: ivoa:string   "a short summary/abstract of the proposal" ;
     scientificJustification: Justification as composition "scientific justification";
     technicalJustification: Justification as composition "technical justification"; //IMPL this probably needs to be attached to each observatory as likely to be different for each.
@@ -83,9 +84,9 @@ observations, although the intention is that information about targets etc. coul
  	
  }
  
- otype Telescope {
+ otype Telescope "" {
  	name : ivoa:string "telescope name";
- 	wikiId : WikiDataId @? "the wikidata id for the Instrument";
+ 	wikiId : WikiDataId @? "the wikidata id for the Telescope"; //IMPL this is just an idea to have a reference outside this database 
  
  	location : coords:RealCartesianPoint "the location of the telescope" ;
  }
@@ -148,7 +149,7 @@ observations, although the intention is that information about targets etc. coul
  }
  
  otype SupportingDocument "a document" { //IMPL might want to restrict to this being only graphics files
- 	title : ivoa:string "document title";
+ 	^title : ivoa:string "document title";
  	location : ivoa:anyURI "location of document";//IMPL might want this in-line with code only blobs
  	//IMPL could have acceptable mime types.
  }
@@ -262,8 +263,8 @@ observations, although the intention is that information about targets etc. coul
  	representativeSpectralPoint: ivoa:RealQuantity "the the point in the EM where these parameters should be evaluated";
  }
  
- abstract otype Observation "" {
- 	target references  Target  "The actual target of the observation"; //TODO this should be multiple if field is to have any separate meaning.
+ abstract otype Observation "An observation - occurs in a single non-overlapping time period" {
+ 	target @+ references Target  "The actual target of the observation"; //IMPL this should be multiple if field is to have any separate meaning - however aggregation pattern is discouraged.
  	field references Field "The Field for the observation";
  	technicalGoal references TechnicalGoal "The technical goals of the observation";
  	constraints: ObservingConstraint @* as ordered composition "any constraints on the observation";

@@ -21,6 +21,7 @@ import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.ivoa.dm.proposal.management.TAC;
+import org.ivoa.dm.stc.coords.SpaceSys;
 
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -52,7 +53,11 @@ class EmerlinExampleTest extends AbstractProposalTest {
        assertEquals( 1, prop.observations.size(), "number of observations");
        Observation obs = prop.observations.get(0);
        assertNotNull(obs.target);
-       assertTrue(obs.target instanceof CelestialTarget);
+       assertTrue(obs.target.get(0) instanceof CelestialTarget);
+       CelestialTarget target = (CelestialTarget)obs.target.get(0);
+       SpaceSys cosys = target.sourceCoordinates.getCoordSys();
+       assertNotNull(cosys);
+       
       
    }
      @org.junit.jupiter.api.Test 
@@ -67,8 +72,7 @@ class EmerlinExampleTest extends AbstractProposalTest {
         Observation obs = proposal.observations.get(0);
        assertNotNull(obs.target);
       
-       assertTrue(obs.target instanceof CelestialTarget);
-       em.remove(obs.target);
+       em.remove(obs.target.get(0)); // TODO perhaps really want to investigate list member deletion more...
        em.getTransaction().commit();
        
        
@@ -255,11 +259,13 @@ class EmerlinExampleTest extends AbstractProposalTest {
        final ObservingProposal proposal = ex.getProposal();
        final ObservingProposal cprop = new ObservingProposal(proposal);
        cprop.updateClonedReferences();
-       proposal.observations.get(0).target.sourceName="changed";
-       assertEquals("fictional", cprop.observations.get(0).target.sourceName);
+       proposal.observations.get(0).target.get(0).sourceName="changed";
+       assertEquals("fictional", cprop.observations.get(0).target.get(0).sourceName);
        
    }
-   
+
+
+
   
  
 }

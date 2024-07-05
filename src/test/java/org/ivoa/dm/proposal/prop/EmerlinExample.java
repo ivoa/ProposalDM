@@ -81,7 +81,7 @@ public class EmerlinExample extends BaseExample {
 
         ResourceType observingTime = new ResourceType("observing time", "hours");
 
-        Resource availableObservingTime = new Resource(100 * 24.0, observingTime);
+        Resource availableObservingTime = new Resource(observingTime, 100 * 24.0);
 
         //for e-merlin the modes use use the same backend and instrument on all the telescopes
         // there is also the special case of not tying up the Lovell telescope - would be 2 extra modes for L and C Bands
@@ -159,7 +159,7 @@ public class EmerlinExample extends BaseExample {
             pr.technicalGoals = Arrays.asList(tgoal);
                   List<Observation> obs = Arrays.asList(
                         createTargetObservation(t -> {
-                                  t.target = target;
+                                  t.target = Arrays.asList(target);
                                   t.field = field;
                                   t.technicalGoal = tgoal;
                                   t.constraints = Arrays.asList(
@@ -173,7 +173,7 @@ public class EmerlinExample extends BaseExample {
               }
         ));
         // "submit" proposal
-        final SubmittedProposal submittedProposal = new SubmittedProposal( new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(), null, proposal);
+        final SubmittedProposal submittedProposal = new SubmittedProposal( proposal, new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
         cycle.setSubmittedProposals(
               Arrays.asList(submittedProposal));
 
@@ -200,7 +200,7 @@ public class EmerlinExample extends BaseExample {
                               a -> {
                                   a.grade = grades[0];
                                   a.mode = obsModes[0];
-                                  Resource res = new Resource(48.0, observingTime); // IMPL should it be possible to do different units?
+                                  Resource res = new Resource(observingTime, 48.0); // IMPL should it be possible to do different units?
                                   a.resource = res;
                               }
                         )

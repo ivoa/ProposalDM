@@ -2,17 +2,17 @@
 <vo-dml:model xmlns:vo-dml="http://www.ivoa.net/xml/VODML/v1" 
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://www.ivoa.net/xml/VODML/v1 https://www.ivoa.net/xml/VODML/vo-dml-v1.xsd" 
-              vodmlVersion="1.1">	<!-- file generated from VODSL - needs validatate against v1.1 of schema  --> 
+              vodmlVersion="1.1">	<!-- file generated from VODSL - needs validatation against v1.1 of schema  --> 
       <name>proposal</name>
       <description>A model to represent an application for observing time. The model is intended to express all
       of the concepts required to specify the scientific parameters of the application in sufficient detail to allow the 
       proposal to be reviewed and allocated time. It does not cover all the technical detail of instrument setup that would be needed to actually schedule the 
       observations, although the intention is that information about targets etc. could be automatically transferred to an observing system.</description> 
       <uri/>
-      <title></title>
+      <title>Proposal</title>
       <author>Paul Harrison</author>
-      <version>0.4</version>
-      <lastModified>2024-04-26T17:38:33Z</lastModified>
+      <version>0.5</version>
+      <lastModified>2024-06-10T15:42:24Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -23,7 +23,7 @@
         <url>Coords-v1.0.vo-dml.xml</url>
         <documentationURL>not known</documentationURL>
       </import>
-      <primitiveType>
+      <primitiveType >
       <vodml-id>WikiDataId</vodml-id>
       <name>WikiDataId</name>
       <description>a WikiData identifier</description>	    
@@ -174,30 +174,6 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
-               <attribute>
-                 <vodml-id>ObservingProposal.kind</vodml-id>
-                 <name>kind</name>
-                 <description>the type of proposal</description>	    
-                 <datatype>
-                    <vodml-ref>proposal:ProposalKind</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
-               <attribute>
-                 <vodml-id>ObservingProposal.submitted</vodml-id>
-                 <name>submitted</name>
-                 <description>whether the proposal is submitted</description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:boolean</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>0</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
                <composition>
                  <vodml-id>ObservingProposal.scientificJustification</vodml-id>
                  <name>scientificJustification</name>
@@ -234,6 +210,18 @@
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
                </composition>
+               <attribute>
+                 <vodml-id>ObservingProposal.kind</vodml-id>
+                 <name>kind</name>
+                 <description>the type of proposal</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:ProposalKind</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
                <composition>
                  <vodml-id>ObservingProposal.relatedProposals</vodml-id>
                  <name>relatedProposals</name>
@@ -309,6 +297,18 @@
                  </multiplicity>
                  <isOrdered>true</isOrdered>
                </composition>
+               <attribute>
+                 <vodml-id>ObservingProposal.submitted</vodml-id>
+                 <name>submitted</name>
+                 <description>whether the proposal is submitted</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:boolean</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
             </objectType>
             <objectType>
                <vodml-id>RelatedProposal</vodml-id>
@@ -355,18 +355,6 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
-               <attribute>
-                 <vodml-id>Person.orcidId</vodml-id>
-                 <name>orcidId</name>
-                 <description>orcid id see https://orcid.org</description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:stringIdentifier</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>0</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
                <reference>
                  <vodml-id>Person.homeInstitute</vodml-id>
                  <name>homeInstitute</name>
@@ -379,11 +367,35 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </reference>
+               <attribute>
+                 <vodml-id>Person.orcidId</vodml-id>
+                 <name>orcidId</name>
+                 <description>orcid id see https://orcid.org</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:stringIdentifier</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
             </objectType>
             <objectType>
                <vodml-id>Investigator</vodml-id>
                <name>Investigator</name>
                <description></description>	    
+               <reference>
+                 <vodml-id>Investigator.person</vodml-id>
+                 <name>person</name>
+                 <description>the investigator</description>	    
+                 <datatype>
+                   <vodml-ref>proposal:Person</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
                <attribute>
                  <vodml-id>Investigator.type</vodml-id>
                  <name>type</name>
@@ -408,18 +420,6 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
-               <reference>
-                 <vodml-id>Investigator.person</vodml-id>
-                 <name>person</name>
-                 <description>the investigator</description>	    
-                 <datatype>
-                   <vodml-ref>proposal:Person</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </reference>
             </objectType>
             <objectType>
                <vodml-id>Organization</vodml-id>
@@ -549,7 +549,7 @@
                <attribute>
                  <vodml-id>Telescope.wikiId</vodml-id>
                  <name>wikiId</name>
-                 <description>the wikidata id for the Instrument</description>	    
+                 <description>the wikidata id for the Telescope</description>	    
                  <datatype>
                     <vodml-ref>proposal:WikiDataId</vodml-ref>
                  </datatype>
@@ -1380,20 +1380,7 @@
             <objectType abstract="true">
                <vodml-id>Observation</vodml-id>
                <name>Observation</name>
-               <description></description>	    
-               <composition>
-                 <vodml-id>Observation.constraints</vodml-id>
-                 <name>constraints</name>
-                 <description>any constraints on the observation</description>	    
-                 <datatype>
-                    <vodml-ref>proposal:ObservingConstraint</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>0</minOccurs>
-                   <maxOccurs>-1</maxOccurs>
-                 </multiplicity>
-                 <isOrdered>true</isOrdered>
-               </composition>
+               <description>An observation - occurs in a single non-overlapping time period</description>	    
                <reference>
                  <vodml-id>Observation.target</vodml-id>
                  <name>target</name>
@@ -1403,7 +1390,7 @@
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
+                   <maxOccurs>-1</maxOccurs>
                  </multiplicity>
                </reference>
                <reference>
@@ -1430,6 +1417,19 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </reference>
+               <composition>
+                 <vodml-id>Observation.constraints</vodml-id>
+                 <name>constraints</name>
+                 <description>any constraints on the observation</description>	    
+                 <datatype>
+                    <vodml-ref>proposal:ObservingConstraint</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>-1</maxOccurs>
+                 </multiplicity>
+                 <isOrdered>true</isOrdered>
+               </composition>
             </objectType>
             <objectType>
                <vodml-id>TargetObservation</vodml-id>
