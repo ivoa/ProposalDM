@@ -1095,7 +1095,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e159"
+            id="d2e141"
             source="proposal:ObservingProposal"
             target="proposal:Justification">
          <data key="k3">
@@ -1111,7 +1111,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e168"
+            id="d2e150"
             source="proposal:ObservingProposal"
             target="proposal:Justification">
          <data key="k3">
@@ -1127,7 +1127,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e177"
+            id="d2e159"
             source="proposal:ObservingProposal"
             target="proposal:Investigator">
          <data key="k3">
@@ -1143,7 +1143,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e186"
+            id="d2e177"
             source="proposal:ObservingProposal"
             target="proposal:RelatedProposal">
          <data key="k3">
@@ -1159,7 +1159,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e196"
+            id="d2e186"
             source="proposal:ObservingProposal"
             target="proposal:SupportingDocument">
          <data key="k3">
@@ -1175,7 +1175,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e206"
+            id="d2e197"
             source="proposal:ObservingProposal"
             target="proposal:Target">
          <data key="k3">
@@ -1191,7 +1191,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e215"
+            id="d2e206"
             source="proposal:ObservingProposal"
             target="proposal:Field">
          <data key="k3">
@@ -1207,7 +1207,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e224"
+            id="d2e215"
             source="proposal:ObservingProposal"
             target="proposal:TechnicalGoal">
          <data key="k3">
@@ -1223,7 +1223,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e234"
+            id="d2e225"
             source="proposal:ObservingProposal"
             target="proposal:Observation">
          <data key="k3">
@@ -1383,7 +1383,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e1055"
+            id="d2e1082"
             source="proposal:Observation"
             target="proposal:ObservingConstraint">
          <data key="k3">
@@ -1447,7 +1447,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e288"
+            id="d2e279"
             source="proposal:Person"
             target="proposal:Organization">
          <data key="k3">
@@ -1463,7 +1463,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e319"
+            id="d2e301"
             source="proposal:Investigator"
             target="proposal:Person">
          <data key="k3">
@@ -1543,7 +1543,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e1065"
+            id="d2e1055"
             source="proposal:Observation"
             target="proposal:Target">
          <data key="k3">
@@ -1553,13 +1553,13 @@
                <y:BendStyle smoothed="false"/>
                <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="head" preferredPlacement="centered" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">target<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="center" side="on_edge" sideReference="relative_to_edge_flow"/>
    </y:EdgeLabel>
-               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="thead" preferredPlacement="target_on_edge" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">1<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="target" side="anywhere" sideReference="relative_to_edge_flow"/>
+               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="thead" preferredPlacement="target_on_edge" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">1..*<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="target" side="anywhere" sideReference="relative_to_edge_flow"/>
       </y:EdgeLabel>
             </y:PolyLineEdge>
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e1074"
+            id="d2e1064"
             source="proposal:Observation"
             target="proposal:Field">
          <data key="k3">
@@ -1575,7 +1575,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e1083"
+            id="d2e1073"
             source="proposal:Observation"
             target="proposal:TechnicalGoal">
          <data key="k3">

@@ -787,7 +787,7 @@
 <path fill="none" stroke="green" d="M1187.82,-532.72C1180.54,-523.93 1170.57,-513.99 1159.25,-508.5 1093.97,-476.83 1068.77,-501.16 997,-490.5 913.63,-478.12 818.1,-459.57 757.26,-447.2"/>
 <polygon fill="green" stroke="green" points="747.51,-445.2 758.2,-442.8 751.21,-445.96 757.3,-447.2 757.3,-447.2 757.3,-447.2 751.21,-445.96 756.4,-451.61 747.51,-445.2"/>
 <text text-anchor="middle" x="1007.88" y="-481" font-family="Times,serif" font-size="10.00">target</text>
-<text text-anchor="middle" x="748.94" y="-446.71" font-family="Times,serif" font-size="10.00">1</text>
+<text text-anchor="middle" x="753.81" y="-446.71" font-family="Times,serif" font-size="10.00">1..*</text>
 </g>
 <!-- proposal:Observation&#45;&gt;proposal:Field -->
 <g id="edge44" class="edge">

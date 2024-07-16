@@ -20,16 +20,16 @@ digraph GVmap {
 	fontsize=8
 	style=filled] 
     
-  "proposal:ObservingMode" [
-    URL="#ObservingMode"
-    label = "{proposal:ObservingMode}"
+  "proposal:Observatory" [
+    URL="#Observatory"
+    label = "{proposal:Observatory}"
     fillcolor="grey"
     ] ;
       
     
-  "proposal:Observatory" [
-    URL="#Observatory"
-    label = "{proposal:Observatory}"
+  "proposal:ObservingMode" [
+    URL="#ObservingMode"
+    label = "{proposal:ObservingMode}"
     fillcolor="grey"
     ] ;
       

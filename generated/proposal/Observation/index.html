@@ -696,6 +696,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      References Detail
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2021,6 +2030,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      References Detail
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2040,6 +2058,7 @@
 
 
 <h1 id="abstract-objecttype-observation"><em>abstract</em> objectType Observation</h1>
+<p>An observation - occurs in a single non-overlapping time period</p>
 <pre class="mermaid"><code>classDiagram
 
         class Observation{
@@ -2070,15 +2089,9 @@ link ObservingConstraint "../ObservingConstraint"</code></pre>
 </thead>
 <tbody>
 <tr>
-<td>constraints</td>
-<td><a href="../ObservingConstraint/">ObservingConstraint</a></td>
-<td>0 or more</td>
-<td>any constraints on the observation</td>
-</tr>
-<tr>
 <td>target</td>
 <td><a href="../Target/">Target</a></td>
-<td></td>
+<td>1 or more</td>
 <td>The actual target of the observation</td>
 </tr>
 <tr>
@@ -2093,8 +2106,15 @@ link ObservingConstraint "../ObservingConstraint"</code></pre>
 <td></td>
 <td>The technical goals of the observation</td>
 </tr>
+<tr>
+<td>constraints</td>
+<td><a href="../ObservingConstraint/">ObservingConstraint</a></td>
+<td>0 or more</td>
+<td>any constraints on the observation</td>
+</tr>
 </tbody>
 </table>
+<h2 id="references-detail">References Detail</h2>
 
 
 

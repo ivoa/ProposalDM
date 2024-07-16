@@ -287,7 +287,7 @@ digraph GVmap {
   "proposal:ObservingConfiguration" -> "proposal:Telescope" [headlabel="1",label="telescope",labelfontsize=10] ;
   "proposal:ObservingConfiguration" -> "proposal:Instrument" [headlabel="1",label="instrument",labelfontsize=10] ;
   "proposal:ObservingConfiguration" -> "proposal:Backend" [headlabel="1",label="backend",labelfontsize=10] ;
-  "proposal:Observation" -> "proposal:Target" [headlabel="1",label="target",labelfontsize=10] ;
+  "proposal:Observation" -> "proposal:Target" [headlabel="1..*",label="target",labelfontsize=10] ;
   "proposal:Observation" -> "proposal:Field" [headlabel="1",label="field",labelfontsize=10] ;
   "proposal:Observation" -> "proposal:TechnicalGoal" [headlabel="1",label="technicalGoal",labelfontsize=10] ;
     

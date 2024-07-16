@@ -801,6 +801,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      References Detail
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2021,6 +2030,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      References Detail
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2093,18 +2111,6 @@ link Observation "../Observation"</code></pre>
 <td>a short summary/abstract of the proposal</td>
 </tr>
 <tr>
-<td>kind</td>
-<td><a href="../ProposalKind/">ProposalKind</a></td>
-<td></td>
-<td>the type of proposal</td>
-</tr>
-<tr>
-<td>submitted</td>
-<td>ivoa:boolean</td>
-<td>optional</td>
-<td>whether the proposal is submitted</td>
-</tr>
-<tr>
 <td>scientificJustification</td>
 <td><a href="../Justification/">Justification</a></td>
 <td></td>
@@ -2121,6 +2127,12 @@ link Observation "../Observation"</code></pre>
 <td><a href="../Investigator/">Investigator</a></td>
 <td>1 or more</td>
 <td>the person(s) making the proposal</td>
+</tr>
+<tr>
+<td>kind</td>
+<td><a href="../ProposalKind/">ProposalKind</a></td>
+<td></td>
+<td>the type of proposal</td>
 </tr>
 <tr>
 <td>relatedProposals</td>
@@ -2158,8 +2170,17 @@ link Observation "../Observation"</code></pre>
 <td>1 or more</td>
 <td>the proposed observations</td>
 </tr>
+<tr>
+<td>submitted</td>
+<td>ivoa:boolean</td>
+<td>optional</td>
+<td>whether the proposal is submitted</td>
+</tr>
 </tbody>
 </table>
+<h2 id="references-detail">References Detail</h2>
+<p>This is referred to by <a href="../RelatedProposal/">RelatedProposal</a>, <a href="../../proposalManagement/SubmittedProposal/">proposalManagement:SubmittedProposal</a></p>
+<p>Has contained reference(s) <a href="../Target/">Target</a>, <a href="../Field/">Field</a>, <a href="../TechnicalGoal/">TechnicalGoal</a> in the containment hierarchy.</p>
 
 
 
