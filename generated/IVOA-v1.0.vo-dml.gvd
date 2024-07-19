@@ -1,0 +1,114 @@
+
+digraph GVmap {  
+	label = "\n\nivoa data model"
+	rankdir=TB
+	
+	node [ 
+	  shape=tab
+	  style=filled
+	]
+	subgraph cluster_packages {
+	  label="Model"
+	  rankdir=TB
+      style=filled
+      fillcolor="/set312/1"
+	  
+	}
+	
+	node [
+	shape=record
+	fontsize=8
+	style=filled] 
+    "ivoa:Unit"[
+    URL="../ivoa/Unit"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nUnit}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:anyURI"[
+    URL="../ivoa/anyURI"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nanyURI}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:boolean"[
+    URL="../ivoa/boolean"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nboolean}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:complex"[
+    URL="../ivoa/complex"
+    label = "{&lt;&lt;primitive type&gt;&gt;\ncomplex}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:datetime"[
+    URL="../ivoa/datetime"
+    label = "{&lt;&lt;primitive type&gt;&gt;\ndatetime}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:integer"[
+    URL="../ivoa/integer"
+    label = "{&lt;&lt;primitive type&gt;&gt;\ninteger}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:nonnegativeInteger"[
+    URL="../ivoa/nonnegativeInteger"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nnonnegativeInteger}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:rational"[
+    URL="../ivoa/rational"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nrational}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:real"[
+    URL="../ivoa/real"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nreal}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:string"[
+    URL="../ivoa/string"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nstring}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:intIdentifier"[
+    URL="../ivoa/intIdentifier"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nintIdentifier}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:stringIdentifier"[
+    URL="../ivoa/stringIdentifier"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nstringIdentifier}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:ivorn"[
+    URL="../ivoa/ivorn"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nivorn}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:IntegerQuantity" [
+    URL="../ivoa/IntegerQuantity"
+    label = "{&lt;&lt;datatype&gt;&gt;\nIntegerQuantity|+value : ivoa:integer\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:Quantity" [
+    URL="../ivoa/Quantity"
+    label = "{&lt;&lt;datatype&gt;&gt;\nQuantity|+unit : ivoa:Unit\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:RealQuantity" [
+    URL="../ivoa/RealQuantity"
+    label = "{&lt;&lt;datatype&gt;&gt;\nRealQuantity|+value : ivoa:real\l}"
+    fillcolor="/set312/1"
+    ] ;
+  
+ 
+    edge [color="red", arrowtail="none", arrowhead="empty"]
+    "ivoa:Unit" -> "ivoa:string" ;
+  "ivoa:anyURI" -> "ivoa:string" ;
+  "ivoa:intIdentifier" -> "ivoa:integer" ;
+  "ivoa:stringIdentifier" -> "ivoa:string" ;
+  "ivoa:ivorn" -> "ivoa:anyURI" ;
+  "ivoa:IntegerQuantity" -> "ivoa:Quantity" ;
+  "ivoa:RealQuantity" -> "ivoa:Quantity" ;
+    
+}
+  
