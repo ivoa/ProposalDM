@@ -4,6 +4,8 @@ theme:
   name: material
   features:
     - navigation.tabs
+    - navigation.instant
+    - content.action.edit
 
 markdown_extensions:
   - tables
