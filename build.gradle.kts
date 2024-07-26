@@ -1,7 +1,7 @@
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.5.4"
+        id("net.ivoa.vo-dml.vodmltools") version "0.5.5"
         `maven-publish`
         id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
         signing
@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "org.javastro.ivoa.dm"
-version = "0.5.0-SNAPSHOT"
+version = "0.5.1-SNAPSHOT"
 
 
 vodml {
@@ -103,7 +103,7 @@ tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE } //IMPL b
 
 dependencies {
         api("org.javastro.ivoa.vo-dml:ivoa-base:1.1-SNAPSHOT")
-        api("org.javastro.ivoa.dm:coordinateDM:1.1.1-SNAPSHOT")
+        api("org.javastro.ivoa.dm:coordinateDM:1.1.2-SNAPSHOT")
 //    implementation("org.javastro:ivoa-entities:0.9.3-SNAPSHOT")
         testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")

@@ -78,6 +78,37 @@ class EmerlinExampleTest extends AbstractProposalTest {
        
    }
    
+     
+         @org.junit.jupiter.api.Test 
+   public  void testObservationTarget() {
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        em.getTransaction().begin();
+        final ObservingProposal proposal = ex.getProposal();
+        proposal.persistRefs(em);
+        em.persist(proposal);
+        em.getTransaction().commit();
+        //copy obs
+        em.getTransaction().begin();
+        TypedQuery<ObservingProposal> q = em.createQuery("SELECT o FROM ObservingProposal o", ObservingProposal.class);
+        List<ObservingProposal> res = q.getResultList();
+        ObservingProposal prop = res.get(0);
+        prop.forceLoad();
+        Observation obs = prop.observations.get(0);
+        Observation obs2 = obs.copyMe();
+         em.persist(obs2);
+       prop.addToObservations(obs2);
+        em.merge(prop);
+        em.getTransaction().commit();
+        //delete target
+        em.getTransaction().begin();
+        assertNotNull(obs.target);
+      
+       em.remove(obs.target.get(0)); // TODO perhaps really want to investigate list member deletion more...
+       em.getTransaction().commit();
+       
+       
+   }
+   
      @org.junit.jupiter.api.Test 
    public  void testDbCreate() {
        
@@ -257,11 +288,17 @@ class EmerlinExampleTest extends AbstractProposalTest {
        ProposalModel model = new ProposalModel();
        model.createContext();
        final ObservingProposal proposal = ex.getProposal();
+       model.addContent(proposal);
+       model.processReferences();
        final ObservingProposal cprop = new ObservingProposal(proposal);
        cprop.updateClonedReferences();
        proposal.observations.get(0).target.get(0).sourceName="changed";
        assertEquals("fictional", cprop.observations.get(0).target.get(0).sourceName);
        
+       Observation obs = proposal.getObservations().get(0);
+       Observation obs2 = obs.copyMe();
+       TargetObservation tobs2 = (TargetObservation) obs2;    
+       assertNotNull(tobs2);
    }
 
 
