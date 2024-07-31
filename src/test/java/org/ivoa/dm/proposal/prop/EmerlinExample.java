@@ -122,7 +122,7 @@ public class EmerlinExample extends BaseExample {
                                           p.desiredLargestScale = new RealQuantity(0.1, degrees);
                                           p.representativeSpectralPoint = new RealQuantity(1.5, ghz);
                                       });
-                                      g.spectrum = Arrays.asList(
+                                      g.spectrum = makeList(
                                             createScienceSpectralWindow(ssw -> {
                                                 ssw.spectralWindowSetup = createSpectralWindowSetup(sw -> { // continuum
                                                     sw.start = new RealQuantity(1.2, ghz);
@@ -135,7 +135,7 @@ public class EmerlinExample extends BaseExample {
                                             }),
 
                                             createScienceSpectralWindow(ssw -> { // narrow window for line
-                                                ssw.expectedSpectralLine = Arrays.asList(createExpectedSpectralLine(sl -> {
+                                                ssw.expectedSpectralLine = makeList(createExpectedSpectralLine(sl -> {
                                                     sl.restFrequency = new RealQuantity(1.4204058, ghz);
                                                     sl.description = "HI";
                                                     sl.splatalogId = new StringIdentifier("00101");//IMPL is stringIdentifier really useful?
@@ -154,15 +154,15 @@ public class EmerlinExample extends BaseExample {
                                   });
         // set up the specific proposal
         proposal = createObservingProposal(proposalCommonSetup().andThen(pr -> {
-            pr.targets = Arrays.asList(target);
-            pr.fields = Arrays.asList(field);
-            pr.technicalGoals = Arrays.asList(tgoal);
-                  List<Observation> obs = Arrays.asList(
+            pr.targets = makeList(target);
+            pr.fields = makeList(field);
+            pr.technicalGoals = makeList(tgoal);
+                  List<Observation> obs =makeList( //IMPL note the wrapping in a new ArrayList as otherwise the list is readonly, and we want to add observations in the tests
                         createTargetObservation(t -> {
-                                  t.target = Arrays.asList(target);
+                                  t.target = makeList(target);
                                   t.field = field;
                                   t.technicalGoal = tgoal;
-                                  t.constraints = Arrays.asList(
+                                  t.constraints = makeList(
                                           new TimingWindow(new Date(2023, 1, 1), new Date(2023, 1, 10), "t constraint", false)
                                           );
                               }
@@ -175,7 +175,7 @@ public class EmerlinExample extends BaseExample {
         // "submit" proposal
         final SubmittedProposal submittedProposal = new SubmittedProposal( proposal, new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
         cycle.setSubmittedProposals(
-              Arrays.asList(submittedProposal));
+              makeList(submittedProposal));
 
         // "review" proposal
         ProposalReview review = ProposalReview.createProposalReview(pr -> {
@@ -191,11 +191,11 @@ public class EmerlinExample extends BaseExample {
 
         // "allocate" proposal
 
-        cycle.setAllocatedProposals(Arrays.asList(
+        cycle.setAllocatedProposals(makeList(
               AllocatedProposal.createAllocatedProposal(ap -> {
                   ap.submitted = submittedProposal;
         
-                  ap.allocation = Arrays.asList(
+                  ap.allocation = makeList(
                         AllocatedBlock.createAllocatedBlock(
                               a -> {
                                   a.grade = grades[0];

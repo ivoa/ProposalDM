@@ -13,6 +13,7 @@ import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.ivoa.StringIdentifier;
 import org.ivoa.vodml.stdtypes.Unit;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -41,7 +42,7 @@ public abstract class BaseExample implements ExampleGenerator {
             new Person("Nevil Maskelyne ", "reviewer@unreal.not.email", institutes[1], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-007")),
 
     };
-    protected List<Investigator> investigators = Arrays.asList(
+    protected List<Investigator> investigators = makeList(
             new Investigator ( people[0], InvestigatorKind.PI, false ),
             new Investigator ( people[1], InvestigatorKind.COI, true  ));
 
@@ -50,7 +51,7 @@ public abstract class BaseExample implements ExampleGenerator {
             new Reviewer(people[4])// reviewer not on TAC
     };
 
-    protected TAC tac = new TAC( Arrays.asList(
+    protected TAC tac = new TAC( makeList(
             new CommitteeMember( reviewers[0], TacRole.CHAIR ),
             new CommitteeMember ( reviewers[1], TacRole.SCIENCEREVIEWER)
             ));
@@ -100,6 +101,18 @@ public abstract class BaseExample implements ExampleGenerator {
             p.coordSys = GEO_SYS;
         }));
 
+    }
+    
+    
+    /**
+     * make a read-write list.
+     * 
+     * @param <T> list type
+     * @param a objects 
+     * @return a list
+     */
+    protected <T> List<T> makeList(T... a) {
+        return new ArrayList<T>(Arrays.asList(a));
     }
     /**
      * {@inheritDoc}
