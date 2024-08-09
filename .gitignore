@@ -24,3 +24,6 @@ build
 /site/
 /allnav.yml
 /mkdocs.yml
+
+# ignore venv folder
+/venv
