@@ -189,6 +189,7 @@ public class EmerlinExample extends BaseExample {
         pm.createContext();//FIXME this is an area where the API for https://github.com/ivoa/vo-dml/issues/42 is not great
         final ObservingProposal frozenProposal = new ObservingProposal(proposal); // make a copy of the proposal to put into the submitted proposal
         frozenProposal.updateClonedReferences();
+        frozenProposal.setSubmitted(true);
         List<ObservationConfiguration> obsConfigs = makeList(
                 new ObservationConfiguration(frozenProposal.getObservations(),obsModes[0])
                 );
