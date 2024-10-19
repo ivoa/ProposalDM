@@ -1,7 +1,7 @@
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.5.7"
+        id("net.ivoa.vo-dml.vodmltools") version "0.5.8"
         `maven-publish`
         id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
         signing
@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "org.javastro.ivoa.dm"
-version = "0.5.1-SNAPSHOT"
+version = "0.6.0-SNAPSHOT"
 
 
 vodml {

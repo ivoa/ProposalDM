@@ -22,7 +22,6 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.ivoa.dm.proposal.management.OfferedCycles;
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.junit.jupiter.api.AfterEach;
@@ -126,17 +125,15 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
             TransformerFactoryConfigurationError, TransformerException {
                 logger.debug("starting test");
                 
-                OfferedCycles oc = new OfferedCycles();
-                oc.addToCycles(ex.getCycle());
+               
                 
                 ProposalManagementModel model = new ProposalManagementModel();
-                model.addContent(oc);
+                model.addContent(ex.getCycle());
                 model.processReferences();
                 validateModel(model);
                 ProposalManagementModel modelin = modelRoundTripXMLwithTest(model);
-                List<OfferedCycles> revs = modelin.getContent(OfferedCycles.class);
+                List<ProposalCycle> revs = modelin.getContent(ProposalCycle.class);
                 assertEquals(1, revs.size());
-                assertEquals(1, revs.get(0).getCycles().size());
             
             }
 
@@ -183,16 +180,14 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
   @org.junit.jupiter.api.Test
   void reviewJSONTest() throws JsonProcessingException  {
 
-      OfferedCycles oc = new OfferedCycles();
-      oc.addToCycles(ex.getCycle());
+      
       ProposalManagementModel model = new ProposalManagementModel();
-      model.addContent(oc);
+      model.addContent(ex.getCycle());
       model.processReferences();
 
       ProposalManagementModel modelin = modelRoundTripJSONwithTest(model);
-      List<OfferedCycles> revs = modelin.getContent(OfferedCycles.class);
+      List<ProposalCycle> revs = modelin.getContent(ProposalCycle.class);
       assertEquals(1, revs.size());
-      assertEquals(1, revs.get(0).getCycles().size());
 
   }
   

@@ -11,8 +11,8 @@
       <uri/>
       <title>Proposal</title>
       <author>Paul Harrison</author>
-      <version>0.5</version>
-      <lastModified>2024-06-10T15:42:24Z</lastModified>
+      <version>0.6</version>
+      <lastModified>2024-10-19T15:33:16Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -146,6 +146,71 @@
                     <description></description>	    
                   </literal>	
             </enumeration>
+            <dataType>
+              <vodml-id>SpectralWindowSetup</vodml-id>
+              <name>SpectralWindowSetup</name>
+              <description>Science oriented definition of a spectral window.</description>	    
+            <attribute>
+              <vodml-id>SpectralWindowSetup.start</vodml-id>
+              <name>start</name>
+              <description>The start of the spectral window</description>	    
+              <datatype>
+                 <vodml-ref>ivoa:RealQuantity</vodml-ref>
+              </datatype>
+              <multiplicity>
+                <minOccurs>1</minOccurs>
+                <maxOccurs>1</maxOccurs>
+              </multiplicity>
+            </attribute>
+            <attribute>
+              <vodml-id>SpectralWindowSetup.end</vodml-id>
+              <name>end</name>
+              <description>The end of the spectral window</description>	    
+              <datatype>
+                 <vodml-ref>ivoa:RealQuantity</vodml-ref>
+              </datatype>
+              <multiplicity>
+                <minOccurs>1</minOccurs>
+                <maxOccurs>1</maxOccurs>
+              </multiplicity>
+            </attribute>
+            <attribute>
+              <vodml-id>SpectralWindowSetup.spectralResolution</vodml-id>
+              <name>spectralResolution</name>
+              <description>channel width</description>	    
+              <datatype>
+                 <vodml-ref>ivoa:RealQuantity</vodml-ref>
+              </datatype>
+              <multiplicity>
+                <minOccurs>0</minOccurs>
+                <maxOccurs>1</maxOccurs>
+              </multiplicity>
+            </attribute>
+            <attribute>
+              <vodml-id>SpectralWindowSetup.isSkyFrequency</vodml-id>
+              <name>isSkyFrequency</name>
+              <description>represents an observed frequency</description>	    
+              <datatype>
+                 <vodml-ref>ivoa:boolean</vodml-ref>
+              </datatype>
+              <multiplicity>
+                <minOccurs>1</minOccurs>
+                <maxOccurs>1</maxOccurs>
+              </multiplicity>
+            </attribute>
+            <attribute>
+              <vodml-id>SpectralWindowSetup.polarization</vodml-id>
+              <name>polarization</name>
+              <description>desired polarization</description>	    
+              <datatype>
+                 <vodml-ref>coords:PolStateEnum</vodml-ref>
+              </datatype>
+              <multiplicity>
+                <minOccurs>1</minOccurs>
+                <maxOccurs>1</maxOccurs>
+              </multiplicity>
+            </attribute>
+            </dataType>
             <objectType>
                <vodml-id>ObservingProposal</vodml-id>
                <name>ObservingProposal</name>
@@ -255,7 +320,7 @@
                     <vodml-ref>proposal:Target</vodml-ref>
                  </datatype>
                  <multiplicity>
-                   <minOccurs>1</minOccurs>
+                   <minOccurs>0</minOccurs>
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
                </composition>
@@ -267,7 +332,7 @@
                     <vodml-ref>proposal:Field</vodml-ref>
                  </datatype>
                  <multiplicity>
-                   <minOccurs>1</minOccurs>
+                   <minOccurs>0</minOccurs>
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
                </composition>
@@ -297,18 +362,6 @@
                  </multiplicity>
                  <isOrdered>true</isOrdered>
                </composition>
-               <attribute>
-                 <vodml-id>ObservingProposal.submitted</vodml-id>
-                 <name>submitted</name>
-                 <description>whether the proposal is submitted</description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:boolean</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>0</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
             </objectType>
             <objectType>
                <vodml-id>RelatedProposal</vodml-id>
@@ -530,10 +583,18 @@
                  </multiplicity>
                </composition>
             </objectType>
+            <objectType abstract="true">
+               <vodml-id>ObservingPlatform</vodml-id>
+               <name>ObservingPlatform</name>
+               <description>base type of a telescope or array of telescopes</description>	    
+            </objectType>
             <objectType>
                <vodml-id>Telescope</vodml-id>
                <name>Telescope</name>
                <description></description>	    
+               <extends>
+                  <vodml-ref>proposal:ObservingPlatform</vodml-ref>
+               </extends>
                <attribute>
                  <vodml-id>Telescope.name</vodml-id>
                  <name>name</name>
@@ -592,6 +653,9 @@
                <vodml-id>TelescopeArray</vodml-id>
                <name>TelescopeArray</name>
                <description>a set of telescopes that are operated together for an observation</description>	    
+               <extends>
+                  <vodml-ref>proposal:ObservingPlatform</vodml-ref>
+               </extends>
                <attribute>
                  <vodml-id>TelescopeArray.name</vodml-id>
                  <name>name</name>
@@ -681,8 +745,37 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
-               <composition>
-                 <vodml-id>Instrument.frequencyCoverage</vodml-id>
+            </objectType>
+            <objectType>
+               <vodml-id>Filter</vodml-id>
+               <name>Filter</name>
+               <description>Available filters /bandpasses for intruments </description>	    
+               <attribute>
+                 <vodml-id>Filter.name</vodml-id>
+                 <name>name</name>
+                 <description>human readable name</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>Filter.description</vodml-id>
+                 <name>description</name>
+                 <description>human readable description</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>Filter.frequencyCoverage</vodml-id>
                  <name>frequencyCoverage</name>
                  <description>the frequency range that the instrument covers</description>	    
                  <datatype>
@@ -692,7 +785,7 @@
                    <minOccurs>1</minOccurs>
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
-               </composition>
+               </attribute>
             </objectType>
             <objectType>
                <vodml-id>Backend</vodml-id>
@@ -732,7 +825,7 @@
                  <name>telescope</name>
                  <description></description>	    
                  <datatype>
-                   <vodml-ref>proposal:Telescope</vodml-ref>
+                   <vodml-ref>proposal:ObservingPlatform</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -751,6 +844,18 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </reference>
+               <composition>
+                 <vodml-id>ObservingConfiguration.filter</vodml-id>
+                 <name>filter</name>
+                 <description>The filter or frequency response that </description>	    
+                 <datatype>
+                    <vodml-ref>proposal:Filter</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </composition>
                <reference>
                  <vodml-id>ObservingConfiguration.backend</vodml-id>
                  <name>backend</name>
@@ -767,11 +872,11 @@
             <objectType>
                <vodml-id>ObservingMode</vodml-id>
                <name>ObservingMode</name>
-               <description>a collection of configs that can be chosen to observe with.</description>	    
+               <description>a configuration that has been chosen to observe with.</description>	    
                <attribute>
                  <vodml-id>ObservingMode.name</vodml-id>
                  <name>name</name>
-                 <description></description>	    
+                 <description>human readable name for the mode</description>	    
                  <datatype>
                     <vodml-ref>ivoa:string</vodml-ref>
                  </datatype>
@@ -783,7 +888,7 @@
                <attribute>
                  <vodml-id>ObservingMode.description</vodml-id>
                  <name>description</name>
-                 <description></description>	    
+                 <description>human readable description</description>	    
                  <datatype>
                     <vodml-ref>ivoa:string</vodml-ref>
                  </datatype>
@@ -792,18 +897,18 @@
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
-               <composition>
-                 <vodml-id>ObservingMode.configurations</vodml-id>
-                 <name>configurations</name>
+               <reference>
+                 <vodml-id>ObservingMode.configuration</vodml-id>
+                 <name>configuration</name>
                  <description></description>	    
                  <datatype>
-                    <vodml-ref>proposal:ObservingConfiguration</vodml-ref>
+                   <vodml-ref>proposal:ObservingConfiguration</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
-                   <maxOccurs>-1</maxOccurs>
+                   <maxOccurs>1</maxOccurs>
                  </multiplicity>
-               </composition>
+               </reference>
             </objectType>
             <objectType>
                <vodml-id>Justification</vodml-id>
@@ -1168,7 +1273,7 @@
                <vodml-id>ScienceSpectralWindow</vodml-id>
                <name>ScienceSpectralWindow</name>
                <description>A spectral window for science use.</description>	    
-               <composition>
+               <attribute>
                  <vodml-id>ScienceSpectralWindow.spectralWindowSetup</vodml-id>
                  <name>spectralWindowSetup</name>
                  <description></description>	    
@@ -1179,7 +1284,7 @@
                    <minOccurs>0</minOccurs>
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
-               </composition>
+               </attribute>
                <composition>
                  <vodml-id>ScienceSpectralWindow.expectedSpectralLine</vodml-id>
                  <name>expectedSpectralLine</name>
@@ -1193,71 +1298,6 @@
                  </multiplicity>
                  <isOrdered>true</isOrdered>
                </composition>
-            </objectType>
-            <objectType>
-               <vodml-id>SpectralWindowSetup</vodml-id>
-               <name>SpectralWindowSetup</name>
-               <description>Science oriented definition of a spectral window.</description>	    
-               <attribute>
-                 <vodml-id>SpectralWindowSetup.start</vodml-id>
-                 <name>start</name>
-                 <description>The start of the spectral window</description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
-               <attribute>
-                 <vodml-id>SpectralWindowSetup.end</vodml-id>
-                 <name>end</name>
-                 <description>The end of the spectral window</description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
-               <attribute>
-                 <vodml-id>SpectralWindowSetup.spectralResolution</vodml-id>
-                 <name>spectralResolution</name>
-                 <description>channel width</description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>0</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
-               <attribute>
-                 <vodml-id>SpectralWindowSetup.isSkyFrequency</vodml-id>
-                 <name>isSkyFrequency</name>
-                 <description>represents an observed frequency</description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:boolean</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
-               <attribute>
-                 <vodml-id>SpectralWindowSetup.polarization</vodml-id>
-                 <name>polarization</name>
-                 <description>desired polarization</description>	    
-                 <datatype>
-                    <vodml-ref>coords:PolStateEnum</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
             </objectType>
             <objectType>
                <vodml-id>ExpectedSpectralLine</vodml-id>
@@ -1389,7 +1429,7 @@
                    <vodml-ref>proposal:Target</vodml-ref>
                  </datatype>
                  <multiplicity>
-                   <minOccurs>1</minOccurs>
+                   <minOccurs>0</minOccurs>
                    <maxOccurs>-1</maxOccurs>
                  </multiplicity>
                </reference>

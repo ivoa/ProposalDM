@@ -2,7 +2,7 @@
  *  created on 09-Jul-2021 
  */
  
- model proposal (0.5)  "A model to represent an application for observing time. The model is intended to express all
+ model proposal (0.6)  "A model to represent an application for observing time. The model is intended to express all
 of the concepts required to specify the scientific parameters of the application in sufficient detail to allow the 
 proposal to be reviewed and allocated time. It does not cover all the technical detail of instrument setup that would be needed to actually schedule the 
 observations, although the intention is that information about targets etc. could be automatically transferred to an observing system."
@@ -31,11 +31,10 @@ observations, although the intention is that information about targets etc. coul
     kind : ProposalKind "the type of proposal";
     relatedProposals: RelatedProposal @* as composition "";
     supportingDocuments: SupportingDocument @* as ordered composition "any additional documents";
-    targets: Target @+ as composition "the targets of the proposal";
-    fields: Field @+ as composition "the fields observed in the proposal";
+    targets: Target @* as composition "the targets of the proposal";
+    fields: Field @* as composition "the fields observed in the proposal";
     technicalGoals: TechnicalGoal @+ as ordered composition "the technical goals of the proposal";
     observations : Observation @+ as ordered composition "the proposed observations";
-    submitted: ivoa:boolean @? "whether the proposal is submitted"; //note that submitted proposals are not expected to be editable..  made optional to allow for not setting for not submitted proposals
  }
  
  otype RelatedProposal "a related proposal" // note that this is being done to follow the vodml aggregation pattern
@@ -84,7 +83,12 @@ observations, although the intention is that information about targets etc. coul
  	
  }
  
- otype Telescope "" {
+ abstract otype ObservingPlatform "base type of a telescope or array of telescopes"
+ {
+ 	
+ }
+ 
+ otype Telescope -> ObservingPlatform "" {
  	name : ivoa:string "telescope name";
  	wikiId : WikiDataId @? "the wikidata id for the Telescope"; //IMPL this is just an idea to have a reference outside this database 
  
@@ -95,10 +99,11 @@ observations, although the intention is that information about targets etc. coul
  	telescope references Telescope "";
  }
  
- otype TelescopeArray "a set of telescopes that are operated together for an observation" { // IMPL might not be necessary with ObservingConfiguration doing the same sort of thing.
+ otype TelescopeArray -> ObservingPlatform "a set of telescopes that are operated together for an observation" { // IMPL might not be necessary with ObservingConfiguration doing the same sort of thing.
  	name : ivoa:string "the array name";
     arrayMembers: TelescopeArrayMember @+ as composition "the telescopes that make up the array"; 	
  }
+ 
  
  
  enum InstrumentKind { //IMPL is this extensive enough to be useful?
@@ -112,7 +117,12 @@ observations, although the intention is that information about targets etc. coul
  	wikiId : WikiDataId @? "the wikidata id for the Instrument";
  	reference : ivoa:anyURI @? " a URL that points to a more detailed description of the instrument";
  	kind : InstrumentKind "the kind of instrument";
- 	frequencyCoverage : SpectralWindowSetup as composition "the frequency range that the instrument covers";
+ }
+ 
+ otype Filter "Available filters /bandpasses for intruments " {
+ 	name : ivoa:string "human readable name";
+ 	description: ivoa:string "human readable description";
+ 	frequencyCoverage : SpectralWindowSetup  "the frequency range that the instrument covers";
  }
  
  otype Backend "a processing backend /pipeline- e.g. correlator" {
@@ -121,16 +131,20 @@ observations, although the intention is that information about targets etc. coul
  	
  }
  
+ /*  Note that when presenting these configurations in the GUI they probably need to be decomposed into combo boxes that display each set of possibilities of each member one after another 
+  limited by the remaining possible choices having selected those above */
  otype ObservingConfiguration "A particular observation combination that is possible" {
- 	telescope references Telescope "";
+ 	telescope references ObservingPlatform "";
  	instrument references Instrument "";
+ 	filter:Filter as composition "The filter or frequency response that ";
  	backend references Backend "";
  }
  
- otype ObservingMode "a collection of configs that can be chosen to observe with." {
- 	name : ivoa:string "";
- 	description: ivoa:string "";
- 	configurations : ObservingConfiguration @+ as composition ""; //Note that the overall observing mode is a sort of cartesian outer product of the possible telescope,instrument,backend combinations
+ otype ObservingMode "a configuration that has been chosen to observe with." {
+  name: ivoa:string "human readable name for the mode";
+  description: ivoa:string "human readable description";
+ 	configuration references ObservingConfiguration  ""; 
+  // IMPL could add an arbitrary "options" here.
  }
   
   
@@ -231,11 +245,11 @@ observations, although the intention is that information about targets etc. coul
   
   otype ScienceSpectralWindow  "A spectral window for science use."
   {   
-        spectralWindowSetup: SpectralWindowSetup  @?   as composition  "" ;
+        spectralWindowSetup: SpectralWindowSetup  @?     "" ;
         expectedSpectralLine: ExpectedSpectralLine  @*   as ordered composition  "" ;
   }
  
-  otype SpectralWindowSetup  "Science oriented definition of a spectral window."
+  dtype SpectralWindowSetup  "Science oriented definition of a spectral window."
   {   
         start: ivoa:RealQuantity   "The start of the spectral window" ;
         end: ivoa:RealQuantity    "The end of the spectral window" ;
@@ -263,11 +277,13 @@ observations, although the intention is that information about targets etc. coul
  	representativeSpectralPoint: ivoa:RealQuantity "the the point in the EM where these parameters should be evaluated";
  }
  
+ 
  abstract otype Observation "An observation - occurs in a single non-overlapping time period" {
- 	target @+ references Target  "The actual target of the observation"; //IMPL this should be multiple if field is to have any separate meaning - however aggregation pattern is discouraged.
+ 	target @* references Target  "The actual target of the observation"; //IMPL this chould be multiple if field is to have any separate meaning - however aggregation pattern is discouraged.
  	field references Field "The Field for the observation";
  	technicalGoal references TechnicalGoal "The technical goals of the observation";
  	constraints: ObservingConstraint @* as ordered composition "any constraints on the observation";
+  
  }
  
  otype TargetObservation -> Observation "an observation of the scientific target "{
@@ -295,4 +311,6 @@ Delay  ""
  	spectrum: ScienceSpectralWindow @+ as ordered composition "";
  	
  }
+ 
+ 
  

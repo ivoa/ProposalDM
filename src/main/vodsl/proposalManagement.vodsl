@@ -2,7 +2,7 @@
  *  created on 20 Oct 2021 // The review side of the proposal.
  */
  
- model proposalManagement (0.5)  "The data model for managing the proposal review process. Intended to work for phase 1"
+ model proposalManagement (0.6)  "The data model for managing the proposal review process. Intended to work for phase 1"
  author "Paul Harrison" 
  title "Proposal Management"
  
@@ -10,15 +10,10 @@
  include "../../../build/tmp/Coords-v1.0.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
  include "proposaldm.vodsl"
  
- 
- otype OfferedCycles { //TODO this is temporary idea for a  "containing object" for the whole review - need to think this out more, not really necessary
- 	cycles : ProposalCycle @+ as composition "";
- }
- 
-otype ProposalCycle "Defines collection of resources and proposals for a particular observing season" {
+ otype ProposalCycle "Defines collection of resources and proposals for a particular observing season" {
  	observatory references proposal:Observatory  "";
  	^title: ivoa:string "a human readable description of the cycle";
- 	submissionDeadline : ivoa:datetime "the date by which observing proposals must be submitted to be considered for this cycle";
+ 	submissionDeadline : ivoa:datetime @? "the date by which observing proposals must be submitted to be considered for this cycle";
  	observationSessionStart : ivoa:datetime "the start date of the observing cycle";
  	observationSessionEnd: ivoa:datetime "the end date of the observing cycle";
  	observingModes: proposal:ObservingMode @+ as composition "the possible observing modes offered in the cycle";
@@ -52,9 +47,14 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  	members : CommitteeMember @+ as composition "members of the committee"; 	
  }
  
+ otype ObservationConfiguration "the configuration of an observation specific to a submission to a particular cycle" {
+ 	observation @+ references proposal:Observation  "";
+ 	mode references proposal:ObservingMode "The observing mode"; //IMPL this is what allows the observation to be tied to multiple observatories.
+ }
   
  otype SubmittedProposal "an instance of a proposal that has been submitted" {
- 	proposal references proposal:ObservingProposal "the proposal that was submitted"; //note although this is a reference, the proposal is "frozen" when submitted.
+ 	proposal: proposal:ObservingProposal as composition "the proposal that was submitted"; //NB this used to be a reference, but we do want a copy "saved"
+ 	config : ObservationConfiguration @* as composition "";
  	submissionDate : ivoa:datetime "the date that the proposal was submitted";
  	successful : ivoa:boolean "the proposal can go on to allocation";
  	reviewsCompleteDate : ivoa:datetime "the date when all the proposals are due";
@@ -112,6 +112,10 @@ otype ProposalCycle "Defines collection of resources and proposals for a particu
  	
  }
  
+ 
+
+ 
+
  
  
  

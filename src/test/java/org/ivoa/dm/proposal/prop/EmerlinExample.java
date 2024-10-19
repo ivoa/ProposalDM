@@ -55,24 +55,35 @@ public class EmerlinExample extends BaseExample {
             sw.spectralResolution = new RealQuantity(end-start, ghz); //Indicate that resolution is not important - set same as width.
         });
     }
+    
+    protected Filter simpleFilter(String name, double start, double end) {
+        return new Filter(name, name, simpleSpecRange(start, end));
+    }
 
     public  EmerlinExample () {
          Instrument[] instruments = {
              
-              Instrument.createInstrument( i -> {i.name="L-Band Receiver"; i.kind= InstrumentKind.CONTINUUM; i.frequencyCoverage=simpleSpecRange(1.2, 1.7);}), 
-              Instrument.createInstrument( i -> {i.name="C-Band Receiver"; i.kind=InstrumentKind.CONTINUUM; i.frequencyCoverage=simpleSpecRange(4.0, 7.0);}),
-              Instrument.createInstrument( i -> {i.name="K-Band Receiver"; i.kind=InstrumentKind.CONTINUUM; i.frequencyCoverage=simpleSpecRange(20.0, 24.0);})
+              Instrument.createInstrument( i -> {i.name="L-Band Receiver"; i.kind=InstrumentKind.CONTINUUM; }), 
+              Instrument.createInstrument( i -> {i.name="C-Band Receiver"; i.kind=InstrumentKind.CONTINUUM; }),
+              Instrument.createInstrument( i -> {i.name="K-Band Receiver"; i.kind=InstrumentKind.CONTINUUM; })
         };
+         
+         
 
         Backend backend = new Backend("Widar Correlator", true);
 
+        
+        final TelescopeArray eMERLIN = new TelescopeArray("e-MERLIN",
+                  Stream.of(telescopes).map(t -> new TelescopeArrayMember(t)).collect(Collectors.toList()));
+        final TelescopeArray eMERLINReduced = new TelescopeArray("e-MERLIN (reduced)",
+                 Stream.of(telescopes).filter(t -> !notK.contains(t.name)).map(t -> new TelescopeArrayMember(t)).collect(Collectors.toList()));
        observatory = createObservatory(obs -> {
             obs.address = "on earth";
             obs.ivoid = new Ivorn("ivo://obs/anobs");
             obs.name = "Jodrell Bank";
             obs.telescopes = Arrays.asList(telescopes);
-            obs.arrays = Arrays.asList(new TelescopeArray("e-MERLIN",
-                  Stream.of(telescopes).map(t -> new TelescopeArrayMember(t)).collect(Collectors.toList())));
+            
+            obs.arrays = Arrays.asList(eMERLIN);
             obs.instruments = Arrays.asList(instruments);
             obs.backends =Arrays.asList(backend);
 
@@ -87,12 +98,12 @@ public class EmerlinExample extends BaseExample {
         // there is also the special case of not tying up the Lovell telescope - would be 2 extra modes for L and C Bands
         // what about join
         ObservingMode obsModes[] = {
-              new ObservingMode("L-Band", "full e-MERLIN at L-Band", Arrays.stream(telescopes)
-                    .map(t -> new ObservingConfiguration(t, instruments[0], backend)).collect(Collectors.toList())),
-              new ObservingMode("C-Band", "full e-MERLIN at C-Band", Arrays.stream(telescopes)
-                    .map(t -> new ObservingConfiguration(t, instruments[1], backend)).collect(Collectors.toList())),
-              new ObservingMode("K-Band", "reduced e-EMERLIN at K-Band", Arrays.stream(telescopes).filter(t -> notK.contains(t.name))
-                    .map(t -> new ObservingConfiguration(t, instruments[2], backend)).collect(Collectors.toList()))
+              new ObservingMode("L-Band", "full e-MERLIN at L-Band",
+                     new ObservingConfiguration(eMERLIN, instruments[0],simpleFilter("L-Band",1.2, 1.7), backend))
+              ,new ObservingMode("C-Band", "full e-MERLIN at C-Band", 
+                     new ObservingConfiguration(eMERLIN, instruments[1],simpleFilter("C-Band",4.0, 7.0), backend))
+              ,new ObservingMode("K-Band", "reduced e-EMERLIN at K-Band",
+                      new ObservingConfiguration(eMERLINReduced, instruments[2],simpleFilter("K-Band",20.0, 24.0), backend))
         };
 
         AllocationGrade grades[] = {
@@ -165,6 +176,7 @@ public class EmerlinExample extends BaseExample {
                                   t.constraints = makeList(
                                           new TimingWindow(new Date(2023, 1, 1), new Date(2023, 1, 10), "t constraint", false)
                                           );
+                                 
                               }
 
 
@@ -173,7 +185,15 @@ public class EmerlinExample extends BaseExample {
               }
         ));
         // "submit" proposal
-        final SubmittedProposal submittedProposal = new SubmittedProposal( proposal, new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
+        ProposalModel pm = new ProposalModel();
+        pm.createContext();//FIXME this is an area where the API for https://github.com/ivoa/vo-dml/issues/42 is not great
+        final ObservingProposal frozenProposal = new ObservingProposal(proposal); // make a copy of the proposal to put into the submitted proposal
+        frozenProposal.updateClonedReferences();
+        List<ObservationConfiguration> obsConfigs = makeList(
+                new ObservationConfiguration(frozenProposal.getObservations(),obsModes[0])
+                );
+        
+        final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
         cycle.setSubmittedProposals(
               makeList(submittedProposal));
 
