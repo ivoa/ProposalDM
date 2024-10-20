@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+import jakarta.persistence.TypedQuery;
 import jakarta.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
@@ -24,6 +25,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
+import org.ivoa.dm.proposal.management.SubmittedProposal;
+import org.ivoa.dm.stc.coords.SpaceSys;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -128,7 +131,7 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
                
                 
                 ProposalManagementModel model = new ProposalManagementModel();
-                model.addContent(ex.getCycle());
+                model.addContent(doTacWork());
                 model.processReferences();
                 validateModel(model);
                 ProposalManagementModel modelin = modelRoundTripXMLwithTest(model);
@@ -142,7 +145,7 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
         jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
         em.getTransaction().begin();
         
-        final ProposalCycle cycle = ex.getCycle();
+        final  ProposalCycle cycle = doTacWork();
         cycle.persistRefs(em);
         em.persist(cycle);
         em.getTransaction().commit();
@@ -182,7 +185,7 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
 
       
       ProposalManagementModel model = new ProposalManagementModel();
-      model.addContent(ex.getCycle());
+      model.addContent(doTacWork());
       model.processReferences();
 
       ProposalManagementModel modelin = modelRoundTripJSONwithTest(model);
@@ -203,8 +206,83 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
         ObservingProposal retval = mapper.readValue(json, ObservingProposal.class);
         assertNotNull(retval);
   }
+@org.junit.jupiter.api.Test
+public void testObservations() {
+       ObservingProposal prop = propDbInOut();
+       assertEquals( 1, prop.observations.size(), "number of observations");
+       Observation obs = prop.observations.get(0);
+       assertNotNull(obs.target);
+       assertTrue(obs.target.get(0) instanceof CelestialTarget);
+       CelestialTarget target = (CelestialTarget)obs.target.get(0);
+       SpaceSys cosys = target.sourceCoordinates.getCoordSys();
+       assertNotNull(cosys);
+       
+      
+   }
+@org.junit.jupiter.api.Test
+public void testDeleteTarget() {
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        em.getTransaction().begin();
+        final ObservingProposal proposal = ex.getProposal();
+        proposal.persistRefs(em);
+        em.persist(proposal);
+        em.getTransaction().commit();
+        em.getTransaction().begin();
+        Observation obs = proposal.observations.get(0);
+       assertNotNull(obs.target);
+      
+       em.remove(obs.target.get(0)); // TODO perhaps really want to investigate list member deletion more...
+       em.getTransaction().commit();
+       
+       
+   }
+@org.junit.jupiter.api.Test
+public void testObservationTarget() {
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        em.getTransaction().begin();
+        final ObservingProposal proposal = ex.getProposal();
+        proposal.persistRefs(em);
+        em.persist(proposal);
+        em.getTransaction().commit();
+        //copy obs
+        em.getTransaction().begin();
+        TypedQuery<ObservingProposal> q = em.createQuery("SELECT o FROM ObservingProposal o", ObservingProposal.class);
+        List<ObservingProposal> res = q.getResultList();
+        ObservingProposal prop = res.get(0);
+        prop.forceLoad();
+        Observation obs = prop.observations.get(0);
+        Observation obs2 = obs.copyMe();
+         em.persist(obs2);
+       prop.addToObservations(obs2);
+        em.merge(prop);
+        em.getTransaction().commit();
+        //delete target
+        em.getTransaction().begin();
+        assertNotNull(obs.target);
+      
+       em.remove(obs.target.get(0)); // TODO perhaps really want to investigate list member deletion more...
+       em.getTransaction().commit();
+       
+       
+   }
 
+  protected ObservingProposal cloneProposal(ObservingProposal p)
+  {
+        ProposalModel pm = new ProposalModel();
+        pm.createContext();//FIXME this is an area where the API for https://github.com/ivoa/vo-dml/issues/42 is not great
+        final ObservingProposal frozenProposal = new ObservingProposal(p); // make a copy of the proposal to put into the submitted proposal
+        frozenProposal.updateClonedReferences();
+        return frozenProposal;
+  }
+  
+  private ProposalCycle doTacWork() {
+        final ProposalCycle cycle = ex.getCycle();
+        ObservingProposal prop = ex.getProposal();
+        SubmittedProposal sprop = ex.submitProposal(prop);
+        ex.allocateProposal(sprop);
+        return cycle;
  
+  }
 
 }
 

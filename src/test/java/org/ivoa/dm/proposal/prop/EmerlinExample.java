@@ -4,33 +4,23 @@ package org.ivoa.dm.proposal.prop;
  */
 
 import org.ivoa.dm.proposal.management.*;
-import org.ivoa.dm.stc.coords.Epoch;
-import org.ivoa.dm.stc.coords.EquatorialPoint;
 import org.ivoa.dm.stc.coords.PolStateEnum;
 import org.ivoa.dm.ivoa.Ivorn;
 import org.ivoa.dm.ivoa.RealQuantity;
-import org.ivoa.dm.ivoa.StringIdentifier;
-import org.ivoa.vodml.stdtypes.Unit;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.ivoa.dm.proposal.management.ProposalCycle.createProposalCycle;
-import static org.ivoa.dm.proposal.prop.ExpectedSpectralLine.createExpectedSpectralLine;
 import static org.ivoa.dm.proposal.prop.Observatory.createObservatory;
-import static org.ivoa.dm.proposal.prop.ObservingProposal.createObservingProposal;
-import static org.ivoa.dm.proposal.prop.PerformanceParameters.createPerformanceParameters;
-import static org.ivoa.dm.proposal.prop.ScienceSpectralWindow.createScienceSpectralWindow;
 import static org.ivoa.dm.proposal.prop.SpectralWindowSetup.createSpectralWindowSetup;
-import static org.ivoa.dm.proposal.prop.TargetObservation.createTargetObservation;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class EmerlinExample extends BaseExample {
+public class EmerlinExample extends BaseObservatoryExample implements TACFunctions {
 
-    private ObservingProposal proposal;
-    private ProposalCycle cycle;
-
+    
+    
     Telescope[] telescopes = {
           createTelescope("Lovell", 3822252.643, -153995.683, 5086051.443),
           createTelescope("Mk2", 3822473.365, -153692.318, 5085851.303),
@@ -43,9 +33,9 @@ public class EmerlinExample extends BaseExample {
     };
     Set<String > notK = new HashSet<>(Arrays.asList("Lovell","Defford"));
     private Observatory observatory;
-    private final Unit ghz = new Unit("GHz");
-    private final Unit khz = new Unit("kHz");
-
+    private ObservingMode obsModes[];
+    private AllocationGrade grades[];
+    private ResourceType observingTime;
     protected SpectralWindowSetup simpleSpecRange(double start, double end) {
         return createSpectralWindowSetup(sw -> {
             sw.start = new RealQuantity(start, ghz);
@@ -90,14 +80,11 @@ public class EmerlinExample extends BaseExample {
         });
 
 
-        ResourceType observingTime = new ResourceType("observing time", "hours");
+        observingTime = new ResourceType("observing time", "hours");
 
         Resource availableObservingTime = new Resource(observingTime, 100 * 24.0);
 
-        //for e-merlin the modes use use the same backend and instrument on all the telescopes
-        // there is also the special case of not tying up the Lovell telescope - would be 2 extra modes for L and C Bands
-        // what about join
-        ObservingMode obsModes[] = {
+        obsModes = new ObservingMode[] {
               new ObservingMode("L-Band", "full e-MERLIN at L-Band",
                      new ObservingConfiguration(eMERLIN, instruments[0],simpleFilter("L-Band",1.2, 1.7), backend))
               ,new ObservingMode("C-Band", "full e-MERLIN at C-Band", 
@@ -106,7 +93,7 @@ public class EmerlinExample extends BaseExample {
                       new ObservingConfiguration(eMERLINReduced, instruments[2],simpleFilter("K-Band",20.0, 24.0), backend))
         };
 
-        AllocationGrade grades[] = {
+        grades = new AllocationGrade[] {
               new AllocationGrade("A", "requires full array to be scheduled"),
               new AllocationGrade("B", "can be schedulted with missing telescopes")
 
@@ -120,75 +107,16 @@ public class EmerlinExample extends BaseExample {
 
         }));
 
-        final Target target =  CelestialTarget.createCelestialTarget(c -> {
-                                      c.sourceName = "fictional";
-                                      c.sourceCoordinates = new EquatorialPoint(new RealQuantity(45.0, degrees), new RealQuantity(60.0, degrees), ICRS_SYS);//IMPL it would actually be nice to be able to input sexagesimal - that is the most human readable
-                                      c.positionEpoch = new Epoch("J2013.123");//FIXME - this is not really what epoch means
-                                  });
-        
-        final Field field = new TargetField("source1");
-        final TechnicalGoal tgoal = TechnicalGoal.createTechnicalGoal(g -> {
-                                      g.performance = createPerformanceParameters(p -> {
-                                          p.desiredAngularResolution = new RealQuantity(25., arcsec);
-                                          p.desiredLargestScale = new RealQuantity(0.1, degrees);
-                                          p.representativeSpectralPoint = new RealQuantity(1.5, ghz);
-                                      });
-                                      g.spectrum = makeList(
-                                            createScienceSpectralWindow(ssw -> {
-                                                ssw.spectralWindowSetup = createSpectralWindowSetup(sw -> { // continuum
-                                                    sw.start = new RealQuantity(1.2, ghz);
-                                                    sw.end = new RealQuantity(1.7, ghz);
-                                                    sw.spectralResolution = new RealQuantity(0.5, ghz);
-                                                    sw.isSkyFrequency = true;
-                                                    sw.polarization = PolStateEnum.LL; //IMPL really want a list here - or repeat the whole spectralwindow setup for each poln
+    }
 
-                                                });
-                                            }),
-
-                                            createScienceSpectralWindow(ssw -> { // narrow window for line
-                                                ssw.expectedSpectralLine = makeList(createExpectedSpectralLine(sl -> {
-                                                    sl.restFrequency = new RealQuantity(1.4204058, ghz);
-                                                    sl.description = "HI";
-                                                    sl.splatalogId = new StringIdentifier("00101");//IMPL is stringIdentifier really useful?
-
-                                                }));
-                                                ssw.spectralWindowSetup = createSpectralWindowSetup(sw -> {
-                                                    sw.start = new RealQuantity(1.41, ghz);
-                                                    sw.end = new RealQuantity(1.43, ghz);
-                                                    sw.spectralResolution = new RealQuantity(100.0, khz);
-                                                    sw.isSkyFrequency = false; // exact freq depends on the source...
-                                                    sw.polarization = PolStateEnum.LL;
-                                                });
-
-                                            })
-                                      );
-                                  });
-        // set up the specific proposal
-        proposal = createObservingProposal(proposalCommonSetup().andThen(pr -> {
-            pr.targets = makeList(target);
-            pr.fields = makeList(field);
-            pr.technicalGoals = makeList(tgoal);
-                  List<Observation> obs =makeList( //IMPL note the wrapping in a new ArrayList as otherwise the list is readonly, and we want to add observations in the tests
-                        createTargetObservation(t -> {
-                                  t.target = makeList(target);
-                                  t.field = field;
-                                  t.technicalGoal = tgoal;
-                                  t.constraints = makeList(
-                                          new TimingWindow(new Date(2023, 1, 1), new Date(2023, 1, 10), "t constraint", false)
-                                          );
-                                 
-                              }
-
-
-                        ));
-                  pr.observations = obs;
-              }
-        ));
-        // "submit" proposal
-        ProposalModel pm = new ProposalModel();
-        pm.createContext();//FIXME this is an area where the API for https://github.com/ivoa/vo-dml/issues/42 is not great
-        final ObservingProposal frozenProposal = new ObservingProposal(proposal); // make a copy of the proposal to put into the submitted proposal
-        frozenProposal.updateClonedReferences();
+    /**
+     * {@inheritDoc}
+     * overrides @see org.ivoa.dm.proposal.prop.TACFunctions#submitProposal(org.ivoa.dm.proposal.prop.ObservingProposal)
+     */
+    @Override
+    public SubmittedProposal submitProposal(ObservingProposal frozenProposal) {
+          // "submit" proposal
+      
         frozenProposal.setSubmitted(true);
         List<ObservationConfiguration> obsConfigs = makeList(
                 new ObservationConfiguration(frozenProposal.getObservations(),obsModes[0])
@@ -210,45 +138,40 @@ public class EmerlinExample extends BaseExample {
        // set that the submitted proposal is ok to be allocated. 
        submittedProposal.setSuccessful(true);
 
-        // "allocate" proposal
+      return submittedProposal;
 
+        
+    }
+
+    /**
+     * {@inheritDoc}
+     * overrides @see org.ivoa.dm.proposal.prop.TACFunctions#allocateProposal(org.ivoa.dm.proposal.management.SubmittedProposal)
+     */
+    @Override
+    public AllocatedProposal allocateProposal(SubmittedProposal p) {
+   // "allocate" proposal
+
+        final AllocatedProposal allocatedProposal = AllocatedProposal.createAllocatedProposal(ap -> {
+              ap.submitted = p;
+      
+              ap.allocation = makeList(
+                    AllocatedBlock.createAllocatedBlock(
+                          a -> {
+                              a.grade = grades[0];
+                              a.mode = obsModes[0];
+                              Resource res = new Resource(observingTime, 48.0); // IMPL should it be possible to do different units?
+                              a.resource = res;
+                          }
+                    )
+
+              );
+          });
         cycle.setAllocatedProposals(makeList(
-              AllocatedProposal.createAllocatedProposal(ap -> {
-                  ap.submitted = submittedProposal;
-        
-                  ap.allocation = makeList(
-                        AllocatedBlock.createAllocatedBlock(
-                              a -> {
-                                  a.grade = grades[0];
-                                  a.mode = obsModes[0];
-                                  Resource res = new Resource(observingTime, 48.0); // IMPL should it be possible to do different units?
-                                  a.resource = res;
-                              }
-                        )
-
-                  );
-              })
-        ));
+              allocatedProposal
+        ));   
+        return allocatedProposal;
     }
 
-    /**
-     * {@inheritDoc}
-     * overrides @see org.ivoa.dm.proposal.prop.ExampleGenerator#getProposal()
-     */
-    @Override
-    public ObservingProposal getProposal() {
-       return proposal;
-        
-    }
-
-    /**
-     * {@inheritDoc}
-     * overrides @see org.ivoa.dm.proposal.prop.ExampleGenerator#getCycle()
-     */
-    @Override
-    public ProposalCycle getCycle() {
-        return cycle;
-        
-    }
+    
 
 }

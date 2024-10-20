@@ -16,14 +16,14 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import org.hibernate.engine.spi.EffectiveEntityGraph;
 import org.ivoa.dm.ivoa.RealQuantity;
+import org.ivoa.dm.proposal.management.AllocatedProposal;
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
+import org.ivoa.dm.proposal.management.SubmittedProposal;
 import org.ivoa.dm.proposal.management.TAC;
 import org.ivoa.dm.stc.coords.SpaceSys;
 
-import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 
@@ -41,75 +41,52 @@ class EmerlinExampleTest extends AbstractProposalTest {
 
             @Override
             public ExampleGenerator create() {
-                return new EmerlinExample();
+                return new ExampleGenerator() {
+                   ExampleProposal prop= new ExampleProposal();
+                   EmerlinExample emerlin = new EmerlinExample();
+                    
+                    @Override
+                    public ProposalCycle getCycle() {
+                       return  emerlin.getCycle();
+                        
+                    }
+                    
+                    @Override
+                    public ObservingProposal getProposal() {
+                        return prop.getProposal();
+                    }
+                    
+                    @Override
+                    public SpaceSys getICRS() {
+                       return prop.ICRS_SYS;                       
+                    }
+                    
+                    @Override
+                    public SpaceSys getICRF() {
+                        return prop.GEO_SYS;
+                        
+                    }
+
+                    @Override
+                    public SubmittedProposal submitProposal(
+                            ObservingProposal p) {
+                       return  emerlin.submitProposal(p);
+                       
+                        
+                    }
+
+                    @Override
+                    public AllocatedProposal allocateProposal(
+                            SubmittedProposal p) {
+                        return emerlin.allocateProposal(p);                       
+                    }
+                };
             }
         });
        
     }
 
    @org.junit.jupiter.api.Test 
-   public  void testObservations() {
-       ObservingProposal prop = propDbInOut();
-       assertEquals( 1, prop.observations.size(), "number of observations");
-       Observation obs = prop.observations.get(0);
-       assertNotNull(obs.target);
-       assertTrue(obs.target.get(0) instanceof CelestialTarget);
-       CelestialTarget target = (CelestialTarget)obs.target.get(0);
-       SpaceSys cosys = target.sourceCoordinates.getCoordSys();
-       assertNotNull(cosys);
-       
-      
-   }
-     @org.junit.jupiter.api.Test 
-   public  void testDeleteTarget() {
-        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
-        em.getTransaction().begin();
-        final ObservingProposal proposal = ex.getProposal();
-        proposal.persistRefs(em);
-        em.persist(proposal);
-        em.getTransaction().commit();
-        em.getTransaction().begin();
-        Observation obs = proposal.observations.get(0);
-       assertNotNull(obs.target);
-      
-       em.remove(obs.target.get(0)); // TODO perhaps really want to investigate list member deletion more...
-       em.getTransaction().commit();
-       
-       
-   }
-   
-     
-         @org.junit.jupiter.api.Test 
-   public  void testObservationTarget() {
-        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
-        em.getTransaction().begin();
-        final ObservingProposal proposal = ex.getProposal();
-        proposal.persistRefs(em);
-        em.persist(proposal);
-        em.getTransaction().commit();
-        //copy obs
-        em.getTransaction().begin();
-        TypedQuery<ObservingProposal> q = em.createQuery("SELECT o FROM ObservingProposal o", ObservingProposal.class);
-        List<ObservingProposal> res = q.getResultList();
-        ObservingProposal prop = res.get(0);
-        prop.forceLoad();
-        Observation obs = prop.observations.get(0);
-        Observation obs2 = obs.copyMe();
-         em.persist(obs2);
-       prop.addToObservations(obs2);
-        em.merge(prop);
-        em.getTransaction().commit();
-        //delete target
-        em.getTransaction().begin();
-        assertNotNull(obs.target);
-      
-       em.remove(obs.target.get(0)); // TODO perhaps really want to investigate list member deletion more...
-       em.getTransaction().commit();
-       
-       
-   }
-   
-     @org.junit.jupiter.api.Test 
    public  void testDbCreate() {
        
         jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
