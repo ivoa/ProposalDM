@@ -20,16 +20,9 @@ digraph GVmap {
 	fontsize=8
 	style=filled] 
     
-  "proposal:Observatory" [
-    URL="#Observatory"
-    label = "{proposal:Observatory}"
-    fillcolor="grey"
-    ] ;
-      
-    
-  "proposal:ObservingMode" [
-    URL="#ObservingMode"
-    label = "{proposal:ObservingMode}"
+  "proposal:Organization" [
+    URL="#Organization"
+    label = "{proposal:Organization}"
     fillcolor="grey"
     ] ;
       
@@ -54,9 +47,64 @@ digraph GVmap {
     fillcolor="grey"
     ] ;
       
-    "proposalManagement:TacRole" [
+    "proposalManagement:InstrumentKind" [
+    URL="../proposalManagement/InstrumentKind"
+    label = "{&lt;&lt;enumeration&gt;&gt;\nInstrumentKind|+continuum\l+spectroscopic\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:TacRole" [
     URL="../proposalManagement/TacRole"
     label = "{&lt;&lt;enumeration&gt;&gt;\nTacRole|+TechnicalReviewer\l+ScienceReviewer\l+Chair\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:Observatory" [
+    URL="../proposalManagement/Observatory"
+    label = "{Observatory}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:ObservingPlatform" [
+    URL="../proposalManagement/ObservingPlatform"
+    label = "{ObservingPlatform}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:Telescope" [
+    URL="../proposalManagement/Telescope"
+    label = "{Telescope|+name : ivoa:string\l+wikiId : proposal:WikiDataId\l+location : coords:RealCartesianPoint\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:TelescopeArrayMember" [
+    URL="../proposalManagement/TelescopeArrayMember"
+    label = "{TelescopeArrayMember}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:TelescopeArray" [
+    URL="../proposalManagement/TelescopeArray"
+    label = "{TelescopeArray|+name : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:Instrument" [
+    URL="../proposalManagement/Instrument"
+    label = "{Instrument|+name : ivoa:string\l+description : ivoa:string\l+wikiId : proposal:WikiDataId\l+reference : ivoa:anyURI\l+kind : proposalManagement:InstrumentKind\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:Filter" [
+    URL="../proposalManagement/Filter"
+    label = "{Filter|+name : ivoa:string\l+description : ivoa:string\l+frequencyCoverage : proposal:SpectralWindowSetup\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:Backend" [
+    URL="../proposalManagement/Backend"
+    label = "{Backend|+name : ivoa:string\l+parallel : ivoa:boolean\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:ObservingModeConfiguration" [
+    URL="../proposalManagement/ObservingModeConfiguration"
+    label = "{ObservingModeConfiguration}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:ObservingMode" [
+    URL="../proposalManagement/ObservingMode"
+    label = "{ObservingMode|+name : ivoa:string\l+description : ivoa:string\l}"
     fillcolor="/set312/1"
     ] ;
   "proposalManagement:ProposalCycle" [
@@ -132,11 +180,20 @@ digraph GVmap {
   
  
     edge [color="red", arrowtail="none", arrowhead="empty"]
-    "proposalManagement:AllocatedBlock" -> "proposalManagement:ResourceBlock" ;
+    "proposalManagement:Observatory" -> "proposal:Organization" ;
+  "proposalManagement:Telescope" -> "proposalManagement:ObservingPlatform" ;
+  "proposalManagement:TelescopeArray" -> "proposalManagement:ObservingPlatform" ;
+  "proposalManagement:AllocatedBlock" -> "proposalManagement:ResourceBlock" ;
   
  
     edge [color="blue", arrowhead="open", arrowtail="diamond",dir="both",fontsize="10"]
-    "proposalManagement:ProposalCycle" -> "proposal:ObservingMode" [headlabel="1..*",label="observingModes",labelfontsize=10] ;
+    "proposalManagement:Observatory" -> "proposalManagement:Telescope" [headlabel="1..*",label="telescopes",labelfontsize=10] ;
+  "proposalManagement:Observatory" -> "proposalManagement:Instrument" [headlabel="1..*",label="instruments",labelfontsize=10] ;
+  "proposalManagement:Observatory" -> "proposalManagement:Backend" [headlabel="1..*",label="backends",labelfontsize=10] ;
+  "proposalManagement:Observatory" -> "proposalManagement:TelescopeArray" [headlabel="0..*",label="arrays",labelfontsize=10] ;
+  "proposalManagement:TelescopeArray" -> "proposalManagement:TelescopeArrayMember" [headlabel="1..*",label="arrayMembers",labelfontsize=10] ;
+  "proposalManagement:ObservingModeConfiguration" -> "proposalManagement:Filter" [headlabel="1",label="filter",labelfontsize=10] ;
+  "proposalManagement:ProposalCycle" -> "proposalManagement:ObservingMode" [headlabel="1..*",label="observingModes",labelfontsize=10] ;
   "proposalManagement:ProposalCycle" -> "proposalManagement:AvailableResources" [headlabel="1",label="availableResources",labelfontsize=10] ;
   "proposalManagement:ProposalCycle" -> "proposalManagement:AllocationGrade" [headlabel="1..*",label="possibleGrades",labelfontsize=10] ;
   "proposalManagement:ProposalCycle" -> "proposalManagement:TAC" [headlabel="1",label="tac",labelfontsize=10] ;
@@ -152,15 +209,20 @@ digraph GVmap {
   
  
     edge [color="green", arrowhead="open", arrowtail="none"]
-    "proposalManagement:ProposalCycle" -> "proposal:Observatory" [headlabel="1",label="observatory",labelfontsize=10] ;
+    "proposalManagement:TelescopeArrayMember" -> "proposalManagement:Telescope" [headlabel="1",label="telescope",labelfontsize=10] ;
+  "proposalManagement:ObservingModeConfiguration" -> "proposalManagement:ObservingPlatform" [headlabel="1",label="telescope",labelfontsize=10] ;
+  "proposalManagement:ObservingModeConfiguration" -> "proposalManagement:Instrument" [headlabel="1",label="instrument",labelfontsize=10] ;
+  "proposalManagement:ObservingModeConfiguration" -> "proposalManagement:Backend" [headlabel="1",label="backend",labelfontsize=10] ;
+  "proposalManagement:ObservingMode" -> "proposalManagement:ObservingModeConfiguration" [headlabel="1",label="configuration",labelfontsize=10] ;
+  "proposalManagement:ProposalCycle" -> "proposalManagement:Observatory" [headlabel="1",label="observatory",labelfontsize=10] ;
   "proposalManagement:Reviewer" -> "proposal:Person" [headlabel="1",label="person",labelfontsize=10] ;
   "proposalManagement:CommitteeMember" -> "proposalManagement:Reviewer" [headlabel="1",label="member",labelfontsize=10] ;
   "proposalManagement:ObservationConfiguration" -> "proposal:Observation" [headlabel="1..*",label="observation",labelfontsize=10] ;
-  "proposalManagement:ObservationConfiguration" -> "proposal:ObservingMode" [headlabel="1",label="mode",labelfontsize=10] ;
+  "proposalManagement:ObservationConfiguration" -> "proposalManagement:ObservingMode" [headlabel="1",label="mode",labelfontsize=10] ;
   "proposalManagement:AllocatedProposal" -> "proposalManagement:SubmittedProposal" [headlabel="1",label="submitted",labelfontsize=10] ;
   "proposalManagement:ProposalReview" -> "proposalManagement:Reviewer" [headlabel="1",label="reviewer",labelfontsize=10] ;
   "proposalManagement:Resource" -> "proposalManagement:ResourceType" [headlabel="1",label="type",labelfontsize=10] ;
-  "proposalManagement:ResourceBlock" -> "proposal:ObservingMode" [headlabel="1",label="mode",labelfontsize=10] ;
+  "proposalManagement:ResourceBlock" -> "proposalManagement:ObservingMode" [headlabel="1",label="mode",labelfontsize=10] ;
   "proposalManagement:AllocatedBlock" -> "proposalManagement:AllocationGrade" [headlabel="1",label="grade",labelfontsize=10] ;
     
 }

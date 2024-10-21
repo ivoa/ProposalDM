@@ -1,0 +1,795 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "$id" : "https://ivoa.net/dm/proposalManagement.vo-dml.json",
+  "title" : "Proposal Management",
+  "description" : "",
+  "type" : "object",
+  "properties" : {
+    "ProposalManagementModel" : {
+      "type" : "object",
+      "properties" : {
+        "refs" : {
+          "type" : "object",
+          "properties" : {
+            "$comment" : "placeholder to make commas easier!",
+            "proposal:Organization" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Organization"
+              }
+            },
+            "proposal:Person" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Person"
+              }
+            },
+            "proposalManagement:ObservingPlatform" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingPlatform"
+              }
+            },
+            "proposalManagement:ObservingModeConfiguration" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingModeConfiguration"
+              }
+            },
+            "proposalManagement:Observatory" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Observatory"
+              }
+            },
+            "proposalManagement:Reviewer" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Reviewer"
+              }
+            },
+            "proposalManagement:ResourceType" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ResourceType"
+              }
+            },
+            "coords:CoordSys" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/CoordSys"
+              }
+            }
+          }
+        },
+        "content" : {
+          "type" : "array",
+          "items" : {
+            "anyOf" : [ {
+              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ProposalCycle"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ResourceBlock"
+            } ]
+          }
+        }
+      }
+    }
+  },
+  "$defs" : {
+    "$comment" : "placeholder to make commas easier!",
+    "Observatory" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Organization"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "telescopes" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Telescope"
+            }
+          },
+          "instruments" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Instrument"
+            }
+          },
+          "backends" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Backend"
+            }
+          },
+          "arrays" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/TelescopeArray"
+            }
+          },
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "telescopes", "instruments", "backends" ]
+      } ]
+    },
+    "ObservingPlatform" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ ]
+    },
+    "Telescope" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingPlatform"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "name" : {
+            "type" : "string",
+            "description" : ""
+          },
+          "wikiId" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/WikiDataId",
+            "description" : ""
+          },
+          "location" : {
+            "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/RealCartesianPoint",
+            "description" : ""
+          },
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "name", "location" ]
+      } ]
+    },
+    "TelescopeArrayMember" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "telescope" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Telescope"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "telescope" ]
+    },
+    "TelescopeArray" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingPlatform"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "name" : {
+            "type" : "string",
+            "description" : ""
+          },
+          "arrayMembers" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/TelescopeArrayMember"
+            }
+          },
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "name", "arrayMembers" ]
+      } ]
+    },
+    "Instrument" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "description" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "wikiId" : {
+          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/WikiDataId",
+          "description" : ""
+        },
+        "reference" : {
+          "format" : "uri",
+          "description" : ""
+        },
+        "kind" : {
+          "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/InstrumentKind",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "name", "kind" ]
+    },
+    "Filter" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "description" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "frequencyCoverage" : {
+          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/SpectralWindowSetup",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "name", "description", "frequencyCoverage" ]
+    },
+    "Backend" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "parallel" : {
+          "type" : "boolean",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "name", "parallel" ]
+    },
+    "ObservingModeConfiguration" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "filter" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Filter"
+          }
+        },
+        "telescope" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingPlatform"
+          } ],
+          "description" : ""
+        },
+        "instrument" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Instrument"
+          } ],
+          "description" : ""
+        },
+        "backend" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Backend"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "telescope", "instrument", "filter", "backend" ]
+    },
+    "ObservingMode" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "description" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "configuration" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingModeConfiguration"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "name", "description", "configuration" ]
+    },
+    "ProposalCycle" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "submissionDeadline" : {
+          "format" : "date-time",
+          "description" : ""
+        },
+        "observationSessionStart" : {
+          "format" : "date-time",
+          "description" : ""
+        },
+        "observationSessionEnd" : {
+          "format" : "date-time",
+          "description" : ""
+        },
+        "observingModes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingMode"
+          }
+        },
+        "availableResources" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/AvailableResources"
+          }
+        },
+        "possibleGrades" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/AllocationGrade"
+          }
+        },
+        "tac" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/TAC"
+          }
+        },
+        "submittedProposals" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/SubmittedProposal"
+          }
+        },
+        "allocatedProposals" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/AllocatedProposal"
+          }
+        },
+        "observatory" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Observatory"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "observatory", "title", "observationSessionStart", "observationSessionEnd", "observingModes", "availableResources", "possibleGrades", "tac" ]
+    },
+    "Reviewer" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "person" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Person"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "person" ]
+    },
+    "CommitteeMember" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "role" : {
+          "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/TacRole",
+          "description" : ""
+        },
+        "member" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Reviewer"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "member", "role" ]
+    },
+    "TAC" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "members" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/CommitteeMember"
+          }
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "members" ]
+    },
+    "ObservationConfiguration" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "observation" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Observation"
+          } ],
+          "description" : ""
+        },
+        "mode" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingMode"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "observation", "mode" ]
+    },
+    "SubmittedProposal" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "submissionDate" : {
+          "format" : "date-time",
+          "description" : ""
+        },
+        "successful" : {
+          "type" : "boolean",
+          "description" : ""
+        },
+        "reviewsCompleteDate" : {
+          "format" : "date-time",
+          "description" : ""
+        },
+        "proposal" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
+          }
+        },
+        "config" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservationConfiguration"
+          }
+        },
+        "reviews" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ProposalReview"
+          }
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "proposal", "submissionDate", "successful", "reviewsCompleteDate", "reviews" ]
+    },
+    "AllocatedProposal" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "allocation" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/AllocatedBlock"
+          }
+        },
+        "submitted" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/SubmittedProposal"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "submitted", "allocation" ]
+    },
+    "ProposalReview" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "comment" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "score" : {
+          "type" : "number",
+          "description" : ""
+        },
+        "technicalFeasibility" : {
+          "type" : "boolean",
+          "description" : ""
+        },
+        "reviewDate" : {
+          "format" : "date-time",
+          "description" : ""
+        },
+        "reviewer" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Reviewer"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "reviewer", "comment", "score", "technicalFeasibility", "reviewDate" ]
+    },
+    "ResourceType" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "unit" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "name", "unit" ]
+    },
+    "Resource" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "number",
+          "description" : ""
+        },
+        "type" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ResourceType"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "type", "amount" ]
+    },
+    "AvailableResources" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "resources" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Resource"
+          }
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ ]
+    },
+    "AllocationGrade" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "description" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "name", "description" ]
+    },
+    "ResourceBlock" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "resource" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Resource"
+          }
+        },
+        "mode" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingMode"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "mode", "resource" ]
+    },
+    "AllocatedBlock" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ResourceBlock"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "grade" : {
+            "oneOf" : [ {
+              "type" : "number"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/AllocationGrade"
+            } ],
+            "description" : ""
+          },
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "grade" ]
+      } ]
+    },
+    "InstrumentKind" : {
+      "description" : "",
+      "enum" : [ "continuum", "spectroscopic" ]
+    },
+    "TacRole" : {
+      "description" : "",
+      "enum" : [ "TechnicalReviewer", "ScienceReviewer", "Chair" ]
+    }
+  }
+}

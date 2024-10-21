@@ -1,0 +1,825 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "$id" : "https://ivoa.net/dm/proposaldm.vo-dml.json",
+  "title" : "Proposal",
+  "description" : "",
+  "type" : "object",
+  "properties" : {
+    "ProposalModel" : {
+      "type" : "object",
+      "properties" : {
+        "refs" : {
+          "type" : "object",
+          "properties" : {
+            "$comment" : "placeholder to make commas easier!",
+            "proposal:ObservingProposal" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
+              }
+            },
+            "proposal:Organization" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Organization"
+              }
+            },
+            "proposal:Person" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Person"
+              }
+            },
+            "coords:CoordSys" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/CoordSys"
+              }
+            }
+          }
+        },
+        "content" : {
+          "type" : "array",
+          "items" : {
+            "anyOf" : [ {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
+            } ]
+          }
+        }
+      }
+    }
+  },
+  "$defs" : {
+    "$comment" : "placeholder to make commas easier!",
+    "ObservingProposal" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "summary" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "kind" : {
+          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ProposalKind",
+          "description" : ""
+        },
+        "submitted" : {
+          "type" : "boolean",
+          "description" : ""
+        },
+        "scientificJustification" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Justification"
+          }
+        },
+        "technicalJustification" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Justification"
+          }
+        },
+        "investigators" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Investigator"
+          }
+        },
+        "relatedProposals" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/RelatedProposal"
+          }
+        },
+        "supportingDocuments" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/SupportingDocument"
+          }
+        },
+        "targets" : {
+          "type" : "array",
+          "items" : {
+            "anyOf" : [ {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/CelestialTarget"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/SolarSystemTarget"
+            } ]
+          }
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "anyOf" : [ {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TargetField"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Point"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Polygon"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Ellipse"
+            } ]
+          }
+        },
+        "technicalGoals" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TechnicalGoal"
+          }
+        },
+        "observations" : {
+          "type" : "array",
+          "items" : {
+            "anyOf" : [ {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TargetObservation"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/CalibrationObservation"
+            } ]
+          }
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "title", "summary", "scientificJustification", "technicalJustification", "investigators", "kind", "technicalGoals", "observations" ]
+    },
+    "RelatedProposal" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "proposal" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "proposal" ]
+    },
+    "Person" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "fullName" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "eMail" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "orcidId" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/stringIdentifier",
+          "description" : ""
+        },
+        "homeInstitute" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Organization"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "fullName", "eMail", "homeInstitute" ]
+    },
+    "Investigator" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "type" : {
+          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/InvestigatorKind",
+          "description" : ""
+        },
+        "forPhD" : {
+          "type" : "boolean",
+          "description" : ""
+        },
+        "person" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Person"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "person", "type" ]
+    },
+    "Organization" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "address" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "ivoid" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/ivorn",
+          "description" : ""
+        },
+        "wikiId" : {
+          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/WikiDataId",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "name", "address" ]
+    },
+    "Justification" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "text" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "format" : {
+          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TextFormats",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "text", "format" ]
+    },
+    "SupportingDocument" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "location" : {
+          "format" : "uri",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "title", "location" ]
+    },
+    "Target" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "sourceName" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "sourceName" ]
+    },
+    "CelestialTarget" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Target"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "sourceCoordinates" : {
+            "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/EquatorialPoint",
+            "description" : ""
+          },
+          "positionEpoch" : {
+            "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/Epoch",
+            "description" : ""
+          },
+          "pmRA" : {
+            "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+            "description" : ""
+          },
+          "pmDec" : {
+            "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+            "description" : ""
+          },
+          "parallax" : {
+            "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+            "description" : ""
+          },
+          "sourceVelocity" : {
+            "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+            "description" : ""
+          },
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "sourceCoordinates", "positionEpoch" ]
+      } ]
+    },
+    "SolarSystemTarget" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Target"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ ]
+      } ]
+    },
+    "Field" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "name" ]
+    },
+    "TargetField" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Field"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ ]
+      } ]
+    },
+    "Point" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Field"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "centre" : {
+            "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/Point",
+            "description" : ""
+          },
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "centre" ]
+      } ]
+    },
+    "Polygon" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Field"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "points" : {
+            "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/EquatorialPoint",
+            "description" : ""
+          },
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ ]
+      } ]
+    },
+    "Ellipse" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Field"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "semiMajor" : {
+            "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+            "description" : ""
+          },
+          "semiMinor" : {
+            "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+            "description" : ""
+          },
+          "pAMajor" : {
+            "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+            "description" : ""
+          },
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "semiMajor", "semiMinor", "pAMajor" ]
+      } ]
+    },
+    "ObservingConstraint" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ ]
+    },
+    "TimingConstraint" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingConstraint"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "note" : {
+            "type" : "string",
+            "description" : ""
+          },
+          "isAvoidConstraint" : {
+            "type" : "boolean",
+            "description" : ""
+          },
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ ]
+      } ]
+    },
+    "TimingWindow" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TimingConstraint"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "startTime" : {
+            "format" : "date-time",
+            "description" : ""
+          },
+          "endTime" : {
+            "format" : "date-time",
+            "description" : ""
+          },
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ ]
+      } ]
+    },
+    "SimultaneityConstraint" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TimingConstraint"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ ]
+      } ]
+    },
+    "PointingConstaint" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingConstraint"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ ]
+      } ]
+    },
+    "ScienceSpectralWindow" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "spectralWindowSetup" : {
+          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/SpectralWindowSetup",
+          "description" : ""
+        },
+        "expectedSpectralLine" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ExpectedSpectralLine"
+          }
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ ]
+    },
+    "ExpectedSpectralLine" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "restFrequency" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : ""
+        },
+        "transition" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "splatalogId" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/stringIdentifier",
+          "description" : ""
+        },
+        "description" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "restFrequency", "splatalogId", "description" ]
+    },
+    "PerformanceParameters" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "desiredAngularResolution" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : ""
+        },
+        "desiredLargestScale" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : ""
+        },
+        "desiredSensitivity" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : ""
+        },
+        "desiredDynamicRange" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : ""
+        },
+        "representativeSpectralPoint" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "representativeSpectralPoint" ]
+    },
+    "Observation" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "constraints" : {
+          "type" : "array",
+          "items" : {
+            "anyOf" : [ {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TimingConstraint"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TimingWindow"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/SimultaneityConstraint"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/PointingConstaint"
+            } ]
+          }
+        },
+        "target" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Target"
+          } ],
+          "description" : ""
+        },
+        "field" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Field"
+          } ],
+          "description" : ""
+        },
+        "technicalGoal" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TechnicalGoal"
+          } ],
+          "description" : ""
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "field", "technicalGoal" ]
+    },
+    "TargetObservation" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Observation"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ ]
+      } ]
+    },
+    "CalibrationObservation" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Observation"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "intent" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/CalibrationTarget_intendedUse",
+            "description" : ""
+          },
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ "intent" ]
+      } ]
+    },
+    "TechnicalGoal" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "@type" : {
+          "type" : "string"
+        },
+        "performance" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/PerformanceParameters"
+          }
+        },
+        "spectrum" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ScienceSpectralWindow"
+          }
+        },
+        "_id" : {
+          "type" : "number"
+        }
+      },
+      "required" : [ "performance", "spectrum" ]
+    },
+    "SpectralWindowSetup" : {
+      "type" : "object",
+      "description" : "",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "start" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : ""
+        },
+        "end" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : ""
+        },
+        "spectralResolution" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : ""
+        },
+        "isSkyFrequency" : {
+          "type" : "boolean",
+          "description" : ""
+        },
+        "polarization" : {
+          "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/PolStateEnum",
+          "description" : ""
+        }
+      },
+      "required" : [ "start", "end", "isSkyFrequency", "polarization" ]
+    },
+    "WikiDataId" : {
+      "type" : "object",
+      "properties" : {
+        "value" : "string"
+      }
+    },
+    "ProposalKind" : {
+      "description" : "",
+      "enum" : [ "Standard", "ToO", "Survey" ]
+    },
+    "InvestigatorKind" : {
+      "description" : "",
+      "enum" : [ "PI", "COI" ]
+    },
+    "TextFormats" : {
+      "description" : "",
+      "enum" : [ "latex", "rst", "asciidoc" ]
+    },
+    "CalibrationTarget_intendedUse" : {
+      "description" : "",
+      "enum" : [ "Amplitude", "Atmospheric", "Bandpass", "Phase", "Pointing", "Focus", "Polarization", "Delay" ]
+    }
+  }
+}

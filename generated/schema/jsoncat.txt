@@ -1,0 +1,2 @@
+https://ivoa.net/dm/proposaldm.vo-dml.json proposaldm.vo-dml.json
+https://ivoa.net/dm/proposalManagement.vo-dml.json proposalManagement.vo-dml.json

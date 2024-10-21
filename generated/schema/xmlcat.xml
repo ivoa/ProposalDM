@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+   <system systemId="proposaldm.vo-dml.xsd"
+           uri="http://ivoa.net/dm/proposalDM/v0.6"/>
+   <system systemId="proposalManagement.vo-dml.xsd"
+           uri="http://ivoa.net/dm/proposalManagment/v0.6"/>
+</catalog>
