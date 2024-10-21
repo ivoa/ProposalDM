@@ -41,6 +41,13 @@ digraph GVmap {
     ] ;
       
     
+  "proposal:Observation" [
+    URL="#Observation"
+    label = "{proposal:Observation}"
+    fillcolor="grey"
+    ] ;
+      
+    
   "proposal:ObservingProposal" [
     URL="#ObservingProposal"
     label = "{proposal:ObservingProposal}"
@@ -50,11 +57,6 @@ digraph GVmap {
     "proposalManagement:TacRole" [
     URL="../proposalManagement/TacRole"
     label = "{&lt;&lt;enumeration&gt;&gt;\nTacRole|+TechnicalReviewer\l+ScienceReviewer\l+Chair\l}"
-    fillcolor="/set312/1"
-    ] ;
-  "proposalManagement:OfferedCycles" [
-    URL="../proposalManagement/OfferedCycles"
-    label = "{OfferedCycles}"
     fillcolor="/set312/1"
     ] ;
   "proposalManagement:ProposalCycle" [
@@ -75,6 +77,11 @@ digraph GVmap {
   "proposalManagement:TAC" [
     URL="../proposalManagement/TAC"
     label = "{TAC}"
+    fillcolor="/set312/1"
+    ] ;
+  "proposalManagement:ObservationConfiguration" [
+    URL="../proposalManagement/ObservationConfiguration"
+    label = "{ObservationConfiguration}"
     fillcolor="/set312/1"
     ] ;
   "proposalManagement:SubmittedProposal" [
@@ -129,14 +136,15 @@ digraph GVmap {
   
  
     edge [color="blue", arrowhead="open", arrowtail="diamond",dir="both",fontsize="10"]
-    "proposalManagement:OfferedCycles" -> "proposalManagement:ProposalCycle" [headlabel="1..*",label="cycles",labelfontsize=10] ;
-  "proposalManagement:ProposalCycle" -> "proposal:ObservingMode" [headlabel="1..*",label="observingModes",labelfontsize=10] ;
+    "proposalManagement:ProposalCycle" -> "proposal:ObservingMode" [headlabel="1..*",label="observingModes",labelfontsize=10] ;
   "proposalManagement:ProposalCycle" -> "proposalManagement:AvailableResources" [headlabel="1",label="availableResources",labelfontsize=10] ;
   "proposalManagement:ProposalCycle" -> "proposalManagement:AllocationGrade" [headlabel="1..*",label="possibleGrades",labelfontsize=10] ;
   "proposalManagement:ProposalCycle" -> "proposalManagement:TAC" [headlabel="1",label="tac",labelfontsize=10] ;
   "proposalManagement:ProposalCycle" -> "proposalManagement:SubmittedProposal" [headlabel="0..*",label="submittedProposals",labelfontsize=10] ;
   "proposalManagement:ProposalCycle" -> "proposalManagement:AllocatedProposal" [headlabel="0..*",label="allocatedProposals",labelfontsize=10] ;
   "proposalManagement:TAC" -> "proposalManagement:CommitteeMember" [headlabel="1..*",label="members",labelfontsize=10] ;
+  "proposalManagement:SubmittedProposal" -> "proposal:ObservingProposal" [headlabel="1",label="proposal",labelfontsize=10] ;
+  "proposalManagement:SubmittedProposal" -> "proposalManagement:ObservationConfiguration" [headlabel="0..*",label="config",labelfontsize=10] ;
   "proposalManagement:SubmittedProposal" -> "proposalManagement:ProposalReview" [headlabel="1..*",label="reviews",labelfontsize=10] ;
   "proposalManagement:AllocatedProposal" -> "proposalManagement:AllocatedBlock" [headlabel="1..*",label="allocation",labelfontsize=10] ;
   "proposalManagement:AvailableResources" -> "proposalManagement:Resource" [headlabel="0..*",label="resources",labelfontsize=10] ;
@@ -147,7 +155,8 @@ digraph GVmap {
     "proposalManagement:ProposalCycle" -> "proposal:Observatory" [headlabel="1",label="observatory",labelfontsize=10] ;
   "proposalManagement:Reviewer" -> "proposal:Person" [headlabel="1",label="person",labelfontsize=10] ;
   "proposalManagement:CommitteeMember" -> "proposalManagement:Reviewer" [headlabel="1",label="member",labelfontsize=10] ;
-  "proposalManagement:SubmittedProposal" -> "proposal:ObservingProposal" [headlabel="1",label="proposal",labelfontsize=10] ;
+  "proposalManagement:ObservationConfiguration" -> "proposal:Observation" [headlabel="1..*",label="observation",labelfontsize=10] ;
+  "proposalManagement:ObservationConfiguration" -> "proposal:ObservingMode" [headlabel="1",label="mode",labelfontsize=10] ;
   "proposalManagement:AllocatedProposal" -> "proposalManagement:SubmittedProposal" [headlabel="1",label="submitted",labelfontsize=10] ;
   "proposalManagement:ProposalReview" -> "proposalManagement:Reviewer" [headlabel="1",label="reviewer",labelfontsize=10] ;
   "proposalManagement:Resource" -> "proposalManagement:ResourceType" [headlabel="1",label="type",labelfontsize=10] ;

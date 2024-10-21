@@ -7,6 +7,7 @@
     - Ellipse: "generated/proposal/Ellipse.md"
     - ExpectedSpectralLine: "generated/proposal/ExpectedSpectralLine.md"
     - Field: "generated/proposal/Field.md"
+    - Filter: "generated/proposal/Filter.md"
     - Instrument: "generated/proposal/Instrument.md"
     - Investigator: "generated/proposal/Investigator.md"
     - Justification: "generated/proposal/Justification.md"
@@ -15,6 +16,7 @@
     - ObservingConfiguration: "generated/proposal/ObservingConfiguration.md"
     - ObservingConstraint: "generated/proposal/ObservingConstraint.md"
     - ObservingMode: "generated/proposal/ObservingMode.md"
+    - ObservingPlatform: "generated/proposal/ObservingPlatform.md"
     - ObservingProposal: "generated/proposal/ObservingProposal.md"
     - Organization: "generated/proposal/Organization.md"
     - PerformanceParameters: "generated/proposal/PerformanceParameters.md"
@@ -26,7 +28,6 @@
     - ScienceSpectralWindow: "generated/proposal/ScienceSpectralWindow.md"
     - SimultaneityConstraint: "generated/proposal/SimultaneityConstraint.md"
     - SolarSystemTarget: "generated/proposal/SolarSystemTarget.md"
-    - SpectralWindowSetup: "generated/proposal/SpectralWindowSetup.md"
     - SupportingDocument: "generated/proposal/SupportingDocument.md"
     - Target: "generated/proposal/Target.md"
     - TargetField: "generated/proposal/TargetField.md"
@@ -37,6 +38,8 @@
     - TelescopeArrayMember: "generated/proposal/TelescopeArrayMember.md"
     - TimingConstraint: "generated/proposal/TimingConstraint.md"
     - TimingWindow: "generated/proposal/TimingWindow.md"
+  - DataTypes:
+    - SpectralWindowSetup: "generated/proposal/SpectralWindowSetup.md"
   - PrimitiveTypes:
     - WikiDataId: "generated/proposal/WikiDataId.md"
   - Enumerations:
@@ -53,7 +56,7 @@
     - AllocationGrade: "generated/proposalManagement/AllocationGrade.md"
     - AvailableResources: "generated/proposalManagement/AvailableResources.md"
     - CommitteeMember: "generated/proposalManagement/CommitteeMember.md"
-    - OfferedCycles: "generated/proposalManagement/OfferedCycles.md"
+    - ObservationConfiguration: "generated/proposalManagement/ObservationConfiguration.md"
     - ProposalCycle: "generated/proposalManagement/ProposalCycle.md"
     - ProposalReview: "generated/proposalManagement/ProposalReview.md"
     - Resource: "generated/proposalManagement/Resource.md"
