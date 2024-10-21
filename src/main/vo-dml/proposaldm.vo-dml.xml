@@ -12,7 +12,7 @@
       <title>Proposal</title>
       <author>Paul Harrison</author>
       <version>0.6</version>
-      <lastModified>2024-10-19T19:17:38Z</lastModified>
+      <lastModified>2024-10-21T12:09:40Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -829,11 +829,11 @@
                </attribute>
             </objectType>
             <objectType>
-               <vodml-id>ObservingConfiguration</vodml-id>
-               <name>ObservingConfiguration</name>
+               <vodml-id>ObservingModeConfiguration</vodml-id>
+               <name>ObservingModeConfiguration</name>
                <description>A particular observation combination that is possible</description>	    
                <reference>
-                 <vodml-id>ObservingConfiguration.telescope</vodml-id>
+                 <vodml-id>ObservingModeConfiguration.telescope</vodml-id>
                  <name>telescope</name>
                  <description></description>	    
                  <datatype>
@@ -845,7 +845,7 @@
                  </multiplicity>
                </reference>
                <reference>
-                 <vodml-id>ObservingConfiguration.instrument</vodml-id>
+                 <vodml-id>ObservingModeConfiguration.instrument</vodml-id>
                  <name>instrument</name>
                  <description></description>	    
                  <datatype>
@@ -857,7 +857,7 @@
                  </multiplicity>
                </reference>
                <composition>
-                 <vodml-id>ObservingConfiguration.filter</vodml-id>
+                 <vodml-id>ObservingModeConfiguration.filter</vodml-id>
                  <name>filter</name>
                  <description>The filter or frequency response that </description>	    
                  <datatype>
@@ -869,7 +869,7 @@
                  </multiplicity>
                </composition>
                <reference>
-                 <vodml-id>ObservingConfiguration.backend</vodml-id>
+                 <vodml-id>ObservingModeConfiguration.backend</vodml-id>
                  <name>backend</name>
                  <description></description>	    
                  <datatype>
@@ -914,7 +914,7 @@
                  <name>configuration</name>
                  <description></description>	    
                  <datatype>
-                   <vodml-ref>proposal:ObservingConfiguration</vodml-ref>
+                   <vodml-ref>proposal:ObservingModeConfiguration</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>

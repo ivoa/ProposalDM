@@ -2,7 +2,7 @@
  *  created on 20 Oct 2021 // The review side of the proposal.
  */
  
- model proposalManagement (0.6)  "The data model for managing the proposal review process. Intended to work for phase 1"
+ model proposalManagement (0.6)  "The data model for managing the proposal review process. This is the observatories' view of the proposal process, intended to work for phase 1 only"
  author "Paul Harrison" 
  title "Proposal Management"
  

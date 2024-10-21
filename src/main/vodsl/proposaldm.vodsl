@@ -76,6 +76,7 @@ observations, although the intention is that information about targets etc. coul
  	
  }
  
+ //IMPL - this and related objects should probably be in the "Management" model.
  otype Observatory -> Organization "An organisation that can perform astronomical observations" {
  	
  	telescopes : Telescope @+ as composition "the telescopes that the observatory controls";
@@ -135,7 +136,7 @@ observations, although the intention is that information about targets etc. coul
  
  /*  Note that when presenting these configurations in the GUI they probably need to be decomposed into combo boxes that display each set of possibilities of each member one after another 
   limited by the remaining possible choices having selected those above */
- otype ObservingConfiguration "A particular observation combination that is possible" {
+ otype ObservingModeConfiguration "A particular observation combination that is possible" {
  	telescope references ObservingPlatform "";
  	instrument references Instrument "";
  	filter:Filter as composition "The filter or frequency response that ";
@@ -145,7 +146,7 @@ observations, although the intention is that information about targets etc. coul
  otype ObservingMode "a configuration that has been chosen to observe with." {
   name: ivoa:string "human readable name for the mode";
   description: ivoa:string "human readable description";
- 	configuration references ObservingConfiguration  ""; 
+ 	configuration references ObservingModeConfiguration  ""; 
   // IMPL could add an arbitrary "options" here.
  }
   

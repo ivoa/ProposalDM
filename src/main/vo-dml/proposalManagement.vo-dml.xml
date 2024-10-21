@@ -4,12 +4,12 @@
               xsi:schemaLocation="http://www.ivoa.net/xml/VODML/v1 https://www.ivoa.net/xml/VODML/vo-dml-v1.xsd" 
               vodmlVersion="1.1">	<!-- file generated from VODSL - needs validatation against v1.1 of schema  --> 
       <name>proposalManagement</name>
-      <description>The data model for managing the proposal review process. Intended to work for phase 1</description> 
+      <description>The data model for managing the proposal review process. This is the observatories' view of the proposal process, intended to work for phase 1 only</description> 
       <uri/>
       <title>Proposal Management</title>
       <author>Paul Harrison</author>
       <version>0.6</version>
-      <lastModified>2024-10-19T15:23:56Z</lastModified>
+      <lastModified>2024-10-21T12:03:07Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>

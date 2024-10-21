@@ -86,11 +86,11 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
 
         obsModes = new ObservingMode[] {
               new ObservingMode("L-Band", "full e-MERLIN at L-Band",
-                     new ObservingConfiguration(eMERLIN, instruments[0],simpleFilter("L-Band",1.2, 1.7), backend))
+                     new ObservingModeConfiguration(eMERLIN, instruments[0],simpleFilter("L-Band",1.2, 1.7), backend))
               ,new ObservingMode("C-Band", "full e-MERLIN at C-Band", 
-                     new ObservingConfiguration(eMERLIN, instruments[1],simpleFilter("C-Band",4.0, 7.0), backend))
+                     new ObservingModeConfiguration(eMERLIN, instruments[1],simpleFilter("C-Band",4.0, 7.0), backend))
               ,new ObservingMode("K-Band", "reduced e-EMERLIN at K-Band",
-                      new ObservingConfiguration(eMERLINReduced, instruments[2],simpleFilter("K-Band",20.0, 24.0), backend))
+                      new ObservingModeConfiguration(eMERLINReduced, instruments[2],simpleFilter("K-Band",20.0, 24.0), backend))
         };
 
         grades = new AllocationGrade[] {

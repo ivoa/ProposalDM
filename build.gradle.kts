@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "org.javastro.ivoa.dm"
-version = "0.6.0-SNAPSHOT"
+version = "0.6.1-SNAPSHOT"
 
 
 vodml {
