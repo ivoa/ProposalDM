@@ -1,7 +1,7 @@
 Main Concepts
 =============
 
-A [Principal Investigator](../generated/proposal/Person/) is interested in one or more [Targets](../generated/proposal/Target/) and they decide that they want to create an [Observing Proposal](../generated/proposal/ObservingProposal/) to study them. They write a [Science Justification](../generated/proposal/Justification/) to try to persuade the [Time Allocation Committee](../generated/proposalManagement/TAC/) for a particular [Observatory](../generated/proposal/Observatory/) to allocate some [Observations](../generated/proposal/Observation/) on one or more [Telescopes](../generated/proposal/Telescope/) that they operate.
+A [Principal Investigator](../generated/proposal/Person/) is interested in one or more [Targets](../generated/proposal/Target/) and they decide that they want to create an [Observing Proposal](../generated/proposal/ObservingProposal/) to study them. They write a [Science Justification](../generated/proposal/Justification/) to try to persuade the [Time Allocation Committee](../generated/proposalManagement/TAC/) for a particular [Observatory](../generated/proposalManagementproposalManagement/Observatory/) to allocate some [Observations](../generated/proposal/Observation/) on one or more [Telescopes](../generated/proposalManagement/Telescope/) which they operates These telescopes might form a [TelescopeArray](../generated/proposalManagement/TelescopeArray/ ) which acts in unison.
 
 
 
