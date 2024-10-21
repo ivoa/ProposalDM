@@ -10,13 +10,92 @@
  include "../../../build/tmp/Coords-v1.0.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
  include "proposaldm.vodsl"
  
+ 
+ //IMPL - this and related objects should probably be in the "Management" model.
+ otype Observatory -> proposal:Organization "An organisation that can perform astronomical observations" {
+ 	
+ 	telescopes : Telescope @+ as composition "the telescopes that the observatory controls";
+ 	instruments : Instrument @+ as composition "the instruments that are available for the telescopes";
+ 	backends : Backend @+ as composition "the backends that exist";
+ 	arrays: TelescopeArray @* as composition "any arrays of telescopes that typically operate together";
+ 	
+ }
+ 
+ abstract otype ObservingPlatform "base type of a telescope or array of telescopes"
+ {
+ 	
+ }
+ 
+ otype Telescope -> ObservingPlatform "" {
+ 	name : ivoa:string "telescope name";
+ 	wikiId : proposal:WikiDataId @? "the wikidata id for the Telescope"; //IMPL this is just an idea to have a reference outside this database 
+ 
+ 	location : coords:RealCartesianPoint "the location of the telescope" ;
+ }
+ 
+ otype TelescopeArrayMember "" {
+ 	telescope references Telescope "";
+ }
+ 
+ otype TelescopeArray -> ObservingPlatform "a set of telescopes that are operated together for an observation" { // IMPL might not be necessary with ObservingConfiguration doing the same sort of thing.
+ 	name : ivoa:string "the array name";
+    arrayMembers: TelescopeArrayMember @+ as composition "the telescopes that make up the array"; 	
+ }
+ 
+ 
+ 
+ enum InstrumentKind { //IMPL is this extensive enough to be useful?
+ 	continuum,
+ 	spectroscopic
+ }
+ 
+ otype Instrument "An instrument that can be attached to a telescope - e.g. CCD, Radio Receiver"{
+ 	name : ivoa:string "the instrument name - human readable";
+ 	description: ivoa:string @? "short human readable description";
+ 	wikiId : proposal:WikiDataId @? "the wikidata id for the Instrument";
+ 	reference : ivoa:anyURI @? " a URL that points to a more detailed description of the instrument";
+ 	kind : InstrumentKind "the kind of instrument";
+ }
+ 
+ otype Filter "Available filters /bandpasses for intruments " {
+ 	name : ivoa:string "human readable name";
+ 	description: ivoa:string "human readable description";
+ 	frequencyCoverage : proposal:SpectralWindowSetup  "the frequency range that the instrument covers";
+ }
+ 
+ otype Backend "a processing backend /pipeline- e.g. correlator" {
+ 	name : ivoa:string "the backend name"; 	
+ 	parallel : ivoa:boolean "is capable of being run at same time as other backends";
+ 	
+ }
+ 
+ /*  Note that when presenting these configurations in the GUI they probably need to be decomposed into combo boxes that display each set of possibilities of each member one after another 
+  limited by the remaining possible choices having selected those above */
+ otype ObservingModeConfiguration "A particular observation combination that is possible" {
+ 	telescope references ObservingPlatform "";
+ 	instrument references Instrument "";
+ 	filter:Filter as composition "The filter or frequency response that ";
+ 	backend references Backend "";
+ }
+ 
+ otype ObservingMode "a configuration that has been chosen to observe with." {
+  name: ivoa:string "human readable name for the mode";
+  description: ivoa:string "human readable description";
+ 	configuration references ObservingModeConfiguration  ""; 
+  // IMPL could add an arbitrary "options" here.
+ }
+  
+ 
+ 
+ 
+ 
  otype ProposalCycle "Defines collection of resources and proposals for a particular observing season" {
- 	observatory references proposal:Observatory  "";
+ 	observatory references Observatory  "";
  	^title: ivoa:string "a human readable description of the cycle";
  	submissionDeadline : ivoa:datetime @? "the date by which observing proposals must be submitted to be considered for this cycle";
  	observationSessionStart : ivoa:datetime "the start date of the observing cycle";
  	observationSessionEnd: ivoa:datetime "the end date of the observing cycle";
- 	observingModes: proposal:ObservingMode @+ as composition "the possible observing modes offered in the cycle";
+ 	observingModes: ObservingMode @+ as composition "the possible observing modes offered in the cycle";
  	availableResources : AvailableResources as composition "";
  	possibleGrades : AllocationGrade @+ as composition "The possible grades that can be allocated for this cycle";
  	tac : TAC as composition "The time allocation committee";
@@ -49,7 +128,7 @@
  
  otype ObservationConfiguration "the configuration of an observation specific to a submission to a particular cycle" {
  	observation @+ references proposal:Observation  "";
- 	mode references proposal:ObservingMode "The observing mode"; //IMPL this is what allows the observation to be tied to multiple observatories.
+ 	mode references ObservingMode "The observing mode"; //IMPL this is what allows the observation to be tied to multiple observatories.
  }
   
  otype SubmittedProposal "an instance of a proposal that has been submitted" {
@@ -103,7 +182,7 @@
  
  otype ResourceBlock  "A block of resources that can be allocated"
  {
- 	mode references proposal:ObservingMode "";
+ 	mode references ObservingMode "";
  	resource : Resource as composition  "the amount of resource";
  }
  

@@ -27,6 +27,7 @@ vodml {
         outputDocDir.set(layout.projectDirectory.dir("std/generated"))
         outputSiteDir.set(layout.projectDirectory.dir("docs/generated"))
 
+
 }
 
 /* uncomment this if not using the eclipse vodsl plugin to edit the vodsl

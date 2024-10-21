@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.ivoa.dm.proposal.management.ProposalCycle.createProposalCycle;
-import static org.ivoa.dm.proposal.prop.Observatory.createObservatory;
+import static org.ivoa.dm.proposal.management.Observatory.createObservatory;
 import static org.ivoa.dm.proposal.prop.SpectralWindowSetup.createSpectralWindowSetup;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -66,7 +66,7 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
         final TelescopeArray eMERLIN = new TelescopeArray("e-MERLIN",
                   Stream.of(telescopes).map(t -> new TelescopeArrayMember(t)).collect(Collectors.toList()));
         final TelescopeArray eMERLINReduced = new TelescopeArray("e-MERLIN (reduced)",
-                 Stream.of(telescopes).filter(t -> !notK.contains(t.name)).map(t -> new TelescopeArrayMember(t)).collect(Collectors.toList()));
+                 Stream.of(telescopes).filter(t -> !notK.contains(t.getName())).map(t -> new TelescopeArrayMember(t)).collect(Collectors.toList()));
        observatory = createObservatory(obs -> {
             obs.address = "on earth";
             obs.ivoid = new Ivorn("ivo://obs/anobs");

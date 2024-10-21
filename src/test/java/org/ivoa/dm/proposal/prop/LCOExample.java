@@ -4,7 +4,7 @@ package org.ivoa.dm.proposal.prop;
  */
 
 import static org.ivoa.dm.proposal.management.ProposalCycle.createProposalCycle;
-import static org.ivoa.dm.proposal.prop.Observatory.createObservatory;
+import static org.ivoa.dm.proposal.management.Observatory.createObservatory;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -14,9 +14,16 @@ import org.ivoa.dm.ivoa.Ivorn;
 import org.ivoa.dm.proposal.management.AllocatedProposal;
 import org.ivoa.dm.proposal.management.AllocationGrade;
 import org.ivoa.dm.proposal.management.AvailableResources;
+import org.ivoa.dm.proposal.management.Backend;
+import org.ivoa.dm.proposal.management.Instrument;
+import org.ivoa.dm.proposal.management.Observatory;
+import org.ivoa.dm.proposal.management.ObservingMode;
 import org.ivoa.dm.proposal.management.Resource;
 import org.ivoa.dm.proposal.management.ResourceType;
 import org.ivoa.dm.proposal.management.SubmittedProposal;
+import org.ivoa.dm.proposal.management.Telescope;
+import org.ivoa.dm.proposal.management.TelescopeArray;
+import org.ivoa.dm.proposal.management.TelescopeArrayMember;
 
 /**
  * 
