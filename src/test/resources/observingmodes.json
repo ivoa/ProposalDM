@@ -1,0 +1,416 @@
+[
+  {
+    "_id": 1,
+    "name": "L-Band",
+    "description": "full e-MERLIN at L-Band",
+    "configuration": {
+      "_id": 1,
+      "filter": {
+        "name": "L-Band",
+        "description": "L-Band",
+        "frequencyCoverage": {
+          "start": {
+            "@type": "ivoa:RealQuantity",
+            "unit": {
+              "value": "GHz"
+            },
+            "value": 1.2
+          },
+          "end": {
+            "@type": "ivoa:RealQuantity",
+            "unit": {
+              "value": "GHz"
+            },
+            "value": 1.7
+          },
+          "spectralResolution": {
+            "@type": "ivoa:RealQuantity",
+            "unit": {
+              "value": "GHz"
+            },
+            "value": 0.5
+          },
+          "isSkyFrequency": true,
+          "polarization": "V"
+        },
+        "_id": 1
+      },
+      "telescope": {
+        "@type": "proposalManagement:TelescopeArray",
+        "_id": 8,
+        "name": "e-MERLIN",
+        "arrayMembers": [
+          {
+            "telescope": {
+              "@type": "proposalManagement:Telescope",
+              "_id": 1,
+              "name": "Lovell",
+              "location": {
+                "@type": "coords:RealCartesianPoint",
+                "coordSys": {
+                  "@type": "coords:SpaceSys",
+                  "_id": 1,
+                  "coordSpace": {
+                    "@type": "coords:CartesianCoordSpace",
+                    "_id": 1
+                  },
+                  "frame": {
+                    "@type": "coords:SpaceFrame",
+                    "spaceRefFrame": "ICRF",
+                    "_id": 1
+                  }
+                },
+                "x": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 3822252.643
+                },
+                "y": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": -153995.683
+                },
+                "z": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 5086051.443
+                }
+              }
+            },
+            "_id": 1
+          },
+          {
+            "telescope": {
+              "@type": "proposalManagement:Telescope",
+              "_id": 2,
+              "name": "Mk2",
+              "location": {
+                "@type": "coords:RealCartesianPoint",
+                "coordSys": 1,
+                "x": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 3822473.365
+                },
+                "y": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": -153692.318
+                },
+                "z": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 5085851.303
+                }
+              }
+            },
+            "_id": 2
+          },
+          {
+            "telescope": {
+              "@type": "proposalManagement:Telescope",
+              "_id": 3,
+              "name": "Knockin",
+              "location": {
+                "@type": "coords:RealCartesianPoint",
+                "coordSys": 1,
+                "x": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 3859711.503
+                },
+                "y": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": -201995.077
+                },
+                "z": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 5056134.251
+                }
+              }
+            },
+            "_id": 3
+          },
+          {
+            "telescope": {
+              "@type": "proposalManagement:Telescope",
+              "_id": 4,
+              "name": "Defford",
+              "location": {
+                "@type": "coords:RealCartesianPoint",
+                "coordSys": 1,
+                "x": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 3923069.171
+                },
+                "y": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": -146804.368
+                },
+                "z": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 5009320.528
+                }
+              }
+            },
+            "_id": 4
+          },
+          {
+            "telescope": {
+              "@type": "proposalManagement:Telescope",
+              "_id": 5,
+              "name": "Pickmere",
+              "location": {
+                "@type": "coords:RealCartesianPoint",
+                "coordSys": 1,
+                "x": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 3817176.561
+                },
+                "y": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": -162921.179
+                },
+                "z": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 5089462.057
+                }
+              }
+            },
+            "_id": 5
+          },
+          {
+            "telescope": {
+              "@type": "proposalManagement:Telescope",
+              "_id": 6,
+              "name": "Darnhall",
+              "location": {
+                "@type": "coords:RealCartesianPoint",
+                "coordSys": 1,
+                "x": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 3828714.513
+                },
+                "y": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": -169458.995
+                },
+                "z": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 5080647.749
+                }
+              }
+            },
+            "_id": 6
+          },
+          {
+            "telescope": {
+              "@type": "proposalManagement:Telescope",
+              "_id": 7,
+              "name": "Cambridge",
+              "location": {
+                "@type": "coords:RealCartesianPoint",
+                "coordSys": 1,
+                "x": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 3919982.752
+                },
+                "y": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 2651.982
+                },
+                "z": {
+                  "@type": "ivoa:RealQuantity",
+                  "unit": {
+                    "value": "m"
+                  },
+                  "value": 5013849.826
+                }
+              }
+            },
+            "_id": 7
+          }
+        ]
+      },
+      "instrument": {
+        "_id": 1,
+        "name": "L-Band Receiver",
+        "kind": "continuum"
+      },
+      "backend": {
+        "_id": 1,
+        "name": "Widar Correlator",
+        "parallel": true
+      }
+    }
+  },
+  {
+    "_id": 2,
+    "name": "C-Band",
+    "description": "full e-MERLIN at C-Band",
+    "configuration": {
+      "_id": 2,
+      "filter": {
+        "name": "C-Band",
+        "description": "C-Band",
+        "frequencyCoverage": {
+          "start": {
+            "@type": "ivoa:RealQuantity",
+            "unit": {
+              "value": "GHz"
+            },
+            "value": 4.0
+          },
+          "end": {
+            "@type": "ivoa:RealQuantity",
+            "unit": {
+              "value": "GHz"
+            },
+            "value": 7.0
+          },
+          "spectralResolution": {
+            "@type": "ivoa:RealQuantity",
+            "unit": {
+              "value": "GHz"
+            },
+            "value": 3.0
+          },
+          "isSkyFrequency": true,
+          "polarization": "V"
+        },
+        "_id": 2
+      },
+      "telescope": 8,
+      "instrument": {
+        "_id": 2,
+        "name": "C-Band Receiver",
+        "kind": "continuum"
+      },
+      "backend": 1
+    }
+  },
+  {
+    "_id": 3,
+    "name": "K-Band",
+    "description": "reduced e-EMERLIN at K-Band",
+    "configuration": {
+      "_id": 3,
+      "filter": {
+        "name": "K-Band",
+        "description": "K-Band",
+        "frequencyCoverage": {
+          "start": {
+            "@type": "ivoa:RealQuantity",
+            "unit": {
+              "value": "GHz"
+            },
+            "value": 20.0
+          },
+          "end": {
+            "@type": "ivoa:RealQuantity",
+            "unit": {
+              "value": "GHz"
+            },
+            "value": 24.0
+          },
+          "spectralResolution": {
+            "@type": "ivoa:RealQuantity",
+            "unit": {
+              "value": "GHz"
+            },
+            "value": 4.0
+          },
+          "isSkyFrequency": true,
+          "polarization": "V"
+        },
+        "_id": 3
+      },
+      "telescope": {
+        "@type": "proposalManagement:TelescopeArray",
+        "_id": 9,
+        "name": "e-MERLIN (reduced)",
+        "arrayMembers": [
+          {
+            "telescope": 2,
+            "_id": 8
+          },
+          {
+            "telescope": 3,
+            "_id": 9
+          },
+          {
+            "telescope": 5,
+            "_id": 10
+          },
+          {
+            "telescope": 6,
+            "_id": 11
+          },
+          {
+            "telescope": 7,
+            "_id": 12
+          }
+        ]
+      },
+      "instrument": {
+        "_id": 3,
+        "name": "K-Band Receiver",
+        "kind": "continuum"
+      },
+      "backend": 1
+    }
+  }
+]
