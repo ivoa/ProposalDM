@@ -11,13 +11,17 @@ package org.ivoa.dm.proposal.prop;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.proposal.management.AllocatedProposal;
+import org.ivoa.dm.proposal.management.ObservingMode;
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.ivoa.dm.proposal.management.SubmittedProposal;
@@ -278,7 +282,25 @@ class EmerlinExampleTest extends AbstractProposalTest {
        assertNotNull(tobs2);
    }
 
-
+   @org.junit.jupiter.api.Test
+   public void TestModes() throws IOException {
+       ProposalManagementModel model = new ProposalManagementModel();
+       final ProposalCycle cycle = ex.getCycle();
+       model.addContent(cycle);
+       jakarta.persistence.EntityManager em = setupH2Db(ProposalManagementModel.pu_name());
+       em.getTransaction().begin();
+       cycle.persistRefs(em);
+       em.persist(cycle);
+       em.getTransaction().commit();
+       ObjectMapper mapper = model.management().jsonMapper();
+       String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(cycle.getObservingModes());
+       System.out.println("JSON output");
+       System.out.println(json);
+       List<ObservingMode> retval = mapper.readValue(json,new TypeReference<List<ObservingMode>>(){} );
+       assertNotNull(retval);
+       
+       retval = mapper.readValue(this.getClass().getResourceAsStream("/observingmodes.json"),new TypeReference<List<ObservingMode>>(){} );
+   }
 
   
  

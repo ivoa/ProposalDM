@@ -266,7 +266,7 @@ public void testObservationTarget() {
        
    }
 
-  protected ObservingProposal cloneProposal(ObservingProposal p)
+  public static ObservingProposal cloneProposal(ObservingProposal p)
   {
         ProposalModel pm = new ProposalModel();
         pm.createContext();//FIXME this is an area where the API for https://github.com/ivoa/vo-dml/issues/42 is not great
@@ -278,7 +278,7 @@ public void testObservationTarget() {
   private ProposalCycle doTacWork() {
         final ProposalCycle cycle = ex.getCycle();
         ObservingProposal prop = ex.getProposal();
-        SubmittedProposal sprop = ex.submitProposal(prop);
+        SubmittedProposal sprop = ex.submitProposal(cloneProposal(prop));
         ex.allocateProposal(sprop);
         return cycle;
  
