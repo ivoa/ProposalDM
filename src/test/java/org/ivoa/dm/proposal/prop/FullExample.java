@@ -42,19 +42,16 @@ public class FullExample {
     }
 
     /**
-     * Save to an RDB.
+     * Save to an RDB. Note transactions need to be handled outsite this routine.
      * @param em the entity manager for the RDB.
      */
     public void saveTodB(EntityManager em) {
-         
          
          cycle.persistRefs(em);
          em.persist(cycle);
          proposal.persistRefs(em);
          em.persist(proposal);
         
-         
-         
     }
     
     /**
