@@ -13,7 +13,7 @@
  
  //IMPL - this and related objects should probably be in the "Management" model.
  otype Observatory -> proposal:Organization "An organisation that can perform astronomical observations" {
- 	
+ 	homePage : ivoa:anyURI @? "the home page for the Observatory";
  	telescopes : Telescope @+ as composition "the telescopes that the observatory controls";
  	instruments : Instrument @+ as composition "the instruments that are available for the telescopes";
  	backends : Backend @+ as composition "the backends that exist";
@@ -49,6 +49,8 @@
  	spectroscopic
  }
  
+ 
+ //TODO should we be making distinction between instrument and detector (instrument composed of detector).
  otype Instrument "An instrument that can be attached to a telescope - e.g. CCD, Radio Receiver"{
  	name : ivoa:string "the instrument name - human readable";
  	description: ivoa:string @? "short human readable description";
@@ -69,29 +71,25 @@
  	
  }
  
- /*  Note that when presenting these configurations in the GUI they probably need to be decomposed into combo boxes that display each set of possibilities of each member one after another 
-  limited by the remaining possible choices having selected those above */
- otype ObservingModeConfiguration "A particular observation combination that is possible" {
- 	telescope references ObservingPlatform "";
- 	instrument references Instrument "";
- 	filter:Filter as composition "The filter or frequency response that ";
- 	backend references Backend "";
- }
  
- otype ObservingMode "a configuration that has been chosen to observe with." {
+ 
+ otype ObservingMode "a configuration can be used to observe with." {
   name: ivoa:string "human readable name for the mode";
   description: ivoa:string "human readable description";
- 	configuration references ObservingModeConfiguration  ""; 
-  // IMPL could add an arbitrary "options" here.
+	telescope references ObservingPlatform "";
+ 	instrument references Instrument "";
+ 	filter:Filter as composition "The filter or frequency response that ";
+ 	//IMPL (include polarimetry in this?
+ 	backend references Backend "";
+ 	  // IMPL could add an arbitrary "options" here.
  }
   
- 
- 
  
  
  otype ProposalCycle "Defines collection of resources and proposals for a particular observing season" {
  	observatory references Observatory  "";
  	^title: ivoa:string "a human readable description of the cycle";
+ 	instructions: ivoa:anyURI @? "pointer to more detailed instructions about the cycle";
  	submissionDeadline : ivoa:datetime @? "the date by which observing proposals must be submitted to be considered for this cycle";
  	observationSessionStart : ivoa:datetime "the start date of the observing cycle";
  	observationSessionEnd: ivoa:datetime "the end date of the observing cycle";
@@ -132,7 +130,7 @@
  }
   
  otype SubmittedProposal "an instance of a proposal that has been submitted" {
- 	proposal: proposal:ObservingProposal as composition "the proposal that was submitted"; //NB this used to be a reference, but we do want a copy "saved"
+ 	proposal references proposal:ObservingProposal  "the proposal that was submitted"; //IMPL this is a reference - this is a slight hack as we really want a composition to "freeze" the original proposal - this messes with the original references in the proposal as then they become contained.
  	config : ObservationConfiguration @* as composition "";
  	submissionDate : ivoa:datetime "the date that the proposal was submitted";
  	successful : ivoa:boolean "the proposal can go on to allocation";

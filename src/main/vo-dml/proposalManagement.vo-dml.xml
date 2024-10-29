@@ -9,7 +9,7 @@
       <title>Proposal Management</title>
       <author>Paul Harrison</author>
       <version>0.6</version>
-      <lastModified>2024-10-21T12:24:05Z</lastModified>
+      <lastModified>2024-10-29T12:22:58Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -67,6 +67,18 @@
                <extends>
                   <vodml-ref>proposal:Organization</vodml-ref>
                </extends>
+               <attribute>
+                 <vodml-id>Observatory.homePage</vodml-id>
+                 <name>homePage</name>
+                 <description>the home page for the Observatory</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:anyURI</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
                <composition>
                  <vodml-id>Observatory.telescopes</vodml-id>
                  <name>telescopes</name>
@@ -350,62 +362,9 @@
                </attribute>
             </objectType>
             <objectType>
-               <vodml-id>ObservingModeConfiguration</vodml-id>
-               <name>ObservingModeConfiguration</name>
-               <description>A particular observation combination that is possible</description>	    
-               <reference>
-                 <vodml-id>ObservingModeConfiguration.telescope</vodml-id>
-                 <name>telescope</name>
-                 <description></description>	    
-                 <datatype>
-                   <vodml-ref>proposalManagement:ObservingPlatform</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </reference>
-               <reference>
-                 <vodml-id>ObservingModeConfiguration.instrument</vodml-id>
-                 <name>instrument</name>
-                 <description></description>	    
-                 <datatype>
-                   <vodml-ref>proposalManagement:Instrument</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </reference>
-               <composition>
-                 <vodml-id>ObservingModeConfiguration.filter</vodml-id>
-                 <name>filter</name>
-                 <description>The filter or frequency response that </description>	    
-                 <datatype>
-                    <vodml-ref>proposalManagement:Filter</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </composition>
-               <reference>
-                 <vodml-id>ObservingModeConfiguration.backend</vodml-id>
-                 <name>backend</name>
-                 <description></description>	    
-                 <datatype>
-                   <vodml-ref>proposalManagement:Backend</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </reference>
-            </objectType>
-            <objectType>
                <vodml-id>ObservingMode</vodml-id>
                <name>ObservingMode</name>
-               <description>a configuration that has been chosen to observe with.</description>	    
+               <description>a configuration can be used to observe with.</description>	    
                <attribute>
                  <vodml-id>ObservingMode.name</vodml-id>
                  <name>name</name>
@@ -431,11 +390,47 @@
                  </multiplicity>
                </attribute>
                <reference>
-                 <vodml-id>ObservingMode.configuration</vodml-id>
-                 <name>configuration</name>
+                 <vodml-id>ObservingMode.telescope</vodml-id>
+                 <name>telescope</name>
                  <description></description>	    
                  <datatype>
-                   <vodml-ref>proposalManagement:ObservingModeConfiguration</vodml-ref>
+                   <vodml-ref>proposalManagement:ObservingPlatform</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
+               <reference>
+                 <vodml-id>ObservingMode.instrument</vodml-id>
+                 <name>instrument</name>
+                 <description></description>	    
+                 <datatype>
+                   <vodml-ref>proposalManagement:Instrument</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </reference>
+               <composition>
+                 <vodml-id>ObservingMode.filter</vodml-id>
+                 <name>filter</name>
+                 <description>The filter or frequency response that </description>	    
+                 <datatype>
+                    <vodml-ref>proposalManagement:Filter</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </composition>
+               <reference>
+                 <vodml-id>ObservingMode.backend</vodml-id>
+                 <name>backend</name>
+                 <description></description>	    
+                 <datatype>
+                   <vodml-ref>proposalManagement:Backend</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -468,6 +463,18 @@
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>ProposalCycle.instructions</vodml-id>
+                 <name>instructions</name>
+                 <description>pointer to more detailed instructions about the cycle</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:anyURI</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
                </attribute>
@@ -676,18 +683,18 @@
                <vodml-id>SubmittedProposal</vodml-id>
                <name>SubmittedProposal</name>
                <description>an instance of a proposal that has been submitted</description>	    
-               <composition>
+               <reference>
                  <vodml-id>SubmittedProposal.proposal</vodml-id>
                  <name>proposal</name>
                  <description>the proposal that was submitted</description>	    
                  <datatype>
-                    <vodml-ref>proposal:ObservingProposal</vodml-ref>
+                   <vodml-ref>proposal:ObservingProposal</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
                    <maxOccurs>1</maxOccurs>
                  </multiplicity>
-               </composition>
+               </reference>
                <composition>
                  <vodml-id>SubmittedProposal.config</vodml-id>
                  <name>config</name>
