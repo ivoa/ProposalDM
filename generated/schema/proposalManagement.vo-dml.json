@@ -12,6 +12,12 @@
           "type" : "object",
           "properties" : {
             "$comment" : "placeholder to make commas easier!",
+            "proposal:ObservingProposal" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
+              }
+            },
             "proposal:Organization" : {
               "type" : "array",
               "items" : {
@@ -22,18 +28,6 @@
               "type" : "array",
               "items" : {
                 "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Person"
-              }
-            },
-            "proposalManagement:ObservingPlatform" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingPlatform"
-              }
-            },
-            "proposalManagement:ObservingModeConfiguration" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingModeConfiguration"
               }
             },
             "proposalManagement:Observatory" : {
@@ -85,6 +79,10 @@
         "description" : "",
         "properties" : {
           "$comment" : "placeholder to make commas easier!",
+          "homePage" : {
+            "format" : "uri",
+            "description" : ""
+          },
           "telescopes" : {
             "type" : "array",
             "items" : {
@@ -286,13 +284,21 @@
       },
       "required" : [ "name", "parallel" ]
     },
-    "ObservingModeConfiguration" : {
+    "ObservingMode" : {
       "type" : "object",
       "description" : "",
       "properties" : {
         "$comment" : "placeholder to make commas easier!",
         "@type" : {
           "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : ""
+        },
+        "description" : {
+          "type" : "string",
+          "description" : ""
         },
         "filter" : {
           "type" : "array",
@@ -328,37 +334,7 @@
           "type" : "number"
         }
       },
-      "required" : [ "telescope", "instrument", "filter", "backend" ]
-    },
-    "ObservingMode" : {
-      "type" : "object",
-      "description" : "",
-      "properties" : {
-        "$comment" : "placeholder to make commas easier!",
-        "@type" : {
-          "type" : "string"
-        },
-        "name" : {
-          "type" : "string",
-          "description" : ""
-        },
-        "description" : {
-          "type" : "string",
-          "description" : ""
-        },
-        "configuration" : {
-          "oneOf" : [ {
-            "type" : "number"
-          }, {
-            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingModeConfiguration"
-          } ],
-          "description" : ""
-        },
-        "_id" : {
-          "type" : "number"
-        }
-      },
-      "required" : [ "name", "description", "configuration" ]
+      "required" : [ "name", "description", "telescope", "instrument", "filter", "backend" ]
     },
     "ProposalCycle" : {
       "type" : "object",
@@ -370,6 +346,10 @@
         },
         "title" : {
           "type" : "string",
+          "description" : ""
+        },
+        "instructions" : {
+          "format" : "uri",
           "description" : ""
         },
         "submissionDeadline" : {
@@ -552,12 +532,6 @@
           "format" : "date-time",
           "description" : ""
         },
-        "proposal" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
-          }
-        },
         "config" : {
           "type" : "array",
           "items" : {
@@ -569,6 +543,14 @@
           "items" : {
             "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ProposalReview"
           }
+        },
+        "proposal" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
+          } ],
+          "description" : ""
         },
         "_id" : {
           "type" : "number"

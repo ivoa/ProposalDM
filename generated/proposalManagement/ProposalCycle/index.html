@@ -1858,27 +1858,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../ObservingModeConfiguration/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ObservingModeConfiguration
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../ObservingPlatform/" class="md-nav__link">
         
   
@@ -4144,6 +4123,7 @@
 
         class ProposalCycle{
         ivoa:string title
+ivoa:anyURI instructions
 ivoa:datetime submissionDeadline
 ivoa:datetime observationSessionStart
 ivoa:datetime observationSessionEnd
@@ -4186,6 +4166,12 @@ link AllocatedProposal "../AllocatedProposal"</code></pre>
 <td><a href="../../ivoa/string/" title="primitiveType string - A string, represented as an array of characters treated as a single, primitive value. Ala Java, a string can not be updated, that is any update leads to a different string. However in contrast to Java we assume that two strings that are identical in all their constitutent characters are the same. I.e. string has value type semantics.">ivoa:string</a></td>
 <td></td>
 <td>a human readable description of the cycle</td>
+</tr>
+<tr>
+<td>instructions</td>
+<td><a href="../../ivoa/anyURI/" title="primitiveType anyURI - Represents a URI in the same way as the datatype of the same nam in XML Schema is used.">ivoa:anyURI</a></td>
+<td>optional</td>
+<td>pointer to more detailed instructions about the cycle</td>
 </tr>
 <tr>
 <td>submissionDeadline</td>
@@ -4244,7 +4230,7 @@ link AllocatedProposal "../AllocatedProposal"</code></pre>
 </tbody>
 </table>
 <h2 id="references-detail">References Detail</h2>
-<p>Has contained reference(s) <a href="../../proposal/ObservingProposal/" title="objectType">proposal:ObservingProposal</a>, <a href="../../proposal/Target/" title="objectType">proposal:Target</a>, <a href="../../proposal/Field/" title="objectType">proposal:Field</a>, <a href="../../proposal/TechnicalGoal/" title="objectType">proposal:TechnicalGoal</a>, <a href="../../proposal/Observation/" title="objectType">proposal:Observation</a>, <a href="../ObservingMode/" title="objectType">ObservingMode</a>, <a href="../SubmittedProposal/" title="objectType">SubmittedProposal</a>, <a href="../AllocationGrade/" title="objectType">AllocationGrade</a> in the containment hierarchy.</p>
+<p>Has contained reference(s) <a href="../ObservingMode/" title="objectType">ObservingMode</a>, <a href="../SubmittedProposal/" title="objectType">SubmittedProposal</a>, <a href="../AllocationGrade/" title="objectType">AllocationGrade</a> in the containment hierarchy.</p>
 
 
 

@@ -35,6 +35,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -132,14 +133,19 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="col-last odd-row-color">
 <div class="block">the backends that exist.</div>
 </div>
-<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&gt;</code></div>
-<div class="col-second even-row-color"><code><a href="#instruments" class="member-name-link">instruments</a></code></div>
+<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#homePage" class="member-name-link">homePage</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">the home page for the Observatory.</div>
+</div>
+<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#instruments" class="member-name-link">instruments</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">the instruments that are available for the telescopes.</div>
 </div>
-<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&gt;</code></div>
-<div class="col-second odd-row-color"><code><a href="#telescopes" class="member-name-link">telescopes</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#telescopes" class="member-name-link">telescopes</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">the telescopes that the observatory controls.</div>
 </div>
 </div>
@@ -160,7 +166,8 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="col-last even-row-color">
 <div class="block">Creates a new Observatory</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.util.List,java.util.List,java.util.List,java.util.List,java.lang.String,java.lang.String,org.ivoa.dm.ivoa.Ivorn,org.ivoa.dm.proposal.prop.WikiDataId)" class="member-name-link">Observatory</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&gt;&nbsp;telescopes,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.util.List,java.util.List,java.util.List,java.util.List,java.lang.String,java.lang.String,org.ivoa.dm.ivoa.Ivorn,org.ivoa.dm.proposal.prop.WikiDataId)" class="member-name-link">Observatory</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;homePage,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&gt;&nbsp;telescopes,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&gt;&nbsp;instruments,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Backend.html" title="class in org.ivoa.dm.proposal.management">Backend</a>&gt;&nbsp;backends,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="TelescopeArray.html" title="class in org.ivoa.dm.proposal.management">TelescopeArray</a>&gt;&nbsp;arrays,
@@ -175,7 +182,8 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="col-last even-row-color">
 <div class="block">Copy Constructor.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(org.ivoa.dm.proposal.prop.Organization,java.util.List,java.util.List,java.util.List,java.util.List)" class="member-name-link">Observatory</a><wbr>(<a href="../prop/Organization.html" title="class in org.ivoa.dm.proposal.prop">Organization</a>&nbsp;superinstance,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(org.ivoa.dm.proposal.prop.Organization,java.lang.String,java.util.List,java.util.List,java.util.List,java.util.List)" class="member-name-link">Observatory</a><wbr>(<a href="../prop/Organization.html" title="class in org.ivoa.dm.proposal.prop">Organization</a>&nbsp;superinstance,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;homePage,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&gt;&nbsp;telescopes,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&gt;&nbsp;instruments,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Backend.html" title="class in org.ivoa.dm.proposal.management">Backend</a>&gt;&nbsp;backends,
@@ -191,7 +199,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel">
 <div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
 <div class="table-header col-first">Modifier and Type</div>
@@ -240,71 +248,85 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns backends composition as an immutable list.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInstruments()" class="member-name-link">getInstruments</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHomePage()" class="member-name-link">getHomePage</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns homePage Attribute.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInstruments()" class="member-name-link">getInstruments</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns instruments composition as an immutable list.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTelescopes()" class="member-name-link">getTelescopes</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTelescopes()" class="member-name-link">getTelescopes</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns telescopes composition as an immutable list.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#jpaClone(jakarta.persistence.EntityManager)" class="member-name-link">jpaClone</a><wbr>(jakarta.persistence.EntityManager&nbsp;em)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#persistRefs(jakarta.persistence.EntityManager)" class="member-name-link">persistRefs</a><wbr>(jakarta.persistence.EntityManager&nbsp;_em)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#jpaClone(jakarta.persistence.EntityManager)" class="member-name-link">jpaClone</a><wbr>(jakarta.persistence.EntityManager&nbsp;em)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromArrays(org.ivoa.dm.proposal.management.TelescopeArray)" class="member-name-link">removeFromArrays</a><wbr>(<a href="TelescopeArray.html" title="class in org.ivoa.dm.proposal.management">TelescopeArray</a>&nbsp;p)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#persistRefs(jakarta.persistence.EntityManager)" class="member-name-link">persistRefs</a><wbr>(jakarta.persistence.EntityManager&nbsp;_em)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">generally better to use the model level reference persistence as only this can deal with "contained" references properly.</div>
+</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromArrays(org.ivoa.dm.proposal.management.TelescopeArray)" class="member-name-link">removeFromArrays</a><wbr>(<a href="TelescopeArray.html" title="class in org.ivoa.dm.proposal.management">TelescopeArray</a>&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Remove a org.ivoa.dm.proposal.management.TelescopeArray from the composition.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromBackends(org.ivoa.dm.proposal.management.Backend)" class="member-name-link">removeFromBackends</a><wbr>(<a href="Backend.html" title="class in org.ivoa.dm.proposal.management">Backend</a>&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromBackends(org.ivoa.dm.proposal.management.Backend)" class="member-name-link">removeFromBackends</a><wbr>(<a href="Backend.html" title="class in org.ivoa.dm.proposal.management">Backend</a>&nbsp;p)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Remove a org.ivoa.dm.proposal.management.Backend from the composition.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromInstruments(org.ivoa.dm.proposal.management.Instrument)" class="member-name-link">removeFromInstruments</a><wbr>(<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&nbsp;p)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromInstruments(org.ivoa.dm.proposal.management.Instrument)" class="member-name-link">removeFromInstruments</a><wbr>(<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Remove a org.ivoa.dm.proposal.management.Instrument from the composition.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromTelescopes(org.ivoa.dm.proposal.management.Telescope)" class="member-name-link">removeFromTelescopes</a><wbr>(<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromTelescopes(org.ivoa.dm.proposal.management.Telescope)" class="member-name-link">removeFromTelescopes</a><wbr>(<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&nbsp;p)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Remove a org.ivoa.dm.proposal.management.Telescope from the composition.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInArrays(org.ivoa.dm.proposal.management.TelescopeArray)" class="member-name-link">replaceInArrays</a><wbr>(<a href="TelescopeArray.html" title="class in org.ivoa.dm.proposal.management">TelescopeArray</a>&nbsp;_p)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInArrays(org.ivoa.dm.proposal.management.TelescopeArray)" class="member-name-link">replaceInArrays</a><wbr>(<a href="TelescopeArray.html" title="class in org.ivoa.dm.proposal.management">TelescopeArray</a>&nbsp;_p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">update a org.ivoa.dm.proposal.management.TelescopeArray in the composition.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInBackends(org.ivoa.dm.proposal.management.Backend)" class="member-name-link">replaceInBackends</a><wbr>(<a href="Backend.html" title="class in org.ivoa.dm.proposal.management">Backend</a>&nbsp;_p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInBackends(org.ivoa.dm.proposal.management.Backend)" class="member-name-link">replaceInBackends</a><wbr>(<a href="Backend.html" title="class in org.ivoa.dm.proposal.management">Backend</a>&nbsp;_p)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">update a org.ivoa.dm.proposal.management.Backend in the composition.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInInstruments(org.ivoa.dm.proposal.management.Instrument)" class="member-name-link">replaceInInstruments</a><wbr>(<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&nbsp;_p)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInInstruments(org.ivoa.dm.proposal.management.Instrument)" class="member-name-link">replaceInInstruments</a><wbr>(<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&nbsp;_p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">update a org.ivoa.dm.proposal.management.Instrument in the composition.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInTelescopes(org.ivoa.dm.proposal.management.Telescope)" class="member-name-link">replaceInTelescopes</a><wbr>(<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&nbsp;_p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInTelescopes(org.ivoa.dm.proposal.management.Telescope)" class="member-name-link">replaceInTelescopes</a><wbr>(<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&nbsp;_p)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">update a org.ivoa.dm.proposal.management.Telescope in the composition.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setArrays(java.util.List)" class="member-name-link">setArrays</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="TelescopeArray.html" title="class in org.ivoa.dm.proposal.management">TelescopeArray</a>&gt;&nbsp;pArrays)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setArrays(java.util.List)" class="member-name-link">setArrays</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="TelescopeArray.html" title="class in org.ivoa.dm.proposal.management">TelescopeArray</a>&gt;&nbsp;pArrays)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Defines whole arrays composition.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setBackends(java.util.List)" class="member-name-link">setBackends</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Backend.html" title="class in org.ivoa.dm.proposal.management">Backend</a>&gt;&nbsp;pBackends)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setBackends(java.util.List)" class="member-name-link">setBackends</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Backend.html" title="class in org.ivoa.dm.proposal.management">Backend</a>&gt;&nbsp;pBackends)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Defines whole backends composition.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setHomePage(java.lang.String)" class="member-name-link">setHomePage</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pHomePage)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set homePage Attribute.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setInstruments(java.util.List)" class="member-name-link">setInstruments</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&gt;&nbsp;pInstruments)</code></div>
@@ -325,6 +347,11 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateUsing(org.ivoa.dm.proposal.management.Observatory)" class="member-name-link">updateUsing</a><wbr>(<a href="Observatory.html" title="class in org.ivoa.dm.proposal.management">Observatory</a>&nbsp;other)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update this object with the content of the given object.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Observatory.html" title="class in org.ivoa.dm.proposal.management">Observatory</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withHomePage(java.lang.String)" class="member-name-link">withHomePage</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pHomePage)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">fluent setter for homePage Attribute.</div>
 </div>
 </div>
 </div>
@@ -352,6 +379,17 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <section class="field-details" id="field-detail">
 <h2>Field Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="homePage">
+<h3>homePage</h3>
+<div class="member-signature"><span class="annotations">@VoDml(id="proposalManagement:Observatory.homePage",
+       role=attribute,
+       type="ivoa:anyURI",
+       typeRole=primitiveType)
+</span><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">homePage</span></div>
+<div class="block">the home page for the Observatory. : Attribute homePage : multiplicity 0..1</div>
+</section>
+</li>
 <li>
 <section class="detail" id="telescopes">
 <h3>telescopes</h3>
@@ -428,9 +466,10 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(java.util.List,java.util.List,java.util.List,java.util.List,java.lang.String,java.lang.String,org.ivoa.dm.ivoa.Ivorn,org.ivoa.dm.proposal.prop.WikiDataId)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,java.util.List,java.util.List,java.util.List,java.util.List,java.lang.String,java.lang.String,org.ivoa.dm.ivoa.Ivorn,org.ivoa.dm.proposal.prop.WikiDataId)">
 <h3>Observatory</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Observatory</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&gt;&nbsp;telescopes,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Observatory</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;homePage,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&gt;&nbsp;telescopes,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&gt;&nbsp;instruments,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Backend.html" title="class in org.ivoa.dm.proposal.management">Backend</a>&gt;&nbsp;backends,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="TelescopeArray.html" title="class in org.ivoa.dm.proposal.management">TelescopeArray</a>&gt;&nbsp;arrays,
@@ -441,6 +480,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">full parameter constructor.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
+<dd><code>homePage</code> - the home page for the Observatory.</dd>
 <dd><code>telescopes</code> - the telescopes that the observatory controls.</dd>
 <dd><code>instruments</code> - the instruments that are available for the telescopes.</dd>
 <dd><code>backends</code> - the backends that exist.</dd>
@@ -464,9 +504,10 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(org.ivoa.dm.proposal.prop.Organization,java.util.List,java.util.List,java.util.List,java.util.List)">
+<section class="detail" id="&lt;init&gt;(org.ivoa.dm.proposal.prop.Organization,java.lang.String,java.util.List,java.util.List,java.util.List,java.util.List)">
 <h3>Observatory</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Observatory</span><wbr><span class="parameters">(<a href="../prop/Organization.html" title="class in org.ivoa.dm.proposal.prop">Organization</a>&nbsp;superinstance,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;homePage,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&gt;&nbsp;telescopes,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Instrument.html" title="class in org.ivoa.dm.proposal.management">Instrument</a>&gt;&nbsp;instruments,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Backend.html" title="class in org.ivoa.dm.proposal.management">Backend</a>&gt;&nbsp;backends,
@@ -475,6 +516,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>superinstance</code> - The supertype.</dd>
+<dd><code>homePage</code> - the home page for the Observatory.</dd>
 <dd><code>telescopes</code> - the telescopes that the observatory controls.</dd>
 <dd><code>instruments</code> - the instruments that are available for the telescopes.</dd>
 <dd><code>backends</code> - the backends that exist.</dd>
@@ -526,13 +568,48 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 </section>
 </li>
 <li>
+<section class="detail" id="getHomePage()">
+<h3>getHomePage</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getHomePage</span>()</div>
+<div class="block">Returns homePage Attribute.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>homePage Attribute</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setHomePage(java.lang.String)">
+<h3>setHomePage</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setHomePage</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pHomePage)</span></div>
+<div class="block">Set homePage Attribute.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pHomePage</code> - value to set</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="withHomePage(java.lang.String)">
+<h3>withHomePage</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Observatory.html" title="class in org.ivoa.dm.proposal.management">Observatory</a></span>&nbsp;<span class="element-name">withHomePage</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pHomePage)</span></div>
+<div class="block">fluent setter for homePage Attribute.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pHomePage</code> - value to set</dd>
+<dt>Returns:</dt>
+<dd>Observatory</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getTelescopes()">
 <h3>getTelescopes</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Telescope.html" title="class in org.ivoa.dm.proposal.management">Telescope</a>&gt;</span>&nbsp;<span class="element-name">getTelescopes</span>()</div>
 <div class="block">Returns telescopes composition as an immutable list.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>telescopes composition</dd>
+<dd>telescopes composition.</dd>
 </dl>
 </section>
 </li>
@@ -543,7 +620,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Defines whole telescopes composition.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pTelescopes</code> - composition to set</dd>
+<dd><code>pTelescopes</code> - composition to set.</dd>
 </dl>
 </section>
 </li>
@@ -588,7 +665,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Returns instruments composition as an immutable list.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>instruments composition</dd>
+<dd>instruments composition.</dd>
 </dl>
 </section>
 </li>
@@ -599,7 +676,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Defines whole instruments composition.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pInstruments</code> - composition to set</dd>
+<dd><code>pInstruments</code> - composition to set.</dd>
 </dl>
 </section>
 </li>
@@ -644,7 +721,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Returns backends composition as an immutable list.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>backends composition</dd>
+<dd>backends composition.</dd>
 </dl>
 </section>
 </li>
@@ -655,7 +732,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Defines whole backends composition.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pBackends</code> - composition to set</dd>
+<dd><code>pBackends</code> - composition to set.</dd>
 </dl>
 </section>
 </li>
@@ -700,7 +777,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Returns arrays composition as an immutable list.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>arrays composition</dd>
+<dd>arrays composition.</dd>
 </dl>
 </section>
 </li>
@@ -711,7 +788,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Defines whole arrays composition.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pArrays</code> - composition to set</dd>
+<dd><code>pArrays</code> - composition to set.</dd>
 </dl>
 </section>
 </li>
@@ -789,7 +866,11 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <li>
 <section class="detail" id="persistRefs(jakarta.persistence.EntityManager)">
 <h3>persistRefs</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">persistRefs</span><wbr><span class="parameters">(jakarta.persistence.EntityManager&nbsp;_em)</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">persistRefs</span><wbr><span class="parameters">(jakarta.persistence.EntityManager&nbsp;_em)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">generally better to use the model level reference persistence as only this can deal with "contained" references properly.</div>
+</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>persistRefs</code>&nbsp;in interface&nbsp;<code>org.ivoa.vodml.jpa.JPAManipulations</code></dd>

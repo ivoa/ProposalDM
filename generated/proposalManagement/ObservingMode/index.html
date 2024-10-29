@@ -12,7 +12,7 @@
         <link rel="prev" href="../Observatory/">
       
       
-        <link rel="next" href="../ObservingModeConfiguration/">
+        <link rel="next" href="../ObservingPlatform/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -1904,27 +1904,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ObservingModeConfiguration/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ObservingModeConfiguration
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -4139,7 +4118,7 @@
 
 
 <h1 id="objecttype-observingmode">objectType ObservingMode</h1>
-<p>a configuration that has been chosen to observe with.</p>
+<p>a configuration can be used to observe with.</p>
 <pre class="mermaid"><code>classDiagram
 
         class ObservingMode{
@@ -4147,9 +4126,15 @@
 ivoa:string description
 
         }
-        ObservingMode --&gt; "1" ObservingModeConfiguration : configuration
+        ObservingMode --&gt; "1" ObservingPlatform : telescope
+ObservingMode --&gt; "1" Instrument : instrument
+ObservingMode --&gt; "1" Backend : backend
+ObservingMode *-- "1" Filter : filter
 
-link ObservingModeConfiguration "../ObservingModeConfiguration"</code></pre>
+link ObservingPlatform "../ObservingPlatform"
+link Instrument "../Instrument"
+link Backend "../Backend"
+link Filter "../Filter"</code></pre>
 <h2 id="members">Members</h2>
 <table>
 <thead>
@@ -4174,8 +4159,26 @@ link ObservingModeConfiguration "../ObservingModeConfiguration"</code></pre>
 <td>human readable description</td>
 </tr>
 <tr>
-<td>configuration</td>
-<td><a href="../ObservingModeConfiguration/" title="objectType">ObservingModeConfiguration</a></td>
+<td>telescope</td>
+<td><a href="../ObservingPlatform/" title="objectType">ObservingPlatform</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>instrument</td>
+<td><a href="../Instrument/" title="objectType">Instrument</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>filter</td>
+<td><a href="../Filter/" title="objectType">Filter</a></td>
+<td></td>
+<td>The filter or frequency response that</td>
+</tr>
+<tr>
+<td>backend</td>
+<td><a href="../Backend/" title="objectType">Backend</a></td>
 <td></td>
 <td></td>
 </tr>

@@ -35,6 +35,7 @@ loadScripts(document, 'script');</script>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../help-doc.html#class">Help</a></li>
 </ul>
@@ -230,7 +231,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button><button id="method-summary-table-tab6" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab6', 3)" class="table-tab">Deprecated Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel">
 <div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
 <div class="table-header col-first">Modifier and Type</div>
@@ -358,9 +359,13 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#jpaClone(jakarta.persistence.EntityManager)" class="member-name-link">jpaClone</a><wbr>(jakarta.persistence.EntityManager&nbsp;em)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#persistRefs(jakarta.persistence.EntityManager)" class="member-name-link">persistRefs</a><wbr>(jakarta.persistence.EntityManager&nbsp;_em)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6"><code><a href="#persistRefs(jakarta.persistence.EntityManager)" class="member-name-link">persistRefs</a><wbr>(jakarta.persistence.EntityManager&nbsp;_em)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4 method-summary-table-tab6">
+<div class="block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">generally better to use the model level reference persistence as only this can deal with "contained" references properly.</div>
+</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromFields(org.ivoa.dm.proposal.prop.Field)" class="member-name-link">removeFromFields</a><wbr>(<a href="Field.html" title="class in org.ivoa.dm.proposal.prop">Field</a>&nbsp;p)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -1019,7 +1024,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Returns investigators composition as an immutable list.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>investigators composition</dd>
+<dd>investigators composition.</dd>
 </dl>
 </section>
 </li>
@@ -1030,7 +1035,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Defines whole investigators composition.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pInvestigators</code> - composition to set</dd>
+<dd><code>pInvestigators</code> - composition to set.</dd>
 </dl>
 </section>
 </li>
@@ -1110,7 +1115,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Returns relatedProposals composition as an immutable list.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>relatedProposals composition</dd>
+<dd>relatedProposals composition.</dd>
 </dl>
 </section>
 </li>
@@ -1121,7 +1126,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Defines whole relatedProposals composition.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pRelatedProposals</code> - composition to set</dd>
+<dd><code>pRelatedProposals</code> - composition to set.</dd>
 </dl>
 </section>
 </li>
@@ -1166,7 +1171,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Returns supportingDocuments composition as an immutable list.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>supportingDocuments composition</dd>
+<dd>supportingDocuments composition.</dd>
 </dl>
 </section>
 </li>
@@ -1177,7 +1182,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Defines whole supportingDocuments composition.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pSupportingDocuments</code> - composition to set</dd>
+<dd><code>pSupportingDocuments</code> - composition to set.</dd>
 </dl>
 </section>
 </li>
@@ -1222,7 +1227,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Returns targets composition as an immutable list.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>targets composition</dd>
+<dd>targets composition.</dd>
 </dl>
 </section>
 </li>
@@ -1233,7 +1238,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Defines whole targets composition.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pTargets</code> - composition to set</dd>
+<dd><code>pTargets</code> - composition to set.</dd>
 </dl>
 </section>
 </li>
@@ -1278,7 +1283,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Returns fields composition as an immutable list.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>fields composition</dd>
+<dd>fields composition.</dd>
 </dl>
 </section>
 </li>
@@ -1289,7 +1294,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Defines whole fields composition.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pFields</code> - composition to set</dd>
+<dd><code>pFields</code> - composition to set.</dd>
 </dl>
 </section>
 </li>
@@ -1334,7 +1339,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Returns technicalGoals composition as an immutable list.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>technicalGoals composition</dd>
+<dd>technicalGoals composition.</dd>
 </dl>
 </section>
 </li>
@@ -1345,7 +1350,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Defines whole technicalGoals composition.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pTechnicalGoals</code> - composition to set</dd>
+<dd><code>pTechnicalGoals</code> - composition to set.</dd>
 </dl>
 </section>
 </li>
@@ -1390,7 +1395,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Returns observations composition as an immutable list.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>observations composition</dd>
+<dd>observations composition.</dd>
 </dl>
 </section>
 </li>
@@ -1401,7 +1406,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Defines whole observations composition.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>pObservations</code> - composition to set</dd>
+<dd><code>pObservations</code> - composition to set.</dd>
 </dl>
 </section>
 </li>
@@ -1510,7 +1515,11 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <li>
 <section class="detail" id="persistRefs(jakarta.persistence.EntityManager)">
 <h3>persistRefs</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">persistRefs</span><wbr><span class="parameters">(jakarta.persistence.EntityManager&nbsp;_em)</span></div>
+<div class="member-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">persistRefs</span><wbr><span class="parameters">(jakarta.persistence.EntityManager&nbsp;_em)</span></div>
+<div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
+<div class="deprecation-comment">generally better to use the model level reference persistence as only this can deal with "contained" references properly.</div>
+</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>persistRefs</code>&nbsp;in interface&nbsp;<code>org.ivoa.vodml.jpa.JPAManipulations</code></dd>

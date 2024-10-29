@@ -1916,27 +1916,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../ObservingModeConfiguration/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ObservingModeConfiguration
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../ObservingPlatform/" class="md-nav__link">
         
   
@@ -4144,6 +4123,7 @@
 <pre class="mermaid"><code>classDiagram
 
         class Observatory{
+        ivoa:anyURI homePage
 
         }
         Observatory --|&gt; Organization
@@ -4168,6 +4148,12 @@ link TelescopeArray "../TelescopeArray"</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>homePage</td>
+<td><a href="../../ivoa/anyURI/" title="primitiveType anyURI - Represents a URI in the same way as the datatype of the same nam in XML Schema is used.">ivoa:anyURI</a></td>
+<td>optional</td>
+<td>the home page for the Observatory</td>
+</tr>
 <tr>
 <td>telescopes</td>
 <td><a href="../Telescope/" title="objectType">Telescope</a></td>

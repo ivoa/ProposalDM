@@ -51,7 +51,6 @@
     - ObservationConfiguration: "generated/proposalManagement/ObservationConfiguration.md"
     - Observatory: "generated/proposalManagement/Observatory.md"
     - ObservingMode: "generated/proposalManagement/ObservingMode.md"
-    - ObservingModeConfiguration: "generated/proposalManagement/ObservingModeConfiguration.md"
     - ObservingPlatform: "generated/proposalManagement/ObservingPlatform.md"
     - ProposalCycle: "generated/proposalManagement/ProposalCycle.md"
     - ProposalReview: "generated/proposalManagement/ProposalReview.md"
