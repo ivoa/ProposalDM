@@ -9,49 +9,59 @@
 
 package org.ivoa.dm.proposal.prop;
 
-import org.ivoa.dm.proposal.management.ProposalCycle;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.ivoa.dm.proposal.management.SubmittedProposal;
+import org.ivoa.vodml.VodmlModel;
 
 import jakarta.persistence.EntityManager;
 
 /**
- * Complete example with all example observatories .
+ * Complete example with all example observatories.
  * @author Paul Harrison (paul.harrison@manchester.ac.uk) 
- * @since 22 Oct 2024
  */
 public class FullExample {
     
     
     private  ObservingProposal proposal;
-    private  ProposalCycle cycle;
     private ProposalManagementModel model = new ProposalManagementModel();
+    
 
+    private List<TACFunctions> observatories = new ArrayList<>();
     /**
      * create full example.
      */
     public FullExample() {
-       EmerlinExample emerlin = new EmerlinExample();
-       proposal = new ExampleProposal().getProposal();
-       cycle = emerlin.getCycle();
-       ObservingProposal clonedProposal = AbstractProposalTest.cloneProposal(proposal);
-       clonedProposal.setSubmitted(true);   
-       SubmittedProposal submittedProposal = emerlin.submitProposal(clonedProposal);
-       emerlin.allocateProposal(submittedProposal);
+        observatories.add(new EmerlinExample());
+        observatories.add(new NOTexample());
        
+       proposal = new ExampleProposal().getProposal();
+       for(TACFunctions obs : observatories) {          
+           ObservingProposal clonedProposal = AbstractProposalTest.cloneProposal(proposal);
+           clonedProposal.setSubmitted(true);          
+           SubmittedProposal submittedProposal = obs.submitProposal(clonedProposal);
+           obs.allocateProposal(submittedProposal);
+           model.addContent(obs.getCycle());
+       }
     }
 
     /**
      * Save to an RDB. Note transactions need to be handled outsite this routine.
      * @param em the entity manager for the RDB.
      */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void saveTodB(EntityManager em) {
-         
-         cycle.persistRefs(em);
-         em.persist(cycle);
-         proposal.persistRefs(em);
-         em.persist(proposal);
-        
+        model.management().persistRefs(em);
+        em.flush();
+        for(Class cc:model.descriptor().contentClasses())
+        {
+            for(Object c:model.getContent(cc))
+            {
+                em.persist(c);
+            }
+        }
     }
     
     /**
@@ -59,7 +69,6 @@ public class FullExample {
      * @return the model.
      */
     public ProposalManagementModel getManagementModel() {
-        model.addContent(cycle);
         return model;
     }
     

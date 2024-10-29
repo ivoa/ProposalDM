@@ -30,6 +30,11 @@ ProposalCycle getCycle();
 SubmittedProposal submitProposal(ObservingProposal p);
 
 
+/**
+ * Allocate a proposal.
+ * @param p
+ * @return
+ */
 AllocatedProposal allocateProposal(SubmittedProposal p);
 }
 

@@ -71,9 +71,10 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
             obs.address = "on earth";
             obs.ivoid = new Ivorn("ivo://obs/anobs");
             obs.name = "Jodrell Bank";
+            obs.homePage = "https://www.e-merlin.ac.uk";
             obs.telescopes = Arrays.asList(telescopes);
             
-            obs.arrays = Arrays.asList(eMERLIN);
+            obs.arrays = Arrays.asList(eMERLIN,eMERLINReduced);
             obs.instruments = Arrays.asList(instruments);
             obs.backends =Arrays.asList(backend);
 
@@ -86,11 +87,11 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
 
         obsModes = new ObservingMode[] {
               new ObservingMode("L-Band", "full e-MERLIN at L-Band",
-                     new ObservingModeConfiguration(eMERLIN, instruments[0],simpleFilter("L-Band",1.2, 1.7), backend))
+                     eMERLIN, instruments[0],simpleFilter("L-Band",1.2, 1.7), backend)
               ,new ObservingMode("C-Band", "full e-MERLIN at C-Band", 
-                     new ObservingModeConfiguration(eMERLIN, instruments[1],simpleFilter("C-Band",4.0, 7.0), backend))
+                     eMERLIN, instruments[1],simpleFilter("C-Band",4.0, 7.0), backend)
               ,new ObservingMode("K-Band", "reduced e-EMERLIN at K-Band",
-                      new ObservingModeConfiguration(eMERLINReduced, instruments[2],simpleFilter("K-Band",20.0, 24.0), backend))
+                      eMERLINReduced, instruments[2],simpleFilter("K-Band",20.0, 24.0), backend)
         };
 
         grades = new AllocationGrade[] {
@@ -101,6 +102,8 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
         // set up the proposal cycle
         cycle = createProposalCycle(cycleCommonSetup().andThen(cy -> {
             cy.observatory = observatory;
+            cy.title = "Cycle 19";
+            cy.instructions = "https://www.e-merlin.ac.uk/observe.html#call";
             cy.possibleGrades = Arrays.asList(grades);
             cy.observingModes = Arrays.asList(obsModes);
             cy.availableResources = new AvailableResources(Arrays.asList(availableObservingTime));//IMPL is there one too many layers of encapsulation here?

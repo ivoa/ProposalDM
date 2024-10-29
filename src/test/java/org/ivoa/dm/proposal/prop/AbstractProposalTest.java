@@ -101,6 +101,7 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
         jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
         em.getTransaction().begin();
         final ObservingProposal proposal = ex.getProposal();
+        
         proposal.persistRefs(em);
         em.persist(proposal);
         em.getTransaction().commit();
@@ -144,9 +145,10 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
     void reviewDmJPATest() {
         jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
         em.getTransaction().begin();
-        
+        ProposalManagementModel model = new ProposalManagementModel();
         final  ProposalCycle cycle = doTacWork();
-        cycle.persistRefs(em);
+        model.addContent(cycle);
+        model.management().persistRefs(em);
         em.persist(cycle);
         em.getTransaction().commit();
         

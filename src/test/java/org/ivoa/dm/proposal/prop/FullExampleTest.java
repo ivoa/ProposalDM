@@ -98,6 +98,7 @@ class FullExampleTest extends AutoDBRoundTripTest<ProposalManagementModel, Long,
         em.getTransaction().begin();
         example.saveTodB(em);
         em.getTransaction().commit();
+        dumpDbData(em, "fullexample.sql");
     }
 
 }

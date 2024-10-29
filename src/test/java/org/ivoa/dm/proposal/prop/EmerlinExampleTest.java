@@ -90,20 +90,7 @@ class EmerlinExampleTest extends AbstractProposalTest {
        
     }
 
-   @org.junit.jupiter.api.Test 
-   public  void testDbCreate() {
-       
-        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
-        em.getTransaction().begin();
-        final ObservingProposal proposal = ex.getProposal();
-        proposal.persistRefs(em);
-        em.persist(proposal);
-        final ProposalCycle cycle = ex.getCycle();
-        cycle.persistRefs(em);
-        em.persist(cycle);
-        em.getTransaction().commit();
-
-   }
+  
    
       @org.junit.jupiter.api.Test 
    public void testJackson() throws JsonProcessingException
@@ -282,27 +269,7 @@ class EmerlinExampleTest extends AbstractProposalTest {
        assertNotNull(tobs2);
    }
 
-   @org.junit.jupiter.api.Test
-   public void TestModes() throws IOException {
-       ProposalManagementModel model = new ProposalManagementModel();
-       final ProposalCycle cycle = ex.getCycle();
-       model.addContent(cycle);
-       jakarta.persistence.EntityManager em = setupH2Db(ProposalManagementModel.pu_name());
-       em.getTransaction().begin();
-       cycle.persistRefs(em);
-       em.persist(cycle);
-       em.getTransaction().commit();
-       ObjectMapper mapper = model.management().jsonMapper();
-       String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(cycle.getObservingModes());
-       System.out.println("JSON output");
-       System.out.println(json);
-       List<ObservingMode> retval = mapper.readValue(json,new TypeReference<List<ObservingMode>>(){} );
-       assertNotNull(retval);
-       
-       retval = mapper.readValue(this.getClass().getResourceAsStream("/observingmodes.json"),new TypeReference<List<ObservingMode>>(){} );
-   }
-
-  
+ 
  
 }
 

@@ -33,7 +33,9 @@ import org.ivoa.dm.proposal.management.TelescopeArrayMember;
  */
 public class LCOExample extends BaseObservatoryExample implements TACFunctions {
 
-     Telescope[] telescopes = {};
+     Telescope[] telescopes = {
+             
+     };
      private Observatory observatory;
    
      public LCOExample() {

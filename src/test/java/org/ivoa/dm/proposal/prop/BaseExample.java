@@ -3,47 +3,43 @@ package org.ivoa.dm.proposal.prop;
  * Created on 17/03/2022 by Paul Harrison (paul.harrison@manchester.ac.uk).
  */
 
-import org.ivoa.dm.proposal.management.*;
-import org.ivoa.dm.stc.coords.CartesianCoordSpace;
-import org.ivoa.dm.stc.coords.Epoch;
-import org.ivoa.dm.stc.coords.EquatorialPoint;
-import org.ivoa.dm.stc.coords.PolStateEnum;
-import org.ivoa.dm.stc.coords.SpaceFrame;
-import org.ivoa.dm.stc.coords.SpaceSys;
-import org.ivoa.dm.stc.coords.StdRefLocation;
-import org.ivoa.dm.ivoa.Ivorn;
-import org.ivoa.dm.ivoa.RealQuantity;
-import org.ivoa.dm.ivoa.StringIdentifier;
-import org.ivoa.vodml.stdtypes.Unit;
+import static org.ivoa.dm.stc.coords.RealCartesianPoint.createRealCartesianPoint;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static org.ivoa.dm.proposal.prop.ExpectedSpectralLine.createExpectedSpectralLine;
-import static org.ivoa.dm.proposal.prop.ObservingProposal.createObservingProposal;
-import static org.ivoa.dm.proposal.prop.PerformanceParameters.createPerformanceParameters;
-import static org.ivoa.dm.proposal.prop.ScienceSpectralWindow.createScienceSpectralWindow;
-import static org.ivoa.dm.proposal.prop.SpectralWindowSetup.createSpectralWindowSetup;
-import static org.ivoa.dm.proposal.prop.TargetObservation.createTargetObservation;
-import static org.ivoa.dm.stc.coords.RealCartesianPoint.createRealCartesianPoint;
+import org.ivoa.dm.ivoa.Ivorn;
+import org.ivoa.dm.ivoa.RealQuantity;
+import org.ivoa.dm.ivoa.StringIdentifier;
+import org.ivoa.dm.proposal.management.CommitteeMember;
+import org.ivoa.dm.proposal.management.ProposalCycle;
+import org.ivoa.dm.proposal.management.Reviewer;
+import org.ivoa.dm.proposal.management.TAC;
+import org.ivoa.dm.proposal.management.TacRole;
+import org.ivoa.dm.proposal.management.Telescope;
+import org.ivoa.dm.stc.coords.CartesianCoordSpace;
+import org.ivoa.dm.stc.coords.SpaceFrame;
+import org.ivoa.dm.stc.coords.SpaceSys;
+import org.ivoa.dm.stc.coords.StdRefLocation;
+import org.ivoa.vodml.stdtypes.Unit;
 
 public abstract class BaseExample {
     /** SPACE_SYS.
      */
-    protected    SpaceSys GEO_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTRE"), "ICRF", null, ""));//FIXME - this should really define the frame better - STC coords library should have some standard model instances...
+    
+    protected  final  SpaceSys GEO_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTRE"), "ICRF", null, ""));//FIXME - this should really define the frame better - STC coords library should have some standard model instances...
 
-    protected    SpaceSys ICRS_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTRE"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
-    protected  Organization[] institutes = {
+    protected   final  SpaceSys ICRS_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTRE"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
+    protected   final Organization[] institutes = {
             new Organization("org", "org address",new Ivorn("ivo://org/anorg"), null),//TODO is null same as not setting?
             new Organization("org2", "org2 address",new Ivorn("ivo://org/org2"), null)
 
     };
 
-    protected  Person[] people = {
+    protected  final Person[] people = {
             new Person("John Flamsteed", "pi@unreal.not.email", institutes[0], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-003")),
             new Person("George Airy", "coi@unreal.not.email", institutes[1], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-004")),
             new Person("Edmond Halley", "tacchair@unreal.not.email", institutes[1], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-005")),
@@ -65,9 +61,6 @@ public abstract class BaseExample {
             new CommitteeMember ( reviewers[1], TacRole.SCIENCEREVIEWER)
             ));
 
-   
-
-   
 
    
     //some units
