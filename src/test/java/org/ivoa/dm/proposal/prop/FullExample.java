@@ -44,6 +44,7 @@ public class FullExample {
            SubmittedProposal submittedProposal = obs.submitProposal(clonedProposal);
            obs.allocateProposal(submittedProposal);
            model.addContent(obs.getCycle());
+           model.addReference(proposal); // add back the 'original' proposal
        }
     }
 

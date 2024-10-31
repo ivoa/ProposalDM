@@ -11,6 +11,8 @@ package org.ivoa.dm.proposal.prop;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.ivoa.vodml.testing.AutoDBRoundTripTest;
@@ -84,7 +86,9 @@ class FullExampleTest extends AutoDBRoundTripTest<ProposalManagementModel, Long,
      */
     @Override
     public void testModel(ProposalManagementModel m) {
-        //TODO some testing
+      List<ObservingProposal> props = m.getContent(ObservingProposal.class);
+      assertTrue(props.size() > 0);
+      assertTrue(props.stream().filter(p -> p.submitted ==null?true:!p.submitted).count()> 0, "at least one unsubmitted proposal");
     }
 
 
