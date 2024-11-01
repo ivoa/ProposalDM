@@ -24,3 +24,7 @@ build
 /site/
 /allnav.yml
 /mkdocs.yml
+/test.sql
+/*.xsd
+/*.sql
+/*.json
