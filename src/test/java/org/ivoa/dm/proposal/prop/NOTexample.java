@@ -45,11 +45,7 @@ import org.ivoa.dm.stc.coords.PolStateEnum;
  */
 public class NOTexample extends BaseObservatoryExample implements TACFunctions {
 
- 
-
-    private static final double c = 299792458.0;
-    
-    
+    private static final double c = 299792458.0;        
     /**
      * @param centwl in nm
      * @param fwhm in nm
@@ -177,7 +173,6 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
      */
     @Override
     public SubmittedProposal submitProposal(ObservingProposal frozenProposal) {
-      frozenProposal.setSubmitted(true);
         List<ObservationConfiguration> obsConfigs = makeList(
                 new ObservationConfiguration(frozenProposal.getObservations(),obsModes[0])
                 );

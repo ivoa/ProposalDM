@@ -35,9 +35,10 @@ observations, although the intention is that information about targets etc. coul
     fields: Field @* as composition "the fields observed in the proposal";
     technicalGoals: TechnicalGoal @+ as ordered composition "the technical goals of the proposal";
     observations : Observation @+ as ordered composition "the proposed observations";
-    submitted: ivoa:boolean @? "whether the proposal is submitted"; //note that submitted proposals are not expected to be editable..  made optional to allow for not setting for not submitted proposals
+ //   submitted: ivoa:boolean @? "whether the proposal is submitted"; //note that submitted proposals are not expected to be editable..  made optional to allow for not setting for not submitted proposals
     
  }
+ 
  
  otype RelatedProposal "a related proposal" // note that this is being done to follow the vodml aggregation pattern
  {

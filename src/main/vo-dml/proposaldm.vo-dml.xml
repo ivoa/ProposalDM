@@ -12,7 +12,7 @@
       <title>Proposal</title>
       <author>Paul Harrison</author>
       <version>0.6</version>
-      <lastModified>2024-11-01T15:05:39Z</lastModified>
+      <lastModified>2024-11-05T13:53:14Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -347,18 +347,6 @@
                  </multiplicity>
                  <isOrdered>true</isOrdered>
                </composition>
-               <attribute>
-                 <vodml-id>ObservingProposal.submitted</vodml-id>
-                 <name>submitted</name>
-                 <description>whether the proposal is submitted</description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:boolean</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>0</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
             </objectType>
             <objectType>
                <vodml-id>RelatedProposal</vodml-id>

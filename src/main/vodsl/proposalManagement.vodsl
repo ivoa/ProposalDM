@@ -129,8 +129,8 @@
  	mode references ObservingMode "The observing mode"; //IMPL this is what allows the observation to be tied to multiple observatories.
  }
   
- otype SubmittedProposal "an instance of a proposal that has been submitted" {
- 	proposal references proposal:ObservingProposal  "the proposal that was submitted"; //IMPL this is a reference - this is a slight hack as we really want a composition to "freeze" the original proposal - this messes with the original references in the proposal as then they become contained.
+ otype SubmittedProposal -> proposal:ObservingProposal "an instance of a proposal that has been submitted" {
+ //	proposal references proposal:ObservingProposal  "the proposal that was submitted"; //IMPL this is a reference - this is a slight hack as we really want a composition to "freeze" the original proposal - this messes with the original references in the proposal as then they become contained.
  	config : ObservationConfiguration @* as composition "";
  	submissionDate : ivoa:datetime "the date that the proposal was submitted";
  	successful : ivoa:boolean "the proposal can go on to allocation";

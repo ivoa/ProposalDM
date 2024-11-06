@@ -120,10 +120,10 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
     public SubmittedProposal submitProposal(ObservingProposal frozenProposal) {
           // "submit" proposal
       
-        frozenProposal.setSubmitted(true);
         List<ObservationConfiguration> obsConfigs = makeList(
                 new ObservationConfiguration(frozenProposal.getObservations(),obsModes[0])
                 );
+        
         
         final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
         cycle.setSubmittedProposals(
