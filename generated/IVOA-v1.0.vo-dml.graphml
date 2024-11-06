@@ -337,7 +337,7 @@
       <!--imported nodes-->
       <!--edges-->
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d1418e13"
+            id="d675e13"
             source="ivoa:Unit"
             target="ivoa:string">
          <data key="k3">
@@ -349,7 +349,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d1418e19"
+            id="d675e19"
             source="ivoa:anyURI"
             target="ivoa:string">
          <data key="k3">
@@ -361,7 +361,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d1418e58"
+            id="d675e58"
             source="ivoa:intIdentifier"
             target="ivoa:integer">
          <data key="k3">
@@ -373,7 +373,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d1418e64"
+            id="d675e64"
             source="ivoa:stringIdentifier"
             target="ivoa:string">
          <data key="k3">
@@ -385,7 +385,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d1418e70"
+            id="d675e70"
             source="ivoa:ivorn"
             target="ivoa:anyURI">
          <data key="k3">
@@ -397,7 +397,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d1418e76"
+            id="d675e76"
             source="ivoa:IntegerQuantity"
             target="ivoa:Quantity">
          <data key="k3">
@@ -409,7 +409,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d1418e105"
+            id="d675e105"
             source="ivoa:RealQuantity"
             target="ivoa:Quantity">
          <data key="k3">
