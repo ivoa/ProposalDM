@@ -2,7 +2,7 @@ Generated Code
 ==============
 
 ## Java
-At the moment only the Java code that is generated which is published to the maven central repository.  Note that this is only published as a snapshot version as yet, so that for many tools you will need to explicitly add the snapshot repository to your setup - e.g. for gradle
+At the moment only the Java code that is generated is published to the maven central repository.  Note that this is only published as a snapshot version as yet, so that for many tools you will need to explicitly add the snapshot repository to your setup - e.g. for gradle
 
 ```kotlin
 dependencyResolutionManagement {
