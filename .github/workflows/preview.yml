@@ -62,7 +62,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Update the PDF preview
-      uses: Xotl/cool-github-releases@v1
+      uses: Xotl/cool-github-releases@v1.1.10
       with:
         mode: update
         isPrerelease: false
