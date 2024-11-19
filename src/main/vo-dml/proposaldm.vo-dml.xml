@@ -12,7 +12,7 @@
       <title>Proposal</title>
       <author>Paul Harrison</author>
       <version>0.6</version>
-      <lastModified>2024-11-05T13:53:14Z</lastModified>
+      <lastModified>2024-11-17T17:18:18Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -196,12 +196,12 @@
               </multiplicity>
             </attribute>
             </dataType>
-            <objectType>
-               <vodml-id>ObservingProposal</vodml-id>
-               <name>ObservingProposal</name>
-               <description>a complete proposal</description>	    
+            <objectType abstract="true">
+               <vodml-id>AbstractProposal</vodml-id>
+               <name>AbstractProposal</name>
+               <description>base proposal</description>	    
                <attribute>
-                 <vodml-id>ObservingProposal.title</vodml-id>
+                 <vodml-id>AbstractProposal.title</vodml-id>
                  <name>title</name>
                  <description>the proposal title</description>	    
                  <datatype>
@@ -213,7 +213,7 @@
                  </multiplicity>
                </attribute>
                <attribute>
-                 <vodml-id>ObservingProposal.summary</vodml-id>
+                 <vodml-id>AbstractProposal.summary</vodml-id>
                  <name>summary</name>
                  <description>a short summary/abstract of the proposal</description>	    
                  <datatype>
@@ -225,7 +225,7 @@
                  </multiplicity>
                </attribute>
                <composition>
-                 <vodml-id>ObservingProposal.scientificJustification</vodml-id>
+                 <vodml-id>AbstractProposal.scientificJustification</vodml-id>
                  <name>scientificJustification</name>
                  <description>scientific justification</description>	    
                  <datatype>
@@ -237,7 +237,7 @@
                  </multiplicity>
                </composition>
                <composition>
-                 <vodml-id>ObservingProposal.technicalJustification</vodml-id>
+                 <vodml-id>AbstractProposal.technicalJustification</vodml-id>
                  <name>technicalJustification</name>
                  <description>technical justification</description>	    
                  <datatype>
@@ -249,7 +249,7 @@
                  </multiplicity>
                </composition>
                <composition>
-                 <vodml-id>ObservingProposal.investigators</vodml-id>
+                 <vodml-id>AbstractProposal.investigators</vodml-id>
                  <name>investigators</name>
                  <description>the person(s) making the proposal</description>	    
                  <datatype>
@@ -261,7 +261,7 @@
                  </multiplicity>
                </composition>
                <attribute>
-                 <vodml-id>ObservingProposal.kind</vodml-id>
+                 <vodml-id>AbstractProposal.kind</vodml-id>
                  <name>kind</name>
                  <description>the type of proposal</description>	    
                  <datatype>
@@ -273,7 +273,7 @@
                  </multiplicity>
                </attribute>
                <composition>
-                 <vodml-id>ObservingProposal.relatedProposals</vodml-id>
+                 <vodml-id>AbstractProposal.relatedProposals</vodml-id>
                  <name>relatedProposals</name>
                  <description></description>	    
                  <datatype>
@@ -285,7 +285,7 @@
                  </multiplicity>
                </composition>
                <composition>
-                 <vodml-id>ObservingProposal.supportingDocuments</vodml-id>
+                 <vodml-id>AbstractProposal.supportingDocuments</vodml-id>
                  <name>supportingDocuments</name>
                  <description>any additional documents</description>	    
                  <datatype>
@@ -298,7 +298,7 @@
                  <isOrdered>true</isOrdered>
                </composition>
                <composition>
-                 <vodml-id>ObservingProposal.targets</vodml-id>
+                 <vodml-id>AbstractProposal.targets</vodml-id>
                  <name>targets</name>
                  <description>the targets of the proposal</description>	    
                  <datatype>
@@ -310,7 +310,7 @@
                  </multiplicity>
                </composition>
                <composition>
-                 <vodml-id>ObservingProposal.fields</vodml-id>
+                 <vodml-id>AbstractProposal.fields</vodml-id>
                  <name>fields</name>
                  <description>the fields observed in the proposal</description>	    
                  <datatype>
@@ -322,7 +322,7 @@
                  </multiplicity>
                </composition>
                <composition>
-                 <vodml-id>ObservingProposal.technicalGoals</vodml-id>
+                 <vodml-id>AbstractProposal.technicalGoals</vodml-id>
                  <name>technicalGoals</name>
                  <description>the technical goals of the proposal</description>	    
                  <datatype>
@@ -335,7 +335,7 @@
                  <isOrdered>true</isOrdered>
                </composition>
                <composition>
-                 <vodml-id>ObservingProposal.observations</vodml-id>
+                 <vodml-id>AbstractProposal.observations</vodml-id>
                  <name>observations</name>
                  <description>the proposed observations</description>	    
                  <datatype>
@@ -349,6 +349,14 @@
                </composition>
             </objectType>
             <objectType>
+               <vodml-id>ObservingProposal</vodml-id>
+               <name>ObservingProposal</name>
+               <description>a complete proposal</description>	    
+               <extends>
+                  <vodml-ref>proposal:AbstractProposal</vodml-ref>
+               </extends>
+            </objectType>
+            <objectType>
                <vodml-id>RelatedProposal</vodml-id>
                <name>RelatedProposal</name>
                <description>a related proposal</description>	    
@@ -357,7 +365,7 @@
                  <name>proposal</name>
                  <description>the related proposal</description>	    
                  <datatype>
-                   <vodml-ref>proposal:ObservingProposal</vodml-ref>
+                   <vodml-ref>proposal:AbstractProposal</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>

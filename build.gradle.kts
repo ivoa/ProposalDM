@@ -1,6 +1,6 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.5.10"
+        id("net.ivoa.vo-dml.vodmltools") version "0.5.11"
         `maven-publish`
         id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
         signing
@@ -120,7 +120,7 @@ dependencies {
 
         testImplementation("com.h2database:h2:2.1.214") // try out h2
 //        testImplementation("org.apache.derby:derby:10.14.2.0")
-        testImplementation("org.javastro:jaxbjpa-utils:0.1.2")
+        testImplementation("org.javastro:jaxbjpa-utils:0.2.3")
 
         testRuntimeOnly("org.postgresql:postgresql:42.3.3")
 }

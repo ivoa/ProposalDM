@@ -57,7 +57,8 @@ public class FullExample {
     public void saveTodB(EntityManager em) {
         model.management().persistRefs(em);
         em.flush();
-        for(Class cc:model.descriptor().contentClasses())
+        em.persist(proposal);
+        for(Class cc:model.management().description().contentClasses())
         {
             for(Object c:model.getContent(cc))
             {

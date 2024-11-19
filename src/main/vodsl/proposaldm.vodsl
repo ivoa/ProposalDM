@@ -21,7 +21,7 @@ observations, although the intention is that information about targets etc. coul
  	Survey "Part of a large programme" 	
  }
  
- otype ObservingProposal "a complete proposal"
+ abstract otype AbstractProposal "base proposal"
  {
  	  ^title: ivoa:string   "the proposal title" ;
     summary: ivoa:string   "a short summary/abstract of the proposal" ;
@@ -39,10 +39,14 @@ observations, although the intention is that information about targets etc. coul
     
  }
  
+ otype ObservingProposal -> AbstractProposal "a complete proposal" {
+ 	
+ }
+ 
  
  otype RelatedProposal "a related proposal" // note that this is being done to follow the vodml aggregation pattern
  {
- 	proposal references ObservingProposal "the related proposal" ;
+ 	proposal references AbstractProposal "the related proposal" ;
  	//IMPL could also put information about the type of relationship
  }
  
