@@ -76,7 +76,7 @@ observations, although the intention is that information about targets etc. coul
  {
  	name: ivoa:string "The name of the organization";
  	address : ivoa:string "";
- 	ivoid : ivoa:ivorn @? "the registry identifier for the organization"; 	// IMPL perhaps do this more
+ 	ivoid : ivoa:ivoid @? "the registry identifier for the organization"; 	// IMPL perhaps do this more
  	wikiId : WikiDataId @? "the wikidata id for the Organization";
  	
  }

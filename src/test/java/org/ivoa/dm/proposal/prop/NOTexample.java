@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.ivoa.dm.ivoa.Ivorn;
+import org.ivoa.dm.ivoa.Ivoid;
 import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.proposal.management.AllocatedBlock;
 import org.ivoa.dm.proposal.management.AllocatedProposal;
@@ -115,7 +115,7 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
          
           observatory = createObservatory(obs -> {
             obs.address = "on earth";
-            obs.ivoid = new Ivorn("ivo://obs/anobs");
+            obs.ivoid = new Ivoid("ivo://obs/anobs");
             obs.homePage="https://www.not.iac.es";
             obs.name = "Nordic Optical Telescope";
             obs.telescopes = Arrays.asList(telescopes);

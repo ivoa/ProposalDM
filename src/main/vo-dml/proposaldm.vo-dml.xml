@@ -12,7 +12,7 @@
       <title>Proposal</title>
       <author>Paul Harrison</author>
       <version>0.6</version>
-      <lastModified>2024-11-17T17:18:18Z</lastModified>
+      <lastModified>2024-11-19T14:08:21Z</lastModified>
       <import>
         <name>null</name><!--should not be needed in modern vo-dml -->
         <url>IVOA-v1.0.vo-dml.xml</url>
@@ -500,7 +500,7 @@
                  <name>ivoid</name>
                  <description>the registry identifier for the organization</description>	    
                  <datatype>
-                    <vodml-ref>ivoa:ivorn</vodml-ref>
+                    <vodml-ref>ivoa:ivoid</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>0</minOccurs>

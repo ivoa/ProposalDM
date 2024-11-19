@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.function.Consumer;
 
-import org.ivoa.dm.ivoa.Ivorn;
+import org.ivoa.dm.ivoa.Ivoid;
 import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.ivoa.StringIdentifier;
 import org.ivoa.dm.proposal.management.CommitteeMember;
@@ -33,8 +33,8 @@ public abstract class BaseExample {
 
     protected   final  SpaceSys ICRS_SYS = new SpaceSys().withFrame(new SpaceFrame(new StdRefLocation("TOPOCENTER"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
     protected   final Organization[] institutes = {
-            new Organization("org", "org address",new Ivorn("ivo://org/anorg"), null),//TODO is null same as not setting?
-            new Organization("org2", "org2 address",new Ivorn("ivo://org/org2"), null)
+            new Organization("org", "org address",new Ivoid("ivo://org/anorg"), null),//TODO is null same as not setting?
+            new Organization("org2", "org2 address",new Ivoid("ivo://org/org2"), null)
 
     };
 
