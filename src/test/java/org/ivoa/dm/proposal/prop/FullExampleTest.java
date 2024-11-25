@@ -15,11 +15,14 @@ import java.util.List;
 
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
+import org.ivoa.dm.proposal.management.SubmittedProposal;
 import org.ivoa.vodml.testing.AutoDBRoundTripTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import jakarta.persistence.TypedQuery;
 
 /**
  * Test the FullExample .
@@ -86,9 +89,9 @@ class FullExampleTest extends AutoDBRoundTripTest<ProposalManagementModel, Long,
      */
     @Override
     public void testModel(ProposalManagementModel m) {
-      List<ObservingProposal> props = m.getContent(ObservingProposal.class);
+      List<ProposalCycle> props = m.getContent(ProposalCycle.class);
       assertTrue(props.size() > 0);
-      assertTrue(props.stream().filter(p -> p.submitted ==null?true:!p.submitted).count()> 0, "at least one unsubmitted proposal");
+      assertTrue(props.stream().filter(p -> !p.getSubmittedProposals().isEmpty()).count()> 0, "at least one submitted proposal");
     }
 
 
@@ -103,6 +106,18 @@ class FullExampleTest extends AutoDBRoundTripTest<ProposalManagementModel, Long,
         example.saveTodB(em);
         em.getTransaction().commit();
         dumpDbData(em, "fullexample.sql");
+        TypedQuery<ObservingProposal> qp = em.createQuery("SELECT o FROM ObservingProposal o ", ObservingProposal.class);
+        List<ObservingProposal> proposals = qp.getResultList();
+        assertEquals(1,proposals.size(), "number of unsubmitted proposals");
+        TypedQuery<SubmittedProposal> qs = em.createQuery("SELECT o FROM SubmittedProposal o ", SubmittedProposal.class);
+        List<SubmittedProposal> submittedProposals = qs.getResultList();
+        assertEquals(2, submittedProposals.size(), "number of submitted proposals");   
+        TypedQuery<Target> qsrc = em.createQuery("SELECT o FROM Target o",Target.class);
+        List<Target> targets = qsrc.getResultList();
+        assertEquals(3, targets.size(), "number of targets");
+       
+        
+        
     }
 
 }

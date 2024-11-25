@@ -280,7 +280,10 @@ public void testObservationTarget() {
   private ProposalCycle doTacWork() {
         final ProposalCycle cycle = ex.getCycle();
         ObservingProposal prop = ex.getProposal();
-        SubmittedProposal sprop = ex.submitProposal(cloneProposal(prop));
+        ProposalModel pm = new ProposalModel();
+        pm.createContext();
+        SubmittedProposal sprop = ex.submitProposal(prop);
+        sprop.updateClonedReferences();
         ex.allocateProposal(sprop);
         return cycle;
  

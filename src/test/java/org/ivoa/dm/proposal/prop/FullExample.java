@@ -40,11 +40,12 @@ public class FullExample {
        proposal = new ExampleProposal().getProposal();
        for(TACFunctions obs : observatories) {          
            ObservingProposal clonedProposal = AbstractProposalTest.cloneProposal(proposal);
-           clonedProposal.setSubmitted(true);          
+           ProposalManagementModel m = new ProposalManagementModel();
+           m.createContext();
            SubmittedProposal submittedProposal = obs.submitProposal(clonedProposal);
+           submittedProposal.updateClonedReferences();
            obs.allocateProposal(submittedProposal);
            model.addContent(obs.getCycle());
-           model.addReference(proposal); // add back the 'original' proposal
        }
     }
 
@@ -56,7 +57,8 @@ public class FullExample {
     public void saveTodB(EntityManager em) {
         model.management().persistRefs(em);
         em.flush();
-        for(Class cc:model.descriptor().contentClasses())
+        em.persist(proposal);
+        for(Class cc:model.management().description().contentClasses())
         {
             for(Object c:model.getContent(cc))
             {

@@ -28,6 +28,7 @@ import org.ivoa.dm.proposal.management.SubmittedProposal;
 import org.ivoa.dm.proposal.management.TAC;
 import org.ivoa.dm.stc.coords.SpaceSys;
 
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 
@@ -173,26 +174,57 @@ class EmerlinExampleTest extends AbstractProposalTest {
           TAC ntac2 = ProposalModel.jsonMapper().readValue(njn, TAC.class);
                   
       }
-   
-   @org.junit.jupiter.api.Test 
+
+   @org.junit.jupiter.api.Test
    public  void testDbQuery() throws JsonProcessingException {
-       
-        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
-        em.getTransaction().begin();
-  
-        final ProposalCycle cycle = ex.getCycle();
-        cycle.persistRefs(em);
-        em.persist(cycle);
-        em.getTransaction().commit();
-        
-       TypedQuery<TAC> q = em.createQuery("SELECT o FROM TAC o", TAC.class);
-       TAC tac = q.getSingleResult();
-       System.out.println(tac.getMembers().get(0).getId());
-       String json = ProposalManagementModel.jsonMapper().writeValueAsString(tac);
-       System.out.println(json);
+
+      jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+      em.getTransaction().begin();
+
+      final ProposalCycle cycle = ex.getCycle();
+      cycle.persistRefs(em);
+      em.persist(cycle);
+      em.getTransaction().commit();
+
+      TypedQuery<TAC> q = em.createQuery("SELECT o FROM TAC o", TAC.class);
+      TAC tac = q.getSingleResult();
+      System.out.println(tac.getMembers().get(0).getId());
+      String json = ProposalManagementModel.jsonMapper().writeValueAsString(tac);
+      System.out.println(json);
 
    }
-   
+   @org.junit.jupiter.api.Test
+   public  void testDbDelete() throws JsonProcessingException {
+
+      jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+      em.getTransaction().begin();
+
+      final ProposalCycle cycle = ex.getCycle();
+      ObservingProposal prop = ex.getProposal();
+      prop.persistRefs(em);
+      cycle.persistRefs(em);
+      em.persist(cycle);
+      em.persist(prop);
+      em.getTransaction().commit();
+
+      TypedQuery<TAC> q = em.createQuery("SELECT o FROM TAC o", TAC.class);
+      TAC tac = q.getSingleResult();
+      System.out.println(tac.getMembers().get(0).getId());
+      String json = ProposalManagementModel.jsonMapper().writeValueAsString(tac);
+      System.out.println(json);
+      
+      
+      
+      TypedQuery<ObservingProposal> qp = em.createQuery("select o from ObservingProposal o", ObservingProposal.class);
+      ObservingProposal propIn = qp.getSingleResult();
+      propIn.forceLoad();
+     em.getTransaction().begin();
+     
+      propIn.delete(em);
+      em.getTransaction().commit();
+
+   }
+
    @org.junit.jupiter.api.Test 
    public void testListupdate() {
         jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());

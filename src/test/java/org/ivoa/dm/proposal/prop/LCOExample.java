@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.ivoa.dm.ivoa.Ivorn;
+import org.ivoa.dm.ivoa.Ivoid;
 import org.ivoa.dm.proposal.management.AllocatedProposal;
 import org.ivoa.dm.proposal.management.AllocationGrade;
 import org.ivoa.dm.proposal.management.AvailableResources;
@@ -50,7 +50,7 @@ public class LCOExample extends BaseObservatoryExample implements TACFunctions {
           
           observatory = createObservatory(obs -> {
             obs.address = "on earth";
-            obs.ivoid = new Ivorn("ivo://obs/anobs");
+            obs.ivoid = new Ivoid("ivo://obs/anobs");
             obs.name = "Las Cumbres Observatory";
             obs.telescopes = Arrays.asList(telescopes);
             

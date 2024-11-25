@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.function.Consumer;
 
-import org.ivoa.dm.ivoa.Ivorn;
+import org.ivoa.dm.ivoa.Ivoid;
 import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.ivoa.StringIdentifier;
 import org.ivoa.dm.proposal.management.CommitteeMember;
@@ -20,7 +20,6 @@ import org.ivoa.dm.proposal.management.Reviewer;
 import org.ivoa.dm.proposal.management.TAC;
 import org.ivoa.dm.proposal.management.TacRole;
 import org.ivoa.dm.proposal.management.Telescope;
-import org.ivoa.dm.stc.coords.CartesianCoordSpace;
 import org.ivoa.dm.stc.coords.SpaceFrame;
 import org.ivoa.dm.stc.coords.SpaceSys;
 import org.ivoa.dm.stc.coords.StdRefLocation;
@@ -29,13 +28,13 @@ import org.ivoa.vodml.stdtypes.Unit;
 public abstract class BaseExample {
     /** SPACE_SYS.
      */
-    
-    protected  final  SpaceSys GEO_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTER"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library should have some standard model instances...
+    //IMPL - removed the CartesianCoordSpace from the definitions below because you have to include the axis definitions which is a pain....
+    protected  final  SpaceSys GEO_SYS = new SpaceSys().withFrame(new SpaceFrame(new StdRefLocation("TOPOCENTER"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library should have some standard model instances...
 
-    protected   final  SpaceSys ICRS_SYS = new SpaceSys(new CartesianCoordSpace(),new SpaceFrame(new StdRefLocation("TOPOCENTER"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
+    protected   final  SpaceSys ICRS_SYS = new SpaceSys().withFrame(new SpaceFrame(new StdRefLocation("TOPOCENTER"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
     protected   final Organization[] institutes = {
-            new Organization("org", "org address",new Ivorn("ivo://org/anorg"), null),//TODO is null same as not setting?
-            new Organization("org2", "org2 address",new Ivorn("ivo://org/org2"), null)
+            new Organization("org", "org address",new Ivoid("ivo://org/anorg"), null),//TODO is null same as not setting?
+            new Organization("org2", "org2 address",new Ivoid("ivo://org/org2"), null)
 
     };
 

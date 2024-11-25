@@ -5,7 +5,7 @@ package org.ivoa.dm.proposal.prop;
 
 import org.ivoa.dm.proposal.management.*;
 import org.ivoa.dm.stc.coords.PolStateEnum;
-import org.ivoa.dm.ivoa.Ivorn;
+import org.ivoa.dm.ivoa.Ivoid;
 import org.ivoa.dm.ivoa.RealQuantity;
 
 import java.util.*;
@@ -69,7 +69,7 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
                  Stream.of(telescopes).filter(t -> !notK.contains(t.getName())).map(t -> new TelescopeArrayMember(t)).collect(Collectors.toList()));
        observatory = createObservatory(obs -> {
             obs.address = "on earth";
-            obs.ivoid = new Ivorn("ivo://obs/anobs");
+            obs.ivoid = new Ivoid("ivo://obs/anobs");
             obs.name = "Jodrell Bank";
             obs.homePage = "https://www.e-merlin.ac.uk";
             obs.telescopes = Arrays.asList(telescopes);
@@ -120,10 +120,10 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
     public SubmittedProposal submitProposal(ObservingProposal frozenProposal) {
           // "submit" proposal
       
-        frozenProposal.setSubmitted(true);
         List<ObservationConfiguration> obsConfigs = makeList(
                 new ObservationConfiguration(frozenProposal.getObservations(),obsModes[0])
                 );
+        
         
         final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
         cycle.setSubmittedProposals(

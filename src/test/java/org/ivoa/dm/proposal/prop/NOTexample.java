@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.ivoa.dm.ivoa.Ivorn;
+import org.ivoa.dm.ivoa.Ivoid;
 import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.proposal.management.AllocatedBlock;
 import org.ivoa.dm.proposal.management.AllocatedProposal;
@@ -45,11 +45,7 @@ import org.ivoa.dm.stc.coords.PolStateEnum;
  */
 public class NOTexample extends BaseObservatoryExample implements TACFunctions {
 
- 
-
-    private static final double c = 299792458.0;
-    
-    
+    private static final double c = 299792458.0;        
     /**
      * @param centwl in nm
      * @param fwhm in nm
@@ -119,7 +115,7 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
          
           observatory = createObservatory(obs -> {
             obs.address = "on earth";
-            obs.ivoid = new Ivorn("ivo://obs/anobs");
+            obs.ivoid = new Ivoid("ivo://obs/anobs");
             obs.homePage="https://www.not.iac.es";
             obs.name = "Nordic Optical Telescope";
             obs.telescopes = Arrays.asList(telescopes);
@@ -177,7 +173,6 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
      */
     @Override
     public SubmittedProposal submitProposal(ObservingProposal frozenProposal) {
-      frozenProposal.setSubmitted(true);
         List<ObservationConfiguration> obsConfigs = makeList(
                 new ObservationConfiguration(frozenProposal.getObservations(),obsModes[0])
                 );
