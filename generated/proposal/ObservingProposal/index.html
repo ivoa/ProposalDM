@@ -720,6 +720,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../AbstractProposal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AbstractProposal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../CalibrationObservation/" class="md-nav__link">
         
   
@@ -3917,11 +3938,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ivoa/ivorn/" class="md-nav__link">
+      <a href="../../ivoa/ivoid/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    ivorn
+    ivoid
   </span>
   
 
@@ -4155,35 +4176,16 @@
 
 
 <h1 id="objecttype-observingproposal">objectType ObservingProposal</h1>
+<p>extends <a href="../AbstractProposal/" title="objectType">AbstractProposal</a></p>
 <p>a complete proposal</p>
 <pre class="mermaid"><code>classDiagram
 
         class ObservingProposal{
-        ivoa:string title
-ivoa:string summary
-proposal:ProposalKind kind
-ivoa:boolean submitted
 
         }
-        ObservingProposal *-- "1" Justification : scientificJustification
-ObservingProposal *-- "1" Justification : technicalJustification
-ObservingProposal *-- "1..*" Investigator : investigators
-ObservingProposal *-- "0..*" RelatedProposal : relatedProposals
-ObservingProposal *-- "0..*" SupportingDocument : supportingDocuments
-ObservingProposal *-- "0..*" Target : targets
-ObservingProposal *-- "0..*" Field : fields
-ObservingProposal *-- "1..*" TechnicalGoal : technicalGoals
-ObservingProposal *-- "1..*" Observation : observations
+        ObservingProposal --|&gt; AbstractProposal
 
-link Justification "../Justification"
-link Justification "../Justification"
-link Investigator "../Investigator"
-link RelatedProposal "../RelatedProposal"
-link SupportingDocument "../SupportingDocument"
-link Target "../Target"
-link Field "../Field"
-link TechnicalGoal "../TechnicalGoal"
-link Observation "../Observation"</code></pre>
+link AbstractProposal "../AbstractProposal"</code></pre>
 <h2 id="members">Members</h2>
 <table>
 <thead>
@@ -4196,87 +4198,15 @@ link Observation "../Observation"</code></pre>
 </thead>
 <tbody>
 <tr>
-<td>title</td>
-<td><a href="../../ivoa/string/" title="primitiveType string - A string, represented as an array of characters treated as a single, primitive value. Ala Java, a string can not be updated, that is any update leads to a different string. However in contrast to Java we assume that two strings that are identical in all their constitutent characters are the same. I.e. string has value type semantics.">ivoa:string</a></td>
 <td></td>
-<td>the proposal title</td>
-</tr>
-<tr>
-<td>summary</td>
-<td><a href="../../ivoa/string/" title="primitiveType string - A string, represented as an array of characters treated as a single, primitive value. Ala Java, a string can not be updated, that is any update leads to a different string. However in contrast to Java we assume that two strings that are identical in all their constitutent characters are the same. I.e. string has value type semantics.">ivoa:string</a></td>
 <td></td>
-<td>a short summary/abstract of the proposal</td>
-</tr>
-<tr>
-<td>scientificJustification</td>
-<td><a href="../Justification/" title="objectType">Justification</a></td>
 <td></td>
-<td>scientific justification</td>
-</tr>
-<tr>
-<td>technicalJustification</td>
-<td><a href="../Justification/" title="objectType">Justification</a></td>
 <td></td>
-<td>technical justification</td>
-</tr>
-<tr>
-<td>investigators</td>
-<td><a href="../Investigator/" title="objectType">Investigator</a></td>
-<td>1 or more</td>
-<td>the person(s) making the proposal</td>
-</tr>
-<tr>
-<td>kind</td>
-<td><a href="../ProposalKind/" title="enumeration">ProposalKind</a></td>
-<td></td>
-<td>the type of proposal</td>
-</tr>
-<tr>
-<td>relatedProposals</td>
-<td><a href="../RelatedProposal/" title="objectType">RelatedProposal</a></td>
-<td>0 or more</td>
-<td></td>
-</tr>
-<tr>
-<td>supportingDocuments</td>
-<td><a href="../SupportingDocument/" title="objectType">SupportingDocument</a></td>
-<td>0 or more</td>
-<td>any additional documents</td>
-</tr>
-<tr>
-<td>targets</td>
-<td><a href="../Target/" title="objectType">Target</a></td>
-<td>0 or more</td>
-<td>the targets of the proposal</td>
-</tr>
-<tr>
-<td>fields</td>
-<td><a href="../Field/" title="objectType">Field</a></td>
-<td>0 or more</td>
-<td>the fields observed in the proposal</td>
-</tr>
-<tr>
-<td>technicalGoals</td>
-<td><a href="../TechnicalGoal/" title="objectType">TechnicalGoal</a></td>
-<td>1 or more</td>
-<td>the technical goals of the proposal</td>
-</tr>
-<tr>
-<td>observations</td>
-<td><a href="../Observation/" title="objectType">Observation</a></td>
-<td>1 or more</td>
-<td>the proposed observations</td>
-</tr>
-<tr>
-<td>submitted</td>
-<td><a href="../../ivoa/boolean/" title="primitiveType boolean - The standard boolean, having values true or false.">ivoa:boolean</a></td>
-<td>optional</td>
-<td>whether the proposal is submitted</td>
 </tr>
 </tbody>
 </table>
 <h2 id="references-detail">References Detail</h2>
-<p>This is referred to by <a href="../RelatedProposal/" title="objectType">RelatedProposal</a>, <a href="../../proposalManagement/SubmittedProposal/" title="objectType">proposalManagement:SubmittedProposal</a>
+<p>This is referred to by <a href="../RelatedProposal/" title="objectType">RelatedProposal</a>
 Has contained reference(s) <a href="../Target/" title="objectType">Target</a>, <a href="../Field/" title="objectType">Field</a>, <a href="../TechnicalGoal/" title="objectType">TechnicalGoal</a> in the containment hierarchy.</p>
 
 

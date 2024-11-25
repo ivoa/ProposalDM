@@ -12,12 +12,6 @@
           "type" : "object",
           "properties" : {
             "$comment" : "placeholder to make commas easier!",
-            "proposal:ObservingProposal" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
-              }
-            },
             "proposal:Organization" : {
               "type" : "array",
               "items" : {
@@ -60,6 +54,8 @@
           "type" : "array",
           "items" : {
             "anyOf" : [ {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
+            }, {
               "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ProposalCycle"
             }, {
               "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ResourceBlock"
@@ -513,50 +509,43 @@
       "required" : [ "observation", "mode" ]
     },
     "SubmittedProposal" : {
-      "type" : "object",
-      "description" : "",
-      "properties" : {
-        "$comment" : "placeholder to make commas easier!",
-        "@type" : {
-          "type" : "string"
-        },
-        "submissionDate" : {
-          "format" : "date-time",
-          "description" : ""
-        },
-        "successful" : {
-          "type" : "boolean",
-          "description" : ""
-        },
-        "reviewsCompleteDate" : {
-          "format" : "date-time",
-          "description" : ""
-        },
-        "config" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservationConfiguration"
-          }
-        },
-        "reviews" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ProposalReview"
-          }
-        },
-        "proposal" : {
-          "oneOf" : [ {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/AbstractProposal"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "submissionDate" : {
+            "format" : "date-time",
+            "description" : ""
+          },
+          "successful" : {
+            "type" : "boolean",
+            "description" : ""
+          },
+          "reviewsCompleteDate" : {
+            "format" : "date-time",
+            "description" : ""
+          },
+          "config" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservationConfiguration"
+            }
+          },
+          "reviews" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ProposalReview"
+            }
+          },
+          "_id" : {
             "type" : "number"
-          }, {
-            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
-          } ],
-          "description" : ""
+          }
         },
-        "_id" : {
-          "type" : "number"
-        }
-      },
-      "required" : [ "proposal", "submissionDate", "successful", "reviewsCompleteDate", "reviews" ]
+        "required" : [ "submissionDate", "successful", "reviewsCompleteDate" ]
+      } ]
     },
     "AllocatedProposal" : {
       "type" : "object",

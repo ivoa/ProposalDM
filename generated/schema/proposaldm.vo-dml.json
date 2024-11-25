@@ -12,10 +12,10 @@
           "type" : "object",
           "properties" : {
             "$comment" : "placeholder to make commas easier!",
-            "proposal:ObservingProposal" : {
+            "proposal:AbstractProposal" : {
               "type" : "array",
               "items" : {
-                "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
+                "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/AbstractProposal"
               }
             },
             "proposal:Organization" : {
@@ -51,7 +51,7 @@
   },
   "$defs" : {
     "$comment" : "placeholder to make commas easier!",
-    "ObservingProposal" : {
+    "AbstractProposal" : {
       "type" : "object",
       "description" : "",
       "properties" : {
@@ -69,10 +69,6 @@
         },
         "kind" : {
           "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ProposalKind",
-          "description" : ""
-        },
-        "submitted" : {
-          "type" : "boolean",
           "description" : ""
         },
         "scientificJustification" : {
@@ -151,6 +147,21 @@
       },
       "required" : [ "title", "summary", "scientificJustification", "technicalJustification", "investigators", "kind", "technicalGoals", "observations" ]
     },
+    "ObservingProposal" : {
+      "allOf" : [ {
+        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/AbstractProposal"
+      }, {
+        "type" : "object",
+        "description" : "",
+        "properties" : {
+          "$comment" : "placeholder to make commas easier!",
+          "_id" : {
+            "type" : "number"
+          }
+        },
+        "required" : [ ]
+      } ]
+    },
     "RelatedProposal" : {
       "type" : "object",
       "description" : "",
@@ -163,7 +174,7 @@
           "oneOf" : [ {
             "type" : "number"
           }, {
-            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/AbstractProposal"
           } ],
           "description" : ""
         },
@@ -254,7 +265,7 @@
           "description" : ""
         },
         "ivoid" : {
-          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/ivorn",
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/ivoid",
           "description" : ""
         },
         "wikiId" : {

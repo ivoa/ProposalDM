@@ -56,9 +56,14 @@ digraph GVmap {
     label = "{&lt;&lt;datatype&gt;&gt;\nSpectralWindowSetup|+start : ivoa:RealQuantity\l+end : ivoa:RealQuantity\l+spectralResolution : ivoa:RealQuantity\l+isSkyFrequency : ivoa:boolean\l+polarization : coords:PolStateEnum\l}"
     fillcolor="/set312/1"
     ] ;
+  "proposal:AbstractProposal" [
+    URL="../proposal/AbstractProposal"
+    label = "{AbstractProposal|+title : ivoa:string\l+summary : ivoa:string\l+kind : proposal:ProposalKind\l}"
+    fillcolor="/set312/1"
+    ] ;
   "proposal:ObservingProposal" [
     URL="../proposal/ObservingProposal"
-    label = "{ObservingProposal|+title : ivoa:string\l+summary : ivoa:string\l+kind : proposal:ProposalKind\l+submitted : ivoa:boolean\l}"
+    label = "{ObservingProposal}"
     fillcolor="/set312/1"
     ] ;
   "proposal:RelatedProposal" [
@@ -78,7 +83,7 @@ digraph GVmap {
     ] ;
   "proposal:Organization" [
     URL="../proposal/Organization"
-    label = "{Organization|+name : ivoa:string\l+address : ivoa:string\l+ivoid : ivoa:ivorn\l+wikiId : proposal:WikiDataId\l}"
+    label = "{Organization|+name : ivoa:string\l+address : ivoa:string\l+ivoid : ivoa:ivoid\l+wikiId : proposal:WikiDataId\l}"
     fillcolor="/set312/1"
     ] ;
   "proposal:Justification" [
@@ -195,6 +200,7 @@ digraph GVmap {
  
     edge [color="red", arrowtail="none", arrowhead="empty"]
     "proposal:WikiDataId" -> "ivoa:stringIdentifier" ;
+  "proposal:ObservingProposal" -> "proposal:AbstractProposal" ;
   "proposal:CelestialTarget" -> "proposal:Target" ;
   "proposal:SolarSystemTarget" -> "proposal:Target" ;
   "proposal:TargetField" -> "proposal:Field" ;
@@ -210,15 +216,15 @@ digraph GVmap {
   
  
     edge [color="blue", arrowhead="open", arrowtail="diamond",dir="both",fontsize="10"]
-    "proposal:ObservingProposal" -> "proposal:Justification" [headlabel="1",label="scientificJustification",labelfontsize=10] ;
-  "proposal:ObservingProposal" -> "proposal:Justification" [headlabel="1",label="technicalJustification",labelfontsize=10] ;
-  "proposal:ObservingProposal" -> "proposal:Investigator" [headlabel="1..*",label="investigators",labelfontsize=10] ;
-  "proposal:ObservingProposal" -> "proposal:RelatedProposal" [headlabel="0..*",label="relatedProposals",labelfontsize=10] ;
-  "proposal:ObservingProposal" -> "proposal:SupportingDocument" [headlabel="0..*",label="supportingDocuments",labelfontsize=10] ;
-  "proposal:ObservingProposal" -> "proposal:Target" [headlabel="0..*",label="targets",labelfontsize=10] ;
-  "proposal:ObservingProposal" -> "proposal:Field" [headlabel="0..*",label="fields",labelfontsize=10] ;
-  "proposal:ObservingProposal" -> "proposal:TechnicalGoal" [headlabel="1..*",label="technicalGoals",labelfontsize=10] ;
-  "proposal:ObservingProposal" -> "proposal:Observation" [headlabel="1..*",label="observations",labelfontsize=10] ;
+    "proposal:AbstractProposal" -> "proposal:Justification" [headlabel="1",label="scientificJustification",labelfontsize=10] ;
+  "proposal:AbstractProposal" -> "proposal:Justification" [headlabel="1",label="technicalJustification",labelfontsize=10] ;
+  "proposal:AbstractProposal" -> "proposal:Investigator" [headlabel="1..*",label="investigators",labelfontsize=10] ;
+  "proposal:AbstractProposal" -> "proposal:RelatedProposal" [headlabel="0..*",label="relatedProposals",labelfontsize=10] ;
+  "proposal:AbstractProposal" -> "proposal:SupportingDocument" [headlabel="0..*",label="supportingDocuments",labelfontsize=10] ;
+  "proposal:AbstractProposal" -> "proposal:Target" [headlabel="0..*",label="targets",labelfontsize=10] ;
+  "proposal:AbstractProposal" -> "proposal:Field" [headlabel="0..*",label="fields",labelfontsize=10] ;
+  "proposal:AbstractProposal" -> "proposal:TechnicalGoal" [headlabel="1..*",label="technicalGoals",labelfontsize=10] ;
+  "proposal:AbstractProposal" -> "proposal:Observation" [headlabel="1..*",label="observations",labelfontsize=10] ;
   "proposal:ScienceSpectralWindow" -> "proposal:ExpectedSpectralLine" [headlabel="0..*",label="expectedSpectralLine",labelfontsize=10] ;
   "proposal:Observation" -> "proposal:ObservingConstraint" [headlabel="0..*",label="constraints",labelfontsize=10] ;
   "proposal:TechnicalGoal" -> "proposal:PerformanceParameters" [headlabel="1",label="performance",labelfontsize=10] ;
@@ -226,7 +232,7 @@ digraph GVmap {
   
  
     edge [color="green", arrowhead="open", arrowtail="none"]
-    "proposal:RelatedProposal" -> "proposal:ObservingProposal" [headlabel="1",label="proposal",labelfontsize=10] ;
+    "proposal:RelatedProposal" -> "proposal:AbstractProposal" [headlabel="1",label="proposal",labelfontsize=10] ;
   "proposal:Person" -> "proposal:Organization" [headlabel="1",label="homeInstitute",labelfontsize=10] ;
   "proposal:Investigator" -> "proposal:Person" [headlabel="1",label="person",labelfontsize=10] ;
   "proposal:Observation" -> "proposal:Target" [headlabel="0..*",label="target",labelfontsize=10] ;

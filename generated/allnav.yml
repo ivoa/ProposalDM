@@ -1,6 +1,7 @@
 - proposal model:
   - Overview: "generated/proposaldm.vo-dml.md"
   - ObjectTypes:
+    - AbstractProposal: "generated/proposal/AbstractProposal.md"
     - CalibrationObservation: "generated/proposal/CalibrationObservation.md"
     - CelestialTarget: "generated/proposal/CelestialTarget.md"
     - Ellipse: "generated/proposal/Ellipse.md"
@@ -133,7 +134,7 @@
       - datetime: "generated/ivoa/datetime.md"
       - intIdentifier: "generated/ivoa/intIdentifier.md"
       - integer: "generated/ivoa/integer.md"
-      - ivorn: "generated/ivoa/ivorn.md"
+      - ivoid: "generated/ivoa/ivoid.md"
       - nonnegativeInteger: "generated/ivoa/nonnegativeInteger.md"
       - rational: "generated/ivoa/rational.md"
       - real: "generated/ivoa/real.md"

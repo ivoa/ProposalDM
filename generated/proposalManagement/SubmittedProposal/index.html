@@ -716,6 +716,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../proposal/AbstractProposal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AbstractProposal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../proposal/CalibrationObservation/" class="md-nav__link">
         
   
@@ -3926,11 +3947,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ivoa/ivorn/" class="md-nav__link">
+      <a href="../../ivoa/ivoid/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    ivorn
+    ivoid
   </span>
   
 
@@ -4173,6 +4194,7 @@
 
 
 <h1 id="objecttype-submittedproposal">objectType SubmittedProposal</h1>
+<p>extends <a href="../../proposal/AbstractProposal/" title="objectType">proposal:AbstractProposal</a></p>
 <p>an instance of a proposal that has been submitted</p>
 <pre class="mermaid"><code>classDiagram
 
@@ -4182,11 +4204,11 @@ ivoa:boolean successful
 ivoa:datetime reviewsCompleteDate
 
         }
-        SubmittedProposal --&gt; "1" ObservingProposal : proposal
+        SubmittedProposal --|&gt; AbstractProposal
 SubmittedProposal *-- "0..*" ObservationConfiguration : config
-SubmittedProposal *-- "1..*" ProposalReview : reviews
+SubmittedProposal *-- "0..*" ProposalReview : reviews
 
-link ObservingProposal "../../proposal/ObservingProposal"
+link AbstractProposal "../../proposal/AbstractProposal"
 link ObservationConfiguration "../ObservationConfiguration"
 link ProposalReview "../ProposalReview"</code></pre>
 <h2 id="members">Members</h2>
@@ -4200,12 +4222,6 @@ link ProposalReview "../ProposalReview"</code></pre>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>proposal</td>
-<td><a href="../../proposal/ObservingProposal/" title="objectType">proposal:ObservingProposal</a></td>
-<td></td>
-<td>the proposal that was submitted</td>
-</tr>
 <tr>
 <td>config</td>
 <td><a href="../ObservationConfiguration/" title="objectType">ObservationConfiguration</a></td>
@@ -4233,16 +4249,14 @@ link ProposalReview "../ProposalReview"</code></pre>
 <tr>
 <td>reviews</td>
 <td><a href="../ProposalReview/" title="objectType">ProposalReview</a></td>
-<td>1 or more</td>
+<td>0 or more</td>
 <td>the reviews</td>
 </tr>
 </tbody>
 </table>
 <h2 id="references-detail">References Detail</h2>
-<ul>
-<li><a href="../../proposal/ObservingProposal/" title="objectType">proposal:ObservingProposal</a>  is model wide.</li>
-</ul>
-<p>This is referred to by <a href="../AllocatedProposal/" title="objectType">AllocatedProposal</a></p>
+<p>This is referred to by <a href="../../proposal/RelatedProposal/" title="objectType">proposal:RelatedProposal</a>, <a href="../AllocatedProposal/" title="objectType">AllocatedProposal</a>
+Has contained reference(s) <a href="../../proposal/Observation/" title="objectType">proposal:Observation</a>, <a href="../../proposal/Target/" title="objectType">proposal:Target</a>, <a href="../../proposal/Field/" title="objectType">proposal:Field</a>, <a href="../../proposal/TechnicalGoal/" title="objectType">proposal:TechnicalGoal</a> in the containment hierarchy.</p>
 <h2 id="containment">Containment</h2>
 <p>This is contained by <a href="../ProposalCycle/" title="objectType">ProposalCycle</a></p>
 

@@ -15,7 +15,7 @@
             
                 ,{
                 "PrimitiveTypes": [
-                {"Unit" : "generated/ivoa/Unit.md"},{"anyURI" : "generated/ivoa/anyURI.md"},{"boolean" : "generated/ivoa/boolean.md"},{"complex" : "generated/ivoa/complex.md"},{"datetime" : "generated/ivoa/datetime.md"},{"intIdentifier" : "generated/ivoa/intIdentifier.md"},{"integer" : "generated/ivoa/integer.md"},{"ivorn" : "generated/ivoa/ivorn.md"},{"nonnegativeInteger" : "generated/ivoa/nonnegativeInteger.md"},{"rational" : "generated/ivoa/rational.md"},{"real" : "generated/ivoa/real.md"},{"string" : "generated/ivoa/string.md"},{"stringIdentifier" : "generated/ivoa/stringIdentifier.md"}
+                {"Unit" : "generated/ivoa/Unit.md"},{"anyURI" : "generated/ivoa/anyURI.md"},{"boolean" : "generated/ivoa/boolean.md"},{"complex" : "generated/ivoa/complex.md"},{"datetime" : "generated/ivoa/datetime.md"},{"intIdentifier" : "generated/ivoa/intIdentifier.md"},{"integer" : "generated/ivoa/integer.md"},{"ivoid" : "generated/ivoa/ivoid.md"},{"nonnegativeInteger" : "generated/ivoa/nonnegativeInteger.md"},{"rational" : "generated/ivoa/rational.md"},{"real" : "generated/ivoa/real.md"},{"string" : "generated/ivoa/string.md"},{"stringIdentifier" : "generated/ivoa/stringIdentifier.md"}
                 ]
                 }
             

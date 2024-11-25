@@ -154,19 +154,19 @@
 <path fill="none" stroke="red" d="M211.49,-134.46C198.56,-124.38 182,-111.48 167.74,-100.36"/>
 <polygon fill="none" stroke="red" points="169.99,-97.67 159.95,-94.28 165.69,-103.19 169.99,-97.67"/>
 </g>
-<!-- ivoa:ivorn -->
+<!-- ivoa:ivoid -->
 <g id="node13" class="node">
-<title>ivoa:ivorn</title>
-<g id="a_node13"><a xlink:href="../ivoa/ivorn" xlink:title="{&amp;lt;&amp;lt;primitive type&amp;gt;&amp;gt;\nivorn}">
+<title>ivoa:ivoid</title>
+<g id="a_node13"><a xlink:href="../ivoa/ivoid" xlink:title="{&amp;lt;&amp;lt;primitive type&amp;gt;&amp;gt;\nivoid}">
 <polygon fill="#8dd3c7" stroke="black" points="97,-216.88 97,-252.88 176,-252.88 176,-216.88 97,-216.88"/>
 <text text-anchor="middle" x="136.5" y="-237.28" font-family="Times,serif" font-size="8.00">&lt;&lt;primitive type&gt;&gt;</text>
-<text text-anchor="middle" x="136.5" y="-227.53" font-family="Times,serif" font-size="8.00">ivorn</text>
+<text text-anchor="middle" x="136.5" y="-227.53" font-family="Times,serif" font-size="8.00">ivoid</text>
 </a>
 </g>
 </g>
-<!-- ivoa:ivorn&#45;&gt;ivoa:anyURI -->
+<!-- ivoa:ivoid&#45;&gt;ivoa:anyURI -->
 <g id="edge5" class="edge">
-<title>ivoa:ivorn&#45;&gt;ivoa:anyURI</title>
+<title>ivoa:ivoid&#45;&gt;ivoa:anyURI</title>
 <path fill="none" stroke="red" d="M136.5,-216.46C136.5,-206.47 136.5,-193.68 136.5,-182.25"/>
 <polygon fill="none" stroke="red" points="140,-182.52 136.5,-172.52 133,-182.52 140,-182.52"/>
 </g>

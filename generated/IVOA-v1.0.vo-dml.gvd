@@ -79,9 +79,9 @@ digraph GVmap {
     label = "{&lt;&lt;primitive type&gt;&gt;\nstringIdentifier}"
     fillcolor="/set312/1"
     ] ;
-  "ivoa:ivorn"[
-    URL="../ivoa/ivorn"
-    label = "{&lt;&lt;primitive type&gt;&gt;\nivorn}"
+  "ivoa:ivoid"[
+    URL="../ivoa/ivoid"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nivoid}"
     fillcolor="/set312/1"
     ] ;
   "ivoa:IntegerQuantity" [
@@ -106,7 +106,7 @@ digraph GVmap {
   "ivoa:anyURI" -> "ivoa:string" ;
   "ivoa:intIdentifier" -> "ivoa:integer" ;
   "ivoa:stringIdentifier" -> "ivoa:string" ;
-  "ivoa:ivorn" -> "ivoa:anyURI" ;
+  "ivoa:ivoid" -> "ivoa:anyURI" ;
   "ivoa:IntegerQuantity" -> "ivoa:Quantity" ;
   "ivoa:RealQuantity" -> "ivoa:Quantity" ;
     
