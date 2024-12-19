@@ -13,7 +13,7 @@
 <!-- proposal:Organization -->
 <g id="node1" class="node">
 <title>proposal:Organization</title>
-<g id="a_node1"><a xlink:href="#Organization" xlink:title="{proposal:Organization}">
+<g id="a_node1"><a xlink:href="not known#Organization" xlink:title="{proposal:Organization}">
 <polygon fill="grey" stroke="black" points="232.44,-431.25 232.44,-467.25 318.94,-467.25 318.94,-431.25 232.44,-431.25"/>
 <text text-anchor="middle" x="275.69" y="-446.65" font-family="Times,serif" font-size="8.00">proposal:Organization</text>
 </a>
@@ -22,7 +22,7 @@
 <!-- proposal:Person -->
 <g id="node2" class="node">
 <title>proposal:Person</title>
-<g id="a_node2"><a xlink:href="#Person" xlink:title="{proposal:Person}">
+<g id="a_node2"><a xlink:href="not known#Person" xlink:title="{proposal:Person}">
 <polygon fill="grey" stroke="black" points="742.19,-76.25 742.19,-112.25 809.19,-112.25 809.19,-76.25 742.19,-76.25"/>
 <text text-anchor="middle" x="775.69" y="-91.65" font-family="Times,serif" font-size="8.00">proposal:Person</text>
 </a>
@@ -31,7 +31,7 @@
 <!-- proposal:Observation -->
 <g id="node3" class="node">
 <title>proposal:Observation</title>
-<g id="a_node3"><a xlink:href="#Observation" xlink:title="{proposal:Observation}">
+<g id="a_node3"><a xlink:href="not known#Observation" xlink:title="{proposal:Observation}">
 <polygon fill="grey" stroke="black" points="374.56,-189.25 374.56,-225.25 458.81,-225.25 458.81,-189.25 374.56,-189.25"/>
 <text text-anchor="middle" x="416.69" y="-204.65" font-family="Times,serif" font-size="8.00">proposal:Observation</text>
 </a>
@@ -40,7 +40,7 @@
 <!-- proposal:AbstractProposal -->
 <g id="node4" class="node">
 <title>proposal:AbstractProposal</title>
-<g id="a_node4"><a xlink:href="#AbstractProposal" xlink:title="{proposal:AbstractProposal}">
+<g id="a_node4"><a xlink:href="not known#AbstractProposal" xlink:title="{proposal:AbstractProposal}">
 <polygon fill="grey" stroke="black" points="558.31,-297.38 558.31,-333.38 659.06,-333.38 659.06,-297.38 558.31,-297.38"/>
 <text text-anchor="middle" x="608.69" y="-312.77" font-family="Times,serif" font-size="8.00">proposal:AbstractProposal</text>
 </a>

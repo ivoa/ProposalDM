@@ -21,28 +21,28 @@ digraph GVmap {
 	style=filled] 
     
   "proposal:Organization" [
-    URL="#Organization"
+    URL="not known#Organization"
     label = "{proposal:Organization}"
     fillcolor="grey"
     ] ;
       
     
   "proposal:Person" [
-    URL="#Person"
+    URL="not known#Person"
     label = "{proposal:Person}"
     fillcolor="grey"
     ] ;
       
     
   "proposal:Observation" [
-    URL="#Observation"
+    URL="not known#Observation"
     label = "{proposal:Observation}"
     fillcolor="grey"
     ] ;
       
     
   "proposal:AbstractProposal" [
-    URL="#AbstractProposal"
+    URL="not known#AbstractProposal"
     label = "{proposal:AbstractProposal}"
     fillcolor="grey"
     ] ;

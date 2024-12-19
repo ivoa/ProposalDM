@@ -422,67 +422,6 @@
             </y:UMLClassNode>
          </data>
       </node>
-      <node id="coords:RefLocation">
-         <data key="k1">RefLocation</data>
-         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
-            <y:UMLClassNode>
-               <y:Fill color="#BDB992" transparent="false"/>
-               <y:BorderStyle color="#000000" type="line" width="1.0"/>
-               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bolditalic" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">RefLocation</y:NodeLabel>
-               <y:UML clipContent="true"
-                      constraint=""
-                      hasDetailsColor="false"
-                      omitDetails="false"
-                      stereotype=""
-                      use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve"/>
-                  <y:MethodLabel xml:space="preserve"/>
-               </y:UML>
-            </y:UMLClassNode>
-         </data>
-      </node>
-      <node id="coords:StdRefLocation">
-         <data key="k1">StdRefLocation</data>
-         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
-            <y:UMLClassNode>
-               <y:Fill color="#BDB992" transparent="false"/>
-               <y:BorderStyle color="#000000" type="line" width="1.0"/>
-               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">StdRefLocation</y:NodeLabel>
-               <y:UML clipContent="true"
-                      constraint=""
-                      hasDetailsColor="false"
-                      omitDetails="false"
-                      stereotype=""
-                      use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve">+position : ivoa:string
-</y:AttributeLabel>
-                  <y:MethodLabel xml:space="preserve"/>
-               </y:UML>
-            </y:UMLClassNode>
-         </data>
-      </node>
-      <node id="coords:CustomRefLocation">
-         <data key="k1">CustomRefLocation</data>
-         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
-            <y:UMLClassNode>
-               <y:Fill color="#BDB992" transparent="false"/>
-               <y:BorderStyle color="#000000" type="line" width="1.0"/>
-               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">CustomRefLocation</y:NodeLabel>
-               <y:UML clipContent="true"
-                      constraint=""
-                      hasDetailsColor="false"
-                      omitDetails="false"
-                      stereotype=""
-                      use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve">+epoch : coords:Epoch
-+position : coords:Point
-+velocity : coords:Point
-</y:AttributeLabel>
-                  <y:MethodLabel xml:space="preserve"/>
-               </y:UML>
-            </y:UMLClassNode>
-         </data>
-      </node>
       <node id="coords:EquatorialPoint">
          <data key="k1">EquatorialPoint</data>
          <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
@@ -542,6 +481,67 @@
                   <y:AttributeLabel xml:space="preserve">+x : ivoa:RealQuantity
 +y : ivoa:RealQuantity
 +z : ivoa:RealQuantity
+</y:AttributeLabel>
+                  <y:MethodLabel xml:space="preserve"/>
+               </y:UML>
+            </y:UMLClassNode>
+         </data>
+      </node>
+      <node id="coords:RefLocation">
+         <data key="k1">RefLocation</data>
+         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
+            <y:UMLClassNode>
+               <y:Fill color="#BDB992" transparent="false"/>
+               <y:BorderStyle color="#000000" type="line" width="1.0"/>
+               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bolditalic" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">RefLocation</y:NodeLabel>
+               <y:UML clipContent="true"
+                      constraint=""
+                      hasDetailsColor="false"
+                      omitDetails="false"
+                      stereotype=""
+                      use3DEffect="true">
+                  <y:AttributeLabel xml:space="preserve"/>
+                  <y:MethodLabel xml:space="preserve"/>
+               </y:UML>
+            </y:UMLClassNode>
+         </data>
+      </node>
+      <node id="coords:StdRefLocation">
+         <data key="k1">StdRefLocation</data>
+         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
+            <y:UMLClassNode>
+               <y:Fill color="#BDB992" transparent="false"/>
+               <y:BorderStyle color="#000000" type="line" width="1.0"/>
+               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">StdRefLocation</y:NodeLabel>
+               <y:UML clipContent="true"
+                      constraint=""
+                      hasDetailsColor="false"
+                      omitDetails="false"
+                      stereotype=""
+                      use3DEffect="true">
+                  <y:AttributeLabel xml:space="preserve">+position : ivoa:string
+</y:AttributeLabel>
+                  <y:MethodLabel xml:space="preserve"/>
+               </y:UML>
+            </y:UMLClassNode>
+         </data>
+      </node>
+      <node id="coords:CustomRefLocation">
+         <data key="k1">CustomRefLocation</data>
+         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
+            <y:UMLClassNode>
+               <y:Fill color="#BDB992" transparent="false"/>
+               <y:BorderStyle color="#000000" type="line" width="1.0"/>
+               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">CustomRefLocation</y:NodeLabel>
+               <y:UML clipContent="true"
+                      constraint=""
+                      hasDetailsColor="false"
+                      omitDetails="false"
+                      stereotype=""
+                      use3DEffect="true">
+                  <y:AttributeLabel xml:space="preserve">+epoch : coords:Epoch
++position : coords:Point
++velocity : coords:Point
 </y:AttributeLabel>
                   <y:MethodLabel xml:space="preserve"/>
                </y:UML>
@@ -680,8 +680,7 @@
                       omitDetails="false"
                       stereotype=""
                       use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve">+refPosition : coords:RefLocation
-+planetaryEphem : ivoa:string
+                  <y:AttributeLabel xml:space="preserve">+planetaryEphem : ivoa:string
 </y:AttributeLabel>
                   <y:MethodLabel xml:space="preserve"/>
                </y:UML>
@@ -701,8 +700,7 @@
                       omitDetails="false"
                       stereotype=""
                       use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve">+refPosition : coords:RefLocation
-+spaceRefFrame : ivoa:string
+                  <y:AttributeLabel xml:space="preserve">+spaceRefFrame : ivoa:string
 +equinox : coords:Epoch
 +planetaryEphem : ivoa:string
 </y:AttributeLabel>
@@ -724,9 +722,7 @@
                       omitDetails="false"
                       stereotype=""
                       use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve">+refPosition : coords:RefLocation
-+timescale : ivoa:string
-+refDirection : coords:RefLocation
+                  <y:AttributeLabel xml:space="preserve">+timescale : ivoa:string
 </y:AttributeLabel>
                   <y:MethodLabel xml:space="preserve"/>
                </y:UML>
@@ -965,7 +961,7 @@
       <!--imported nodes-->
       <!--edges-->
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e114"
+            id="d1174e114"
             source="coords:BinnedCoordinate"
             target="coords:Coordinate">
          <data key="k3">
@@ -977,7 +973,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e129"
+            id="d1174e129"
             source="coords:PixelIndex"
             target="coords:BinnedCoordinate">
          <data key="k3">
@@ -989,7 +985,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e135"
+            id="d1174e135"
             source="coords:PhysicalCoordinate"
             target="coords:Coordinate">
          <data key="k3">
@@ -1001,7 +997,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e150"
+            id="d1174e150"
             source="coords:Point"
             target="coords:Coordinate">
          <data key="k3">
@@ -1013,7 +1009,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e161"
+            id="d1174e161"
             source="coords:CartesianPoint"
             target="coords:Point">
          <data key="k3">
@@ -1025,7 +1021,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e194"
+            id="d1174e194"
             source="coords:LonLatPoint"
             target="coords:Point">
          <data key="k3">
@@ -1037,7 +1033,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e227"
+            id="d1174e227"
             source="coords:GenericPoint"
             target="coords:Point">
          <data key="k3">
@@ -1049,7 +1045,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e260"
+            id="d1174e260"
             source="coords:TimeStamp"
             target="coords:Coordinate">
          <data key="k3">
@@ -1061,7 +1057,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e271"
+            id="d1174e271"
             source="coords:TimeOffset"
             target="coords:TimeStamp">
          <data key="k3">
@@ -1073,7 +1069,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e296"
+            id="d1174e296"
             source="coords:TimeInstant"
             target="coords:TimeStamp">
          <data key="k3">
@@ -1085,7 +1081,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e302"
+            id="d1174e302"
             source="coords:JD"
             target="coords:TimeInstant">
          <data key="k3">
@@ -1097,7 +1093,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e317"
+            id="d1174e317"
             source="coords:MJD"
             target="coords:TimeInstant">
          <data key="k3">
@@ -1109,7 +1105,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e332"
+            id="d1174e332"
             source="coords:FITSTime"
             target="coords:TimeInstant">
          <data key="k3">
@@ -1121,7 +1117,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e347"
+            id="d1174e347"
             source="coords:PolCoordinate"
             target="coords:Coordinate">
          <data key="k3">
@@ -1133,7 +1129,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e353"
+            id="d1174e353"
             source="coords:PolState"
             target="coords:PolCoordinate">
          <data key="k3">
@@ -1145,31 +1141,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e372"
-            source="coords:StdRefLocation"
-            target="coords:RefLocation">
-         <data key="k3">
-            <y:PolyLineEdge>
-               <y:LineStyle color="#FF0000" type="line" width="2.0"/>
-               <y:Arrows source="none" target="white_delta"/>
-               <y:BendStyle smoothed="false"/>
-            </y:PolyLineEdge>
-         </data>
-      </edge>
-      <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e390"
-            source="coords:CustomRefLocation"
-            target="coords:RefLocation">
-         <data key="k3">
-            <y:PolyLineEdge>
-               <y:LineStyle color="#FF0000" type="line" width="2.0"/>
-               <y:Arrows source="none" target="white_delta"/>
-               <y:BendStyle smoothed="false"/>
-            </y:PolyLineEdge>
-         </data>
-      </edge>
-      <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e423"
+            id="d1174e368"
             source="coords:EquatorialPoint"
             target="coords:Point">
          <data key="k3">
@@ -1181,7 +1153,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e447"
+            id="d1174e392"
             source="coords:SphericalPoint"
             target="coords:Point">
          <data key="k3">
@@ -1193,7 +1165,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e481"
+            id="d1174e425"
             source="coords:RealCartesianPoint"
             target="coords:Point">
          <data key="k3">
@@ -1205,7 +1177,31 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e540"
+            id="d1174e462"
+            source="coords:StdRefLocation"
+            target="coords:RefLocation">
+         <data key="k3">
+            <y:PolyLineEdge>
+               <y:LineStyle color="#FF0000" type="line" width="2.0"/>
+               <y:Arrows source="none" target="white_delta"/>
+               <y:BendStyle smoothed="false"/>
+            </y:PolyLineEdge>
+         </data>
+      </edge>
+      <edge xmlns:y="http://www.yworks.com/xml/graphml"
+            id="d1174e481"
+            source="coords:CustomRefLocation"
+            target="coords:RefLocation">
+         <data key="k3">
+            <y:PolyLineEdge>
+               <y:LineStyle color="#FF0000" type="line" width="2.0"/>
+               <y:Arrows source="none" target="white_delta"/>
+               <y:BendStyle smoothed="false"/>
+            </y:PolyLineEdge>
+         </data>
+      </edge>
+      <edge xmlns:y="http://www.yworks.com/xml/graphml"
+            id="d1174e540"
             source="coords:ContinuousAxis"
             target="coords:Axis">
          <data key="k3">
@@ -1217,7 +1213,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e573"
+            id="d1174e573"
             source="coords:BinnedAxis"
             target="coords:Axis">
          <data key="k3">
@@ -1229,7 +1225,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e588"
+            id="d1174e588"
             source="coords:DiscreteSetAxis"
             target="coords:Axis">
          <data key="k3">
@@ -1241,7 +1237,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e598"
+            id="d1174e598"
             source="coords:GenericFrame"
             target="coords:CoordFrame">
          <data key="k3">
@@ -1253,7 +1249,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e622"
+            id="d1174e622"
             source="coords:SpaceFrame"
             target="coords:CoordFrame">
          <data key="k3">
@@ -1265,7 +1261,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e667"
+            id="d1174e667"
             source="coords:TimeFrame"
             target="coords:CoordFrame">
          <data key="k3">
@@ -1277,7 +1273,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e703"
+            id="d1174e703"
             source="coords:AstroCoordSystem"
             target="coords:CoordSys">
          <data key="k3">
@@ -1289,7 +1285,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e719"
+            id="d1174e719"
             source="coords:PixelCoordSystem"
             target="coords:CoordSys">
          <data key="k3">
@@ -1301,7 +1297,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e734"
+            id="d1174e734"
             source="coords:PixelSpace"
             target="coords:CoordSpace">
          <data key="k3">
@@ -1313,7 +1309,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e758"
+            id="d1174e758"
             source="coords:PhysicalCoordSys"
             target="coords:CoordSys">
          <data key="k3">
@@ -1325,7 +1321,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e782"
+            id="d1174e782"
             source="coords:GenericSys"
             target="coords:PhysicalCoordSys">
          <data key="k3">
@@ -1337,7 +1333,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e793"
+            id="d1174e793"
             source="coords:SpaceSys"
             target="coords:PhysicalCoordSys">
          <data key="k3">
@@ -1349,7 +1345,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e804"
+            id="d1174e804"
             source="coords:TimeSys"
             target="coords:PhysicalCoordSys">
          <data key="k3">
@@ -1361,7 +1357,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e820"
+            id="d1174e820"
             source="coords:PhysicalCoordSpace"
             target="coords:CoordSpace">
          <data key="k3">
@@ -1373,7 +1369,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e826"
+            id="d1174e826"
             source="coords:GenericCoordSpace"
             target="coords:PhysicalCoordSpace">
          <data key="k3">
@@ -1385,7 +1381,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e832"
+            id="d1174e832"
             source="coords:SphericalCoordSpace"
             target="coords:PhysicalCoordSpace">
          <data key="k3">
@@ -1397,7 +1393,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e843"
+            id="d1174e843"
             source="coords:CartesianCoordSpace"
             target="coords:PhysicalCoordSpace">
          <data key="k3">
@@ -1409,7 +1405,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e514"
+            id="d1174e514"
             source="coords:CoordSpace"
             target="coords:Axis">
          <data key="k3">
@@ -1425,7 +1421,71 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e705"
+            id="d1174e600"
+            source="coords:GenericFrame"
+            target="coords:RefLocation">
+         <data key="k3">
+            <y:PolyLineEdge>
+               <y:LineStyle color="#9393FF" type="line" width="2.0"/>
+               <y:Arrows source="diamond" target="standard"/>
+               <y:BendStyle smoothed="false"/>
+               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="head" preferredPlacement="centered" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">refPosition<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="center" side="on_edge" sideReference="relative_to_edge_flow"/>
+   </y:EdgeLabel>
+               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="thead" preferredPlacement="target_on_edge" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">1<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="target" side="anywhere" sideReference="relative_to_edge_flow"/>
+      </y:EdgeLabel>
+            </y:PolyLineEdge>
+         </data>
+      </edge>
+      <edge xmlns:y="http://www.yworks.com/xml/graphml"
+            id="d1174e624"
+            source="coords:SpaceFrame"
+            target="coords:RefLocation">
+         <data key="k3">
+            <y:PolyLineEdge>
+               <y:LineStyle color="#9393FF" type="line" width="2.0"/>
+               <y:Arrows source="diamond" target="standard"/>
+               <y:BendStyle smoothed="false"/>
+               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="head" preferredPlacement="centered" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">refPosition<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="center" side="on_edge" sideReference="relative_to_edge_flow"/>
+   </y:EdgeLabel>
+               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="thead" preferredPlacement="target_on_edge" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">1<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="target" side="anywhere" sideReference="relative_to_edge_flow"/>
+      </y:EdgeLabel>
+            </y:PolyLineEdge>
+         </data>
+      </edge>
+      <edge xmlns:y="http://www.yworks.com/xml/graphml"
+            id="d1174e669"
+            source="coords:TimeFrame"
+            target="coords:RefLocation">
+         <data key="k3">
+            <y:PolyLineEdge>
+               <y:LineStyle color="#9393FF" type="line" width="2.0"/>
+               <y:Arrows source="diamond" target="standard"/>
+               <y:BendStyle smoothed="false"/>
+               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="head" preferredPlacement="centered" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">refPosition<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="center" side="on_edge" sideReference="relative_to_edge_flow"/>
+   </y:EdgeLabel>
+               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="thead" preferredPlacement="target_on_edge" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">1<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="target" side="anywhere" sideReference="relative_to_edge_flow"/>
+      </y:EdgeLabel>
+            </y:PolyLineEdge>
+         </data>
+      </edge>
+      <edge xmlns:y="http://www.yworks.com/xml/graphml"
+            id="d1174e690"
+            source="coords:TimeFrame"
+            target="coords:RefLocation">
+         <data key="k3">
+            <y:PolyLineEdge>
+               <y:LineStyle color="#9393FF" type="line" width="2.0"/>
+               <y:Arrows source="diamond" target="standard"/>
+               <y:BendStyle smoothed="false"/>
+               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="head" preferredPlacement="centered" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">refDirection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="center" side="on_edge" sideReference="relative_to_edge_flow"/>
+   </y:EdgeLabel>
+               <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="six_pos" modelPosition="thead" preferredPlacement="target_on_edge" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve">0..1<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="target" side="anywhere" sideReference="relative_to_edge_flow"/>
+      </y:EdgeLabel>
+            </y:PolyLineEdge>
+         </data>
+      </edge>
+      <edge xmlns:y="http://www.yworks.com/xml/graphml"
+            id="d1174e705"
             source="coords:AstroCoordSystem"
             target="coords:PhysicalCoordSys">
          <data key="k3">
@@ -1441,7 +1501,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e721"
+            id="d1174e721"
             source="coords:PixelCoordSystem"
             target="coords:PixelSpace">
          <data key="k3">
@@ -1457,7 +1517,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e760"
+            id="d1174e760"
             source="coords:PhysicalCoordSys"
             target="coords:PhysicalCoordSpace">
          <data key="k3">
@@ -1473,7 +1533,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e769"
+            id="d1174e769"
             source="coords:PhysicalCoordSys"
             target="coords:CoordFrame">
          <data key="k3">
@@ -1489,7 +1549,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e101"
+            id="d1174e101"
             source="coords:Coordinate"
             target="coords:CoordSys">
          <data key="k3">

@@ -21,7 +21,7 @@ digraph GVmap {
 	style=filled] 
     
   "ivoa:stringIdentifier" [
-    URL="#stringIdentifier"
+    URL="not known#stringIdentifier"
     label = "{ivoa:stringIdentifier}"
     fillcolor="grey"
     ] ;

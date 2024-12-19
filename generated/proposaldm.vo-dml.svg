@@ -13,7 +13,7 @@
 <!-- ivoa:stringIdentifier -->
 <g id="node1" class="node">
 <title>ivoa:stringIdentifier</title>
-<g id="a_node1"><a xlink:href="#stringIdentifier" xlink:title="{ivoa:stringIdentifier}">
+<g id="a_node1"><a xlink:href="not known#stringIdentifier" xlink:title="{ivoa:stringIdentifier}">
 <polygon fill="grey" stroke="black" points="154.53,-538 154.53,-574 235.03,-574 235.03,-538 154.53,-538"/>
 <text text-anchor="middle" x="194.78" y="-553.4" font-family="Times,serif" font-size="8.00">ivoa:stringIdentifier</text>
 </a>

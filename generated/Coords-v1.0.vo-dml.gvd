@@ -114,21 +114,6 @@ digraph GVmap {
     label = "{&lt;&lt;datatype&gt;&gt;\nPolState|+cval : coords:PolStateEnum\l}"
     fillcolor="/set312/1"
     ] ;
-  "coords:RefLocation" [
-    URL="../coords/RefLocation"
-    label = "{&lt;&lt;datatype&gt;&gt;\nRefLocation}"
-    fillcolor="/set312/1"
-    ] ;
-  "coords:StdRefLocation" [
-    URL="../coords/StdRefLocation"
-    label = "{&lt;&lt;datatype&gt;&gt;\nStdRefLocation|+position : ivoa:string\l}"
-    fillcolor="/set312/1"
-    ] ;
-  "coords:CustomRefLocation" [
-    URL="../coords/CustomRefLocation"
-    label = "{&lt;&lt;datatype&gt;&gt;\nCustomRefLocation|+epoch : coords:Epoch\l+position : coords:Point\l+velocity : coords:Point\l}"
-    fillcolor="/set312/1"
-    ] ;
   "coords:EquatorialPoint" [
     URL="../coords/EquatorialPoint"
     label = "{&lt;&lt;datatype&gt;&gt;\nEquatorialPoint|+lon : ivoa:RealQuantity\l+lat : ivoa:RealQuantity\l}"
@@ -142,6 +127,21 @@ digraph GVmap {
   "coords:RealCartesianPoint" [
     URL="../coords/RealCartesianPoint"
     label = "{&lt;&lt;datatype&gt;&gt;\nRealCartesianPoint|+x : ivoa:RealQuantity\l+y : ivoa:RealQuantity\l+z : ivoa:RealQuantity\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:RefLocation" [
+    URL="../coords/RefLocation"
+    label = "{RefLocation}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:StdRefLocation" [
+    URL="../coords/StdRefLocation"
+    label = "{StdRefLocation|+position : ivoa:string\l}"
+    fillcolor="/set312/1"
+    ] ;
+  "coords:CustomRefLocation" [
+    URL="../coords/CustomRefLocation"
+    label = "{CustomRefLocation|+epoch : coords:Epoch\l+position : coords:Point\l+velocity : coords:Point\l}"
     fillcolor="/set312/1"
     ] ;
   "coords:CoordSpace" [
@@ -176,17 +176,17 @@ digraph GVmap {
     ] ;
   "coords:GenericFrame" [
     URL="../coords/GenericFrame"
-    label = "{GenericFrame|+refPosition : coords:RefLocation\l+planetaryEphem : ivoa:string\l}"
+    label = "{GenericFrame|+planetaryEphem : ivoa:string\l}"
     fillcolor="/set312/1"
     ] ;
   "coords:SpaceFrame" [
     URL="../coords/SpaceFrame"
-    label = "{SpaceFrame|+refPosition : coords:RefLocation\l+spaceRefFrame : ivoa:string\l+equinox : coords:Epoch\l+planetaryEphem : ivoa:string\l}"
+    label = "{SpaceFrame|+spaceRefFrame : ivoa:string\l+equinox : coords:Epoch\l+planetaryEphem : ivoa:string\l}"
     fillcolor="/set312/1"
     ] ;
   "coords:TimeFrame" [
     URL="../coords/TimeFrame"
-    label = "{TimeFrame|+refPosition : coords:RefLocation\l+timescale : ivoa:string\l+refDirection : coords:RefLocation\l}"
+    label = "{TimeFrame|+timescale : ivoa:string\l}"
     fillcolor="/set312/1"
     ] ;
   "coords:AstroCoordSystem" [
@@ -267,11 +267,11 @@ digraph GVmap {
   "coords:FITSTime" -> "coords:TimeInstant" ;
   "coords:PolCoordinate" -> "coords:Coordinate" ;
   "coords:PolState" -> "coords:PolCoordinate" ;
-  "coords:StdRefLocation" -> "coords:RefLocation" ;
-  "coords:CustomRefLocation" -> "coords:RefLocation" ;
   "coords:EquatorialPoint" -> "coords:Point" ;
   "coords:SphericalPoint" -> "coords:Point" ;
   "coords:RealCartesianPoint" -> "coords:Point" ;
+  "coords:StdRefLocation" -> "coords:RefLocation" ;
+  "coords:CustomRefLocation" -> "coords:RefLocation" ;
   "coords:ContinuousAxis" -> "coords:Axis" ;
   "coords:BinnedAxis" -> "coords:Axis" ;
   "coords:DiscreteSetAxis" -> "coords:Axis" ;
@@ -293,6 +293,10 @@ digraph GVmap {
  
     edge [color="blue", arrowhead="open", arrowtail="diamond",dir="both",fontsize="10"]
     "coords:CoordSpace" -> "coords:Axis" [headlabel="1..*",label="axis",labelfontsize=10] ;
+  "coords:GenericFrame" -> "coords:RefLocation" [headlabel="1",label="refPosition",labelfontsize=10] ;
+  "coords:SpaceFrame" -> "coords:RefLocation" [headlabel="1",label="refPosition",labelfontsize=10] ;
+  "coords:TimeFrame" -> "coords:RefLocation" [headlabel="1",label="refPosition",labelfontsize=10] ;
+  "coords:TimeFrame" -> "coords:RefLocation" [headlabel="0..1",label="refDirection",labelfontsize=10] ;
   "coords:AstroCoordSystem" -> "coords:PhysicalCoordSys" [headlabel="1..*",label="coordSys",labelfontsize=10] ;
   "coords:PixelCoordSystem" -> "coords:PixelSpace" [headlabel="1",label="pixelSpace",labelfontsize=10] ;
   "coords:PhysicalCoordSys" -> "coords:PhysicalCoordSpace" [headlabel="0..1",label="coordSpace",labelfontsize=10] ;

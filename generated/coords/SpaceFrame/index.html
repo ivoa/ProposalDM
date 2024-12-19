@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../PixelSpace/">
+        <link rel="prev" href="../RefLocation/">
       
       
         <link rel="next" href="../SpaceSys/">
@@ -2577,6 +2577,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../CustomRefLocation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CustomRefLocation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../DiscreteSetAxis/" class="md-nav__link">
         
   
@@ -2742,6 +2763,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../RefLocation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RefLocation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -2850,6 +2892,27 @@
   
   <span class="md-ellipsis">
     SphericalCoordSpace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../StdRefLocation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    StdRefLocation
   </span>
   
 
@@ -3001,27 +3064,6 @@
   
   <span class="md-ellipsis">
     Coordinate
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../CustomRefLocation/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    CustomRefLocation
   </span>
   
 
@@ -3290,53 +3332,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../RefLocation/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    RefLocation
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../SphericalPoint/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     SphericalPoint
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../StdRefLocation/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    StdRefLocation
   </span>
   
 
@@ -4183,15 +4183,16 @@
 <pre class="mermaid"><code>classDiagram
 
         class SpaceFrame{
-        coords:RefLocation refPosition
-ivoa:string spaceRefFrame
+        ivoa:string spaceRefFrame
 coords:Epoch equinox
 ivoa:string planetaryEphem
 
         }
         SpaceFrame --|&gt; CoordFrame
+SpaceFrame *-- "1" RefLocation : refPosition
 
-link CoordFrame "../CoordFrame"</code></pre>
+link CoordFrame "../CoordFrame"
+link RefLocation "../RefLocation"</code></pre>
 <h2 id="members">Members</h2>
 <table>
 <thead>
@@ -4205,7 +4206,7 @@ link CoordFrame "../CoordFrame"</code></pre>
 <tbody>
 <tr>
 <td>refPosition</td>
-<td><a href="../RefLocation/" title="dataType">RefLocation</a></td>
+<td><a href="../RefLocation/" title="objectType">RefLocation</a></td>
 <td></td>
 <td>The spatial location at which the coordinates are considered to have been determined. This model supports locations provided as either a standard reference position (e.g. GEOCENTER), or a coordinate specifying a custom location (e.g. long, lat, height ).</td>
 </tr>
