@@ -7,6 +7,7 @@
 <file>proposaldm.vo-dml.xml</file>s
     <java-package>org.ivoa.dm.proposal.prop</java-package>
 <xml-targetnamespace prefix="prop">http://ivoa.net/dm/proposalDM/v0.6</xml-targetnamespace>
+    <xml compositionStyle="unwrapped"/>
     <rdb inheritance-strategy="single-table"
          discriminatorColumnLength="64"/>
     <type-detail vodml-id="Justification.text">
@@ -20,6 +21,7 @@
     <file>proposalManagement.vo-dml.xml</file>
     <java-package>org.ivoa.dm.proposal.management</java-package>
     <xml-targetnamespace prefix="propm" >http://ivoa.net/dm/proposalManagment/v0.6</xml-targetnamespace>
+        <xml compositionStyle="unwrapped"/>
         <rdb inheritance-strategy="single-table"
              discriminatorColumnLength="64"/>
     </model>

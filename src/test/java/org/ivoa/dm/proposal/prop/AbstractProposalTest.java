@@ -143,7 +143,7 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
 
     @org.junit.jupiter.api.Test
     void reviewDmJPATest() {
-        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalManagementModel.pu_name());
         em.getTransaction().begin();
         ProposalManagementModel model = new ProposalManagementModel();
         final  ProposalCycle cycle = doTacWork();

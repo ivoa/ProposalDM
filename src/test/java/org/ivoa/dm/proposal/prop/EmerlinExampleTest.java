@@ -178,7 +178,7 @@ class EmerlinExampleTest extends AbstractProposalTest {
    @org.junit.jupiter.api.Test
    public  void testDbQuery() throws JsonProcessingException {
 
-      jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+      jakarta.persistence.EntityManager em = setupH2Db(ProposalManagementModel.pu_name());
       em.getTransaction().begin();
 
       final ProposalCycle cycle = ex.getCycle();
@@ -196,7 +196,7 @@ class EmerlinExampleTest extends AbstractProposalTest {
    @org.junit.jupiter.api.Test
    public  void testDbDelete() throws JsonProcessingException {
 
-      jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+      jakarta.persistence.EntityManager em = setupH2Db(ProposalManagementModel.pu_name());
       em.getTransaction().begin();
 
       final ProposalCycle cycle = ex.getCycle();
