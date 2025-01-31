@@ -4,7 +4,6 @@ theme:
   name: material
   features:
     - navigation.tabs
-    - navigation.instant
     - content.action.edit
     - content.tooltips
 markdown_extensions:
@@ -19,6 +18,10 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - plantuml_markdown:
+      format: svg
+      remove_inline_svg_size: false
+      cachedir: build/generated/plantuml
 nav:
   - Introduction: index.md
   - Model Design:

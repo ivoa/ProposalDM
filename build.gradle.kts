@@ -1,6 +1,6 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.5.13"
+        id("net.ivoa.vo-dml.vodmltools") version "0.5.14"
         `maven-publish`
         id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
         signing
@@ -99,7 +99,7 @@ tasks.register<Exec>("makeSiteNav")
 
 }
 tasks.register<Exec>("testSite"){
-        commandLine("mkdocs", "serve")
+        commandLine("mkdocs", "serve","-v")
         dependsOn("makeSiteNav")
 }
 tasks.register<Exec>("doSite"){
