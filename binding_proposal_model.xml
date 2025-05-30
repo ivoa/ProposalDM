@@ -11,7 +11,7 @@
     <rdb inheritance-strategy="single-table"
          discriminatorColumnLength="64"/>
     <type-detail vodml-id="Justification.text">
-        <length>3072</length>
+        <length>4096</length>
     </type-detail>
   
 
@@ -24,5 +24,8 @@
         <xml compositionStyle="unwrapped"/>
         <rdb inheritance-strategy="single-table"
              discriminatorColumnLength="64"/>
+        <type-detail vodml-id="ProposalReview.comment">
+            <length>2048</length>
+        </type-detail>
     </model>
 </m:mappedModels>

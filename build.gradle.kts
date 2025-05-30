@@ -1,6 +1,6 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.5.14"
+        id("net.ivoa.vo-dml.vodmltools") version "0.5.20"
         `maven-publish`
         id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
         signing
@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "org.javastro.ivoa.dm"
-version = "0.6.2-SNAPSHOT"
+version = "0.6.3-SNAPSHOT"
 
 
 vodml {
