@@ -178,11 +178,13 @@ class EmerlinExampleTest extends AbstractProposalTest {
    @org.junit.jupiter.api.Test
    public  void testDbQuery() throws JsonProcessingException {
 
-      jakarta.persistence.EntityManager em = setupH2Db(ProposalManagementModel.pu_name());
+      jakarta.persistence.EntityManager em = setupH2Db(ProposalManagementModel.pu_name(),ProposalManagementModel.modelDescription.allClassNames());
       em.getTransaction().begin();
 
       final ProposalCycle cycle = ex.getCycle();
-      cycle.persistRefs(em);
+      ProposalManagementModel model = new ProposalManagementModel();
+      model.addContent(cycle);
+      model.management().persistRefs(em);
       em.persist(cycle);
       em.getTransaction().commit();
 
@@ -196,13 +198,15 @@ class EmerlinExampleTest extends AbstractProposalTest {
    @org.junit.jupiter.api.Test
    public  void testDbDelete() throws JsonProcessingException {
 
-      jakarta.persistence.EntityManager em = setupH2Db(ProposalManagementModel.pu_name());
+      jakarta.persistence.EntityManager em = setupH2Db(ProposalManagementModel.pu_name(),ProposalManagementModel.modelDescription.allClassNames());
       em.getTransaction().begin();
 
       final ProposalCycle cycle = ex.getCycle();
       ObservingProposal prop = ex.getProposal();
-      prop.persistRefs(em);
-      cycle.persistRefs(em);
+      ProposalManagementModel model = new ProposalManagementModel();
+      model.addContent(prop);
+      model.addContent(cycle);
+      model.management().persistRefs(em);     
       em.persist(cycle);
       em.persist(prop);
       em.getTransaction().commit();
@@ -227,10 +231,12 @@ class EmerlinExampleTest extends AbstractProposalTest {
 
    @org.junit.jupiter.api.Test 
    public void testListupdate() {
-        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name(),ProposalModel.modelDescription.allClassNames());
         em.getTransaction().begin();
         final ObservingProposal proposal = ex.getProposal();
-        proposal.persistRefs(em);
+        ProposalModel model = new ProposalModel();
+        model.addContent(proposal);
+        model.management().persistRefs(em);
         em.persist(proposal);
         em.getTransaction().commit();
 

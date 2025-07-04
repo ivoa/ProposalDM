@@ -100,7 +100,7 @@ class FullExampleTest extends AutoDBRoundTripTest<ProposalManagementModel, Long,
      */
     @Test
     public void testDBSave() {
-        jakarta.persistence.EntityManager em = setupH2Db(example.getManagementModel().management().pu_name());
+        jakarta.persistence.EntityManager em = setupH2Db(example.getManagementModel().management().pu_name(), example.getManagementModel().modelDescription.allClassNames());
 
         em.getTransaction().begin();
         example.saveTodB(em);

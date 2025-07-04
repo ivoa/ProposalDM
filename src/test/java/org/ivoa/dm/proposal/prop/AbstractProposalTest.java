@@ -98,11 +98,12 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
 
     }
     protected ObservingProposal propDbInOut() {
-        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name(),ProposalModel.modelDescription.allClassNames());
         em.getTransaction().begin();
         final ObservingProposal proposal = ex.getProposal();
-        
-        proposal.persistRefs(em);
+        ProposalModel model = new ProposalModel();
+        model.addContent(proposal);
+        model.management().persistRefs(em);
         em.persist(proposal);
         em.getTransaction().commit();
 
@@ -143,7 +144,7 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
 
     @org.junit.jupiter.api.Test
     void reviewDmJPATest() {
-        jakarta.persistence.EntityManager em = setupH2Db(ProposalManagementModel.pu_name());
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalManagementModel.pu_name(),ProposalManagementModel.modelDescription.allClassNames());
         em.getTransaction().begin();
         ProposalManagementModel model = new ProposalManagementModel();
         final  ProposalCycle cycle = doTacWork();
@@ -223,10 +224,12 @@ public void testObservations() {
    }
 @org.junit.jupiter.api.Test
 public void testDeleteTarget() {
-        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name(),ProposalModel.modelDescription.allClassNames());
         em.getTransaction().begin();
         final ObservingProposal proposal = ex.getProposal();
-        proposal.persistRefs(em);
+        ProposalModel model = new ProposalModel();
+        model.addContent(proposal);
+        model.management().persistRefs(em);
         em.persist(proposal);
         em.getTransaction().commit();
         em.getTransaction().begin();
@@ -240,10 +243,12 @@ public void testDeleteTarget() {
    }
 @org.junit.jupiter.api.Test
 public void testObservationTarget() {
-        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name());
+        jakarta.persistence.EntityManager em = setupH2Db(ProposalModel.pu_name(),ProposalModel.modelDescription.allClassNames());
         em.getTransaction().begin();
         final ObservingProposal proposal = ex.getProposal();
-        proposal.persistRefs(em);
+        ProposalModel model = new ProposalModel();
+        model.addContent(proposal);
+        model.management().persistRefs(em);
         em.persist(proposal);
         em.getTransaction().commit();
         //copy obs

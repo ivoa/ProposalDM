@@ -9,7 +9,8 @@
 <xml-targetnamespace prefix="prop">http://ivoa.net/dm/proposalDM/v0.6</xml-targetnamespace>
     <xml compositionStyle="unwrapped"/>
     <rdb inheritance-strategy="single-table"
-         discriminatorColumnLength="64"/>
+         discriminatorColumnLength="64"
+          schema="pdm"/>
     <type-detail vodml-id="Justification.text">
         <length>4096</length>
     </type-detail>
@@ -23,7 +24,8 @@
     <xml-targetnamespace prefix="propm" >http://ivoa.net/dm/proposalManagment/v0.6</xml-targetnamespace>
         <xml compositionStyle="unwrapped"/>
         <rdb inheritance-strategy="single-table"
-             discriminatorColumnLength="64"/>
+             discriminatorColumnLength="64"
+             schema="pdm"/>
         <type-detail vodml-id="ProposalReview.comment">
             <length>2048</length>
         </type-detail>
