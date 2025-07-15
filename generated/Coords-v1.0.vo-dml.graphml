@@ -112,7 +112,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve"/>
                   <y:MethodLabel xml:space="preserve"/>
@@ -131,7 +131,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+cval : ivoa:integer
 </y:AttributeLabel>
@@ -151,7 +151,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve"/>
                   <y:MethodLabel xml:space="preserve"/>
@@ -170,7 +170,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+cval : ivoa:Quantity
 </y:AttributeLabel>
@@ -190,7 +190,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve"/>
                   <y:MethodLabel xml:space="preserve"/>
@@ -209,7 +209,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+x : ivoa:Quantity
 +y : ivoa:Quantity
@@ -231,7 +231,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+lon : ivoa:Quantity
 +lat : ivoa:Quantity
@@ -253,7 +253,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+axis1 : ivoa:Quantity
 +axis2 : ivoa:Quantity
@@ -275,7 +275,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve"/>
                   <y:MethodLabel xml:space="preserve"/>
@@ -294,7 +294,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+time : ivoa:RealQuantity
 +time0 : coords:TimeInstant
@@ -315,7 +315,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve"/>
                   <y:MethodLabel xml:space="preserve"/>
@@ -334,7 +334,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+date : ivoa:real
 </y:AttributeLabel>
@@ -354,7 +354,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+date : ivoa:real
 </y:AttributeLabel>
@@ -374,7 +374,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+date : ivoa:string
 </y:AttributeLabel>
@@ -394,7 +394,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve"/>
                   <y:MethodLabel xml:space="preserve"/>
@@ -413,7 +413,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+cval : coords:PolStateEnum
 </y:AttributeLabel>
@@ -433,7 +433,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+lon : ivoa:RealQuantity
 +lat : ivoa:RealQuantity
@@ -454,7 +454,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+r : ivoa:RealQuantity
 +theta : ivoa:RealQuantity
@@ -476,7 +476,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+x : ivoa:RealQuantity
 +y : ivoa:RealQuantity
@@ -961,7 +961,7 @@
       <!--imported nodes-->
       <!--edges-->
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e114"
+            id="d427e114"
             source="coords:BinnedCoordinate"
             target="coords:Coordinate">
          <data key="k3">
@@ -973,7 +973,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e129"
+            id="d427e129"
             source="coords:PixelIndex"
             target="coords:BinnedCoordinate">
          <data key="k3">
@@ -985,7 +985,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e135"
+            id="d427e135"
             source="coords:PhysicalCoordinate"
             target="coords:Coordinate">
          <data key="k3">
@@ -997,7 +997,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e150"
+            id="d427e150"
             source="coords:Point"
             target="coords:Coordinate">
          <data key="k3">
@@ -1009,7 +1009,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e161"
+            id="d427e161"
             source="coords:CartesianPoint"
             target="coords:Point">
          <data key="k3">
@@ -1021,7 +1021,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e194"
+            id="d427e194"
             source="coords:LonLatPoint"
             target="coords:Point">
          <data key="k3">
@@ -1033,7 +1033,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e227"
+            id="d427e227"
             source="coords:GenericPoint"
             target="coords:Point">
          <data key="k3">
@@ -1045,7 +1045,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e260"
+            id="d427e260"
             source="coords:TimeStamp"
             target="coords:Coordinate">
          <data key="k3">
@@ -1057,7 +1057,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e271"
+            id="d427e271"
             source="coords:TimeOffset"
             target="coords:TimeStamp">
          <data key="k3">
@@ -1069,7 +1069,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e296"
+            id="d427e296"
             source="coords:TimeInstant"
             target="coords:TimeStamp">
          <data key="k3">
@@ -1081,7 +1081,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e302"
+            id="d427e302"
             source="coords:JD"
             target="coords:TimeInstant">
          <data key="k3">
@@ -1093,7 +1093,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e317"
+            id="d427e317"
             source="coords:MJD"
             target="coords:TimeInstant">
          <data key="k3">
@@ -1105,7 +1105,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e332"
+            id="d427e332"
             source="coords:FITSTime"
             target="coords:TimeInstant">
          <data key="k3">
@@ -1117,7 +1117,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e347"
+            id="d427e347"
             source="coords:PolCoordinate"
             target="coords:Coordinate">
          <data key="k3">
@@ -1129,7 +1129,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e353"
+            id="d427e353"
             source="coords:PolState"
             target="coords:PolCoordinate">
          <data key="k3">
@@ -1141,7 +1141,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e368"
+            id="d427e368"
             source="coords:EquatorialPoint"
             target="coords:Point">
          <data key="k3">
@@ -1153,7 +1153,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e392"
+            id="d427e392"
             source="coords:SphericalPoint"
             target="coords:Point">
          <data key="k3">
@@ -1165,7 +1165,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e425"
+            id="d427e425"
             source="coords:RealCartesianPoint"
             target="coords:Point">
          <data key="k3">
@@ -1177,7 +1177,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e462"
+            id="d427e462"
             source="coords:StdRefLocation"
             target="coords:RefLocation">
          <data key="k3">
@@ -1189,7 +1189,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e481"
+            id="d427e481"
             source="coords:CustomRefLocation"
             target="coords:RefLocation">
          <data key="k3">
@@ -1201,7 +1201,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e540"
+            id="d427e540"
             source="coords:ContinuousAxis"
             target="coords:Axis">
          <data key="k3">
@@ -1213,7 +1213,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e573"
+            id="d427e573"
             source="coords:BinnedAxis"
             target="coords:Axis">
          <data key="k3">
@@ -1225,7 +1225,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e588"
+            id="d427e588"
             source="coords:DiscreteSetAxis"
             target="coords:Axis">
          <data key="k3">
@@ -1237,7 +1237,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e598"
+            id="d427e598"
             source="coords:GenericFrame"
             target="coords:CoordFrame">
          <data key="k3">
@@ -1249,7 +1249,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e622"
+            id="d427e622"
             source="coords:SpaceFrame"
             target="coords:CoordFrame">
          <data key="k3">
@@ -1261,7 +1261,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e667"
+            id="d427e667"
             source="coords:TimeFrame"
             target="coords:CoordFrame">
          <data key="k3">
@@ -1273,7 +1273,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e703"
+            id="d427e703"
             source="coords:AstroCoordSystem"
             target="coords:CoordSys">
          <data key="k3">
@@ -1285,7 +1285,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e719"
+            id="d427e719"
             source="coords:PixelCoordSystem"
             target="coords:CoordSys">
          <data key="k3">
@@ -1297,7 +1297,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e734"
+            id="d427e734"
             source="coords:PixelSpace"
             target="coords:CoordSpace">
          <data key="k3">
@@ -1309,7 +1309,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e758"
+            id="d427e758"
             source="coords:PhysicalCoordSys"
             target="coords:CoordSys">
          <data key="k3">
@@ -1321,7 +1321,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e782"
+            id="d427e782"
             source="coords:GenericSys"
             target="coords:PhysicalCoordSys">
          <data key="k3">
@@ -1333,7 +1333,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e793"
+            id="d427e793"
             source="coords:SpaceSys"
             target="coords:PhysicalCoordSys">
          <data key="k3">
@@ -1345,7 +1345,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e804"
+            id="d427e804"
             source="coords:TimeSys"
             target="coords:PhysicalCoordSys">
          <data key="k3">
@@ -1357,7 +1357,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e820"
+            id="d427e820"
             source="coords:PhysicalCoordSpace"
             target="coords:CoordSpace">
          <data key="k3">
@@ -1369,7 +1369,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e826"
+            id="d427e826"
             source="coords:GenericCoordSpace"
             target="coords:PhysicalCoordSpace">
          <data key="k3">
@@ -1381,7 +1381,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e832"
+            id="d427e832"
             source="coords:SphericalCoordSpace"
             target="coords:PhysicalCoordSpace">
          <data key="k3">
@@ -1393,7 +1393,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e843"
+            id="d427e843"
             source="coords:CartesianCoordSpace"
             target="coords:PhysicalCoordSpace">
          <data key="k3">
@@ -1405,7 +1405,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e514"
+            id="d427e514"
             source="coords:CoordSpace"
             target="coords:Axis">
          <data key="k3">
@@ -1421,7 +1421,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e600"
+            id="d427e600"
             source="coords:GenericFrame"
             target="coords:RefLocation">
          <data key="k3">
@@ -1437,7 +1437,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e624"
+            id="d427e624"
             source="coords:SpaceFrame"
             target="coords:RefLocation">
          <data key="k3">
@@ -1453,7 +1453,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e669"
+            id="d427e669"
             source="coords:TimeFrame"
             target="coords:RefLocation">
          <data key="k3">
@@ -1469,7 +1469,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e690"
+            id="d427e690"
             source="coords:TimeFrame"
             target="coords:RefLocation">
          <data key="k3">
@@ -1485,7 +1485,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e705"
+            id="d427e705"
             source="coords:AstroCoordSystem"
             target="coords:PhysicalCoordSys">
          <data key="k3">
@@ -1501,7 +1501,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e721"
+            id="d427e721"
             source="coords:PixelCoordSystem"
             target="coords:PixelSpace">
          <data key="k3">
@@ -1517,7 +1517,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e760"
+            id="d427e760"
             source="coords:PhysicalCoordSys"
             target="coords:PhysicalCoordSpace">
          <data key="k3">
@@ -1533,7 +1533,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e769"
+            id="d427e769"
             source="coords:PhysicalCoordSys"
             target="coords:CoordFrame">
          <data key="k3">
@@ -1549,7 +1549,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d413e101"
+            id="d427e101"
             source="coords:Coordinate"
             target="coords:CoordSys">
          <data key="k3">

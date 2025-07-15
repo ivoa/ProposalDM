@@ -149,7 +149,7 @@
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
-                      stereotype=""
+                      stereotype="dataType"
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+start : ivoa:RealQuantity
 +end : ivoa:RealQuantity
