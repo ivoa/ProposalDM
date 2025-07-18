@@ -125,7 +125,7 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
                 );
         
         
-        final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
+        final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, "EmCode",obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
         cycle.setSubmittedProposals(
               makeList(submittedProposal));
 

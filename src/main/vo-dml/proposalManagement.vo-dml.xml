@@ -9,7 +9,7 @@
       <title>Proposal Management</title>
       <author>Paul Harrison</author>
       <version>0.6</version>
-      <lastModified>2024-11-25T16:59:10Z</lastModified>
+      <lastModified>2025-07-18T10:31:54Z</lastModified>
       <import>
         <name>ivoa</name>
         <version>1.1</version>
@@ -470,6 +470,18 @@
                  </multiplicity>
                </attribute>
                <attribute>
+                 <vodml-id>ProposalCycle.code</vodml-id>
+                 <name>code</name>
+                 <description>human readable code for the cycle</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>0</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
                  <vodml-id>ProposalCycle.instructions</vodml-id>
                  <name>instructions</name>
                  <description>pointer to more detailed instructions about the cycle</description>	    
@@ -689,6 +701,18 @@
                <extends>
                   <vodml-ref>proposal:AbstractProposal</vodml-ref>
                </extends>
+               <attribute>
+                 <vodml-id>SubmittedProposal.proposalCode</vodml-id>
+                 <name>proposalCode</name>
+                 <description>the observatory's code for the proposal</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:string</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
                <composition>
                  <vodml-id>SubmittedProposal.config</vodml-id>
                  <name>config</name>

@@ -177,7 +177,7 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
                 new ObservationConfiguration(frozenProposal.getObservations(),obsModes[0])
                 );
         
-        final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
+        final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, "NOTcode", obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
         cycle.setSubmittedProposals(
               makeList(submittedProposal));
 

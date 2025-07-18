@@ -89,6 +89,7 @@ public abstract class BaseExample {
             c.observationSessionStart = new GregorianCalendar(2022, 6, 1).getTime();
             c.observationSessionEnd = new GregorianCalendar(2022, 9, 1).getTime();
             c.title="test cycle";
+            c.code="EM01";
             c.tac = tac;
         };
 
