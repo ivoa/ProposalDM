@@ -386,6 +386,10 @@
           "type" : "string",
           "description" : ""
         },
+        "code" : {
+          "type" : "string",
+          "description" : ""
+        },
         "instructions" : {
           "format" : "uri",
           "description" : ""
@@ -561,6 +565,10 @@
           "@type" : {
             "type" : "string"
           },
+          "proposalCode" : {
+            "type" : "string",
+            "description" : ""
+          },
           "submissionDate" : {
             "format" : "date-time",
             "description" : ""
@@ -589,7 +597,7 @@
             "type" : "number"
           }
         },
-        "required" : [ "submissionDate", "successful", "reviewsCompleteDate" ]
+        "required" : [ "proposalCode", "submissionDate", "successful", "reviewsCompleteDate" ]
       } ],
       "unevaluatedProperties" : false
     },

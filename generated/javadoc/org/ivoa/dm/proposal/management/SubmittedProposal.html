@@ -124,24 +124,29 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="col-last even-row-color">
 <div class="block">.</div>
 </div>
-<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ProposalReview.html" title="class in org.ivoa.dm.proposal.management">ProposalReview</a>&gt;</code></div>
-<div class="col-second odd-row-color"><code><a href="#reviews" class="member-name-link">reviews</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#proposalCode" class="member-name-link">proposalCode</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">the observatory's code for the proposal.</div>
+</div>
+<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ProposalReview.html" title="class in org.ivoa.dm.proposal.management">ProposalReview</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#reviews" class="member-name-link">reviews</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">the reviews.</div>
 </div>
-<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a></code></div>
-<div class="col-second even-row-color"><code><a href="#reviewsCompleteDate" class="member-name-link">reviewsCompleteDate</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#reviewsCompleteDate" class="member-name-link">reviewsCompleteDate</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">the date when all the proposals are due.</div>
 </div>
-<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#submissionDate" class="member-name-link">submissionDate</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a></code></div>
+<div class="col-second even-row-color"><code><a href="#submissionDate" class="member-name-link">submissionDate</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">the date that the proposal was submitted.</div>
 </div>
-<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></code></div>
-<div class="col-second even-row-color"><code><a href="#successful" class="member-name-link">successful</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#successful" class="member-name-link">successful</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">the proposal can go on to allocation.</div>
 </div>
 </div>
@@ -162,7 +167,8 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="col-last even-row-color">
 <div class="block">Creates a new SubmittedProposal</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.util.List,java.util.Date,java.lang.Boolean,java.util.Date,java.util.List,java.lang.String,java.lang.String,org.ivoa.dm.proposal.prop.Justification,org.ivoa.dm.proposal.prop.Justification,java.util.List,org.ivoa.dm.proposal.prop.ProposalKind,java.util.List,java.util.List,java.util.List,java.util.List,java.util.List,java.util.List)" class="member-name-link">SubmittedProposal</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&gt;&nbsp;config,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.util.List,java.util.Date,java.lang.Boolean,java.util.Date,java.util.List,java.lang.String,java.lang.String,org.ivoa.dm.proposal.prop.Justification,org.ivoa.dm.proposal.prop.Justification,java.util.List,org.ivoa.dm.proposal.prop.ProposalKind,java.util.List,java.util.List,java.util.List,java.util.List,java.util.List,java.util.List)" class="member-name-link">SubmittedProposal</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;proposalCode,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&gt;&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;submissionDate,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;successful,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;reviewsCompleteDate,
@@ -186,7 +192,8 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="col-last even-row-color">
 <div class="block">Copy Constructor.</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(org.ivoa.dm.proposal.prop.AbstractProposal,java.util.List,java.util.Date,java.lang.Boolean,java.util.Date,java.util.List)" class="member-name-link">SubmittedProposal</a><wbr>(<a href="../prop/AbstractProposal.html" title="class in org.ivoa.dm.proposal.prop">AbstractProposal</a>&nbsp;superinstance,
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(org.ivoa.dm.proposal.prop.AbstractProposal,java.lang.String,java.util.List,java.util.Date,java.lang.Boolean,java.util.Date,java.util.List)" class="member-name-link">SubmittedProposal</a><wbr>(<a href="../prop/AbstractProposal.html" title="class in org.ivoa.dm.proposal.prop">AbstractProposal</a>&nbsp;superinstance,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;proposalCode,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&gt;&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;submissionDate,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;successful,
@@ -240,50 +247,60 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns config composition as an immutable list.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ProposalReview.html" title="class in org.ivoa.dm.proposal.management">ProposalReview</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReviews()" class="member-name-link">getReviews</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getProposalCode()" class="member-name-link">getProposalCode</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns proposalCode Attribute.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ProposalReview.html" title="class in org.ivoa.dm.proposal.management">ProposalReview</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReviews()" class="member-name-link">getReviews</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns reviews composition as an immutable list.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReviewsCompleteDate()" class="member-name-link">getReviewsCompleteDate</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReviewsCompleteDate()" class="member-name-link">getReviewsCompleteDate</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns reviewsCompleteDate Attribute.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSubmissionDate()" class="member-name-link">getSubmissionDate</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSubmissionDate()" class="member-name-link">getSubmissionDate</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns submissionDate Attribute.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSuccessful()" class="member-name-link">getSuccessful</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSuccessful()" class="member-name-link">getSuccessful</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns successful Attribute.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromConfig(org.ivoa.dm.proposal.management.ObservationConfiguration)" class="member-name-link">removeFromConfig</a><wbr>(<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&nbsp;p)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromConfig(org.ivoa.dm.proposal.management.ObservationConfiguration)" class="member-name-link">removeFromConfig</a><wbr>(<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Remove a org.ivoa.dm.proposal.management.ObservationConfiguration from the composition.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromReviews(org.ivoa.dm.proposal.management.ProposalReview)" class="member-name-link">removeFromReviews</a><wbr>(<a href="ProposalReview.html" title="class in org.ivoa.dm.proposal.management">ProposalReview</a>&nbsp;p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeFromReviews(org.ivoa.dm.proposal.management.ProposalReview)" class="member-name-link">removeFromReviews</a><wbr>(<a href="ProposalReview.html" title="class in org.ivoa.dm.proposal.management">ProposalReview</a>&nbsp;p)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Remove a org.ivoa.dm.proposal.management.ProposalReview from the composition.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInConfig(org.ivoa.dm.proposal.management.ObservationConfiguration)" class="member-name-link">replaceInConfig</a><wbr>(<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&nbsp;_p)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInConfig(org.ivoa.dm.proposal.management.ObservationConfiguration)" class="member-name-link">replaceInConfig</a><wbr>(<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&nbsp;_p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">update a org.ivoa.dm.proposal.management.ObservationConfiguration in the composition.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInReviews(org.ivoa.dm.proposal.management.ProposalReview)" class="member-name-link">replaceInReviews</a><wbr>(<a href="ProposalReview.html" title="class in org.ivoa.dm.proposal.management">ProposalReview</a>&nbsp;_p)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#replaceInReviews(org.ivoa.dm.proposal.management.ProposalReview)" class="member-name-link">replaceInReviews</a><wbr>(<a href="ProposalReview.html" title="class in org.ivoa.dm.proposal.management">ProposalReview</a>&nbsp;_p)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">update a org.ivoa.dm.proposal.management.ProposalReview in the composition.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setConfig(java.util.List)" class="member-name-link">setConfig</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&gt;&nbsp;pConfig)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setConfig(java.util.List)" class="member-name-link">setConfig</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&gt;&nbsp;pConfig)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Defines whole config composition.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setProposalCode(java.lang.String)" class="member-name-link">setProposalCode</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pProposalCode)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set proposalCode Attribute.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReviews(java.util.List)" class="member-name-link">setReviews</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ProposalReview.html" title="class in org.ivoa.dm.proposal.management">ProposalReview</a>&gt;&nbsp;pReviews)</code></div>
@@ -316,18 +333,23 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">Update this object with the content of the given object.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SubmittedProposal.html" title="class in org.ivoa.dm.proposal.management">SubmittedProposal</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withReviewsCompleteDate(java.util.Date)" class="member-name-link">withReviewsCompleteDate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;pReviewsCompleteDate)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withProposalCode(java.lang.String)" class="member-name-link">withProposalCode</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pProposalCode)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">fluent setter for reviewsCompleteDate Attribute.</div>
+<div class="block">fluent setter for proposalCode Attribute.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SubmittedProposal.html" title="class in org.ivoa.dm.proposal.management">SubmittedProposal</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withSubmissionDate(java.util.Date)" class="member-name-link">withSubmissionDate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;pSubmissionDate)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withReviewsCompleteDate(java.util.Date)" class="member-name-link">withReviewsCompleteDate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;pReviewsCompleteDate)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">fluent setter for submissionDate Attribute.</div>
+<div class="block">fluent setter for reviewsCompleteDate Attribute.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SubmittedProposal.html" title="class in org.ivoa.dm.proposal.management">SubmittedProposal</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withSuccessful(java.lang.Boolean)" class="member-name-link">withSuccessful</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;pSuccessful)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withSubmissionDate(java.util.Date)" class="member-name-link">withSubmissionDate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;pSubmissionDate)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">fluent setter for submissionDate Attribute.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SubmittedProposal.html" title="class in org.ivoa.dm.proposal.management">SubmittedProposal</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#withSuccessful(java.lang.Boolean)" class="member-name-link">withSuccessful</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;pSuccessful)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">fluent setter for successful Attribute.</div>
 </div>
 </div>
@@ -356,6 +378,17 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <section class="field-details" id="field-detail">
 <h2>Field Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="proposalCode">
+<h3>proposalCode</h3>
+<div class="member-signature"><span class="annotations">@VoDml(id="proposalManagement:SubmittedProposal.proposalCode",
+       role=attribute,
+       type="ivoa:string",
+       typeRole=primitiveType)
+</span><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">proposalCode</span></div>
+<div class="block">the observatory's code for the proposal. : Attribute proposalCode : multiplicity 1</div>
+</section>
+</li>
 <li>
 <section class="detail" id="config">
 <h3>config</h3>
@@ -435,9 +468,10 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(java.util.List,java.util.Date,java.lang.Boolean,java.util.Date,java.util.List,java.lang.String,java.lang.String,org.ivoa.dm.proposal.prop.Justification,org.ivoa.dm.proposal.prop.Justification,java.util.List,org.ivoa.dm.proposal.prop.ProposalKind,java.util.List,java.util.List,java.util.List,java.util.List,java.util.List,java.util.List)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,java.util.List,java.util.Date,java.lang.Boolean,java.util.Date,java.util.List,java.lang.String,java.lang.String,org.ivoa.dm.proposal.prop.Justification,org.ivoa.dm.proposal.prop.Justification,java.util.List,org.ivoa.dm.proposal.prop.ProposalKind,java.util.List,java.util.List,java.util.List,java.util.List,java.util.List,java.util.List)">
 <h3>SubmittedProposal</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SubmittedProposal</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&gt;&nbsp;config,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SubmittedProposal</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;proposalCode,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&gt;&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;submissionDate,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;successful,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;reviewsCompleteDate,
@@ -457,6 +491,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <div class="block">full parameter constructor.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
+<dd><code>proposalCode</code> - the observatory's code for the proposal.</dd>
 <dd><code>config</code> - .</dd>
 <dd><code>submissionDate</code> - the date that the proposal was submitted.</dd>
 <dd><code>successful</code> - the proposal can go on to allocation.</dd>
@@ -489,9 +524,10 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(org.ivoa.dm.proposal.prop.AbstractProposal,java.util.List,java.util.Date,java.lang.Boolean,java.util.Date,java.util.List)">
+<section class="detail" id="&lt;init&gt;(org.ivoa.dm.proposal.prop.AbstractProposal,java.lang.String,java.util.List,java.util.Date,java.lang.Boolean,java.util.Date,java.util.List)">
 <h3>SubmittedProposal</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SubmittedProposal</span><wbr><span class="parameters">(<a href="../prop/AbstractProposal.html" title="class in org.ivoa.dm.proposal.prop">AbstractProposal</a>&nbsp;superinstance,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;proposalCode,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ObservationConfiguration.html" title="class in org.ivoa.dm.proposal.management">ObservationConfiguration</a>&gt;&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;submissionDate,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;successful,
@@ -501,6 +537,7 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>superinstance</code> - The supertype.</dd>
+<dd><code>proposalCode</code> - the observatory's code for the proposal.</dd>
 <dd><code>config</code> - .</dd>
 <dd><code>submissionDate</code> - the date that the proposal was submitted.</dd>
 <dd><code>successful</code> - the proposal can go on to allocation.</dd>
@@ -549,6 +586,41 @@ implements org.ivoa.vodml.jpa.JPAManipulationsForObjectType&lt;<a href="https://
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>other</code> - the object to be copied.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getProposalCode()">
+<h3>getProposalCode</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getProposalCode</span>()</div>
+<div class="block">Returns proposalCode Attribute.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>proposalCode Attribute</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setProposalCode(java.lang.String)">
+<h3>setProposalCode</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setProposalCode</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pProposalCode)</span></div>
+<div class="block">Set proposalCode Attribute.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pProposalCode</code> - value to set</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="withProposalCode(java.lang.String)">
+<h3>withProposalCode</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SubmittedProposal.html" title="class in org.ivoa.dm.proposal.management">SubmittedProposal</a></span>&nbsp;<span class="element-name">withProposalCode</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pProposalCode)</span></div>
+<div class="block">fluent setter for proposalCode Attribute.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pProposalCode</code> - value to set</dd>
+<dt>Returns:</dt>
+<dd>SubmittedProposal</dd>
 </dl>
 </section>
 </li>

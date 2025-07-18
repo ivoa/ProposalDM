@@ -272,6 +272,7 @@
                       stereotype=""
                       use3DEffect="true">
                   <y:AttributeLabel xml:space="preserve">+title : ivoa:string
++code : ivoa:string
 +instructions : ivoa:anyURI
 +submissionDeadline : ivoa:datetime
 +observationSessionStart : ivoa:datetime
@@ -372,7 +373,8 @@
                       omitDetails="false"
                       stereotype=""
                       use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve">+submissionDate : ivoa:datetime
+                  <y:AttributeLabel xml:space="preserve">+proposalCode : ivoa:string
++submissionDate : ivoa:datetime
 +successful : ivoa:boolean
 +reviewsCompleteDate : ivoa:datetime
 </y:AttributeLabel>
@@ -667,7 +669,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e527"
+            id="d215e536"
             source="proposalManagement:SubmittedProposal"
             target="proposal:AbstractProposal">
          <data key="k3">
@@ -679,7 +681,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e753"
+            id="d215e771"
             source="proposalManagement:AllocatedBlock"
             target="proposalManagement:ResourceBlock">
          <data key="k3">
@@ -787,7 +789,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e398"
+            id="d215e407"
             source="proposalManagement:ProposalCycle"
             target="proposalManagement:ObservingMode">
          <data key="k3">
@@ -803,7 +805,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e407"
+            id="d215e417"
             source="proposalManagement:ProposalCycle"
             target="proposalManagement:AvailableResources">
          <data key="k3">
@@ -819,7 +821,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e417"
+            id="d215e426"
             source="proposalManagement:ProposalCycle"
             target="proposalManagement:AllocationGrade">
          <data key="k3">
@@ -835,7 +837,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e426"
+            id="d215e435"
             source="proposalManagement:ProposalCycle"
             target="proposalManagement:TAC">
          <data key="k3">
@@ -851,7 +853,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e435"
+            id="d215e444"
             source="proposalManagement:ProposalCycle"
             target="proposalManagement:SubmittedProposal">
          <data key="k3">
@@ -867,7 +869,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e444"
+            id="d215e453"
             source="proposalManagement:ProposalCycle"
             target="proposalManagement:AllocatedProposal">
          <data key="k3">
@@ -883,7 +885,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e492"
+            id="d215e501"
             source="proposalManagement:TAC"
             target="proposalManagement:CommitteeMember">
          <data key="k3">
@@ -899,7 +901,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e529"
+            id="d215e547"
             source="proposalManagement:SubmittedProposal"
             target="proposalManagement:ObservationConfiguration">
          <data key="k3">
@@ -915,7 +917,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e565"
+            id="d215e583"
             source="proposalManagement:SubmittedProposal"
             target="proposalManagement:ProposalReview">
          <data key="k3">
@@ -931,7 +933,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e587"
+            id="d215e605"
             source="proposalManagement:AllocatedProposal"
             target="proposalManagement:AllocatedBlock">
          <data key="k3">
@@ -947,7 +949,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e694"
+            id="d215e712"
             source="proposalManagement:AvailableResources"
             target="proposalManagement:Resource">
          <data key="k3">
@@ -963,7 +965,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e740"
+            id="d215e758"
             source="proposalManagement:ResourceBlock"
             target="proposalManagement:Resource">
          <data key="k3">
@@ -1059,7 +1061,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e457"
+            id="d215e466"
             source="proposalManagement:Reviewer"
             target="proposal:Person">
          <data key="k3">
@@ -1075,7 +1077,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e470"
+            id="d215e479"
             source="proposalManagement:CommitteeMember"
             target="proposalManagement:Reviewer">
          <data key="k3">
@@ -1091,7 +1093,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e505"
+            id="d215e514"
             source="proposalManagement:ObservationConfiguration"
             target="proposal:Observation">
          <data key="k3">
@@ -1107,7 +1109,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e514"
+            id="d215e523"
             source="proposalManagement:ObservationConfiguration"
             target="proposalManagement:ObservingMode">
          <data key="k3">
@@ -1123,7 +1125,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e578"
+            id="d215e596"
             source="proposalManagement:AllocatedProposal"
             target="proposalManagement:SubmittedProposal">
          <data key="k3">
@@ -1139,7 +1141,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e601"
+            id="d215e619"
             source="proposalManagement:ProposalReview"
             target="proposalManagement:Reviewer">
          <data key="k3">
@@ -1155,7 +1157,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e672"
+            id="d215e690"
             source="proposalManagement:Resource"
             target="proposalManagement:ResourceType">
          <data key="k3">
@@ -1171,7 +1173,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e731"
+            id="d215e749"
             source="proposalManagement:ResourceBlock"
             target="proposalManagement:ObservingMode">
          <data key="k3">
@@ -1187,7 +1189,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d215e755"
+            id="d215e773"
             source="proposalManagement:AllocatedBlock"
             target="proposalManagement:AllocationGrade">
          <data key="k3">

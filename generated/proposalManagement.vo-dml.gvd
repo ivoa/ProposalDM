@@ -104,7 +104,7 @@ digraph GVmap {
     ] ;
   "proposalManagement:ProposalCycle" [
     URL="../proposalManagement/ProposalCycle"
-    label = "{ProposalCycle|+title : ivoa:string\l+instructions : ivoa:anyURI\l+submissionDeadline : ivoa:datetime\l+observationSessionStart : ivoa:datetime\l+observationSessionEnd : ivoa:datetime\l}"
+    label = "{ProposalCycle|+title : ivoa:string\l+code : ivoa:string\l+instructions : ivoa:anyURI\l+submissionDeadline : ivoa:datetime\l+observationSessionStart : ivoa:datetime\l+observationSessionEnd : ivoa:datetime\l}"
     fillcolor="/set312/1"
     ] ;
   "proposalManagement:Reviewer" [
@@ -129,7 +129,7 @@ digraph GVmap {
     ] ;
   "proposalManagement:SubmittedProposal" [
     URL="../proposalManagement/SubmittedProposal"
-    label = "{SubmittedProposal|+submissionDate : ivoa:datetime\l+successful : ivoa:boolean\l+reviewsCompleteDate : ivoa:datetime\l}"
+    label = "{SubmittedProposal|+proposalCode : ivoa:string\l+submissionDate : ivoa:datetime\l+successful : ivoa:boolean\l+reviewsCompleteDate : ivoa:datetime\l}"
     fillcolor="/set312/1"
     ] ;
   "proposalManagement:AllocatedProposal" [
