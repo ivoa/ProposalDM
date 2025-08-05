@@ -30,7 +30,7 @@
  	name : ivoa:string "telescope name";
  	wikiId : proposal:WikiDataId @? "the wikidata id for the Telescope"; //IMPL this is just an idea to have a reference outside this database 
  
- 	location : coords:RealCartesianPoint "the location of the telescope" ;
+ 	location : coords:CartesianPoint "the location of the telescope" ;
  }
  
  otype TelescopeArrayMember "" {

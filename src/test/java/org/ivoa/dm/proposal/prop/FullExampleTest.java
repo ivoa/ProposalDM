@@ -106,6 +106,7 @@ class FullExampleTest extends AutoDBRoundTripTest<ProposalManagementModel, Long,
         example.saveTodB(em);
         em.getTransaction().commit();
         dumpDbData(em, "fullexample.sql");
+        em.clear(); //there is a hibernate error if we do not do this at least...
         TypedQuery<ObservingProposal> qp = em.createQuery("SELECT o FROM ObservingProposal o ", ObservingProposal.class);
         List<ObservingProposal> proposals = qp.getResultList();
         assertEquals(1,proposals.size(), "number of unsubmitted proposals");

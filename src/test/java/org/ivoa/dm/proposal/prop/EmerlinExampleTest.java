@@ -260,20 +260,20 @@ class EmerlinExampleTest extends AbstractProposalTest {
       String qlString = "select child from Observation "
             + " parent join parent.constraints child "
             + " where parent._id = :pid and child._id = :cid"
-            //  + " and Type(child) = "+ childType.getName()
+              + " and Type(child) = TimingWindow";
             ;
 
 
        em.getTransaction().begin();
-      TypedQuery<TimingWindow> q = em.createQuery(
+      TypedQuery<ObservingConstraint> q = em.createQuery(
             qlString,
-            org.ivoa.dm.proposal.prop.TimingWindow.class
+            org.ivoa.dm.proposal.prop.ObservingConstraint.class
       );
 
       q.setParameter("pid", obId);
       q.setParameter("cid", conId);
 
-      org.ivoa.dm.proposal.prop.TimingWindow con2 = q.getSingleResult();
+      org.ivoa.dm.proposal.prop.TimingWindow con2 = (TimingWindow) q.getSingleResult();
       tw2.setNote("another change");
       con2.updateUsing(tw2);
  

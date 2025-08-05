@@ -217,7 +217,7 @@ public void testObservations() {
        assertNotNull(obs.target);
        assertTrue(obs.target.get(0) instanceof CelestialTarget);
        CelestialTarget target = (CelestialTarget)obs.target.get(0);
-       SpaceSys cosys = target.sourceCoordinates.getCoordSys();
+       SpaceSys cosys = (SpaceSys) target.sourceCoordinates.getCoordSys();
        assertNotNull(cosys);
        
       

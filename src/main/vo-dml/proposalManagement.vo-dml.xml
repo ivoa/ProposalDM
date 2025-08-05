@@ -9,7 +9,7 @@
       <title>Proposal Management</title>
       <author>Paul Harrison</author>
       <version>0.6</version>
-      <lastModified>2025-07-18T10:31:54Z</lastModified>
+      <lastModified>2025-07-28T16:57:00Z</lastModified>
       <import>
         <name>ivoa</name>
         <version>1.1</version>
@@ -172,7 +172,7 @@
                  <name>location</name>
                  <description>the location of the telescope</description>	    
                  <datatype>
-                    <vodml-ref>coords:RealCartesianPoint</vodml-ref>
+                    <vodml-ref>coords:CartesianPoint</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>

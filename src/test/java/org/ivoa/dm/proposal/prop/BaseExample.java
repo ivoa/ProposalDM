@@ -3,7 +3,7 @@ package org.ivoa.dm.proposal.prop;
  * Created on 17/03/2022 by Paul Harrison (paul.harrison@manchester.ac.uk).
  */
 
-import static org.ivoa.dm.stc.coords.RealCartesianPoint.createRealCartesianPoint;
+import static org.ivoa.dm.stc.coords.CartesianPoint.createCartesianPoint;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -104,7 +104,7 @@ public abstract class BaseExample {
      * @return
      */
     protected Telescope createTelescope(String name, double x, double y, double z) {
-        return new Telescope(name, null, createRealCartesianPoint(p ->{
+        return new Telescope(name, null, createCartesianPoint(p ->{
             p.x = new RealQuantity(x, metres);
             p.y = new RealQuantity(y, metres);
             p.z = new RealQuantity(z, metres);
