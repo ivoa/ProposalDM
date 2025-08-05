@@ -17,7 +17,7 @@ dependencyResolutionManagement {
         will not be necessary when this library is released as a non-SNAPSHOT version.
          */
         maven {
-            url= uri("https://oss.sonatype.org/content/repositories/snapshots/")
+            url= uri("https://central.sonatype.com/repository/maven-snapshots/")
         }
     }
 }
