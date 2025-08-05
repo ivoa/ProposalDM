@@ -1,14 +1,14 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.5.26"
+        id("net.ivoa.vo-dml.vodmltools") version "0.5.27"
         `maven-publish`
-        id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
+        id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
         signing
 
 }
 
 group = "org.javastro.ivoa.dm"
-version = "0.6.4-SNAPSHOT"
+version = "0.6.5-SNAPSHOT"
 
 
 vodml {
@@ -68,6 +68,7 @@ tasks.test {
 val tjar = tasks.register<Jar>("testJar") {
         from(sourceSets.test.get().output)
         archiveClassifier.set("test")
+        exclude("hibernate.properties")
 }
 val pjar = tasks.register<Jar>("JarWithoutPersistence") {
         from(sourceSets.main.get().output)
@@ -110,11 +111,17 @@ tasks.register<Exec>("doSite"){
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE } //IMPL bugfix - see https://stackoverflow.com/questions/67265308/gradle-entry-classpath-is-a-duplicate-but-no-duplicate-handling-strategy-has-b
 
 dependencies {
-        api("org.javastro.ivoa.vo-dml:ivoa-base:1.1-SNAPSHOT")
-        api("org.javastro.ivoa.dm:coordinateDM:1.1.2-SNAPSHOT")
+        api("org.javastro.ivoa.vo-dml:ivoa-base:1.1.5-SNAPSHOT")
+        api("org.javastro.ivoa.dm:coordinateDM:1.1.5-SNAPSHOT")
 //    implementation("org.javastro:ivoa-entities:0.9.3-SNAPSHOT")
-        testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
-        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+//   annotationProcessor ("org.hibernate.orm:hibernate-processor:7.0.8.Final")
+//    implementation("org.hibernate.orm:hibernate-core:7.0.8.Final")
+    testRuntimeOnly("org.hibernate.orm:hibernate-testing:6.5.3.Final")
+    
+    testImplementation(platform("org.junit:junit-bom:5.13.4"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")    
         implementation("org.slf4j:slf4j-api:1.7.32")
         testRuntimeOnly("ch.qos.logback:logback-classic:1.2.3")
 
