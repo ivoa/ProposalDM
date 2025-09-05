@@ -116,6 +116,9 @@ class FullExampleTest extends AutoDBRoundTripTest<ProposalManagementModel, Long,
         TypedQuery<Target> qsrc = em.createQuery("SELECT o FROM Target o",Target.class);
         List<Target> targets = qsrc.getResultList();
         assertEquals(3, targets.size(), "number of targets");
+       TypedQuery<Person> psrc = em.createQuery("SELECT o FROM Person o", Person.class);
+       List<Person> persons = psrc.getResultList();
+       assertEquals(5, persons.size(), "number of persons");
        
         
         
