@@ -32,13 +32,13 @@ public abstract class BaseExample {
     protected  final  SpaceSys GEO_SYS = new SpaceSys().withFrame(new SpaceFrame(new StdRefLocation("TOPOCENTER"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library should have some standard model instances...
 
     protected   final  SpaceSys ICRS_SYS = new SpaceSys().withFrame(new SpaceFrame(new StdRefLocation("TOPOCENTER"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
-    protected   final Organization[] institutes = {
+    protected  static final Organization[] institutes = {
             new Organization("org", "org address",new Ivoid("ivo://org/anorg"), null),//TODO is null same as not setting?
             new Organization("org2", "org2 address",new Ivoid("ivo://org/org2"), null)
 
     };
 
-    protected  final Person[] people = {
+    protected static final Person[] people = {
             new Person("John Flamsteed", "pi@unreal.not.email", institutes[0], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-003")),
             new Person("George Airy", "coi@unreal.not.email", institutes[1], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-004")),
             new Person("Edmond Halley", "tacchair@unreal.not.email", institutes[1], new StringIdentifier("https://notreallyorcid.org/0000-0001-0002-005")),
