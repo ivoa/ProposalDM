@@ -137,7 +137,8 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
                       pr.technicalFeasibility = true;
                       pr.reviewDate = new GregorianCalendar(2022, 4, 14).getTime();
                   });
-       
+
+       submittedProposal.addToReviews(review);
        // set that the submitted proposal is ok to be allocated. 
        submittedProposal.setSuccessful(true);
 
