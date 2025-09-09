@@ -117,7 +117,7 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
      * overrides @see org.ivoa.dm.proposal.prop.TACFunctions#submitProposal(org.ivoa.dm.proposal.prop.ObservingProposal)
      */
     @Override
-    public SubmittedProposal submitProposal(ObservingProposal frozenProposal) {
+    public SubmittedProposal submitProposal(ObservingProposal frozenProposal, ProposalCycle thecycle) {
           // "submit" proposal
       
         List<ObservationConfiguration> obsConfigs = makeList(
@@ -126,7 +126,7 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
         
         
         final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, "EmCode",obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
-        cycle.setSubmittedProposals(
+        thecycle.setSubmittedProposals(
               makeList(submittedProposal));
 
         // "review" proposal

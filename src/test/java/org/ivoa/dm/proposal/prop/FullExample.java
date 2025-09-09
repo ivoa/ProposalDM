@@ -42,7 +42,7 @@ public class FullExample {
            ObservingProposal clonedProposal = AbstractProposalTest.cloneProposal(proposal);
            ProposalManagementModel m = new ProposalManagementModel();
            m.createContext();
-           SubmittedProposal submittedProposal = obs.submitProposal(clonedProposal);
+           SubmittedProposal submittedProposal = obs.submitProposal(clonedProposal,obs.getCycle());
            submittedProposal.updateClonedReferences();
            obs.allocateProposal(submittedProposal);
            model.addContent(obs.getCycle());

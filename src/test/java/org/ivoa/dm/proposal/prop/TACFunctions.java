@@ -11,6 +11,7 @@ package org.ivoa.dm.proposal.prop;
 
 import org.ivoa.dm.proposal.management.AllocatedProposal;
 import org.ivoa.dm.proposal.management.ProposalCycle;
+import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.ivoa.dm.proposal.management.SubmittedProposal;
 
 /**
@@ -27,7 +28,7 @@ ProposalCycle getCycle();
  * @param p the proposal to submit. It should be assumed that this has already been cloned.
  * @return The submitted proposal.
  */
-SubmittedProposal submitProposal(ObservingProposal p);
+SubmittedProposal submitProposal(ObservingProposal p, ProposalCycle cycle);
 
 
 /**

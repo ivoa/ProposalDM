@@ -19,23 +19,7 @@ import java.util.List;
 
 import org.ivoa.dm.ivoa.Ivoid;
 import org.ivoa.dm.ivoa.RealQuantity;
-import org.ivoa.dm.proposal.management.AllocatedBlock;
-import org.ivoa.dm.proposal.management.AllocatedProposal;
-import org.ivoa.dm.proposal.management.AllocationGrade;
-import org.ivoa.dm.proposal.management.AvailableResources;
-import org.ivoa.dm.proposal.management.Backend;
-import org.ivoa.dm.proposal.management.Filter;
-import org.ivoa.dm.proposal.management.Instrument;
-import org.ivoa.dm.proposal.management.InstrumentKind;
-import org.ivoa.dm.proposal.management.ObservationConfiguration;
-import org.ivoa.dm.proposal.management.Observatory;
-import org.ivoa.dm.proposal.management.ObservingMode;
-import org.ivoa.dm.proposal.management.ProposalReview;
-import org.ivoa.dm.proposal.management.Resource;
-import org.ivoa.dm.proposal.management.ResourceType;
-import org.ivoa.dm.proposal.management.Reviewer;
-import org.ivoa.dm.proposal.management.SubmittedProposal;
-import org.ivoa.dm.proposal.management.Telescope;
+import org.ivoa.dm.proposal.management.*;
 import org.ivoa.dm.stc.coords.PolStateEnum;
 
 /**
@@ -172,13 +156,13 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
      * overrides @see org.ivoa.dm.proposal.prop.TACFunctions#submitProposal(org.ivoa.dm.proposal.prop.ObservingProposal)
      */
     @Override
-    public SubmittedProposal submitProposal(ObservingProposal frozenProposal) {
+    public SubmittedProposal submitProposal(ObservingProposal frozenProposal, ProposalCycle thecycle) {
         List<ObservationConfiguration> obsConfigs = makeList(
                 new ObservationConfiguration(frozenProposal.getObservations(),obsModes[0])
                 );
         
         final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, "NOTcode", obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
-        cycle.setSubmittedProposals(
+        thecycle.setSubmittedProposals(
               makeList(submittedProposal));
 
         // "review" proposal

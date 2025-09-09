@@ -11,19 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.ivoa.dm.ivoa.Ivoid;
-import org.ivoa.dm.proposal.management.AllocatedProposal;
-import org.ivoa.dm.proposal.management.AllocationGrade;
-import org.ivoa.dm.proposal.management.AvailableResources;
-import org.ivoa.dm.proposal.management.Backend;
-import org.ivoa.dm.proposal.management.Instrument;
-import org.ivoa.dm.proposal.management.Observatory;
-import org.ivoa.dm.proposal.management.ObservingMode;
-import org.ivoa.dm.proposal.management.Resource;
-import org.ivoa.dm.proposal.management.ResourceType;
-import org.ivoa.dm.proposal.management.SubmittedProposal;
-import org.ivoa.dm.proposal.management.Telescope;
-import org.ivoa.dm.proposal.management.TelescopeArray;
-import org.ivoa.dm.proposal.management.TelescopeArrayMember;
+import org.ivoa.dm.proposal.management.*;
 
 /**
  * 
@@ -85,7 +73,7 @@ public class LCOExample extends BaseObservatoryExample implements TACFunctions {
      * overrides @see org.ivoa.dm.proposal.prop.TACFunctions#submitProposal(org.ivoa.dm.proposal.prop.ObservingProposal)
      */
     @Override
-    public SubmittedProposal submitProposal(ObservingProposal p) {
+    public SubmittedProposal submitProposal(ObservingProposal p, ProposalCycle c) {
         // TODO Auto-generated method stub
         throw new  UnsupportedOperationException("TACFunctions.submitProposal() not implemented");
         

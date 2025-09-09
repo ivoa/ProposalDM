@@ -1,6 +1,6 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.5.27"
+        id("net.ivoa.vo-dml.vodmltools") version "0.5.28"
         `maven-publish`
         id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
         signing
