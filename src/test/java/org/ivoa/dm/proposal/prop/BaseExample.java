@@ -5,10 +5,9 @@ package org.ivoa.dm.proposal.prop;
 
 import static org.ivoa.dm.stc.coords.CartesianPoint.createCartesianPoint;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 import java.util.function.Consumer;
 
 import org.ivoa.dm.ivoa.Ivoid;
@@ -124,6 +123,9 @@ public abstract class BaseExample {
     protected static <T> List<T> makeList(T... a) {
         return new ArrayList<T>(Arrays.asList(a));
     }
- 
- 
+
+
+   protected Date todate(LocalDate localDate) {
+      return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+   }
 }

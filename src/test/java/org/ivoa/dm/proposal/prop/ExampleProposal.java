@@ -16,7 +16,7 @@ import static org.ivoa.dm.proposal.prop.ScienceSpectralWindow.createScienceSpect
 import static org.ivoa.dm.proposal.prop.SpectralWindowSetup.createSpectralWindowSetup;
 import static org.ivoa.dm.proposal.prop.TargetObservation.createTargetObservation;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.ivoa.dm.ivoa.RealQuantity;
@@ -95,7 +95,7 @@ public class ExampleProposal extends BaseExample implements ProposalGenerator{
                                   t.field = field;
                                   t.technicalGoal = tgoal;
                                   t.constraints = makeList(
-                                          new TimingWindow(new Date(2023, 1, 1), new Date(2023, 1, 10), "t constraint", false)
+                                          new TimingWindow( todate(LocalDate.of(2023, 1, 1)),  todate(LocalDate.of(2023, 1, 10)), "t constraint", false)
                                           );
                                  
                               }
