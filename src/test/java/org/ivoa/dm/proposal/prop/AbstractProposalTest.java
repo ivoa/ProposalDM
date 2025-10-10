@@ -50,6 +50,8 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
     protected  Long proposalId;
     protected ObservingProposal proposal;
     protected ModelDescription modelDescription;
+    protected Long cycleId;
+    protected ProposalCycle cycle;
 
     @BeforeAll
     public void beforeAll() {
@@ -76,6 +78,14 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
       proposal = props.get(0);
       em.getTransaction().commit();
    }
+   protected void retrieveCycle() {
+      em.getTransaction().begin();
+      List<ProposalCycle> props = em.createNamedQuery("ProposalCycle.findById", ProposalCycle.class)
+            .setParameter("id", cycleId).getResultList();
+      assertEquals(1, props.size());
+      cycle = props.get(0);
+      em.getTransaction().commit();
+   }
 
 
    public interface exampleFactory {
@@ -88,11 +98,14 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
     }
 
     protected abstract void doUrTest();
+
+
     @Test
     @Order(1)
     void UrTest() { // this test has to be done first to make sure that the basic database save has been done
      doUrTest();
     }
+
 
     @org.junit.jupiter.api.Test
     @Order(1000)
@@ -121,8 +134,6 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
         TechnicalGoal tech = obs.getTechnicalGoal();
         assertNotNull(tech);
         assertEquals( 2,tech.spectrum.size(), "number of spectral setups");
-                
-
     }
 
 
