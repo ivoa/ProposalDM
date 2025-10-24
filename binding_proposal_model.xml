@@ -12,9 +12,12 @@
          discriminatorColumnLength="64"
           schema="pdm"/>
     <type-detail vodml-id="Justification.text">
-        <length>4096</length>
+        <length>10000</length>
     </type-detail>
-  
+    <type-detail vodml-id="AbstractProposal.summary">
+        <length>1024</length>
+    </type-detail>
+
 
 </model>
     <model>
@@ -27,7 +30,7 @@
              discriminatorColumnLength="64"
              schema="pdm"/>
         <type-detail vodml-id="ProposalReview.comment">
-            <length>2048</length>
+            <length>1024</length>
         </type-detail>
-    </model>
+     </model>
 </m:mappedModels>
