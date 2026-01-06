@@ -24,7 +24,7 @@ public interface TACFunctions {
 ProposalCycle getCycle();
 
 /**
- * Submit a proposal.
+ * Submit a proposal. The proposal can also be reviewed in this function.
  * @param p the proposal to submit. It should be assumed that this has already been cloned.
  * @return The submitted proposal.
  */

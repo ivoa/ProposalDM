@@ -32,10 +32,10 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
 
     };
     Set<String > notK = new HashSet<>(Arrays.asList("Lovell","Defford"));
-    private Observatory observatory;
-    private ObservingMode obsModes[];
-    private AllocationGrade grades[];
-    private ResourceType observingTime;
+    private final Observatory observatory;
+    private final ObservingMode[] obsModes;
+    private final AllocationGrade[] grades;
+    private final ResourceType observingTime;
     protected SpectralWindowSetup simpleSpecRange(double start, double end) {
         return createSpectralWindowSetup(sw -> {
             sw.start = new RealQuantity(start, ghz);
@@ -76,7 +76,7 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
             
             obs.arrays = Arrays.asList(eMERLIN,eMERLINReduced);
             obs.instruments = Arrays.asList(instruments);
-            obs.backends =Arrays.asList(backend);
+            obs.backends = List.of(backend);
 
         });
 
@@ -106,7 +106,7 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
             cy.instructions = "https://www.e-merlin.ac.uk/observe.html#call";
             cy.possibleGrades = Arrays.asList(grades);
             cy.observingModes = Arrays.asList(obsModes);
-            cy.availableResources = new AvailableResources(Arrays.asList(availableObservingTime));//IMPL is there one too many layers of encapsulation here?
+            cy.availableResources = new AvailableResources(List.of(availableObservingTime));//IMPL is there one too many layers of encapsulation here?
 
         }));
 
@@ -126,14 +126,13 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
         
         
         final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, "EmCode",obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
-        thecycle.setSubmittedProposals(
-              makeList(submittedProposal));
+
 
         // "review" proposal
         ProposalReview review = ProposalReview.createProposalReview(pr -> {
                       pr.comment = "it is good";
                       pr.score = 10.0;
-                      pr.reviewer = new Reviewer(people[4]);
+                      pr.reviewer = reviewers[1];
                       pr.technicalFeasibility = true;
                       pr.reviewDate = new GregorianCalendar(2022, 4, 14).getTime();
                   });
@@ -170,9 +169,7 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
 
               );
           });
-        cycle.setAllocatedProposals(makeList(
-              allocatedProposal
-        ));   
+
         return allocatedProposal;
     }
 

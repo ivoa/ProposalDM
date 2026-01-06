@@ -14,6 +14,7 @@ import static org.ivoa.dm.proposal.management.ProposalCycle.createProposalCycle;
 import static org.ivoa.dm.proposal.prop.SpectralWindowSetup.createSpectralWindowSetup;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -56,12 +57,12 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
      Telescope[] telescopes = {
              NOT
      };
-     private Observatory observatory;
+     private final Observatory observatory;
      
      Backend backend = new Backend("standard pipeline", true);
-    private ObservingMode obsModes[];
-    private AllocationGrade grades[];
-    private ResourceType observingTime;
+    private final ObservingMode[] obsModes;
+    private final AllocationGrade[] grades;
+    private final ResourceType observingTime;
    
      public NOTexample() {
          
@@ -105,7 +106,7 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
             obs.telescopes = Arrays.asList(telescopes);
             
             obs.instruments = Arrays.asList(instruments);
-            obs.backends =Arrays.asList(backend);
+            obs.backends = Collections.singletonList(backend);
 
         });
           
@@ -141,7 +142,7 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
             cy.instructions = "https://www.not.iac.es/observing/proposals/P71/";
             cy.possibleGrades = Arrays.asList(grades);
             cy.observingModes = Arrays.asList(obsModes);
-            cy.availableResources = new AvailableResources(Arrays.asList(availableObservingTime));//IMPL is there one too many layers of encapsulation here?
+            cy.availableResources = new AvailableResources(List.of(availableObservingTime));//IMPL is there one too many layers of encapsulation here?
 
         }));
         
@@ -162,8 +163,6 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
                 );
         
         final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, "NOTcode", obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
-        thecycle.setSubmittedProposals(
-              makeList(submittedProposal));
 
         // "review" proposal
         ProposalReview review = ProposalReview.createProposalReview(pr -> {
@@ -202,9 +201,7 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
 
               );
           });
-        cycle.setAllocatedProposals(makeList(
-              allocatedProposal
-        ));   
+
         return allocatedProposal;
     }
 

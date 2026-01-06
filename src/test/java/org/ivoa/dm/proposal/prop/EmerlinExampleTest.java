@@ -16,20 +16,12 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import jakarta.xml.bind.JAXBException;
 import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
-import org.ivoa.dm.proposal.management.SubmittedProposal;
 import org.ivoa.dm.proposal.management.TAC;
 
 import jakarta.persistence.TypedQuery;
-import org.junit.jupiter.api.Order;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 
 
 /**
@@ -41,7 +33,12 @@ class EmerlinExampleTest extends AbstractProposalTest {
 
 
    public EmerlinExampleTest() {
-      super(ProposalManagementModel.modelDescription,new EmerlinFactory());
+      super(new ExampleFactory() {
+         @Override
+         public ExampleGenerator create() {
+            return new BaseGenerator(new EmerlinExample());
+         }
+      });
    }
 
    @org.junit.jupiter.api.Test
@@ -170,7 +167,6 @@ class EmerlinExampleTest extends AbstractProposalTest {
             + " parent join parent.constraints child "
             + " where parent._id = :pid and child._id = :cid"
             + " and Type(child) = TimingWindow";
-      ;
 
 
       em.getTransaction().begin();
@@ -194,85 +190,6 @@ class EmerlinExampleTest extends AbstractProposalTest {
       assertEquals("another change", ((TimingWindow)props2.get(0).observations.get(0).getConstraints().get(0)).getNote());
 
 
-
-   }
-
-   protected ProposalCycle doTacWork() { //TODO this probably needs refactoring with new ordered tests
-
-
-      ProposalManagementModel pm = new ProposalManagementModel();
-      pm.createContext();
-      SubmittedProposal sprop = ex.submitProposal(proposal, cycle);
-      sprop.updateClonedReferences();
-      ex.allocateProposal(sprop);
-      return cycle;
-
-   }
-
-   @org.junit.jupiter.api.Test
-   public  void testTACQuery() throws JsonProcessingException {
-      TypedQuery<TAC> q = em.createQuery("SELECT o FROM TAC o", TAC.class);
-      TAC tac = q.getSingleResult();
-      System.out.println(tac.getMembers().get(0).getId());
-      String json = ProposalManagementModel.jsonMapper().writeValueAsString(tac);
-      System.out.println(json);
-
-   }
-
-
-   @org.junit.jupiter.api.Test
-   void reviewJSONTest() throws JsonProcessingException  {
-
-
-      ProposalManagementModel model = new ProposalManagementModel();
-      model.addContent(doTacWork());
-      model.processReferences();
-
-      ProposalManagementModel modelin = modelRoundTripJSONwithTest(model);
-      List<ProposalCycle> revs = modelin.getContent(ProposalCycle.class);
-      assertEquals(1, revs.size());
-
-   }
-
-   @org.junit.jupiter.api.Test
-   @Order(1010)
-   void reviewJaxbTest() throws JAXBException,
-         TransformerConfigurationException, ParserConfigurationException,
-         TransformerFactoryConfigurationError, TransformerException {
-      logger.debug("starting test");
-      ProposalManagementModel model = new ProposalManagementModel();
-      model.addContent(doTacWork());
-      model.processReferences();
-      validateModel(model);
-      ProposalManagementModel modelin = modelRoundTripXMLwithTest(model);
-      List<ProposalCycle> revs = modelin.getContent(ProposalCycle.class);
-      assertEquals(1, revs.size());
-
-   }
-
-   @Override
-   protected void doUrTest() {
-      ex = ef.create();
-
-      em.getTransaction().begin();
-      final ObservingProposal localproposal = ex.getProposal();
-      final ProposalCycle thecycle = ex.getCycle();
-      ProposalManagementModel model = new ProposalManagementModel();
-      model.addContent(localproposal);
-      model.addContent(thecycle);
-      model.management().persistRefs(em);
-      em.persist(localproposal);
-      em.persist(thecycle);
-      em.getTransaction().commit();
-
-      //flush any existing entities
-      em.clear();
-      em.getEntityManagerFactory().getCache().evictAll();
-
-      proposalId = localproposal.getId();
-      retrieveProposal();
-      cycleId = thecycle.getId();
-      retrieveCycle();
 
    }
 

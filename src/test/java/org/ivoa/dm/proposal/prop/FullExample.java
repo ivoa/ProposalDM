@@ -12,11 +12,16 @@ package org.ivoa.dm.proposal.prop;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.ivoa.dm.proposal.management.AllocatedProposal;
+import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.ivoa.dm.proposal.management.SubmittedProposal;
 import org.ivoa.vodml.VodmlModel;
 
 import jakarta.persistence.EntityManager;
+
+import static org.ivoa.dm.proposal.prop.BaseExample.makeList;
+import static org.ivoa.dm.proposal.prop.BaseExample.people;
 
 /**
  * Complete example with all example observatories.
@@ -25,11 +30,11 @@ import jakarta.persistence.EntityManager;
 public class FullExample {
     
     
-    private  ObservingProposal proposal;
-    private ProposalManagementModel model = new ProposalManagementModel();
+    private final ObservingProposal proposal;
+    private final ProposalManagementModel model = new ProposalManagementModel();
     
 
-    private List<TACFunctions> observatories = new ArrayList<>();
+    private final List<TACFunctions> observatories = new ArrayList<>();
     /**
      * create full example.
      */
@@ -38,14 +43,23 @@ public class FullExample {
         observatories.add(new NOTexample());
        
        proposal = new ExampleProposal().getProposal();
+       model.addReference(people[4]); //IMPL he is not in a TAC would not be saved otherwise
        for(TACFunctions obs : observatories) {          
-           ObservingProposal clonedProposal = AbstractProposalTest.cloneProposal(proposal);
-           ProposalManagementModel m = new ProposalManagementModel();
-           m.createContext();
-           SubmittedProposal submittedProposal = obs.submitProposal(clonedProposal,obs.getCycle());
+           ObservingProposal clonedProposal = AbstractProposalTest.cloneProposal(model,proposal);
+
+           final ProposalCycle cycle = obs.getCycle();
+
+           model.createContext();
+           SubmittedProposal submittedProposal = obs.submitProposal(clonedProposal, cycle);
+           cycle.setSubmittedProposals(
+                 makeList(submittedProposal));
+
+           AllocatedProposal allocatedProposal = obs.allocateProposal(submittedProposal);
+           cycle.setAllocatedProposals(makeList(
+                 allocatedProposal
+           ));
            submittedProposal.updateClonedReferences();
-           obs.allocateProposal(submittedProposal);
-           model.addContent(obs.getCycle());
+           model.addContent(cycle);
        }
     }
 

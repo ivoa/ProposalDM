@@ -28,9 +28,10 @@ public abstract class BaseExample {
     /** SPACE_SYS.
      */
     //IMPL - removed the CartesianCoordSpace from the definitions below because you have to include the axis definitions which is a pain....
-    protected static final  SpaceSys GEO_SYS = new SpaceSys().withFrame(new SpaceFrame(new StdRefLocation("TOPOCENTER"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library should have some standard model instances...
+    protected static final  SpaceSys GEO_SYS = new SpaceSys().withFrame(new SpaceFrame(new StdRefLocation("TOPOCENTER"), "BODY", null, ""));//FIXME - this should really define the frame better - STC coords library should have some standard model instances...
+     //FIXME 2. the spaceRefFrame should be something like ECEF but http://www.ivoa.net/rdf/refframe does not have that.
 
-    protected  static  final  SpaceSys ICRS_SYS = new SpaceSys().withFrame(new SpaceFrame(new StdRefLocation("TOPOCENTER"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
+    protected  static  final  SpaceSys ICRS_SYS = new SpaceSys().withFrame(new SpaceFrame(new StdRefLocation("BARYCENTER"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
     protected  static final Organization[] institutes = {
             new Organization("org", "org address",new Ivoid("ivo://org/anorg"), null),//TODO is null same as not setting?
             new Organization("org2", "org2 address",new Ivoid("ivo://org/org2"), null)
@@ -51,7 +52,7 @@ public abstract class BaseExample {
 
     protected  Reviewer[] reviewers = {new Reviewer(people[2]),
             new Reviewer(people[3]),
-            new Reviewer(people[4])// reviewer not on TAC
+            new Reviewer(people[4])// reviewer not on TAC (note that in the current code they would need to be added to references explicitly)
     };
 
     protected TAC tac = new TAC( makeList(

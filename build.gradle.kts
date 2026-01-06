@@ -57,9 +57,6 @@ tasks.named<Jar>("sourcesJar") {
         from(tasks.named("vodmlGenerateJava"))
 }
 
-
-
-
 tasks.test {
         useJUnitPlatform()
 }
@@ -111,8 +108,8 @@ tasks.register<Exec>("doSite"){
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE } //IMPL bugfix - see https://stackoverflow.com/questions/67265308/gradle-entry-classpath-is-a-duplicate-but-no-duplicate-handling-strategy-has-b
 
 dependencies {
-        api("org.javastro.ivoa.vo-dml:ivoa-base:1.1.5-SNAPSHOT")
-        api("org.javastro.ivoa.dm:coordinateDM:1.1.5-SNAPSHOT")
+        api("net.ivoa.vo-dml:ivoa-base:1.1-SNAPSHOT")
+        api("net.ivoa.dm:coordinateDM:1.1-SNAPSHOT")
 //    implementation("org.javastro:ivoa-entities:0.9.3-SNAPSHOT")
 
 //   annotationProcessor ("org.hibernate.orm:hibernate-processor:7.0.8.Final")

@@ -20,7 +20,7 @@ public class DataGenerator {
         Map<String, String> props = new HashMap<String, String>();
         // this is done with done to local postgres which obviously needs to be running beforehand.
         String puname = ProposalModel.pu_name();
-        props.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/" + puname + "");
+        props.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/" + puname);
         props.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
         props.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
         props.put("hibernate.globally_quoted_identifiers", "true");

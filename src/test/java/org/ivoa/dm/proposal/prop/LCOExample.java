@@ -7,6 +7,7 @@ import static org.ivoa.dm.proposal.management.ProposalCycle.createProposalCycle;
 import static org.ivoa.dm.proposal.management.Observatory.createObservatory;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,7 +25,7 @@ public class LCOExample extends BaseObservatoryExample implements TACFunctions {
      Telescope[] telescopes = {
              
      };
-     private Observatory observatory;
+     private final Observatory observatory;
    
      public LCOExample() {
          
@@ -42,19 +43,19 @@ public class LCOExample extends BaseObservatoryExample implements TACFunctions {
             obs.name = "Las Cumbres Observatory";
             obs.telescopes = Arrays.asList(telescopes);
             
-            obs.arrays = Arrays.asList(LCOTels);
+            obs.arrays = List.of(LCOTels);
             obs.instruments = Arrays.asList(instruments);
-            obs.backends =Arrays.asList(backend);
+            obs.backends = List.of(backend);
 
         });
           
         ResourceType observingTime = new ResourceType("observing time", "hours");
 
         Resource availableObservingTime = new Resource(observingTime, 100 * 24.0);   
-        ObservingMode obsModes[] = {
+        ObservingMode[] obsModes = {
                 // FIXME add observing modes
         };
-         AllocationGrade grades[] = {
+         AllocationGrade[] grades = {
                 // FIXME add grades
          };
          
@@ -62,7 +63,7 @@ public class LCOExample extends BaseObservatoryExample implements TACFunctions {
             cy.observatory = observatory;
             cy.possibleGrades = Arrays.asList(grades);
             cy.observingModes = Arrays.asList(obsModes);
-            cy.availableResources = new AvailableResources(Arrays.asList(availableObservingTime));//IMPL is there one too many layers of encapsulation here?
+            cy.availableResources = new AvailableResources(List.of(availableObservingTime));//IMPL is there one too many layers of encapsulation here?
 
         }));
         

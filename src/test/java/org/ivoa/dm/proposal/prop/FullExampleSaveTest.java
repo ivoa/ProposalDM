@@ -6,6 +6,7 @@ package org.ivoa.dm.proposal.prop;
  */
 
 import jakarta.persistence.TypedQuery;
+import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.ivoa.dm.proposal.management.SubmittedProposal;
 import org.ivoa.vodml.validation.AbstractBaseValidation;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ public class FullExampleSaveTest extends AbstractBaseValidation {
    @Test
    public void testDBSave()  {
       FullExample example = new FullExample();
-      jakarta.persistence.EntityManager em = setupH2Db(example.getManagementModel().management().pu_name(), example.getManagementModel().modelDescription.allClassNames());
+      jakarta.persistence.EntityManager em = setupH2Db(example.getManagementModel().management().pu_name(), ProposalManagementModel.modelDescription.allClassNames());
 
       em.getTransaction().begin();
       example.saveTodB(em);
@@ -43,8 +44,6 @@ public class FullExampleSaveTest extends AbstractBaseValidation {
       TypedQuery<Person> psrc = em.createQuery("SELECT o FROM Person o", Person.class);
       List<Person> persons = psrc.getResultList();
       assertEquals(5, persons.size(), "number of persons");
-
-
 
    }
 
