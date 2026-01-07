@@ -59,6 +59,8 @@ tasks.named<Jar>("sourcesJar") {
 
 tasks.test {
         useJUnitPlatform()
+        forkEvery = 1 // each test has static content - will get JPA issues otherwise with detached entities from previous tests
+        maxParallelForks = Runtime.getRuntime().availableProcessors() //attempt to get back some of the lost performance by allowing parallel forks
 }
 
 //create jar with the test classes in - this is added as artifact to maven publication below, so automatically created
