@@ -2,13 +2,13 @@
 plugins {
         id("net.ivoa.vo-dml.vodmltools") version "0.5.28"
         `maven-publish`
-        id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
+//        id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
         signing
 
 }
 
 group = "org.javastro.ivoa.dm"
-version = "0.6.6-SNAPSHOT"
+version = "0.6.6"
 
 
 vodml {
@@ -179,22 +179,35 @@ publishing {
                         }
                 }
         }
-}
-nexusPublishing {
         repositories {
-                //TODO this is a rather unsatisfactory kludge, but still seems better than the suggested JReleaser which is not really gradle friendly
-                // see https://central.sonatype.org/publish/publish-portal-ossrh-staging-api/#configuration
-                sonatype {
-                        nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
-                        snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
+                maven {
+                        name = "uksrcrepo"
+                        credentials {
+                                username = (findProperty("uksrcNexusUsername") ?: System.getenv("UKSRC_REPO_USERNAME")) as String?
+                                password = (findProperty("uksrcNexusPassword") ?: System.getenv("UKSRC_REPO_PASSWORD")) as String?
+                        }
+                        val releasesRepoUrl = uri("https://repo.dev.uksrc.org/repository/maven-releases/")
+                        val snapshotsRepoUrl = uri("https://repo.dev.uksrc.org/repository/maven-snapshots/")
+                        url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
                 }
         }
-}
 
-//do not generate extra load on Nexus with new staging repository if signing fails
-tasks.withType<io.github.gradlenexus.publishplugin.InitializeNexusStagingRepository>().configureEach{
-        shouldRunAfter(tasks.withType<Sign>())
 }
+//nexusPublishing {
+//        repositories {
+//                //TODO this is a rather unsatisfactory kludge, but still seems better than the suggested JReleaser which is not really gradle friendly
+//                // see https://central.sonatype.org/publish/publish-portal-ossrh-staging-api/#configuration
+//                sonatype {
+//                        nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
+//                        snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
+//                }
+//        }
+//}
+//
+////do not generate extra load on Nexus with new staging repository if signing fails
+//tasks.withType<io.github.gradlenexus.publishplugin.InitializeNexusStagingRepository>().configureEach{
+//        shouldRunAfter(tasks.withType<Sign>())
+//}
 
 signing {
         setRequired { !project.version.toString().endsWith("-SNAPSHOT") && !project.hasProperty("skipSigning") }

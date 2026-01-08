@@ -12,7 +12,7 @@ The model is described in more detail [here](https://ivoa.github.io/ProposalDM/)
 
 [![main test](https://github.com/ivoa/ProposalDM/actions/workflows/test.yml/badge.svg)](https://github.com/ivoa/ProposalDM/actions/workflows/test.yml/)
 [![preview generation](https://github.com/ivoa/ProposalDM/actions/workflows/preview.yml/badge.svg)](https://github.com/ivoa/ProposalDM/actions/workflows/preview.yml/)
-![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Foss.sonatype.org%2Fcontent%2Frepositories%2Fsnapshots%2Forg%2Fjavastro%2Fivoa%2Fdm%2Fproposaldm%2Fmaven-metadata.xml)
+![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo.dev.uksrc.org%2Frepository%2Fmaven-public%2Forg%2Fjavastro%2Fivoa%2Fdm%2Fproposaldm%2Fmaven-metadata.xml)
 
 
 
