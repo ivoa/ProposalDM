@@ -26,7 +26,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.ivoa.dm.proposal.management.*;
-import org.ivoa.dm.stc.coords.SpaceSys;
 import org.ivoa.vodml.ModelDescription;
 import org.junit.jupiter.api.*;
 
@@ -202,7 +201,7 @@ public void testObservations() {
        assertNotNull(obs.target);
    assertInstanceOf(CelestialTarget.class, obs.target.get(0));
        CelestialTarget target = (CelestialTarget)obs.target.get(0);
-       SpaceSys cosys = target.sourceCoordinates.getCoordSys();
+       String cosys = target.getCoord().getReferenceFrame();
        assertNotNull(cosys);
        
       

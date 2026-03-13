@@ -21,9 +21,9 @@ import java.util.List;
 
 import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.ivoa.StringIdentifier;
-import org.ivoa.dm.stc.coords.Epoch;
-import org.ivoa.dm.stc.coords.EquatorialPoint;
-import org.ivoa.dm.stc.coords.PolStateEnum;
+import org.ivoa.dm.proposal.prop.coords.Mjd;
+import org.ivoa.dm.proposal.prop.coords.Polarization;
+import org.javastro.ivoacore.pgsphere.types.Point;
 
 /**
  *  .
@@ -41,8 +41,12 @@ public class ExampleProposal extends BaseExample implements ProposalGenerator{
     
         final Target target =  CelestialTarget.createCelestialTarget(c -> {
                                       c.sourceName = "fictional";
-                                      c.sourceCoordinates = new EquatorialPoint(new RealQuantity(45.0, degrees), new RealQuantity(60.0, degrees), ICRS_SYS);//IMPL it would actually be nice to be able to input sexagesimal - that is the most human readable
-                                      c.positionEpoch = new Epoch("J2013.123");//FIXME - this is not really what epoch means
+                                      c.coord = CelestialPosition.createCelestialPosition(p->{
+                                         p.sourceCoordinates = new Point(45.0,60.0);
+                                         p.referenceFrame = ICRS_SYS;
+                                      });
+                                      c.coordUnit = degrees;
+                                      c.positionEpoch = new Mjd(61046.0);
                                   });
         
         final Field field = new TargetField("source1");
@@ -61,7 +65,7 @@ public class ExampleProposal extends BaseExample implements ProposalGenerator{
                                                     sw.end = new RealQuantity(1.7, ghz);
                                                     sw.spectralResolution = new RealQuantity(0.5, ghz);
                                                     sw.isSkyFrequency = true;
-                                                    sw.polarization = PolStateEnum.LL; //IMPL really want a list here - or repeat the whole spectralwindow setup for each poln
+                                                    sw.polarization = Polarization.CIRCULAR;
     
                                                 });
                                             }),
@@ -78,7 +82,7 @@ public class ExampleProposal extends BaseExample implements ProposalGenerator{
                                                     sw.end = new RealQuantity(1.43, ghz);
                                                     sw.spectralResolution = new RealQuantity(100.0, khz);
                                                     sw.isSkyFrequency = false; // exact freq depends on the source...
-                                                    sw.polarization = PolStateEnum.LL;
+                                                    sw.polarization = Polarization.CIRCULAR;
                                                 });
     
                                             })

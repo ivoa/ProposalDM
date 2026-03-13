@@ -3,8 +3,6 @@ package org.ivoa.dm.proposal.prop;
  * Created on 17/03/2022 by Paul Harrison (paul.harrison@manchester.ac.uk).
  */
 
-import static org.ivoa.dm.stc.coords.CartesianPoint.createCartesianPoint;
-
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -19,19 +17,19 @@ import org.ivoa.dm.proposal.management.Reviewer;
 import org.ivoa.dm.proposal.management.TAC;
 import org.ivoa.dm.proposal.management.TacRole;
 import org.ivoa.dm.proposal.management.Telescope;
-import org.ivoa.dm.stc.coords.SpaceFrame;
-import org.ivoa.dm.stc.coords.SpaceSys;
-import org.ivoa.dm.stc.coords.StdRefLocation;
+
 import org.ivoa.vodml.stdtypes.Unit;
+
+import static org.ivoa.dm.proposal.prop.coords.CartesianPoint.createCartesianPoint;
 
 public abstract class BaseExample {
     /** SPACE_SYS.
      */
     //IMPL - removed the CartesianCoordSpace from the definitions below because you have to include the axis definitions which is a pain....
-    protected static final  SpaceSys GEO_SYS = new SpaceSys().withFrame(new SpaceFrame(new StdRefLocation("TOPOCENTER"), "BODY", null, ""));//FIXME - this should really define the frame better - STC coords library should have some standard model instances...
-     //FIXME 2. the spaceRefFrame should be something like ECEF but http://www.ivoa.net/rdf/refframe does not have that.
+    protected static final  String GEO_SYS = "GEOCENTER";
 
-    protected  static  final  SpaceSys ICRS_SYS = new SpaceSys().withFrame(new SpaceFrame(new StdRefLocation("BARYCENTER"), "ICRS", null, ""));//FIXME - this should really define the frame better - STC coords library  should have some standard model instances...
+
+    protected  static  final String  ICRS_SYS = "ICRS";
     protected  static final Organization[] institutes = {
             new Organization("org", "org address",new Ivoid("ivo://org/anorg"), null),//TODO is null same as not setting?
             new Organization("org2", "org2 address",new Ivoid("ivo://org/org2"), null)
@@ -108,7 +106,7 @@ public abstract class BaseExample {
             p.x = new RealQuantity(x, metres);
             p.y = new RealQuantity(y, metres);
             p.z = new RealQuantity(z, metres);
-            p.coordSys = GEO_SYS;
+            p.refpos = GEO_SYS;
         }));
 
     }
