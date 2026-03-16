@@ -2,12 +2,12 @@
  *  created on 20 Oct 2021 // The review side of the proposal.
  */
  
- model proposalManagement (0.6)  "The data model for managing the proposal review process. This is the observatories' view of the proposal process, intended to work for phase 1 only"
+ model proposalManagement (0.7)  "The data model for managing the proposal review process. This is the observatories' view of the proposal process, intended to work for phase 1 only"
  author "Paul Harrison" 
  title "Proposal Management"
  
  include "../../../build/tmp/IVOA-v1.0.vodsl" // note that this is auto generated from dependencies during build
- include "../../../build/tmp/Coords-v1.0.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
+ include "../../../build/tmp/ADQLGeomDM-v1.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
  include "proposaldm.vodsl"
  
  
@@ -30,7 +30,7 @@
  	name : ivoa:string "telescope name";
  	wikiId : proposal:WikiDataId @? "the wikidata id for the Telescope"; //IMPL this is just an idea to have a reference outside this database 
  
- 	location : coords:CartesianPoint "the location of the telescope" ;
+ 	location : proposal:coords.CartesianPoint "the location of the telescope" ;
  }
  
  otype TelescopeArrayMember "" {

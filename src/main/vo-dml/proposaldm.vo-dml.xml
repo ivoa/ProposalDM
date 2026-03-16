@@ -11,8 +11,8 @@
       <uri/>
       <title>Proposal</title>
       <author>Paul Harrison</author>
-      <version>0.6</version>
-      <lastModified>2025-07-28T17:06:31Z</lastModified>
+      <version>0.7</version>
+      <lastModified>2026-03-13T12:14:29Z</lastModified>
       <import>
         <name>ivoa</name>
         <version>1.1</version>
@@ -20,9 +20,9 @@
         <documentationURL>not known</documentationURL>
       </import>
       <import>
-        <name>coords</name>
-        <version>1.1</version>
-        <url>Coords-v1.0.vo-dml.xml</url>
+        <name>adqlgeom</name>
+        <version>1.0</version>
+        <url>ADQLGeomDM-v1.vo-dml.xml</url>
         <documentationURL>not known</documentationURL>
       </import>
       <primitiveType >
@@ -134,6 +134,50 @@
                   </literal>	
             </enumeration>
             <dataType>
+              <vodml-id>CelestialPosition</vodml-id>
+              <name>CelestialPosition</name>
+              <description>a point on the celestial sphere</description>	    
+            <attribute>
+              <vodml-id>CelestialPosition.sourceCoordinates</vodml-id>
+              <name>sourceCoordinates</name>
+              <description></description>	    
+              <datatype>
+                 <vodml-ref>adqlgeom:Point</vodml-ref>
+              </datatype>
+              <multiplicity>
+                <minOccurs>1</minOccurs>
+                <maxOccurs>1</maxOccurs>
+              </multiplicity>
+            </attribute>
+            <attribute>
+              <vodml-id>CelestialPosition.referenceFrame</vodml-id>
+              <name>referenceFrame</name>
+              <description>the reference frame</description>	    
+              <datatype>
+                 <vodml-ref>ivoa:string</vodml-ref>
+              </datatype>
+              <multiplicity>
+                <minOccurs>1</minOccurs>
+                <maxOccurs>1</maxOccurs>
+              </multiplicity>
+            <semanticconcept>
+              <vocabularyURI>http://www.ivoa.net/rdf/refframe</vocabularyURI>
+            </semanticconcept>
+            </attribute>
+            <attribute>
+              <vodml-id>CelestialPosition.equinox</vodml-id>
+              <name>equinox</name>
+              <description>the equinox when needed - not for modern reference frames</description>	    
+              <datatype>
+                 <vodml-ref>proposal:coords.mjd</vodml-ref>
+              </datatype>
+              <multiplicity>
+                <minOccurs>0</minOccurs>
+                <maxOccurs>1</maxOccurs>
+              </multiplicity>
+            </attribute>
+            </dataType>
+            <dataType>
               <vodml-id>SpectralWindowSetup</vodml-id>
               <name>SpectralWindowSetup</name>
               <description>Science oriented definition of a spectral window.</description>	    
@@ -190,7 +234,7 @@
               <name>polarization</name>
               <description>desired polarization</description>	    
               <datatype>
-                 <vodml-ref>coords:PolStateEnum</vodml-ref>
+                 <vodml-ref>proposal:coords.Polarization</vodml-ref>
               </datatype>
               <multiplicity>
                 <minOccurs>1</minOccurs>
@@ -607,11 +651,23 @@
                   <vodml-ref>proposal:Target</vodml-ref>
                </extends>
                <attribute>
-                 <vodml-id>CelestialTarget.sourceCoordinates</vodml-id>
-                 <name>sourceCoordinates</name>
-                 <description></description>	    
+                 <vodml-id>CelestialTarget.coord</vodml-id>
+                 <name>coord</name>
+                 <description>the coordinates</description>	    
                  <datatype>
-                    <vodml-ref>coords:EquatorialPoint</vodml-ref>
+                    <vodml-ref>proposal:CelestialPosition</vodml-ref>
+                 </datatype>
+                 <multiplicity>
+                   <minOccurs>1</minOccurs>
+                   <maxOccurs>1</maxOccurs>
+                 </multiplicity>
+               </attribute>
+               <attribute>
+                 <vodml-id>CelestialTarget.coordUnit</vodml-id>
+                 <name>coordUnit</name>
+                 <description>the unit for the coordinates</description>	    
+                 <datatype>
+                    <vodml-ref>ivoa:Unit</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -623,7 +679,7 @@
                  <name>positionEpoch</name>
                  <description>the epoch at which the position was measured</description>	    
                  <datatype>
-                    <vodml-ref>coords:Epoch</vodml-ref>
+                    <vodml-ref>proposal:coords.mjd</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -713,82 +769,18 @@
                </extends>
             </objectType>
             <objectType>
-               <vodml-id>Point</vodml-id>
-               <name>Point</name>
+               <vodml-id>SinglePointing</vodml-id>
+               <name>SinglePointing</name>
                <description>Single point on the sky</description>	    
                <extends>
                   <vodml-ref>proposal:Field</vodml-ref>
                </extends>
                <attribute>
-                 <vodml-id>Point.centre</vodml-id>
+                 <vodml-id>SinglePointing.centre</vodml-id>
                  <name>centre</name>
-                 <description></description>	    
+                 <description>Where to point</description>	    
                  <datatype>
-                    <vodml-ref>coords:Point</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
-            </objectType>
-            <objectType>
-               <vodml-id>Polygon</vodml-id>
-               <name>Polygon</name>
-               <description>Polygonal map</description>	    
-               <extends>
-                  <vodml-ref>proposal:Field</vodml-ref>
-               </extends>
-               <attribute>
-                 <vodml-id>Polygon.points</vodml-id>
-                 <name>points</name>
-                 <description>an array of points....</description>	    
-                 <datatype>
-                    <vodml-ref>coords:EquatorialPoint</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>0</minOccurs>
-                   <maxOccurs>-1</maxOccurs>
-                 </multiplicity>
-               </attribute>
-            </objectType>
-            <objectType>
-               <vodml-id>Ellipse</vodml-id>
-               <name>Ellipse</name>
-               <description>Specialization of a Field for an elliptical map.</description>	    
-               <extends>
-                  <vodml-ref>proposal:Field</vodml-ref>
-               </extends>
-               <attribute>
-                 <vodml-id>Ellipse.semiMajor</vodml-id>
-                 <name>semiMajor</name>
-                 <description></description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
-               <attribute>
-                 <vodml-id>Ellipse.semiMinor</vodml-id>
-                 <name>semiMinor</name>
-                 <description></description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
-                 </datatype>
-                 <multiplicity>
-                   <minOccurs>1</minOccurs>
-                   <maxOccurs>1</maxOccurs>
-                 </multiplicity>
-               </attribute>
-               <attribute>
-                 <vodml-id>Ellipse.pAMajor</vodml-id>
-                 <name>pAMajor</name>
-                 <description></description>	    
-                 <datatype>
-                    <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                    <vodml-ref>proposal:CelestialPosition</vodml-ref>
                  </datatype>
                  <multiplicity>
                    <minOccurs>1</minOccurs>
@@ -1141,4 +1133,88 @@
                  <isOrdered>true</isOrdered>
                </composition>
             </objectType>
+            <package>
+               <vodml-id>coords</vodml-id>
+               <name>coords</name>
+               <description></description>	    
+                   <primitiveType >
+                   <vodml-id>coords.mjd</vodml-id>
+                   <name>mjd</name>
+                   <description>modified julian date</description>	    
+                   <extends>
+                      <vodml-ref>ivoa:real</vodml-ref>
+                   </extends>
+                   </primitiveType>
+                         <enumeration>
+                            <vodml-id>coords.Polarization</vodml-id>
+                            <name>Polarization</name>
+                            <description>description of polarization</description>	    
+                               <literal>
+                                 <vodml-id>coords.Polarization.Linear</vodml-id>
+                                 <name>Linear</name>
+                                 <description>linear</description>	    
+                               </literal>	
+                               <literal>
+                                 <vodml-id>coords.Polarization.Circular</vodml-id>
+                                 <name>Circular</name>
+                                 <description>circular</description>	    
+                               </literal>	
+                         </enumeration>
+                         <dataType>
+                           <vodml-id>coords.CartesianPoint</vodml-id>
+                           <name>CartesianPoint</name>
+                           <description></description>	    
+                         <attribute>
+                           <vodml-id>coords.CartesianPoint.x</vodml-id>
+                           <name>x</name>
+                           <description>x coord</description>	    
+                           <datatype>
+                              <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                           </datatype>
+                           <multiplicity>
+                             <minOccurs>1</minOccurs>
+                             <maxOccurs>1</maxOccurs>
+                           </multiplicity>
+                         </attribute>
+                         <attribute>
+                           <vodml-id>coords.CartesianPoint.y</vodml-id>
+                           <name>y</name>
+                           <description>y coord</description>	    
+                           <datatype>
+                              <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                           </datatype>
+                           <multiplicity>
+                             <minOccurs>1</minOccurs>
+                             <maxOccurs>1</maxOccurs>
+                           </multiplicity>
+                         </attribute>
+                         <attribute>
+                           <vodml-id>coords.CartesianPoint.z</vodml-id>
+                           <name>z</name>
+                           <description>z coord</description>	    
+                           <datatype>
+                              <vodml-ref>ivoa:RealQuantity</vodml-ref>
+                           </datatype>
+                           <multiplicity>
+                             <minOccurs>1</minOccurs>
+                             <maxOccurs>1</maxOccurs>
+                           </multiplicity>
+                         </attribute>
+                         <attribute>
+                           <vodml-id>coords.CartesianPoint.refpos</vodml-id>
+                           <name>refpos</name>
+                           <description>The reference position for this coordinate system</description>	    
+                           <datatype>
+                              <vodml-ref>ivoa:string</vodml-ref>
+                           </datatype>
+                           <multiplicity>
+                             <minOccurs>1</minOccurs>
+                             <maxOccurs>1</maxOccurs>
+                           </multiplicity>
+                         <semanticconcept>
+                           <vocabularyURI>http://www.ivoa.net/rdf/refposition</vocabularyURI>
+                         </semanticconcept>
+                         </attribute>
+                         </dataType>
+            </package>
 </vo-dml:model>

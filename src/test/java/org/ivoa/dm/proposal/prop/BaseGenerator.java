@@ -8,7 +8,6 @@ package org.ivoa.dm.proposal.prop;
 import org.ivoa.dm.proposal.management.AllocatedProposal;
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.SubmittedProposal;
-import org.ivoa.dm.stc.coords.SpaceSys;
 
 public class BaseGenerator implements ExampleGenerator {
     ExampleProposal prop = new ExampleProposal();
@@ -29,12 +28,12 @@ public class BaseGenerator implements ExampleGenerator {
     }
 
     @Override
-    public SpaceSys getICRS() {
+    public String getICRS() {
         return BaseExample.ICRS_SYS;
     }
 
     @Override
-    public SpaceSys getICRF() {
+    public String getICRF() {
         return BaseExample.GEO_SYS;
 
     }

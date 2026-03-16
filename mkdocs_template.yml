@@ -1,5 +1,6 @@
 site_name: ProposalDM
 repo_url: 'https://github.com/ivoa/ProposalDM'
+docs_dir: docs/
 theme:
   name: material
   features:

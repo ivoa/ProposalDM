@@ -18,10 +18,10 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.ivoa.dm.ivoa.Ivoid;
+import org.ivoa.vodml.stdtypes.Ivoid;
 import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.proposal.management.*;
-import org.ivoa.dm.stc.coords.PolStateEnum;
+import org.ivoa.dm.proposal.prop.coords.Polarization;
 
 /**
  *  .
@@ -42,7 +42,7 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
             return createSpectralWindowSetup(sw -> {
             sw.start = new RealQuantity(c/(centwl-fwhm)/1e9, ghz);
             sw.end = new RealQuantity(c/(centwl+fwhm)/1e9, ghz);
-            sw.polarization = PolStateEnum.V ; //FIXME - just plain wrong!
+            sw.polarization = Polarization.CIRCULAR ; //FIXME - really need better polarization model.
             sw.isSkyFrequency = true;
             sw.spectralResolution = new RealQuantity(sw.end.getValue()-sw.start.getValue(), ghz); //Indicate that resolution is not important - set same as width.
         });

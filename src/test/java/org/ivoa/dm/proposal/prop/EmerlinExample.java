@@ -4,9 +4,9 @@ package org.ivoa.dm.proposal.prop;
  */
 
 import org.ivoa.dm.proposal.management.*;
-import org.ivoa.dm.stc.coords.PolStateEnum;
-import org.ivoa.dm.ivoa.Ivoid;
+import org.ivoa.vodml.stdtypes.Ivoid;
 import org.ivoa.dm.ivoa.RealQuantity;
+import org.ivoa.dm.proposal.prop.coords.Polarization;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -40,7 +40,7 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
         return createSpectralWindowSetup(sw -> {
             sw.start = new RealQuantity(start, ghz);
             sw.end = new RealQuantity(end, ghz);
-            sw.polarization = PolStateEnum.V ; //FIXME - trying to express circular polarized
+            sw.polarization = Polarization.CIRCULAR ; //FIXME - polarization should be better modeled
             sw.isSkyFrequency = true;
             sw.spectralResolution = new RealQuantity(end-start, ghz); //Indicate that resolution is not important - set same as width.
         });

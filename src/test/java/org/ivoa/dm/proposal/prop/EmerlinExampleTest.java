@@ -22,6 +22,7 @@ import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.ivoa.dm.proposal.management.TAC;
 
 import jakarta.persistence.TypedQuery;
+import org.javastro.ivoacore.pgsphere.types.Point;
 
 
 /**
@@ -47,7 +48,8 @@ class EmerlinExampleTest extends AbstractProposalTest {
    
      
     List<Field> fields = Arrays.asList(new TargetField("first"), new TargetField("second"),
-               new Point(new org.ivoa.dm.stc.coords.EquatorialPoint(new RealQuantity(45.0, BaseExample.degrees ), new RealQuantity(45.0, BaseExample.degrees ), ex.getICRS()),"a point") );
+          new SinglePointing(new CelestialPosition(new Point(45.0, 65.0),"ICRS", null),"arbitrary"));
+
        String json = ProposalModel.jsonMapper().writeValueAsString(fields.get(0));
        assertEquals("{\"@type\":\"proposal:TargetField\",\"_id\":0,\"name\":\"first\"}", json);
        System.out.println(json);

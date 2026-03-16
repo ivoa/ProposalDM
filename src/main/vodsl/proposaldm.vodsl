@@ -2,7 +2,7 @@
  *  created on 09-Jul-2021 
  */
  
- model proposal (0.6)  "A model to represent an application for observing time. The model is intended to express all
+ model proposal (0.7)  "A model to represent an application for observing time. The model is intended to express all
 of the concepts required to specify the scientific parameters of the application in sufficient detail to allow the 
 proposal to be reviewed and allocated time. It does not cover all the technical detail of instrument setup that would be needed to actually schedule the 
 observations, although the intention is that information about targets etc. could be automatically transferred to an observing system."
@@ -10,7 +10,7 @@ observations, although the intention is that information about targets etc. coul
  title "Proposal"
  
  include "../../../build/tmp/IVOA-v1.0.vodsl" // note that this is auto generated from dependencies by vodslToVodml command
- include "../../../build/tmp/Coords-v1.0.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
+ include "../../../build/tmp/ADQLGeomDM-v1.vodsl" // this is a case where recursive import would be better - https://github.com/ivoa/vo-dml/issues/7 - here stc is really only used in the proposaldm
 
  
  primitive WikiDataId -> ivoa:stringIdentifier "a WikiData identifier"
@@ -20,6 +20,24 @@ observations, although the intention is that information about targets etc. coul
  	ToO "target of opportunity",
  	Survey "Part of a large programme" 	
  }
+ 
+ package coords {
+ 	enum Polarization "description of polarization" { // IMPL - this is in no way a comprehensive description of polarization
+ 		Linear "linear",
+ 		Circular "circular"
+ 	}
+ 	
+ 	primitive mjd -> ivoa:real "modified julian date"
+ 	
+ 	dtype CartesianPoint "" {
+ 		x : ivoa:RealQuantity "x coord";
+ 		y : ivoa:RealQuantity "y coord";
+ 		z : ivoa:RealQuantity "z coord";
+ 		refpos : ivoa:string "The reference position for this coordinate system" semantic in "http://www.ivoa.net/rdf/refposition";
+ 	}
+ 	
+ }
+ 
  
  abstract otype AbstractProposal "base proposal"
  {
@@ -107,10 +125,17 @@ observations, although the intention is that information about targets etc. coul
   	
   }
   
+  dtype CelestialPosition "a point on the celestial sphere" {
+  	sourceCoordinates: adqlgeom:Point  "";
+  	referenceFrame: ivoa:string "the reference frame" semantic in "http://www.ivoa.net/rdf/refframe";
+    equinox: proposal:coords.mjd @? "the equinox when needed - not for modern reference frames";
+  }
+  
   otype CelestialTarget -> Target  "The basic target setup for a celestial Target."
   {   //IMPL most of these source parameters should be in an ivoa source model.
-        sourceCoordinates: coords:EquatorialPoint   "" ;
-        positionEpoch : coords:Epoch "the epoch at which the position was measured";
+        coord: CelestialPosition "the coordinates";
+        coordUnit : ivoa:Unit "the unit for the coordinates"; //TODO perhaps better to fix the units...
+        positionEpoch : proposal:coords.mjd "the epoch at which the position was measured";
         pmRA: ivoa:RealQuantity @?  "" ;
         pmDec: ivoa:RealQuantity @?  "" ;
         parallax: ivoa:RealQuantity @? "" ;
@@ -134,20 +159,8 @@ observations, although the intention is that information about targets etc. coul
   	
   }
   
-  otype Point -> Field "Single point on the sky" {
-  	  centre: coords:Point   "" ;
-  }
-  
-  otype Polygon  -> Field  "Polygonal map"
-  {   
-        points: coords:EquatorialPoint   @*   "an array of points...." ; 
-  }
-  
-  otype Ellipse  -> Field "Specialization of a Field for an elliptical map."
-  {   
-        semiMajor: ivoa:RealQuantity   "" ;
-        semiMinor: ivoa:RealQuantity   "" ;
-        pAMajor: ivoa:RealQuantity   "" ;
+  otype SinglePointing -> Field "Single point on the sky" {
+  	  centre: CelestialPosition   "Where to point" ;
   }
   
   
@@ -189,7 +202,7 @@ observations, although the intention is that information about targets etc. coul
         end: ivoa:RealQuantity    "The end of the spectral window" ;
         spectralResolution: ivoa:RealQuantity @?  "channel width" ; //IMPL would like this to be optional, but cannot have optional embedded in JPA - if resolution not important then set same as width.
         isSkyFrequency: ivoa:boolean   "represents an observed frequency" ;
-        polarization: coords:PolStateEnum  "desired polarization"; //FIXME - in general the STC polstate enum is not enough - how to say L circular for instance. - also do want multiple pol states in same window defn.
+        polarization: proposal:coords.Polarization  "desired polarization"; //FIXME - in general the STC polstate enum is not enough - how to say L circular for instance. - also do want multiple pol states in same window defn.
    }  
  
   
