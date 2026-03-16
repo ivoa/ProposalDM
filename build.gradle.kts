@@ -1,10 +1,10 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.5.30"
+        id("net.ivoa.vo-dml.vodmltools") version "0.5.31"
         `maven-publish`
 //        id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
         signing
-
+        id("com.diffplug.spotless") version "6.25.0"
 }
 
 group = "org.javastro.ivoa.dm"
@@ -50,7 +50,23 @@ java {
         withSourcesJar()
 }
 
+spotless {
+        java {
+                target(vodml.outputJavaDir.asFileTree.matching(
+                        PatternSet().include("**/*.java")
+                ))
+                googleJavaFormat("1.17.0")
+        }
+}
 
+tasks.named("spotlessJava") {
+        dependsOn("vodmlJavaGenerate")
+}
+
+tasks.named(JavaPlugin.COMPILE_JAVA_TASK_NAME) {
+        dependsOn("spotlessApply")
+}
+// end of spotless config
 
 //make the fact that sources are generated explicit (gets rid of warning that it will not work in gradle 8)- see https://melix.github.io/blog/2021/10/gradle-quickie-dependson.html
 tasks.named<Jar>("sourcesJar") {

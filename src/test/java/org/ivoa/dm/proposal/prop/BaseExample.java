@@ -8,7 +8,7 @@ import java.time.ZoneId;
 import java.util.*;
 import java.util.function.Consumer;
 
-import org.ivoa.dm.ivoa.Ivoid;
+import org.ivoa.vodml.stdtypes.Ivoid;
 import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.ivoa.StringIdentifier;
 import org.ivoa.dm.proposal.management.CommitteeMember;
