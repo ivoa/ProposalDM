@@ -1,6 +1,6 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.5.31"
+        id("net.ivoa.vo-dml.vodmltools") version "0.7.1"
         `maven-publish`
 //        id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
         signing
@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "org.javastro.ivoa.dm"
-version = "0.7.0-SNAPSHOT"
+version = "0.7.3-SNAPSHOT"
 
 
 vodml {
@@ -127,24 +127,24 @@ tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE } //IMPL b
 
 dependencies {
         api("net.ivoa.vo-dml:ivoa-base:1.1-SNAPSHOT")
-        api("net.ivoa.dm:ADQLGeomDM:0.9-SNAPSHOT")
+        api("net.ivoa.dm:ADQLGeomDM:0.9.0")
 //    implementation("org.javastro:ivoa-entities:0.9.3-SNAPSHOT")
 
 //   annotationProcessor ("org.hibernate.orm:hibernate-processor:7.0.8.Final")
 //    implementation("org.hibernate.orm:hibernate-core:7.0.8.Final")
-    testRuntimeOnly("org.hibernate.orm:hibernate-testing:6.5.3.Final")
-    
+
     testImplementation(platform("org.junit:junit-bom:5.13.4"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")    
         implementation("org.slf4j:slf4j-api:1.7.32")
-        testRuntimeOnly("ch.qos.logback:logback-classic:1.2.3")
+        testRuntimeOnly("ch.qos.logback:logback-classic:1.5.13")
 
-        testImplementation("com.h2database:h2:2.1.214") // try out h2
-//        testImplementation("org.apache.derby:derby:10.14.2.0")
+        testRuntimeOnly("org.hibernate.orm:hibernate-testing:7.2.6.Final")
+        testImplementation("org.hibernate.orm:hibernate-spatial:7.2.6.Final")
+        testImplementation("org.orbisgis:h2gis:2.2.5")
         testImplementation("org.javastro:jaxbjpa-utils:0.2.3")
 
-        testRuntimeOnly("org.postgresql:postgresql:42.3.3")
+        testRuntimeOnly("org.postgresql:postgresql:42.7.12")
 }
 
 tasks.register<Exec>("createTestData")
