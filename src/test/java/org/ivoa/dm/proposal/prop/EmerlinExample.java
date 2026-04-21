@@ -5,7 +5,7 @@ package org.ivoa.dm.proposal.prop;
 
 import org.ivoa.dm.proposal.management.*;
 import org.ivoa.dm.stc.coords.PolStateEnum;
-import org.ivoa.dm.ivoa.Ivoid;
+import org.ivoa.vodml.stdtypes.Ivoid;
 import org.ivoa.dm.ivoa.RealQuantity;
 
 import java.util.*;
