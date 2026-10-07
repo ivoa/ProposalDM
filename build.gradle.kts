@@ -79,6 +79,7 @@ tasks.test {
         maxParallelForks = Runtime.getRuntime().availableProcessors() //attempt to get back some of the lost performance by allowing parallel forks
 }
 
+//TODO could perhaps use the test fixtures plugin to do this
 //create jar with the test classes in - this is added as artifact to maven publication below, so automatically created
 val tjar = tasks.register<Jar>("testJar") {
         from(sourceSets.test.get().output)
@@ -143,7 +144,8 @@ dependencies {
         testImplementation("org.hibernate.orm:hibernate-spatial:7.2.6.Final")
         testImplementation("org.orbisgis:h2gis:2.2.5")
         testImplementation("org.javastro:jaxbjpa-utils:0.2.3")
-
+        testImplementation("net.ivoa.dm.testing:ADQLGeomDMTesting:0.1-SNAPSHOT")
+        testImplementation("org.geolatte:geolatte-geom:1.9.0")
         testRuntimeOnly("org.postgresql:postgresql:42.7.12")
 }
 

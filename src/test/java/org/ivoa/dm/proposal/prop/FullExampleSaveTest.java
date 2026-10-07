@@ -11,12 +11,18 @@ import org.ivoa.dm.proposal.management.SubmittedProposal;
 import org.ivoa.vodml.validation.AbstractBaseValidation;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FullExampleSaveTest extends AbstractBaseValidation {
 
+
+   @Override
+   protected List<String> additionalJPAClasses() {
+      return List.of("net.ivoa.dm.adqlgeom.test.PointConverter");
+   }
 
 
    /**
@@ -25,7 +31,9 @@ public class FullExampleSaveTest extends AbstractBaseValidation {
    @Test
    public void testDBSave()  {
       FullExample example = new FullExample();
-      jakarta.persistence.EntityManager em = setupH2Db(example.getManagementModel().management().pu_name(), ProposalManagementModel.modelDescription.allClassNames());
+      final List<String> classNames = new ArrayList<>(ProposalManagementModel.modelDescription.allClassNames());
+      classNames.add("net.ivoa.dm.adqlgeom.test.PointConverter");
+      jakarta.persistence.EntityManager em = setupH2Db(example.getManagementModel().management().pu_name(), classNames);
 
       em.getTransaction().begin();
       example.saveTodB(em);

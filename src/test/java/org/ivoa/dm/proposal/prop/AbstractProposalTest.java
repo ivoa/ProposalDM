@@ -12,6 +12,7 @@ package org.ivoa.dm.proposal.prop;
 import static org.ivoa.dm.proposal.prop.BaseExample.makeList;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
@@ -52,9 +53,13 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
     protected ProposalCycle cycle;
     protected ProposalManagementModel model;
 
+
    @BeforeAll
     public void beforeAll() {
-       em = setupH2Db(ProposalModel.pu_name(),modelDescription.allClassNames());
+
+      final List<String> classNames = new ArrayList<>(modelDescription.allClassNames());
+      classNames.add("net.ivoa.dm.adqlgeom.test.PointConverter");
+      em = setupH2Db(ProposalModel.pu_name(), classNames);
     }
     /**
      * @throws java.lang.Exception

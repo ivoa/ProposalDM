@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+import net.ivoa.dm.adqlgeom.test.ADQLGeomDBRoundTripTest;
 import org.ivoa.dm.proposal.management.ProposalCycle;
 import org.ivoa.dm.proposal.management.ProposalManagementModel;
 import org.ivoa.vodml.testing.AutoDBRoundTripTest;
@@ -24,7 +25,7 @@ import jakarta.persistence.TypedQuery;
  * Test the FullExample .
  * @author Paul Harrison (paul.harrison@manchester.ac.uk) 
  */
-class FullExampleTest extends AutoDBRoundTripTest<ProposalManagementModel, Long,ProposalCycle> {
+class FullExampleTest extends ADQLGeomDBRoundTripTest<ProposalManagementModel, Long,ProposalCycle> {
 
     /**
      * @throws java.lang.Exception
