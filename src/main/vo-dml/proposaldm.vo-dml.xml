@@ -12,7 +12,7 @@
       <title>Proposal</title>
       <author>Paul Harrison</author>
       <version>0.7</version>
-      <lastModified>2026-03-13T12:14:29Z</lastModified>
+      <lastModified>2026-09-11T13:44:48Z</lastModified>
       <import>
         <name>ivoa</name>
         <version>1.1</version>
@@ -140,7 +140,7 @@
             <attribute>
               <vodml-id>CelestialPosition.sourceCoordinates</vodml-id>
               <name>sourceCoordinates</name>
-              <description></description>	    
+              <description>The actual position</description>	    
               <datatype>
                  <vodml-ref>adqlgeom:Point</vodml-ref>
               </datatype>

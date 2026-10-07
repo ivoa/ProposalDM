@@ -41,7 +41,7 @@ observations, although the intention is that information about targets etc. coul
  
  abstract otype AbstractProposal "base proposal"
  {
- 	  ^title: ivoa:string   "the proposal title" ;
+ 	  ^title: ivoa:string   "the proposal title" ; //note title is a reserved word.
     summary: ivoa:string   "a short summary/abstract of the proposal" ;
     scientificJustification: Justification as composition "scientific justification";
     technicalJustification: Justification as composition "technical justification"; //IMPL this probably needs to be attached to each observatory as likely to be different for each.
@@ -115,7 +115,7 @@ observations, although the intention is that information about targets etc. coul
  }
  
  otype SupportingDocument "a document" { //IMPL might want to restrict to this being only graphics files
- 	^title : ivoa:string "document title";
+ 	^title : ivoa:string "document title"; // note title is a reserved word
  	location : ivoa:anyURI "location of document";//IMPL might want this in-line with code only blobs
  	//IMPL could have acceptable mime types.
  }
@@ -126,7 +126,7 @@ observations, although the intention is that information about targets etc. coul
   }
   
   dtype CelestialPosition "a point on the celestial sphere" {
-  	sourceCoordinates: adqlgeom:Point  "";
+  	sourceCoordinates: adqlgeom:Point  "The actual position";
   	referenceFrame: ivoa:string "the reference frame" semantic in "http://www.ivoa.net/rdf/refframe";
     equinox: proposal:coords.mjd @? "the equinox when needed - not for modern reference frames";
   }
