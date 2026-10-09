@@ -13,6 +13,8 @@ import static org.ivoa.dm.proposal.management.Observatory.createObservatory;
 import static org.ivoa.dm.proposal.management.ProposalCycle.createProposalCycle;
 import static org.ivoa.dm.proposal.prop.SpectralWindowSetup.createSpectralWindowSetup;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.GregorianCalendar;
@@ -162,7 +164,7 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
                 new ObservationConfiguration(frozenProposal.getObservations(),obsModes[0])
                 );
         
-        final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, "NOTcode", obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
+        final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, "NOTcode", obsConfigs, LocalDate.of(2022, 3, 14).atStartOfDay(ZoneId.systemDefault()),  false,LocalDate.of(2022, 4, 30).atStartOfDay(ZoneId.systemDefault()),  null );
 
         // "review" proposal
         ProposalReview review = ProposalReview.createProposalReview(pr -> {
@@ -170,7 +172,7 @@ public class NOTexample extends BaseObservatoryExample implements TACFunctions {
                       pr.score = 10.0;
                       pr.reviewer = new Reviewer(people[4]);
                       pr.technicalFeasibility = true;
-                      pr.reviewDate = new GregorianCalendar(2022, 4, 14).getTime();
+                      pr.reviewDate = LocalDate.of(2022, 4, 14).atStartOfDay(ZoneId.systemDefault());
                   });
        
        // set that the submitted proposal is ok to be allocated. 

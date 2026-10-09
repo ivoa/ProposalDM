@@ -127,7 +127,7 @@ tasks.register<Exec>("doSite"){
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE } //IMPL bugfix - see https://stackoverflow.com/questions/67265308/gradle-entry-classpath-is-a-duplicate-but-no-duplicate-handling-strategy-has-b
 
 dependencies {
-        api("net.ivoa.vo-dml:ivoa-base:1.1-SNAPSHOT")
+        api("net.ivoa.vo-dml:ivoa-base:1.1-SNAPSHOT:alt")
         api("net.ivoa.dm:ADQLGeomDM:0.9.0")
 //    implementation("org.javastro:ivoa-entities:0.9.3-SNAPSHOT")
 

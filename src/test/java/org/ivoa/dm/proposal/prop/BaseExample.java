@@ -5,6 +5,7 @@ package org.ivoa.dm.proposal.prop;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -83,9 +84,9 @@ public abstract class BaseExample {
     
     protected Consumer<ProposalCycle.ProposalCycleBuilder> cycleCommonSetup() {
         return c -> {
-            c.submissionDeadline = new GregorianCalendar(2022, 3, 15).getTime();
-            c.observationSessionStart = new GregorianCalendar(2022, 6, 1).getTime();
-            c.observationSessionEnd = new GregorianCalendar(2022, 9, 1).getTime();
+            c.submissionDeadline =  todate(LocalDate.of(2022, 3, 15));
+            c.observationSessionStart = todate(LocalDate.of(2022, 6, 1));
+            c.observationSessionEnd = todate(LocalDate.of(2022, 9, 1));
             c.title="test cycle";
             c.code="EM01";
             c.tac = tac;
@@ -124,7 +125,7 @@ public abstract class BaseExample {
     }
 
 
-   protected Date todate(LocalDate localDate) {
-      return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+   protected ZonedDateTime todate(LocalDate localDate) {
+      return localDate.atStartOfDay().atZone(ZoneId.systemDefault());
    }
 }

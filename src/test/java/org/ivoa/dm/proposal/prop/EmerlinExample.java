@@ -8,6 +8,8 @@ import org.ivoa.vodml.stdtypes.Ivoid;
 import org.ivoa.dm.ivoa.RealQuantity;
 import org.ivoa.dm.proposal.prop.coords.Polarization;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -125,7 +127,7 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
                 );
         
         
-        final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, "EmCode",obsConfigs,new GregorianCalendar(2022, 3, 14).getTime(),  false, new GregorianCalendar(2022, 4, 30).getTime(),  null );
+        final SubmittedProposal submittedProposal = new SubmittedProposal( frozenProposal, "EmCode",obsConfigs, LocalDate.of(2022, 3, 14).atStartOfDay(ZoneId.systemDefault()),  false, LocalDate.of(2022, 4, 30).atStartOfDay(ZoneId.systemDefault()),  null );
 
 
         // "review" proposal
@@ -134,7 +136,7 @@ public class EmerlinExample extends BaseObservatoryExample implements TACFunctio
                       pr.score = 10.0;
                       pr.reviewer = reviewers[1];
                       pr.technicalFeasibility = true;
-                      pr.reviewDate = new GregorianCalendar(2022, 4, 14).getTime();
+                      pr.reviewDate = LocalDate.of(2022, 4, 14).atStartOfDay(ZoneId.systemDefault());
                   });
 
        submittedProposal.addToReviews(review);
