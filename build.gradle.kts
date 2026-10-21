@@ -1,6 +1,6 @@
 
 plugins {
-        id("net.ivoa.vo-dml.vodmltools") version "0.7.1"
+        id("net.ivoa.vo-dml.vodmltools") version "0.7.2"
         `maven-publish`
 //        id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
         signing
@@ -128,7 +128,7 @@ tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE } //IMPL b
 
 dependencies {
         api("net.ivoa.vo-dml:ivoa-base:1.1-SNAPSHOT:alt")
-        api("net.ivoa.dm:ADQLGeomDM:0.9.0")
+        api("net.ivoa.dm:ADQLGeomDM:0.9.2")
 //    implementation("org.javastro:ivoa-entities:0.9.3-SNAPSHOT")
 
 //   annotationProcessor ("org.hibernate.orm:hibernate-processor:7.0.8.Final")
