@@ -6,7 +6,7 @@
 <name>proposal</name>
 <file>proposaldm.vo-dml.xml</file>
     <java-package>org.ivoa.dm.proposal.prop</java-package>
-<xml-targetnamespace prefix="prop">http://ivoa.net/dm/proposalDM/v0.6</xml-targetnamespace>
+<xml-targetnamespace prefix="prop">http://ivoa.net/dm/proposalDM/v0.7</xml-targetnamespace>
     <xml compositionStyle="unwrapped"/>
     <json polymorphism="property"/>
     <rdb inheritance-strategy="joined"
@@ -23,7 +23,7 @@
     <name>proposalManagement</name>
     <file>proposalManagement.vo-dml.xml</file>
     <java-package>org.ivoa.dm.proposal.management</java-package>
-    <xml-targetnamespace prefix="propm" >http://ivoa.net/dm/proposalManagment/v0.6</xml-targetnamespace>
+    <xml-targetnamespace prefix="propm" >http://ivoa.net/dm/proposalManagment/v0.7</xml-targetnamespace>
         <xml compositionStyle="unwrapped"/>
         <json polymorphism="property"/>
         <rdb inheritance-strategy="joined"
