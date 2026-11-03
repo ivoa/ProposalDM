@@ -76,7 +76,7 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
 
    protected void retrieveProposal() {
       em.getTransaction().begin();
-      List<ObservingProposal> props = em.createNamedQuery("ObservingProposal.findById", ObservingProposal.class)
+      List<ObservingProposal> props = em.createNamedQuery("org.ivoa.dm.proposal.prop.ObservingProposal.findById", ObservingProposal.class)
             .setParameter("id", proposalId).getResultList();
       assertEquals(1, props.size());
       proposal = props.get(0);
@@ -84,7 +84,7 @@ public abstract class AbstractProposalTest extends org.ivoa.vodml.testing.Abstra
    }
    protected void retrieveCycle() {
       em.getTransaction().begin();
-      List<ProposalCycle> props = em.createNamedQuery("ProposalCycle.findById", ProposalCycle.class)
+      List<ProposalCycle> props = em.createNamedQuery("org.ivoa.dm.proposal.management.ProposalCycle.findById", ProposalCycle.class)
             .setParameter("id", cycleId).getResultList();
       assertEquals(1, props.size());
       cycle = props.get(0);
