@@ -1,0 +1,331 @@
+
+
+@startuml
+
+' hide the spot
+' hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+        
+entity "pdm.AbstractProposal" as pdm.AbstractProposal {
+
+    
+---
+
+    
+---
+      scientificJustification : BIGINT<<FK>>
+technicalJustification : BIGINT<<FK>>
+
+}
+
+entity "pdm.ObservingProposal" as pdm.ObservingProposal {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.RelatedProposal" as pdm.RelatedProposal {
+
+    
+---
+
+    
+---
+      proposal : BIGINT<<FK>>
+ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.Person" as pdm.Person {
+
+    
+---
+
+    
+---
+      homeInstitute : BIGINT<<FK>>
+
+}
+
+entity "pdm.Investigator" as pdm.Investigator {
+
+    
+---
+
+    
+---
+      person : BIGINT<<FK>>
+ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.Organization" as pdm.Organization {
+
+    
+---
+
+    
+}
+
+entity "pdm.Justification" as pdm.Justification {
+
+    
+---
+
+    
+}
+
+entity "pdm.SupportingDocument" as pdm.SupportingDocument {
+
+    
+---
+
+    
+---
+      ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.Target" as pdm.Target {
+
+    
+---
+
+    
+---
+      ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.CelestialTarget" as pdm.CelestialTarget {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.SolarSystemTarget" as pdm.SolarSystemTarget {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.Field" as pdm.Field {
+
+    
+---
+
+    
+---
+      ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TargetField" as pdm.TargetField {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.SinglePointing" as pdm.SinglePointing {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ObservingConstraint" as pdm.ObservingConstraint {
+
+    
+---
+
+    
+---
+      OBSERVATION_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TimingConstraint" as pdm.TimingConstraint {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TimingWindow" as pdm.TimingWindow {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.SimultaneityConstraint" as pdm.SimultaneityConstraint {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.PointingConstaint" as pdm.PointingConstaint {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ScienceSpectralWindow" as pdm.ScienceSpectralWindow {
+
+    
+---
+
+    
+---
+      TECHNICALGOAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ExpectedSpectralLine" as pdm.ExpectedSpectralLine {
+
+    
+---
+
+    
+---
+      SCIENCESPECTRALWINDOW_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.PerformanceParameters" as pdm.PerformanceParameters {
+
+    
+---
+
+    
+}
+
+entity "pdm.Observation" as pdm.Observation {
+
+    
+---
+
+    
+---
+      target : BIGINT<<FK>>
+field : BIGINT<<FK>>
+technicalGoal : BIGINT<<FK>>
+ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TargetObservation" as pdm.TargetObservation {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.CalibrationObservation" as pdm.CalibrationObservation {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TechnicalGoal" as pdm.TechnicalGoal {
+
+    
+---
+
+    
+---
+      performance : BIGINT<<FK>>
+ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+
+        pdm.AbstractProposal }o--||pdm.Justification
+pdm.AbstractProposal }o--||pdm.Justification
+pdm.ObservingProposal }o--||pdm.AbstractProposal
+pdm.RelatedProposal }o--||pdm.AbstractProposal
+pdm.RelatedProposal }o--||pdm.AbstractProposal
+pdm.Person }o--||pdm.Organization
+pdm.Investigator }o--||pdm.Person
+pdm.Investigator }o--||pdm.AbstractProposal
+pdm.SupportingDocument }o--||pdm.AbstractProposal
+pdm.Target }o--||pdm.AbstractProposal
+pdm.CelestialTarget }o--||pdm.Target
+pdm.SolarSystemTarget }o--||pdm.Target
+pdm.Field }o--||pdm.AbstractProposal
+pdm.TargetField }o--||pdm.Field
+pdm.SinglePointing }o--||pdm.Field
+pdm.ObservingConstraint }o--||pdm.Observation
+pdm.TimingConstraint }o--||pdm.ObservingConstraint
+pdm.TimingWindow }o--||pdm.TimingConstraint
+pdm.SimultaneityConstraint }o--||pdm.TimingConstraint
+pdm.PointingConstaint }o--||pdm.ObservingConstraint
+pdm.ScienceSpectralWindow }o--||pdm.TechnicalGoal
+pdm.ExpectedSpectralLine }o--||pdm.ScienceSpectralWindow
+pdm.Observation }o--||pdm.Target
+pdm.Observation }o--||pdm.Field
+pdm.Observation }o--||pdm.TechnicalGoal
+pdm.Observation }o--||pdm.AbstractProposal
+pdm.TargetObservation }o--||pdm.Observation
+pdm.CalibrationObservation }o--||pdm.Observation
+pdm.TechnicalGoal }o--||pdm.PerformanceParameters
+pdm.TechnicalGoal }o--||pdm.AbstractProposal
+
+
+
+@enduml
+
+    

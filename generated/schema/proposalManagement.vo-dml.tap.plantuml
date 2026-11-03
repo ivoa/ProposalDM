@@ -1,0 +1,625 @@
+
+
+@startuml
+
+' hide the spot
+' hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+        
+entity "pdm.Observatory" as pdm.Observatory {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ObservingPlatform" as pdm.ObservingPlatform {
+
+    
+---
+
+    
+}
+
+entity "pdm.Telescope" as pdm.Telescope {
+
+    
+---
+
+    
+---
+      OBSERVATORY_ID : BIGINT<<FK>>
+ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TelescopeArrayMember" as pdm.TelescopeArrayMember {
+
+    
+---
+
+    
+---
+      telescope : BIGINT<<FK>>
+TELESCOPEARRAY_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TelescopeArray" as pdm.TelescopeArray {
+
+    
+---
+
+    
+---
+      OBSERVATORY_ID : BIGINT<<FK>>
+ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.Instrument" as pdm.Instrument {
+
+    
+---
+
+    
+---
+      OBSERVATORY_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.Filter" as pdm.Filter {
+
+    
+---
+
+    
+}
+
+entity "pdm.Backend" as pdm.Backend {
+
+    
+---
+
+    
+---
+      OBSERVATORY_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ObservingMode" as pdm.ObservingMode {
+
+    
+---
+
+    
+---
+      telescope : BIGINT<<FK>>
+instrument : BIGINT<<FK>>
+backend : BIGINT<<FK>>
+filter : BIGINT<<FK>>
+PROPOSALCYCLE_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ProposalCycle" as pdm.ProposalCycle {
+
+    
+---
+
+    
+---
+      observatory : BIGINT<<FK>>
+availableResources : BIGINT<<FK>>
+tac : BIGINT<<FK>>
+
+}
+
+entity "pdm.Reviewer" as pdm.Reviewer {
+
+    
+---
+
+    
+---
+      person : BIGINT<<FK>>
+
+}
+
+entity "pdm.CommitteeMember" as pdm.CommitteeMember {
+
+    
+---
+
+    
+---
+      member : BIGINT<<FK>>
+TAC_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TAC" as pdm.TAC {
+
+    
+---
+
+    
+}
+
+entity "pdm.ObservationConfiguration" as pdm.ObservationConfiguration {
+
+    
+---
+
+    
+---
+      observation : BIGINT<<FK>>
+mode : BIGINT<<FK>>
+SUBMITTEDPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.SubmittedProposal" as pdm.SubmittedProposal {
+
+    
+---
+
+    
+---
+      PROPOSALCYCLE_ID : BIGINT<<FK>>
+ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.AllocatedProposal" as pdm.AllocatedProposal {
+
+    
+---
+
+    
+---
+      submitted : BIGINT<<FK>>
+PROPOSALCYCLE_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ProposalReview" as pdm.ProposalReview {
+
+    
+---
+
+    
+---
+      reviewer : BIGINT<<FK>>
+SUBMITTEDPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ResourceType" as pdm.ResourceType {
+
+    
+---
+
+    
+}
+
+entity "pdm.Resource" as pdm.Resource {
+
+    
+---
+
+    
+---
+      type : BIGINT<<FK>>
+AVAILABLERESOURCES_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.AvailableResources" as pdm.AvailableResources {
+
+    
+---
+
+    
+}
+
+entity "pdm.AllocationGrade" as pdm.AllocationGrade {
+
+    
+---
+
+    
+---
+      PROPOSALCYCLE_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ResourceBlock" as pdm.ResourceBlock {
+
+    
+---
+
+    
+---
+      mode : BIGINT<<FK>>
+resource : BIGINT<<FK>>
+
+}
+
+entity "pdm.AllocatedBlock" as pdm.AllocatedBlock {
+
+    
+---
+
+    
+---
+      grade : BIGINT<<FK>>
+ALLOCATEDPROPOSAL_ID : BIGINT<<FK>>
+ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.AbstractProposal" as pdm.AbstractProposal {
+
+    
+---
+
+    
+---
+      scientificJustification : BIGINT<<FK>>
+technicalJustification : BIGINT<<FK>>
+
+}
+
+entity "pdm.ObservingProposal" as pdm.ObservingProposal {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.RelatedProposal" as pdm.RelatedProposal {
+
+    
+---
+
+    
+---
+      proposal : BIGINT<<FK>>
+ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.Person" as pdm.Person {
+
+    
+---
+
+    
+---
+      homeInstitute : BIGINT<<FK>>
+
+}
+
+entity "pdm.Investigator" as pdm.Investigator {
+
+    
+---
+
+    
+---
+      person : BIGINT<<FK>>
+ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.Organization" as pdm.Organization {
+
+    
+---
+
+    
+}
+
+entity "pdm.Justification" as pdm.Justification {
+
+    
+---
+
+    
+}
+
+entity "pdm.SupportingDocument" as pdm.SupportingDocument {
+
+    
+---
+
+    
+---
+      ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.Target" as pdm.Target {
+
+    
+---
+
+    
+---
+      ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.CelestialTarget" as pdm.CelestialTarget {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.SolarSystemTarget" as pdm.SolarSystemTarget {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.Field" as pdm.Field {
+
+    
+---
+
+    
+---
+      ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TargetField" as pdm.TargetField {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.SinglePointing" as pdm.SinglePointing {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ObservingConstraint" as pdm.ObservingConstraint {
+
+    
+---
+
+    
+---
+      OBSERVATION_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TimingConstraint" as pdm.TimingConstraint {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TimingWindow" as pdm.TimingWindow {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.SimultaneityConstraint" as pdm.SimultaneityConstraint {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.PointingConstaint" as pdm.PointingConstaint {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ScienceSpectralWindow" as pdm.ScienceSpectralWindow {
+
+    
+---
+
+    
+---
+      TECHNICALGOAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.ExpectedSpectralLine" as pdm.ExpectedSpectralLine {
+
+    
+---
+
+    
+---
+      SCIENCESPECTRALWINDOW_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.PerformanceParameters" as pdm.PerformanceParameters {
+
+    
+---
+
+    
+}
+
+entity "pdm.Observation" as pdm.Observation {
+
+    
+---
+
+    
+---
+      target : BIGINT<<FK>>
+field : BIGINT<<FK>>
+technicalGoal : BIGINT<<FK>>
+ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TargetObservation" as pdm.TargetObservation {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.CalibrationObservation" as pdm.CalibrationObservation {
+
+    
+---
+
+    
+---
+      ID : BIGINT<<FK>>
+
+}
+
+entity "pdm.TechnicalGoal" as pdm.TechnicalGoal {
+
+    
+---
+
+    
+---
+      performance : BIGINT<<FK>>
+ABSTRACTPROPOSAL_ID : BIGINT<<FK>>
+
+}
+
+
+        pdm.Observatory }o--||pdm.Organization
+pdm.Telescope }o--||pdm.Observatory
+pdm.Telescope }o--||pdm.ObservingPlatform
+pdm.TelescopeArrayMember }o--||pdm.Telescope
+pdm.TelescopeArrayMember }o--||pdm.TelescopeArray
+pdm.TelescopeArray }o--||pdm.Observatory
+pdm.TelescopeArray }o--||pdm.ObservingPlatform
+pdm.Instrument }o--||pdm.Observatory
+pdm.Backend }o--||pdm.Observatory
+pdm.ObservingMode }o--||pdm.ObservingPlatform
+pdm.ObservingMode }o--||pdm.Instrument
+pdm.ObservingMode }o--||pdm.Backend
+pdm.ObservingMode }o--||pdm.Filter
+pdm.ObservingMode }o--||pdm.ProposalCycle
+pdm.ProposalCycle }o--||pdm.Observatory
+pdm.ProposalCycle }o--||pdm.AvailableResources
+pdm.ProposalCycle }o--||pdm.TAC
+pdm.Reviewer }o--||pdm.Person
+pdm.CommitteeMember }o--||pdm.Reviewer
+pdm.CommitteeMember }o--||pdm.TAC
+pdm.ObservationConfiguration }o--||pdm.Observation
+pdm.ObservationConfiguration }o--||pdm.ObservingMode
+pdm.ObservationConfiguration }o--||pdm.SubmittedProposal
+pdm.SubmittedProposal }o--||pdm.ProposalCycle
+pdm.SubmittedProposal }o--||pdm.AbstractProposal
+pdm.AllocatedProposal }o--||pdm.SubmittedProposal
+pdm.AllocatedProposal }o--||pdm.ProposalCycle
+pdm.ProposalReview }o--||pdm.Reviewer
+pdm.ProposalReview }o--||pdm.SubmittedProposal
+pdm.Resource }o--||pdm.ResourceType
+pdm.Resource }o--||pdm.AvailableResources
+pdm.AllocationGrade }o--||pdm.ProposalCycle
+pdm.ResourceBlock }o--||pdm.ObservingMode
+pdm.ResourceBlock }o--||pdm.Resource
+pdm.AllocatedBlock }o--||pdm.AllocationGrade
+pdm.AllocatedBlock }o--||pdm.AllocatedProposal
+pdm.AllocatedBlock }o--||pdm.ResourceBlock
+pdm.AbstractProposal }o--||pdm.Justification
+pdm.AbstractProposal }o--||pdm.Justification
+pdm.ObservingProposal }o--||pdm.AbstractProposal
+pdm.RelatedProposal }o--||pdm.AbstractProposal
+pdm.RelatedProposal }o--||pdm.AbstractProposal
+pdm.Person }o--||pdm.Organization
+pdm.Investigator }o--||pdm.Person
+pdm.Investigator }o--||pdm.AbstractProposal
+pdm.SupportingDocument }o--||pdm.AbstractProposal
+pdm.Target }o--||pdm.AbstractProposal
+pdm.CelestialTarget }o--||pdm.Target
+pdm.SolarSystemTarget }o--||pdm.Target
+pdm.Field }o--||pdm.AbstractProposal
+pdm.TargetField }o--||pdm.Field
+pdm.SinglePointing }o--||pdm.Field
+pdm.ObservingConstraint }o--||pdm.Observation
+pdm.TimingConstraint }o--||pdm.ObservingConstraint
+pdm.TimingWindow }o--||pdm.TimingConstraint
+pdm.SimultaneityConstraint }o--||pdm.TimingConstraint
+pdm.PointingConstaint }o--||pdm.ObservingConstraint
+pdm.ScienceSpectralWindow }o--||pdm.TechnicalGoal
+pdm.ExpectedSpectralLine }o--||pdm.ScienceSpectralWindow
+pdm.Observation }o--||pdm.Target
+pdm.Observation }o--||pdm.Field
+pdm.Observation }o--||pdm.TechnicalGoal
+pdm.Observation }o--||pdm.AbstractProposal
+pdm.TargetObservation }o--||pdm.Observation
+pdm.CalibrationObservation }o--||pdm.Observation
+pdm.TechnicalGoal }o--||pdm.PerformanceParameters
+pdm.TechnicalGoal }o--||pdm.AbstractProposal
+
+
+
+@enduml
+
+    

@@ -1,0 +1,687 @@
+components:
+  schemas:
+    WikiDataId:
+      type: "string"
+      built-in: "true"
+    ProposalKind:
+      description: ""
+      enum:
+      - "Standard"
+      - "ToO"
+      - "Survey"
+    InvestigatorKind:
+      description: ""
+      enum:
+      - "PI"
+      - "COI"
+    TextFormats:
+      description: "acceptable text formats for document submission"
+      enum:
+      - "latex"
+      - "rst"
+      - "asciidoc"
+    CalibrationTarget_intendedUse:
+      description: ""
+      enum:
+      - "Amplitude"
+      - "Atmospheric"
+      - "Bandpass"
+      - "Phase"
+      - "Pointing"
+      - "Focus"
+      - "Polarization"
+      - "Delay"
+    CelestialPosition:
+      type: "object"
+      description: "a point on the celestial sphere"
+      properties:
+        sourceCoordinates:
+          $ref: "#/components/schemas/Point"
+          description: "The actual position"
+        referenceFrame:
+          type: "string"
+          built-in: "true"
+          description: "the reference frame"
+        equinox:
+          type: "number"
+          built-in: "true"
+          description: "the equinox when needed - not for modern reference frames"
+      required:
+      - "sourceCoordinates"
+      - "referenceFrame"
+      additionalProperties: false
+    SpectralWindowSetup:
+      type: "object"
+      description: "Science oriented definition of a spectral window."
+      properties:
+        start:
+          $ref: "#/components/schemas/RealQuantity"
+          description: "The start of the spectral window"
+        end:
+          $ref: "#/components/schemas/RealQuantity"
+          description: "The end of the spectral window"
+        spectralResolution:
+          $ref: "#/components/schemas/RealQuantity"
+          description: "channel width"
+        isSkyFrequency:
+          type: "boolean"
+          built-in: "true"
+          description: "represents an observed frequency"
+        polarization:
+          $ref: "#/components/schemas/coords.Polarization"
+          description: "desired polarization"
+      required:
+      - "start"
+      - "end"
+      - "isSkyFrequency"
+      - "polarization"
+      additionalProperties: false
+    AbstractProposal:
+      type: "object"
+      description: "base proposal"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          proposal:ObservingProposal: "#/components/schemas/ObservingProposal"
+          proposalManagement:SubmittedProposal: "#/components/schemas/SubmittedProposal"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        title:
+          type: "string"
+          built-in: "true"
+          description: "the proposal title"
+        summary:
+          type: "string"
+          built-in: "true"
+          description: "a short summary/abstract of the proposal"
+        scientificJustification:
+          type: "object"
+          $ref: "#/components/schemas/Justification"
+        technicalJustification:
+          type: "object"
+          $ref: "#/components/schemas/Justification"
+        investigators:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Investigator"
+        kind:
+          $ref: "#/components/schemas/ProposalKind"
+          description: "the type of proposal"
+        relatedProposals:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/RelatedProposal"
+        supportingDocuments:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/SupportingDocument"
+        targets:
+          type: "array"
+          items:
+            anyOf:
+            - $ref: "#/components/schemas/CelestialTarget"
+            - $ref: "#/components/schemas/SolarSystemTarget"
+        fields:
+          type: "array"
+          items:
+            anyOf:
+            - $ref: "#/components/schemas/TargetField"
+            - $ref: "#/components/schemas/SinglePointing"
+        technicalGoals:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/TechnicalGoal"
+        observations:
+          type: "array"
+          items:
+            anyOf:
+            - $ref: "#/components/schemas/TargetObservation"
+            - $ref: "#/components/schemas/CalibrationObservation"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "@type"
+      - "title"
+      - "summary"
+      - "scientificJustification"
+      - "technicalJustification"
+      - "investigators"
+      - "kind"
+      - "technicalGoals"
+      - "observations"
+    ObservingProposal:
+      allOf:
+      - $ref: "#/components/schemas/AbstractProposal"
+      - type: "object"
+        description: "a complete proposal"
+        properties: {}
+        required: []
+      unevaluatedProperties: false
+    RelatedProposal:
+      type: "object"
+      description: "a related proposal"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        proposal:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/AbstractProposal"
+          description: "the related proposal"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "proposal"
+      additionalProperties: false
+    Person:
+      type: "object"
+      description: "person connected with the proposal"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        fullName:
+          type: "string"
+          built-in: "true"
+          description: "The given names for the person"
+        eMail:
+          type: "string"
+          built-in: "true"
+          description: "an email that can be used to communicate with the person"
+        homeInstitute:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/Organization"
+          description: ""
+        orcidId:
+          type: "string"
+          built-in: "true"
+          description: "orcid id see https://orcid.org"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "fullName"
+      - "eMail"
+      - "homeInstitute"
+      additionalProperties: false
+    Investigator:
+      type: "object"
+      description: ""
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        person:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/Person"
+          description: "the investigator"
+        type:
+          $ref: "#/components/schemas/InvestigatorKind"
+          description: "the investigator type"
+        forPhD:
+          type: "boolean"
+          built-in: "true"
+          description: "is the investigator making proposal for their PhD"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "person"
+      - "type"
+      additionalProperties: false
+    Organization:
+      type: "object"
+      description: "An institution that is a collection of people"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          proposalManagement:Observatory: "#/components/schemas/Observatory"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        name:
+          type: "string"
+          built-in: "true"
+          description: "The name of the organization"
+        address:
+          type: "string"
+          built-in: "true"
+          description: ""
+        ivoid:
+          type: "string"
+          format: "uri"
+          description: "the registry identifier for the organization"
+        wikiId:
+          type: "string"
+          built-in: "true"
+          description: "the wikidata id for the Organization"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "@type"
+      - "name"
+      - "address"
+    Justification:
+      type: "object"
+      description: "The justification for the proposal. Note that the justification\
+        \ is for reading by humans and is not parsed to extract things like source\
+        \ lists - that sort of information must be entered in the correct place in\
+        \ the model."
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        text:
+          type: "string"
+          built-in: "true"
+          description: "the full text of the justification"
+        format:
+          $ref: "#/components/schemas/TextFormats"
+          description: "the format of the text"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "text"
+      - "format"
+      additionalProperties: false
+    SupportingDocument:
+      type: "object"
+      description: "a document"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        title:
+          type: "string"
+          built-in: "true"
+          description: "document title"
+        location:
+          type: "string"
+          format: "uri"
+          description: "location of document"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "title"
+      - "location"
+      additionalProperties: false
+    Target:
+      type: "object"
+      description: "A target source"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          proposal:CelestialTarget: "#/components/schemas/CelestialTarget"
+          proposal:SolarSystemTarget: "#/components/schemas/SolarSystemTarget"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        sourceName:
+          type: "string"
+          built-in: "true"
+          description: "A common name for the source"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "@type"
+      - "sourceName"
+    CelestialTarget:
+      allOf:
+      - $ref: "#/components/schemas/Target"
+      - type: "object"
+        description: "The basic target setup for a celestial Target."
+        properties:
+          coord:
+            $ref: "#/components/schemas/CelestialPosition"
+            description: "the coordinates"
+          coordUnit:
+            type: "object"
+            properties:
+              value:
+                type: "string"
+            description: "the unit for the coordinates"
+          positionEpoch:
+            type: "number"
+            built-in: "true"
+            description: "the epoch at which the position was measured"
+          pmRA:
+            $ref: "#/components/schemas/RealQuantity"
+            description: ""
+          pmDec:
+            $ref: "#/components/schemas/RealQuantity"
+            description: ""
+          parallax:
+            $ref: "#/components/schemas/RealQuantity"
+            description: ""
+          sourceVelocity:
+            $ref: "#/components/schemas/RealQuantity"
+            description: ""
+        required:
+        - "coord"
+        - "coordUnit"
+        - "positionEpoch"
+      unevaluatedProperties: false
+    SolarSystemTarget:
+      allOf:
+      - $ref: "#/components/schemas/Target"
+      - type: "object"
+        description: ""
+        properties: {}
+        required: []
+      unevaluatedProperties: false
+    Field:
+      type: "object"
+      description: "Definition of an observing field pointing"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          proposal:TargetField: "#/components/schemas/TargetField"
+          proposal:SinglePointing: "#/components/schemas/SinglePointing"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        name:
+          type: "string"
+          built-in: "true"
+          description: ""
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "@type"
+      - "name"
+    TargetField:
+      allOf:
+      - $ref: "#/components/schemas/Field"
+      - type: "object"
+        description: "the field points to the associated target"
+        properties: {}
+        required: []
+      unevaluatedProperties: false
+    SinglePointing:
+      allOf:
+      - $ref: "#/components/schemas/Field"
+      - type: "object"
+        description: "Single point on the sky"
+        properties:
+          centre:
+            $ref: "#/components/schemas/CelestialPosition"
+            description: "Where to point"
+        required:
+        - "centre"
+      unevaluatedProperties: false
+    ObservingConstraint:
+      type: "object"
+      description: "a form of constraint on the observation"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          proposal:TimingConstraint: "#/components/schemas/TimingConstraint"
+          proposal:TimingWindow: "#/components/schemas/TimingWindow"
+          proposal:SimultaneityConstraint: "#/components/schemas/SimultaneityConstraint"
+          proposal:PointingConstaint: "#/components/schemas/PointingConstaint"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "@type"
+    TimingConstraint:
+      allOf:
+      - $ref: "#/components/schemas/ObservingConstraint"
+      - type: "object"
+        description: "Any specific timing requirements for the observing"
+        properties:
+          note:
+            type: "string"
+            built-in: "true"
+            description: ""
+          isAvoidConstraint:
+            type: "boolean"
+            built-in: "true"
+            description: ""
+        required: []
+    TimingWindow:
+      allOf:
+      - $ref: "#/components/schemas/TimingConstraint"
+      - type: "object"
+        description: "particular time range"
+        properties:
+          startTime:
+            type: "string"
+            format: "date-time"
+            description: ""
+          endTime:
+            type: "string"
+            format: "date-time"
+            description: ""
+        required: []
+      unevaluatedProperties: false
+    SimultaneityConstraint:
+      allOf:
+      - $ref: "#/components/schemas/TimingConstraint"
+      - type: "object"
+        description: "A constraint that requires that two observations occur simultaneously"
+        properties: {}
+        required: []
+      unevaluatedProperties: false
+    PointingConstaint:
+      allOf:
+      - $ref: "#/components/schemas/ObservingConstraint"
+      - type: "object"
+        description: "A constraint that limits the telescope pointing"
+        properties: {}
+        required: []
+      unevaluatedProperties: false
+    ScienceSpectralWindow:
+      type: "object"
+      description: "A spectral window for science use."
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        spectralWindowSetup:
+          $ref: "#/components/schemas/SpectralWindowSetup"
+          description: ""
+        expectedSpectralLine:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ExpectedSpectralLine"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required: []
+      additionalProperties: false
+    ExpectedSpectralLine:
+      type: "object"
+      description: "Brief description of a spectral line."
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        restFrequency:
+          $ref: "#/components/schemas/RealQuantity"
+          description: ""
+        transition:
+          type: "string"
+          built-in: "true"
+          description: ""
+        splatalogId:
+          type: "string"
+          built-in: "true"
+          description: ""
+        description:
+          type: "string"
+          built-in: "true"
+          description: ""
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "restFrequency"
+      - "splatalogId"
+      - "description"
+      additionalProperties: false
+    PerformanceParameters:
+      type: "object"
+      description: "The parameters required for observation to be useful for the science\
+        \ goal"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        desiredAngularResolution:
+          $ref: "#/components/schemas/RealQuantity"
+          description: ""
+        desiredLargestScale:
+          $ref: "#/components/schemas/RealQuantity"
+          description: ""
+        desiredSensitivity:
+          $ref: "#/components/schemas/RealQuantity"
+          description: ""
+        desiredDynamicRange:
+          $ref: "#/components/schemas/RealQuantity"
+          description: ""
+        representativeSpectralPoint:
+          $ref: "#/components/schemas/RealQuantity"
+          description: "the the point in the EM where these parameters should be evaluated"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "representativeSpectralPoint"
+      additionalProperties: false
+    Observation:
+      type: "object"
+      description: "An observation - a pointing of the telescope at a part of the\
+        \ sky, occurs in a single non-overlapping time period"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          proposal:TargetObservation: "#/components/schemas/TargetObservation"
+          proposal:CalibrationObservation: "#/components/schemas/CalibrationObservation"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        target:
+          type: "array"
+          items:
+            oneOf:
+            - type: "number"
+            - $ref: "#/components/schemas/Target"
+          description: "The actual target of the observation"
+        field:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/Field"
+          description: "The Field for the observation"
+        technicalGoal:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/TechnicalGoal"
+          description: "The technical goals of the observation"
+        constraints:
+          type: "array"
+          items:
+            anyOf:
+            - $ref: "#/components/schemas/TimingConstraint"
+            - $ref: "#/components/schemas/TimingWindow"
+            - $ref: "#/components/schemas/SimultaneityConstraint"
+            - $ref: "#/components/schemas/PointingConstaint"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "@type"
+      - "field"
+      - "technicalGoal"
+    TargetObservation:
+      allOf:
+      - $ref: "#/components/schemas/Observation"
+      - type: "object"
+        description: "an observation of the scientific target"
+        properties: {}
+        required: []
+      unevaluatedProperties: false
+    CalibrationObservation:
+      allOf:
+      - $ref: "#/components/schemas/Observation"
+      - type: "object"
+        description: "An observation that is intended for calibration"
+        properties:
+          intent:
+            $ref: "#/components/schemas/CalibrationTarget_intendedUse"
+            description: "The use of the calibration observation"
+        required:
+        - "intent"
+      unevaluatedProperties: false
+    TechnicalGoal:
+      type: "object"
+      description: "collects together the technical goals of the proposal"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        performance:
+          type: "object"
+          $ref: "#/components/schemas/PerformanceParameters"
+        spectrum:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ScienceSpectralWindow"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "performance"
+      - "spectrum"
+      additionalProperties: false
+    coords.mjd:
+      type: "number"
+      built-in: "true"
+    coords.Polarization:
+      description: "description of polarization"
+      enum:
+      - "Linear"
+      - "Circular"
+    coords.CartesianPoint:
+      type: "object"
+      description: ""
+      properties:
+        x:
+          $ref: "#/components/schemas/RealQuantity"
+          description: "x coord"
+        "y":
+          $ref: "#/components/schemas/RealQuantity"
+          description: "y coord"
+        z:
+          $ref: "#/components/schemas/RealQuantity"
+          description: "z coord"
+        refpos:
+          type: "string"
+          built-in: "true"
+          description: "The reference position for this coordinate system"
+      required:
+      - "x"
+      - "y"
+      - "z"
+      - "refpos"
+      additionalProperties: false

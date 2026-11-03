@@ -138,6 +138,28 @@
             </y:UMLClassNode>
          </data>
       </node>
+      <node id="proposal:CelestialPosition">
+         <data key="k1">CelestialPosition</data>
+         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
+            <y:UMLClassNode>
+               <y:Fill color="#BDB992" transparent="false"/>
+               <y:BorderStyle color="#000000" type="line" width="1.0"/>
+               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">CelestialPosition</y:NodeLabel>
+               <y:UML clipContent="true"
+                      constraint=""
+                      hasDetailsColor="false"
+                      omitDetails="false"
+                      stereotype="dataType"
+                      use3DEffect="true">
+                  <y:AttributeLabel xml:space="preserve">+sourceCoordinates : adqlgeom:Point
++referenceFrame : ivoa:string
++equinox : proposal:coords.mjd
+</y:AttributeLabel>
+                  <y:MethodLabel xml:space="preserve"/>
+               </y:UML>
+            </y:UMLClassNode>
+         </data>
+      </node>
       <node id="proposal:SpectralWindowSetup">
          <data key="k1">SpectralWindowSetup</data>
          <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
@@ -155,7 +177,7 @@
 +end : ivoa:RealQuantity
 +spectralResolution : ivoa:RealQuantity
 +isSkyFrequency : ivoa:boolean
-+polarization : coords:PolStateEnum
++polarization : proposal:coords.Polarization
 </y:AttributeLabel>
                   <y:MethodLabel xml:space="preserve"/>
                </y:UML>
@@ -363,8 +385,9 @@
                       omitDetails="false"
                       stereotype=""
                       use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve">+sourceCoordinates : coords:EquatorialPoint
-+positionEpoch : coords:Epoch
+                  <y:AttributeLabel xml:space="preserve">+coord : proposal:CelestialPosition
++coordUnit : ivoa:Unit
++positionEpoch : proposal:coords.mjd
 +pmRA : ivoa:RealQuantity
 +pmDec : ivoa:RealQuantity
 +parallax : ivoa:RealQuantity
@@ -433,62 +456,20 @@
             </y:UMLClassNode>
          </data>
       </node>
-      <node id="proposal:Point">
-         <data key="k1">Point</data>
+      <node id="proposal:SinglePointing">
+         <data key="k1">SinglePointing</data>
          <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
             <y:UMLClassNode>
                <y:Fill color="#BDB992" transparent="false"/>
                <y:BorderStyle color="#000000" type="line" width="1.0"/>
-               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">Point</y:NodeLabel>
+               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">SinglePointing</y:NodeLabel>
                <y:UML clipContent="true"
                       constraint=""
                       hasDetailsColor="false"
                       omitDetails="false"
                       stereotype=""
                       use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve">+centre : coords:Point
-</y:AttributeLabel>
-                  <y:MethodLabel xml:space="preserve"/>
-               </y:UML>
-            </y:UMLClassNode>
-         </data>
-      </node>
-      <node id="proposal:Polygon">
-         <data key="k1">Polygon</data>
-         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
-            <y:UMLClassNode>
-               <y:Fill color="#BDB992" transparent="false"/>
-               <y:BorderStyle color="#000000" type="line" width="1.0"/>
-               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">Polygon</y:NodeLabel>
-               <y:UML clipContent="true"
-                      constraint=""
-                      hasDetailsColor="false"
-                      omitDetails="false"
-                      stereotype=""
-                      use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve">+points : coords:EquatorialPoint
-</y:AttributeLabel>
-                  <y:MethodLabel xml:space="preserve"/>
-               </y:UML>
-            </y:UMLClassNode>
-         </data>
-      </node>
-      <node id="proposal:Ellipse">
-         <data key="k1">Ellipse</data>
-         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
-            <y:UMLClassNode>
-               <y:Fill color="#BDB992" transparent="false"/>
-               <y:BorderStyle color="#000000" type="line" width="1.0"/>
-               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">Ellipse</y:NodeLabel>
-               <y:UML clipContent="true"
-                      constraint=""
-                      hasDetailsColor="false"
-                      omitDetails="false"
-                      stereotype=""
-                      use3DEffect="true">
-                  <y:AttributeLabel xml:space="preserve">+semiMajor : ivoa:RealQuantity
-+semiMinor : ivoa:RealQuantity
-+pAMajor : ivoa:RealQuantity
+                  <y:AttributeLabel xml:space="preserve">+centre : proposal:CelestialPosition
 </y:AttributeLabel>
                   <y:MethodLabel xml:space="preserve"/>
                </y:UML>
@@ -738,6 +719,85 @@
             </y:UMLClassNode>
          </data>
       </node>
+      <node xmlns:y="http://www.yworks.com/xml/graphml"
+            id="d2e864"
+            yfiles.foldertype="group">
+         <data key="k2">
+            <y:GroupNode>
+               <y:Fill color="#E8E9CA" transparent="false"/>
+               <y:BorderStyle color="#000000" raised="false" type="dashed" width="1.0"/>
+               <y:NodeLabel alignment="left"
+                            autoSizePolicy="node_width"
+                            modelName="sides"
+                            modelPosition="n"
+                            backgroundColor="#F2F0D8">coords</y:NodeLabel>
+            </y:GroupNode>
+         </data>
+         <graph edgedefault="directed" id="G">coordscoords<node id="proposal:coords.mjd">
+               <data key="k1">coords/mjd</data>
+               <data key="k2">
+                  <y:UMLClassNode>
+                     <y:Fill color="#BDB992" transparent="false"/>
+                     <y:BorderStyle color="#000000" type="line" width="1.0"/>
+                     <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">coords/mjd</y:NodeLabel>
+                     <y:UML clipContent="true"
+                            constraint=""
+                            hasDetailsColor="false"
+                            omitDetails="false"
+                            stereotype="primitiveType"
+                            use3DEffect="true">
+                        <y:AttributeLabel xml:space="preserve"/>
+                        <y:MethodLabel xml:space="preserve"/>
+                     </y:UML>
+                  </y:UMLClassNode>
+               </data>
+            </node>
+            <node id="proposal:coords.Polarization">
+               <data key="k1">coords/Polarization</data>
+               <data key="k2">
+                  <y:UMLClassNode>
+                     <y:Fill color="#BDB992" transparent="false"/>
+                     <y:BorderStyle color="#000000" type="line" width="1.0"/>
+                     <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">coords/Polarization</y:NodeLabel>
+                     <y:UML clipContent="true"
+                            constraint=""
+                            hasDetailsColor="false"
+                            omitDetails="false"
+                            stereotype="enumeration"
+                            use3DEffect="true">
+                        <y:AttributeLabel xml:space="preserve">+Linear
++Circular
+</y:AttributeLabel>
+                        <y:MethodLabel xml:space="preserve"/>
+                     </y:UML>
+                  </y:UMLClassNode>
+               </data>
+            </node>
+            <node id="proposal:coords.CartesianPoint">
+               <data key="k1">coords/CartesianPoint</data>
+               <data key="k2">
+                  <y:UMLClassNode>
+                     <y:Fill color="#BDB992" transparent="false"/>
+                     <y:BorderStyle color="#000000" type="line" width="1.0"/>
+                     <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">coords/CartesianPoint</y:NodeLabel>
+                     <y:UML clipContent="true"
+                            constraint=""
+                            hasDetailsColor="false"
+                            omitDetails="false"
+                            stereotype="dataType"
+                            use3DEffect="true">
+                        <y:AttributeLabel xml:space="preserve">+x : ivoa:RealQuantity
++y : ivoa:RealQuantity
++z : ivoa:RealQuantity
++refpos : ivoa:string
+</y:AttributeLabel>
+                        <y:MethodLabel xml:space="preserve"/>
+                     </y:UML>
+                  </y:UMLClassNode>
+               </data>
+            </node>
+         </graph>
+      </node>
       <!--imported nodes-->
       <node id="ivoa:stringIdentifier">
          <data key="k1">stringIdentifier</data>
@@ -746,6 +806,25 @@
                <y:Fill color="#BDB992" transparent="false"/>
                <y:BorderStyle color="#000000" type="line" width="1.0"/>
                <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">stringIdentifier</y:NodeLabel>
+               <y:UML clipContent="true"
+                      constraint=""
+                      hasDetailsColor="false"
+                      omitDetails="false"
+                      stereotype="primitiveType"
+                      use3DEffect="true">
+                  <y:AttributeLabel xml:space="preserve"/>
+                  <y:MethodLabel xml:space="preserve"/>
+               </y:UML>
+            </y:UMLClassNode>
+         </data>
+      </node>
+      <node id="ivoa:real">
+         <data key="k1">real</data>
+         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
+            <y:UMLClassNode>
+               <y:Fill color="#BDB992" transparent="false"/>
+               <y:BorderStyle color="#000000" type="line" width="1.0"/>
+               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">real</y:NodeLabel>
                <y:UML clipContent="true"
                       constraint=""
                       hasDetailsColor="false"
@@ -772,7 +851,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e276"
+            id="d2e309"
             source="proposal:ObservingProposal"
             target="proposal:AbstractProposal">
          <data key="k3">
@@ -784,7 +863,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e464"
+            id="d2e497"
             source="proposal:CelestialTarget"
             target="proposal:Target">
          <data key="k3">
@@ -796,7 +875,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e524"
+            id="d2e566"
             source="proposal:SolarSystemTarget"
             target="proposal:Target">
          <data key="k3">
@@ -808,7 +887,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e543"
+            id="d2e585"
             source="proposal:TargetField"
             target="proposal:Field">
          <data key="k3">
@@ -820,8 +899,8 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e549"
-            source="proposal:Point"
+            id="d2e591"
+            source="proposal:SinglePointing"
             target="proposal:Field">
          <data key="k3">
             <y:PolyLineEdge>
@@ -832,31 +911,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e564"
-            source="proposal:Polygon"
-            target="proposal:Field">
-         <data key="k3">
-            <y:PolyLineEdge>
-               <y:LineStyle color="#FF0000" type="line" width="2.0"/>
-               <y:Arrows source="none" target="white_delta"/>
-               <y:BendStyle smoothed="false"/>
-            </y:PolyLineEdge>
-         </data>
-      </edge>
-      <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e579"
-            source="proposal:Ellipse"
-            target="proposal:Field">
-         <data key="k3">
-            <y:PolyLineEdge>
-               <y:LineStyle color="#FF0000" type="line" width="2.0"/>
-               <y:Arrows source="none" target="white_delta"/>
-               <y:BendStyle smoothed="false"/>
-            </y:PolyLineEdge>
-         </data>
-      </edge>
-      <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e617"
+            id="d2e610"
             source="proposal:TimingConstraint"
             target="proposal:ObservingConstraint">
          <data key="k3">
@@ -868,7 +923,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e641"
+            id="d2e635"
             source="proposal:TimingWindow"
             target="proposal:TimingConstraint">
          <data key="k3">
@@ -880,7 +935,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e665"
+            id="d2e659"
             source="proposal:SimultaneityConstraint"
             target="proposal:TimingConstraint">
          <data key="k3">
@@ -892,7 +947,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e671"
+            id="d2e665"
             source="proposal:PointingConstaint"
             target="proposal:ObservingConstraint">
          <data key="k3">
@@ -904,7 +959,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e830"
+            id="d2e824"
             source="proposal:TargetObservation"
             target="proposal:Observation">
          <data key="k3">
@@ -916,7 +971,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e836"
+            id="d2e830"
             source="proposal:CalibrationObservation"
             target="proposal:Observation">
          <data key="k3">
@@ -928,7 +983,19 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e178"
+            id="d2e872"
+            source="proposal:coords.mjd"
+            target="ivoa:real">
+         <data key="k3">
+            <y:PolyLineEdge>
+               <y:LineStyle color="#FF0000" type="line" width="2.0"/>
+               <y:Arrows source="none" target="white_delta"/>
+               <y:BendStyle smoothed="false"/>
+            </y:PolyLineEdge>
+         </data>
+      </edge>
+      <edge xmlns:y="http://www.yworks.com/xml/graphml"
+            id="d2e211"
             source="proposal:AbstractProposal"
             target="proposal:Justification">
          <data key="k3">
@@ -944,7 +1011,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e187"
+            id="d2e220"
             source="proposal:AbstractProposal"
             target="proposal:Justification">
          <data key="k3">
@@ -960,7 +1027,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e196"
+            id="d2e229"
             source="proposal:AbstractProposal"
             target="proposal:Investigator">
          <data key="k3">
@@ -976,7 +1043,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e214"
+            id="d2e247"
             source="proposal:AbstractProposal"
             target="proposal:RelatedProposal">
          <data key="k3">
@@ -992,7 +1059,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e223"
+            id="d2e256"
             source="proposal:AbstractProposal"
             target="proposal:SupportingDocument">
          <data key="k3">
@@ -1008,7 +1075,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e234"
+            id="d2e267"
             source="proposal:AbstractProposal"
             target="proposal:Target">
          <data key="k3">
@@ -1024,7 +1091,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e243"
+            id="d2e276"
             source="proposal:AbstractProposal"
             target="proposal:Field">
          <data key="k3">
@@ -1040,7 +1107,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e252"
+            id="d2e285"
             source="proposal:AbstractProposal"
             target="proposal:TechnicalGoal">
          <data key="k3">
@@ -1056,7 +1123,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e262"
+            id="d2e295"
             source="proposal:AbstractProposal"
             target="proposal:Observation">
          <data key="k3">
@@ -1072,7 +1139,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e686"
+            id="d2e680"
             source="proposal:ScienceSpectralWindow"
             target="proposal:ExpectedSpectralLine">
          <data key="k3">
@@ -1088,7 +1155,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e816"
+            id="d2e810"
             source="proposal:Observation"
             target="proposal:ObservingConstraint">
          <data key="k3">
@@ -1104,7 +1171,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e851"
+            id="d2e845"
             source="proposal:TechnicalGoal"
             target="proposal:PerformanceParameters">
          <data key="k3">
@@ -1120,7 +1187,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e860"
+            id="d2e854"
             source="proposal:TechnicalGoal"
             target="proposal:ScienceSpectralWindow">
          <data key="k3">
@@ -1136,7 +1203,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e282"
+            id="d2e315"
             source="proposal:RelatedProposal"
             target="proposal:AbstractProposal">
          <data key="k3">
@@ -1152,7 +1219,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e313"
+            id="d2e346"
             source="proposal:Person"
             target="proposal:Organization">
          <data key="k3">
@@ -1168,7 +1235,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e335"
+            id="d2e368"
             source="proposal:Investigator"
             target="proposal:Person">
          <data key="k3">
@@ -1184,7 +1251,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e789"
+            id="d2e783"
             source="proposal:Observation"
             target="proposal:Target">
          <data key="k3">
@@ -1200,7 +1267,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e798"
+            id="d2e792"
             source="proposal:Observation"
             target="proposal:Field">
          <data key="k3">
@@ -1216,7 +1283,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d2e807"
+            id="d2e801"
             source="proposal:Observation"
             target="proposal:TechnicalGoal">
          <data key="k3">

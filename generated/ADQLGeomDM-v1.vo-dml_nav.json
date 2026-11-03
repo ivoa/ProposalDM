@@ -1,0 +1,15 @@
+
+                {
+                "adqlgeom model": [
+                {
+                "Overview": "generated/ADQLGeomDM-v1.vo-dml.md"
+                }
+                    ,{
+                    "DataTypes": [
+                {"Box" : "generated/adqlgeom/Box.md"},{"Circle" : "generated/adqlgeom/Circle.md"},{"Ellipse" : "generated/adqlgeom/Ellipse.md"},{"Interval" : "generated/adqlgeom/Interval.md"},{"Line" : "generated/adqlgeom/Line.md"},{"MultiShape" : "generated/adqlgeom/MultiShape.md"},{"Point" : "generated/adqlgeom/Point.md"},{"Polygon" : "generated/adqlgeom/Polygon.md"},{"Shape" : "generated/adqlgeom/Shape.md"}
+                    ]
+                    }
+                
+                ]
+                }
+            

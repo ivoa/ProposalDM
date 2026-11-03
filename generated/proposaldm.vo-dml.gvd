@@ -13,6 +13,13 @@ digraph GVmap {
       style=filled
       fillcolor="/set312/1"
 	  
+    "coords" [
+
+    URL="../proposal/coords"
+    label = "coords"
+    fillcolor="/set312/2"
+    ] ;
+    
 	}
 	
 	node [
@@ -23,6 +30,13 @@ digraph GVmap {
   "ivoa:stringIdentifier" [
     URL="not known#stringIdentifier"
     label = "{ivoa:stringIdentifier}"
+    fillcolor="grey"
+    ] ;
+      
+    
+  "ivoa:real" [
+    URL="not known#real"
+    label = "{ivoa:real}"
     fillcolor="grey"
     ] ;
       
@@ -51,9 +65,14 @@ digraph GVmap {
     label = "{&lt;&lt;enumeration&gt;&gt;\nCalibrationTarget_intendedUse|+Amplitude\l+Atmospheric\l+Bandpass\l+Phase\l+Pointing\l+Focus\l+Polarization\l+Delay\l}"
     fillcolor="/set312/1"
     ] ;
+  "proposal:CelestialPosition" [
+    URL="../proposal/CelestialPosition"
+    label = "{&lt;&lt;datatype&gt;&gt;\nCelestialPosition|+sourceCoordinates : adqlgeom:Point\l+referenceFrame : ivoa:string\l+equinox : proposal:coords.mjd\l}"
+    fillcolor="/set312/1"
+    ] ;
   "proposal:SpectralWindowSetup" [
     URL="../proposal/SpectralWindowSetup"
-    label = "{&lt;&lt;datatype&gt;&gt;\nSpectralWindowSetup|+start : ivoa:RealQuantity\l+end : ivoa:RealQuantity\l+spectralResolution : ivoa:RealQuantity\l+isSkyFrequency : ivoa:boolean\l+polarization : coords:PolStateEnum\l}"
+    label = "{&lt;&lt;datatype&gt;&gt;\nSpectralWindowSetup|+start : ivoa:RealQuantity\l+end : ivoa:RealQuantity\l+spectralResolution : ivoa:RealQuantity\l+isSkyFrequency : ivoa:boolean\l+polarization : proposal:coords.Polarization\l}"
     fillcolor="/set312/1"
     ] ;
   "proposal:AbstractProposal" [
@@ -103,7 +122,7 @@ digraph GVmap {
     ] ;
   "proposal:CelestialTarget" [
     URL="../proposal/CelestialTarget"
-    label = "{CelestialTarget|+sourceCoordinates : coords:EquatorialPoint\l+positionEpoch : coords:Epoch\l+pmRA : ivoa:RealQuantity\l+pmDec : ivoa:RealQuantity\l+parallax : ivoa:RealQuantity\l+sourceVelocity : ivoa:RealQuantity\l}"
+    label = "{CelestialTarget|+coord : proposal:CelestialPosition\l+coordUnit : ivoa:Unit\l+positionEpoch : proposal:coords.mjd\l+pmRA : ivoa:RealQuantity\l+pmDec : ivoa:RealQuantity\l+parallax : ivoa:RealQuantity\l+sourceVelocity : ivoa:RealQuantity\l}"
     fillcolor="/set312/1"
     ] ;
   "proposal:SolarSystemTarget" [
@@ -121,19 +140,9 @@ digraph GVmap {
     label = "{TargetField}"
     fillcolor="/set312/1"
     ] ;
-  "proposal:Point" [
-    URL="../proposal/Point"
-    label = "{Point|+centre : coords:Point\l}"
-    fillcolor="/set312/1"
-    ] ;
-  "proposal:Polygon" [
-    URL="../proposal/Polygon"
-    label = "{Polygon|+points : coords:EquatorialPoint\l}"
-    fillcolor="/set312/1"
-    ] ;
-  "proposal:Ellipse" [
-    URL="../proposal/Ellipse"
-    label = "{Ellipse|+semiMajor : ivoa:RealQuantity\l+semiMinor : ivoa:RealQuantity\l+pAMajor : ivoa:RealQuantity\l}"
+  "proposal:SinglePointing" [
+    URL="../proposal/SinglePointing"
+    label = "{SinglePointing|+centre : proposal:CelestialPosition\l}"
     fillcolor="/set312/1"
     ] ;
   "proposal:ObservingConstraint" [
@@ -196,6 +205,21 @@ digraph GVmap {
     label = "{TechnicalGoal}"
     fillcolor="/set312/1"
     ] ;
+  "proposal:coords.mjd"[
+    URL="../proposal/coords.mjd"
+    label = "{&lt;&lt;primitive type&gt;&gt;\ncoords/mjd}"
+    fillcolor="/set312/2"
+    ] ;
+  "proposal:coords.Polarization" [
+    URL="../proposal/coords.Polarization"
+    label = "{&lt;&lt;enumeration&gt;&gt;\ncoords/Polarization|+Linear\l+Circular\l}"
+    fillcolor="/set312/2"
+    ] ;
+  "proposal:coords.CartesianPoint" [
+    URL="../proposal/coords.CartesianPoint"
+    label = "{&lt;&lt;datatype&gt;&gt;\ncoords/CartesianPoint|+x : ivoa:RealQuantity\l+y : ivoa:RealQuantity\l+z : ivoa:RealQuantity\l+refpos : ivoa:string\l}"
+    fillcolor="/set312/2"
+    ] ;
   
  
     edge [color="red", arrowtail="none", arrowhead="empty"]
@@ -204,15 +228,14 @@ digraph GVmap {
   "proposal:CelestialTarget" -> "proposal:Target" ;
   "proposal:SolarSystemTarget" -> "proposal:Target" ;
   "proposal:TargetField" -> "proposal:Field" ;
-  "proposal:Point" -> "proposal:Field" ;
-  "proposal:Polygon" -> "proposal:Field" ;
-  "proposal:Ellipse" -> "proposal:Field" ;
+  "proposal:SinglePointing" -> "proposal:Field" ;
   "proposal:TimingConstraint" -> "proposal:ObservingConstraint" ;
   "proposal:TimingWindow" -> "proposal:TimingConstraint" ;
   "proposal:SimultaneityConstraint" -> "proposal:TimingConstraint" ;
   "proposal:PointingConstaint" -> "proposal:ObservingConstraint" ;
   "proposal:TargetObservation" -> "proposal:Observation" ;
   "proposal:CalibrationObservation" -> "proposal:Observation" ;
+  "proposal:coords.mjd" -> "ivoa:real" ;
   
  
     edge [color="blue", arrowhead="open", arrowtail="diamond",dir="both",fontsize="10"]

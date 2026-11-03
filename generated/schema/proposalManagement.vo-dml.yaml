@@ -1,0 +1,622 @@
+components:
+  schemas:
+    InstrumentKind:
+      description: ""
+      enum:
+      - "continuum"
+      - "spectroscopic"
+    TacRole:
+      description: "A role within the timeAllocation committee"
+      enum:
+      - "TechnicalReviewer"
+      - "ScienceReviewer"
+      - "Chair"
+    Observatory:
+      allOf:
+      - $ref: "#/components/schemas/Organization"
+      - type: "object"
+        description: "An organisation that can perform astronomical observations"
+        properties:
+          homePage:
+            type: "string"
+            format: "uri"
+            description: "the home page for the Observatory"
+          telescopes:
+            type: "array"
+            items:
+              anyOf: []
+          instruments:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/Instrument"
+          backends:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/Backend"
+          arrays:
+            type: "array"
+            items:
+              anyOf: []
+        required:
+        - "telescopes"
+        - "instruments"
+        - "backends"
+      unevaluatedProperties: false
+    ObservingPlatform:
+      type: "object"
+      description: "base type of a telescope or array of telescopes"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          proposalManagement:Telescope: "#/components/schemas/Telescope"
+          proposalManagement:TelescopeArray: "#/components/schemas/TelescopeArray"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "@type"
+    Telescope:
+      allOf:
+      - $ref: "#/components/schemas/ObservingPlatform"
+      - type: "object"
+        description: ""
+        properties:
+          name:
+            type: "string"
+            built-in: "true"
+            description: "telescope name"
+          wikiId:
+            type: "string"
+            built-in: "true"
+            description: "the wikidata id for the Telescope"
+          location:
+            $ref: "#/components/schemas/coords.CartesianPoint"
+            description: "the location of the telescope"
+        required:
+        - "name"
+        - "location"
+      unevaluatedProperties: false
+    TelescopeArrayMember:
+      type: "object"
+      description: ""
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        telescope:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/Telescope"
+          description: ""
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "telescope"
+      additionalProperties: false
+    TelescopeArray:
+      allOf:
+      - $ref: "#/components/schemas/ObservingPlatform"
+      - type: "object"
+        description: "a set of telescopes that are operated together for an observation"
+        properties:
+          name:
+            type: "string"
+            built-in: "true"
+            description: "the array name"
+          arrayMembers:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/TelescopeArrayMember"
+        required:
+        - "name"
+        - "arrayMembers"
+      unevaluatedProperties: false
+    Instrument:
+      type: "object"
+      description: "An instrument that can be attached to a telescope - e.g. CCD,\
+        \ Radio Receiver"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        name:
+          type: "string"
+          built-in: "true"
+          description: "the instrument name - human readable"
+        description:
+          type: "string"
+          built-in: "true"
+          description: "short human readable description"
+        wikiId:
+          type: "string"
+          built-in: "true"
+          description: "the wikidata id for the Instrument"
+        reference:
+          type: "string"
+          format: "uri"
+          description: "a URL that points to a more detailed description of the instrument"
+        kind:
+          $ref: "#/components/schemas/InstrumentKind"
+          description: "the kind of instrument"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "name"
+      - "kind"
+      additionalProperties: false
+    Filter:
+      type: "object"
+      description: "Available filters /bandpasses for intruments"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        name:
+          type: "string"
+          built-in: "true"
+          description: "human readable name"
+        description:
+          type: "string"
+          built-in: "true"
+          description: "human readable description"
+        frequencyCoverage:
+          $ref: "#/components/schemas/SpectralWindowSetup"
+          description: "the frequency range that the instrument covers"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "name"
+      - "description"
+      - "frequencyCoverage"
+      additionalProperties: false
+    Backend:
+      type: "object"
+      description: "a processing backend /pipeline- e.g. correlator"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        name:
+          type: "string"
+          built-in: "true"
+          description: "the backend name"
+        parallel:
+          type: "boolean"
+          built-in: "true"
+          description: "is capable of being run at same time as other backends"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "name"
+      - "parallel"
+      additionalProperties: false
+    ObservingMode:
+      type: "object"
+      description: "a configuration can be used to observe with."
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        name:
+          type: "string"
+          built-in: "true"
+          description: "human readable name for the mode"
+        description:
+          type: "string"
+          built-in: "true"
+          description: "human readable description"
+        telescope:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/ObservingPlatform"
+          description: ""
+        instrument:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/Instrument"
+          description: ""
+        filter:
+          type: "object"
+          $ref: "#/components/schemas/Filter"
+        backend:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/Backend"
+          description: ""
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "name"
+      - "description"
+      - "telescope"
+      - "instrument"
+      - "filter"
+      - "backend"
+      additionalProperties: false
+    ProposalCycle:
+      type: "object"
+      description: "Defines collection of resources and proposals for a particular\
+        \ observing season"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        observatory:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/Observatory"
+          description: ""
+        title:
+          type: "string"
+          built-in: "true"
+          description: "a human readable description of the cycle"
+        code:
+          type: "string"
+          built-in: "true"
+          description: "human readable code for the cycle"
+        instructions:
+          type: "string"
+          format: "uri"
+          description: "pointer to more detailed instructions about the cycle"
+        submissionDeadline:
+          type: "string"
+          format: "date-time"
+          description: "the date by which observing proposals must be submitted to\
+            \ be considered for this cycle"
+        observationSessionStart:
+          type: "string"
+          format: "date-time"
+          description: "the start date of the observing cycle"
+        observationSessionEnd:
+          type: "string"
+          format: "date-time"
+          description: "the end date of the observing cycle"
+        observingModes:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ObservingMode"
+        availableResources:
+          type: "object"
+          $ref: "#/components/schemas/AvailableResources"
+        possibleGrades:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/AllocationGrade"
+        tac:
+          type: "object"
+          $ref: "#/components/schemas/TAC"
+        submittedProposals:
+          type: "array"
+          items:
+            anyOf: []
+        allocatedProposals:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/AllocatedProposal"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "observatory"
+      - "title"
+      - "observationSessionStart"
+      - "observationSessionEnd"
+      - "observingModes"
+      - "availableResources"
+      - "possibleGrades"
+      - "tac"
+      additionalProperties: false
+    Reviewer:
+      type: "object"
+      description: "assigned to review the proposal"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        person:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/Person"
+          description: "the person taking on the reviewer role"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "person"
+      additionalProperties: false
+    CommitteeMember:
+      type: "object"
+      description: "a member of the TAC"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        member:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/Reviewer"
+          description: "the member"
+        role:
+          $ref: "#/components/schemas/TacRole"
+          description: ""
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "member"
+      - "role"
+      additionalProperties: false
+    TAC:
+      type: "object"
+      description: "time allocation committee"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        members:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/CommitteeMember"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "members"
+      additionalProperties: false
+    ObservationConfiguration:
+      type: "object"
+      description: "the configuration of an observation specific to a submission to\
+        \ a particular cycle"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        observation:
+          type: "array"
+          items:
+            oneOf:
+            - type: "number"
+            - $ref: "#/components/schemas/Observation"
+          description: ""
+        mode:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/ObservingMode"
+          description: "The observing mode"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "observation"
+      - "mode"
+      additionalProperties: false
+    SubmittedProposal:
+      allOf:
+      - $ref: "#/components/schemas/AbstractProposal"
+      - type: "object"
+        description: "an instance of a proposal that has been submitted"
+        properties:
+          proposalCode:
+            type: "string"
+            built-in: "true"
+            description: "the observatory's code for the proposal"
+          config:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/ObservationConfiguration"
+          submissionDate:
+            type: "string"
+            format: "date-time"
+            description: "the date that the proposal was submitted"
+          successful:
+            type: "boolean"
+            built-in: "true"
+            description: "the proposal can go on to allocation"
+          reviewsCompleteDate:
+            type: "string"
+            format: "date-time"
+            description: "the date when all the proposals are due"
+          reviews:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/ProposalReview"
+        required:
+        - "proposalCode"
+        - "submissionDate"
+        - "successful"
+        - "reviewsCompleteDate"
+      unevaluatedProperties: false
+    AllocatedProposal:
+      type: "object"
+      description: "an instance of a proposal that is allocated observing time"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        submitted:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/SubmittedProposal"
+          description: "the proposal"
+        allocation:
+          type: "array"
+          items:
+            anyOf: []
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "submitted"
+      - "allocation"
+      additionalProperties: false
+    ProposalReview:
+      type: "object"
+      description: "A review of a proposal"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        reviewer:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/Reviewer"
+          description: "the reviewer making this review"
+        comment:
+          type: "string"
+          built-in: "true"
+          description: "Description"
+        score:
+          type: "number"
+          built-in: "true"
+          description: "the review score"
+        technicalFeasibility:
+          type: "boolean"
+          built-in: "true"
+          description: "is the proposal technically feasible"
+        reviewDate:
+          type: "string"
+          format: "date-time"
+          description: "the date that the review is submitted"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "reviewer"
+      - "comment"
+      - "score"
+      - "technicalFeasibility"
+      - "reviewDate"
+      additionalProperties: false
+    ResourceType:
+      type: "object"
+      description: "a type of resource"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        name:
+          type: "string"
+          built-in: "true"
+          description: "the name of the resource type"
+        unit:
+          type: "string"
+          built-in: "true"
+          description: ""
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "name"
+      - "unit"
+      additionalProperties: false
+    Resource:
+      type: "object"
+      description: "A resource that will be consumed by allocating an observation\
+        \ from a proposal"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        type:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/ResourceType"
+          description: "the type of the resource"
+        amount:
+          type: "number"
+          built-in: "true"
+          description: "The amount of the resource"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "type"
+      - "amount"
+      additionalProperties: false
+    AvailableResources:
+      type: "object"
+      description: "The list of resources that are available"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        resources:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Resource"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required: []
+      additionalProperties: false
+    AllocationGrade:
+      type: "object"
+      description: "The final grade given by the TAC"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        name:
+          type: "string"
+          built-in: "true"
+          description: "the name of the grade"
+        description:
+          type: "string"
+          built-in: "true"
+          description: "what this grade means"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "name"
+      - "description"
+      additionalProperties: false
+    ResourceBlock:
+      type: "object"
+      description: "A block of resources that can be allocated"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          proposalManagement:AllocatedBlock: "#/components/schemas/AllocatedBlock"
+      properties:
+        '@type':
+          type: "string"
+          description: "UType as type discriminator"
+        mode:
+          oneOf:
+          - type: "number"
+          - $ref: "#/components/schemas/ObservingMode"
+          description: ""
+        resource:
+          type: "object"
+          $ref: "#/components/schemas/Resource"
+        _id:
+          type: "integer"
+          description: "surrogate key"
+      required:
+      - "@type"
+      - "mode"
+      - "resource"
+    AllocatedBlock:
+      allOf:
+      - $ref: "#/components/schemas/ResourceBlock"
+      - type: "object"
+        description: "A block of resources that have been allocated"
+        properties:
+          grade:
+            oneOf:
+            - type: "number"
+            - $ref: "#/components/schemas/AllocationGrade"
+            description: ""
+        required:
+        - "grade"
+      unevaluatedProperties: false

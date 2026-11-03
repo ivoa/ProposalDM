@@ -2,7 +2,7 @@
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
   "$id" : "https://ivoa.net/dm/proposalManagement.vo-dml.json",
   "title" : "Proposal Management",
-  "description" : "",
+  "description" : "The data model for managing the proposal review process. This is the observatories' view of the proposal process, intended to work for phase 1 only",
   "type" : "object",
   "properties" : {
     "ProposalManagementModel" : {
@@ -12,61 +12,43 @@
           "type" : "object",
           "properties" : {
             "$comment" : "placeholder to make commas easier!",
-            "proposal:Organization" : {
+            "organization" : {
               "type" : "array",
               "items" : {
-                "oneOf" : [ {
+                "anyOf" : [ {
                   "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Organization"
                 }, {
-                  "type" : "number"
-                } ]
-              }
-            },
-            "proposal:Person" : {
-              "type" : "array",
-              "items" : {
-                "oneOf" : [ {
-                  "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Person"
-                }, {
-                  "type" : "number"
-                } ]
-              }
-            },
-            "proposalManagement:Observatory" : {
-              "type" : "array",
-              "items" : {
-                "oneOf" : [ {
                   "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Observatory"
                 }, {
                   "type" : "number"
                 } ]
               }
             },
-            "proposalManagement:Reviewer" : {
+            "resourceType" : {
               "type" : "array",
               "items" : {
-                "oneOf" : [ {
-                  "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Reviewer"
-                }, {
-                  "type" : "number"
-                } ]
-              }
-            },
-            "proposalManagement:ResourceType" : {
-              "type" : "array",
-              "items" : {
-                "oneOf" : [ {
+                "anyOf" : [ {
                   "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ResourceType"
                 }, {
                   "type" : "number"
                 } ]
               }
             },
-            "coords:CoordSys" : {
+            "person" : {
               "type" : "array",
               "items" : {
-                "oneOf" : [ {
-                  "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/CoordSys"
+                "anyOf" : [ {
+                  "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Person"
+                }, {
+                  "type" : "number"
+                } ]
+              }
+            },
+            "reviewer" : {
+              "type" : "array",
+              "items" : {
+                "anyOf" : [ {
+                  "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Reviewer"
                 }, {
                   "type" : "number"
                 } ]
@@ -75,18 +57,23 @@
           },
           "additionalProperties" : false
         },
-        "content" : {
+        "resourceBlock" : {
           "type" : "array",
           "items" : {
-            "anyOf" : [ {
-              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
-            }, {
-              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ProposalCycle"
-            }, {
-              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ResourceBlock"
-            } ]
-          },
-          "additionalProperties" : false
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ResourceBlock"
+          }
+        },
+        "observingProposal" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
+          }
+        },
+        "proposalCycle" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ProposalCycle"
+          }
         }
       },
       "additionalProperties" : false
@@ -94,25 +81,31 @@
   },
   "$defs" : {
     "$comment" : "placeholder to make commas easier!",
+    "InstrumentKind" : {
+      "description" : "",
+      "enum" : [ "continuum", "spectroscopic" ]
+    },
+    "TacRole" : {
+      "description" : "A role within the timeAllocation committee",
+      "enum" : [ "TechnicalReviewer", "ScienceReviewer", "Chair" ]
+    },
     "Observatory" : {
       "allOf" : [ {
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Organization"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "An organisation that can perform astronomical observations",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
+          "$comment" : "placeholder to make commas easier",
           "homePage" : {
+            "type" : "string",
             "format" : "uri",
-            "description" : ""
+            "description" : "the home page for the Observatory"
           },
           "telescopes" : {
             "type" : "array",
             "items" : {
-              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Telescope"
+              "anyOf" : [ ]
             }
           },
           "instruments" : {
@@ -130,11 +123,8 @@
           "arrays" : {
             "type" : "array",
             "items" : {
-              "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/TelescopeArray"
+              "anyOf" : [ ]
             }
-          },
-          "_id" : {
-            "type" : "number"
           }
         },
         "required" : [ "telescopes", "instruments", "backends" ]
@@ -143,17 +133,19 @@
     },
     "ObservingPlatform" : {
       "type" : "object",
-      "description" : "",
+      "description" : "base type of a telescope or array of telescopes",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
-      "required" : [ ]
+      "required" : [ "@type" ]
     },
     "Telescope" : {
       "allOf" : [ {
@@ -162,24 +154,20 @@
         "type" : "object",
         "description" : "",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
+          "$comment" : "placeholder to make commas easier",
           "name" : {
             "type" : "string",
-            "description" : ""
+            "built-in" : "true",
+            "description" : "telescope name"
           },
           "wikiId" : {
-            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/WikiDataId",
-            "description" : ""
+            "type" : "string",
+            "built-in" : "true",
+            "description" : "the wikidata id for the Telescope"
           },
           "location" : {
-            "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/RealCartesianPoint",
-            "description" : ""
-          },
-          "_id" : {
-            "type" : "number"
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/coords.CartesianPoint",
+            "description" : "the location of the telescope"
           }
         },
         "required" : [ "name", "location" ]
@@ -190,9 +178,10 @@
       "type" : "object",
       "description" : "",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "telescope" : {
           "oneOf" : [ {
@@ -203,7 +192,8 @@
           "description" : ""
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "telescope" ],
@@ -214,24 +204,19 @@
         "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingPlatform"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "a set of telescopes that are operated together for an observation",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
+          "$comment" : "placeholder to make commas easier",
           "name" : {
             "type" : "string",
-            "description" : ""
+            "built-in" : "true",
+            "description" : "the array name"
           },
           "arrayMembers" : {
             "type" : "array",
             "items" : {
               "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/TelescopeArrayMember"
             }
-          },
-          "_id" : {
-            "type" : "number"
           }
         },
         "required" : [ "name", "arrayMembers" ]
@@ -240,34 +225,40 @@
     },
     "Instrument" : {
       "type" : "object",
-      "description" : "",
+      "description" : "An instrument that can be attached to a telescope - e.g. CCD, Radio Receiver",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "name" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "the instrument name - human readable"
         },
         "description" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "short human readable description"
         },
         "wikiId" : {
-          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/WikiDataId",
-          "description" : ""
+          "type" : "string",
+          "built-in" : "true",
+          "description" : "the wikidata id for the Instrument"
         },
         "reference" : {
+          "type" : "string",
           "format" : "uri",
-          "description" : ""
+          "description" : "a URL that points to a more detailed description of the instrument"
         },
         "kind" : {
           "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/InstrumentKind",
-          "description" : ""
+          "description" : "the kind of instrument"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "name", "kind" ],
@@ -275,26 +266,30 @@
     },
     "Filter" : {
       "type" : "object",
-      "description" : "",
+      "description" : "Available filters /bandpasses for intruments",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "name" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "human readable name"
         },
         "description" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "human readable description"
         },
         "frequencyCoverage" : {
           "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/SpectralWindowSetup",
-          "description" : ""
+          "description" : "the frequency range that the instrument covers"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "name", "description", "frequencyCoverage" ],
@@ -302,22 +297,26 @@
     },
     "Backend" : {
       "type" : "object",
-      "description" : "",
+      "description" : "a processing backend /pipeline- e.g. correlator",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "name" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "the backend name"
         },
         "parallel" : {
           "type" : "boolean",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "is capable of being run at same time as other backends"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "name", "parallel" ],
@@ -325,23 +324,22 @@
     },
     "ObservingMode" : {
       "type" : "object",
-      "description" : "",
+      "description" : "a configuration can be used to observe with.",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "name" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "human readable name for the mode"
         },
         "description" : {
           "type" : "string",
-          "description" : ""
-        },
-        "filter" : {
-          "type" : "object",
-          "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Filter"
+          "built-in" : "true",
+          "description" : "human readable description"
         },
         "telescope" : {
           "oneOf" : [ {
@@ -359,6 +357,10 @@
           } ],
           "description" : ""
         },
+        "filter" : {
+          "type" : "object",
+          "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Filter"
+        },
         "backend" : {
           "oneOf" : [ {
             "type" : "number"
@@ -368,7 +370,8 @@
           "description" : ""
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "name", "description", "telescope", "instrument", "filter", "backend" ],
@@ -376,35 +379,50 @@
     },
     "ProposalCycle" : {
       "type" : "object",
-      "description" : "",
+      "description" : "Defines collection of resources and proposals for a particular observing season",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
+        },
+        "observatory" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Observatory"
+          } ],
+          "description" : ""
         },
         "title" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "a human readable description of the cycle"
         },
         "code" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "human readable code for the cycle"
         },
         "instructions" : {
+          "type" : "string",
           "format" : "uri",
-          "description" : ""
+          "description" : "pointer to more detailed instructions about the cycle"
         },
         "submissionDeadline" : {
+          "type" : "string",
           "format" : "date-time",
-          "description" : ""
+          "description" : "the date by which observing proposals must be submitted to be considered for this cycle"
         },
         "observationSessionStart" : {
+          "type" : "string",
           "format" : "date-time",
-          "description" : ""
+          "description" : "the start date of the observing cycle"
         },
         "observationSessionEnd" : {
+          "type" : "string",
           "format" : "date-time",
-          "description" : ""
+          "description" : "the end date of the observing cycle"
         },
         "observingModes" : {
           "type" : "array",
@@ -429,7 +447,7 @@
         "submittedProposals" : {
           "type" : "array",
           "items" : {
-            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/SubmittedProposal"
+            "anyOf" : [ ]
           }
         },
         "allocatedProposals" : {
@@ -438,16 +456,9 @@
             "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/AllocatedProposal"
           }
         },
-        "observatory" : {
-          "oneOf" : [ {
-            "type" : "number"
-          }, {
-            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Observatory"
-          } ],
-          "description" : ""
-        },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "observatory", "title", "observationSessionStart", "observationSessionEnd", "observingModes", "availableResources", "possibleGrades", "tac" ],
@@ -455,11 +466,12 @@
     },
     "Reviewer" : {
       "type" : "object",
-      "description" : "",
+      "description" : "assigned to review the proposal",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "person" : {
           "oneOf" : [ {
@@ -467,10 +479,11 @@
           }, {
             "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Person"
           } ],
-          "description" : ""
+          "description" : "the person taking on the reviewer role"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "person" ],
@@ -478,15 +491,12 @@
     },
     "CommitteeMember" : {
       "type" : "object",
-      "description" : "",
+      "description" : "a member of the TAC",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
-        },
-        "role" : {
-          "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/TacRole",
-          "description" : ""
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "member" : {
           "oneOf" : [ {
@@ -494,10 +504,15 @@
           }, {
             "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Reviewer"
           } ],
+          "description" : "the member"
+        },
+        "role" : {
+          "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/TacRole",
           "description" : ""
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "member", "role" ],
@@ -505,11 +520,12 @@
     },
     "TAC" : {
       "type" : "object",
-      "description" : "",
+      "description" : "time allocation committee",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "members" : {
           "type" : "array",
@@ -518,7 +534,8 @@
           }
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "members" ],
@@ -526,16 +543,21 @@
     },
     "ObservationConfiguration" : {
       "type" : "object",
-      "description" : "",
+      "description" : "the configuration of an observation specific to a submission to a particular cycle",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "observation" : {
           "type" : "array",
           "items" : {
-            "type" : "number"
+            "oneOf" : [ {
+              "type" : "number"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Observation"
+            } ]
           },
           "description" : ""
         },
@@ -545,10 +567,11 @@
           }, {
             "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservingMode"
           } ],
-          "description" : ""
+          "description" : "The observing mode"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "observation", "mode" ],
@@ -559,27 +582,13 @@
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/AbstractProposal"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "an instance of a proposal that has been submitted",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
+          "$comment" : "placeholder to make commas easier",
           "proposalCode" : {
             "type" : "string",
-            "description" : ""
-          },
-          "submissionDate" : {
-            "format" : "date-time",
-            "description" : ""
-          },
-          "successful" : {
-            "type" : "boolean",
-            "description" : ""
-          },
-          "reviewsCompleteDate" : {
-            "format" : "date-time",
-            "description" : ""
+            "built-in" : "true",
+            "description" : "the observatory's code for the proposal"
           },
           "config" : {
             "type" : "array",
@@ -587,14 +596,26 @@
               "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ObservationConfiguration"
             }
           },
+          "submissionDate" : {
+            "type" : "string",
+            "format" : "date-time",
+            "description" : "the date that the proposal was submitted"
+          },
+          "successful" : {
+            "type" : "boolean",
+            "built-in" : "true",
+            "description" : "the proposal can go on to allocation"
+          },
+          "reviewsCompleteDate" : {
+            "type" : "string",
+            "format" : "date-time",
+            "description" : "the date when all the proposals are due"
+          },
           "reviews" : {
             "type" : "array",
             "items" : {
               "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ProposalReview"
             }
-          },
-          "_id" : {
-            "type" : "number"
           }
         },
         "required" : [ "proposalCode", "submissionDate", "successful", "reviewsCompleteDate" ]
@@ -603,17 +624,12 @@
     },
     "AllocatedProposal" : {
       "type" : "object",
-      "description" : "",
+      "description" : "an instance of a proposal that is allocated observing time",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
-        },
-        "allocation" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/AllocatedBlock"
-          }
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "submitted" : {
           "oneOf" : [ {
@@ -621,10 +637,17 @@
           }, {
             "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/SubmittedProposal"
           } ],
-          "description" : ""
+          "description" : "the proposal"
+        },
+        "allocation" : {
+          "type" : "array",
+          "items" : {
+            "anyOf" : [ ]
+          }
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "submitted", "allocation" ],
@@ -632,27 +655,12 @@
     },
     "ProposalReview" : {
       "type" : "object",
-      "description" : "",
+      "description" : "A review of a proposal",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
-        },
-        "comment" : {
           "type" : "string",
-          "description" : ""
-        },
-        "score" : {
-          "type" : "number",
-          "description" : ""
-        },
-        "technicalFeasibility" : {
-          "type" : "boolean",
-          "description" : ""
-        },
-        "reviewDate" : {
-          "format" : "date-time",
-          "description" : ""
+          "description" : "UType as type discriminator"
         },
         "reviewer" : {
           "oneOf" : [ {
@@ -660,10 +668,31 @@
           }, {
             "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Reviewer"
           } ],
-          "description" : ""
+          "description" : "the reviewer making this review"
+        },
+        "comment" : {
+          "type" : "string",
+          "built-in" : "true",
+          "description" : "Description"
+        },
+        "score" : {
+          "type" : "number",
+          "built-in" : "true",
+          "description" : "the review score"
+        },
+        "technicalFeasibility" : {
+          "type" : "boolean",
+          "built-in" : "true",
+          "description" : "is the proposal technically feasible"
+        },
+        "reviewDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "the date that the review is submitted"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "reviewer", "comment", "score", "technicalFeasibility", "reviewDate" ],
@@ -671,22 +700,26 @@
     },
     "ResourceType" : {
       "type" : "object",
-      "description" : "",
+      "description" : "a type of resource",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "name" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "the name of the resource type"
         },
         "unit" : {
           "type" : "string",
+          "built-in" : "true",
           "description" : ""
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "name", "unit" ],
@@ -694,15 +727,12 @@
     },
     "Resource" : {
       "type" : "object",
-      "description" : "",
+      "description" : "A resource that will be consumed by allocating an observation from a proposal",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
-        },
-        "amount" : {
-          "type" : "number",
-          "description" : ""
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "type" : {
           "oneOf" : [ {
@@ -710,10 +740,16 @@
           }, {
             "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ResourceType"
           } ],
-          "description" : ""
+          "description" : "the type of the resource"
+        },
+        "amount" : {
+          "type" : "number",
+          "built-in" : "true",
+          "description" : "The amount of the resource"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "type", "amount" ],
@@ -721,11 +757,12 @@
     },
     "AvailableResources" : {
       "type" : "object",
-      "description" : "",
+      "description" : "The list of resources that are available",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "resources" : {
           "type" : "array",
@@ -734,7 +771,8 @@
           }
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ ],
@@ -742,22 +780,26 @@
     },
     "AllocationGrade" : {
       "type" : "object",
-      "description" : "",
+      "description" : "The final grade given by the TAC",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "name" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "the name of the grade"
         },
         "description" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "what this grade means"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "name", "description" ],
@@ -765,15 +807,12 @@
     },
     "ResourceBlock" : {
       "type" : "object",
-      "description" : "",
+      "description" : "A block of resources that can be allocated",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
-        },
-        "resource" : {
-          "type" : "object",
-          "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Resource"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "mode" : {
           "oneOf" : [ {
@@ -783,23 +822,25 @@
           } ],
           "description" : ""
         },
+        "resource" : {
+          "type" : "object",
+          "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Resource"
+        },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
-      "required" : [ "mode", "resource" ]
+      "required" : [ "@type", "mode", "resource" ]
     },
     "AllocatedBlock" : {
       "allOf" : [ {
         "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/ResourceBlock"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "A block of resources that have been allocated",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
+          "$comment" : "placeholder to make commas easier",
           "grade" : {
             "oneOf" : [ {
               "type" : "number"
@@ -807,22 +848,11 @@
               "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/AllocationGrade"
             } ],
             "description" : ""
-          },
-          "_id" : {
-            "type" : "number"
           }
         },
         "required" : [ "grade" ]
       } ],
       "unevaluatedProperties" : false
-    },
-    "InstrumentKind" : {
-      "description" : "",
-      "enum" : [ "continuum", "spectroscopic" ]
-    },
-    "TacRole" : {
-      "description" : "",
-      "enum" : [ "TechnicalReviewer", "ScienceReviewer", "Chair" ]
     }
   }
 }

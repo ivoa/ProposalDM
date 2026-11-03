@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.ivoa.dm.proposal.management"},{"l":"org.ivoa.dm.proposal.prop"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.ivoa.dm.proposal.management"},{"l":"org.ivoa.dm.proposal.prop"},{"l":"org.ivoa.dm.proposal.prop.coords"}];updateSearchResults();

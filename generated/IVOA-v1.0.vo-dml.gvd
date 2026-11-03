@@ -44,6 +44,11 @@ digraph GVmap {
     label = "{&lt;&lt;primitive type&gt;&gt;\ndatetime}"
     fillcolor="/set312/1"
     ] ;
+  "ivoa:duration"[
+    URL="../ivoa/duration"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nduration}"
+    fillcolor="/set312/1"
+    ] ;
   "ivoa:integer"[
     URL="../ivoa/integer"
     label = "{&lt;&lt;primitive type&gt;&gt;\ninteger}"
@@ -82,6 +87,11 @@ digraph GVmap {
   "ivoa:ivoid"[
     URL="../ivoa/ivoid"
     label = "{&lt;&lt;primitive type&gt;&gt;\nivoid}"
+    fillcolor="/set312/1"
+    ] ;
+  "ivoa:uuid"[
+    URL="../ivoa/uuid"
+    label = "{&lt;&lt;primitive type&gt;&gt;\nuuid}"
     fillcolor="/set312/1"
     ] ;
   "ivoa:IntegerQuantity" [

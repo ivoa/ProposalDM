@@ -122,6 +122,25 @@
             </y:UMLClassNode>
          </data>
       </node>
+      <node id="ivoa:duration">
+         <data key="k1">duration</data>
+         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
+            <y:UMLClassNode>
+               <y:Fill color="#BDB992" transparent="false"/>
+               <y:BorderStyle color="#000000" type="line" width="1.0"/>
+               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">duration</y:NodeLabel>
+               <y:UML clipContent="true"
+                      constraint=""
+                      hasDetailsColor="false"
+                      omitDetails="false"
+                      stereotype="primitiveType"
+                      use3DEffect="true">
+                  <y:AttributeLabel xml:space="preserve"/>
+                  <y:MethodLabel xml:space="preserve"/>
+               </y:UML>
+            </y:UMLClassNode>
+         </data>
+      </node>
       <node id="ivoa:integer">
          <data key="k1">integer</data>
          <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
@@ -274,6 +293,25 @@
             </y:UMLClassNode>
          </data>
       </node>
+      <node id="ivoa:uuid">
+         <data key="k1">uuid</data>
+         <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
+            <y:UMLClassNode>
+               <y:Fill color="#BDB992" transparent="false"/>
+               <y:BorderStyle color="#000000" type="line" width="1.0"/>
+               <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="c" textColor="#000000" verticalTextPosition="bottom" visible="true" xml:space="preserve" y="3.0">uuid</y:NodeLabel>
+               <y:UML clipContent="true"
+                      constraint=""
+                      hasDetailsColor="false"
+                      omitDetails="false"
+                      stereotype="primitiveType"
+                      use3DEffect="true">
+                  <y:AttributeLabel xml:space="preserve"/>
+                  <y:MethodLabel xml:space="preserve"/>
+               </y:UML>
+            </y:UMLClassNode>
+         </data>
+      </node>
       <node id="ivoa:IntegerQuantity">
          <data key="k1">IntegerQuantity</data>
          <data xmlns:y="http://www.yworks.com/xml/graphml" key="k2">
@@ -337,7 +375,7 @@
       <!--imported nodes-->
       <!--edges-->
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d709e13"
+            id="d476e13"
             source="ivoa:Unit"
             target="ivoa:string">
          <data key="k3">
@@ -349,7 +387,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d709e19"
+            id="d476e19"
             source="ivoa:anyURI"
             target="ivoa:string">
          <data key="k3">
@@ -361,7 +399,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d709e58"
+            id="d476e62"
             source="ivoa:intIdentifier"
             target="ivoa:integer">
          <data key="k3">
@@ -373,7 +411,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d709e64"
+            id="d476e68"
             source="ivoa:stringIdentifier"
             target="ivoa:string">
          <data key="k3">
@@ -385,7 +423,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d709e70"
+            id="d476e74"
             source="ivoa:ivoid"
             target="ivoa:anyURI">
          <data key="k3">
@@ -397,7 +435,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d709e76"
+            id="d476e85"
             source="ivoa:IntegerQuantity"
             target="ivoa:Quantity">
          <data key="k3">
@@ -409,7 +447,7 @@
          </data>
       </edge>
       <edge xmlns:y="http://www.yworks.com/xml/graphml"
-            id="d709e105"
+            id="d476e113"
             source="ivoa:RealQuantity"
             target="ivoa:Quantity">
          <data key="k3">

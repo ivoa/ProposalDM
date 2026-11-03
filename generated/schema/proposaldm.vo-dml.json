@@ -2,7 +2,7 @@
   "$schema" : "https://json-schema.org/draft/2020-12/schema",
   "$id" : "https://ivoa.net/dm/proposaldm.vo-dml.json",
   "title" : "Proposal",
-  "description" : "",
+  "description" : "A model to represent an application for observing time. The model is intended to express all of the concepts required to specify the scientific parameters of the application in sufficient detail to allow the proposal to be reviewed and allocated time. It does not cover all the technical detail of instrument setup that would be needed to actually schedule the observations, although the intention is that information about targets etc. could be automatically transferred to an observing system.",
   "type" : "object",
   "properties" : {
     "ProposalModel" : {
@@ -12,41 +12,37 @@
           "type" : "object",
           "properties" : {
             "$comment" : "placeholder to make commas easier!",
-            "proposal:AbstractProposal" : {
+            "organization" : {
               "type" : "array",
               "items" : {
-                "oneOf" : [ {
-                  "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/AbstractProposal"
-                }, {
-                  "type" : "number"
-                } ]
-              }
-            },
-            "proposal:Organization" : {
-              "type" : "array",
-              "items" : {
-                "oneOf" : [ {
+                "anyOf" : [ {
                   "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Organization"
                 }, {
+                  "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/Observatory"
+                }, {
                   "type" : "number"
                 } ]
               }
             },
-            "proposal:Person" : {
+            "person" : {
               "type" : "array",
               "items" : {
-                "oneOf" : [ {
+                "anyOf" : [ {
                   "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Person"
                 }, {
                   "type" : "number"
                 } ]
               }
             },
-            "coords:CoordSys" : {
+            "abstractProposal" : {
               "type" : "array",
               "items" : {
-                "oneOf" : [ {
-                  "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/CoordSys"
+                "anyOf" : [ {
+                  "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/AbstractProposal"
+                }, {
+                  "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
+                }, {
+                  "$ref" : "https://ivoa.net/dm/proposalManagement.vo-dml.json#/$defs/SubmittedProposal"
                 }, {
                   "type" : "number"
                 } ]
@@ -55,14 +51,11 @@
           },
           "additionalProperties" : false
         },
-        "content" : {
+        "abstractProposal" : {
           "type" : "array",
           "items" : {
-            "anyOf" : [ {
-              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingProposal"
-            } ]
-          },
-          "additionalProperties" : false
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/AbstractProposal"
+          }
         }
       },
       "additionalProperties" : false
@@ -70,25 +63,97 @@
   },
   "$defs" : {
     "$comment" : "placeholder to make commas easier!",
-    "AbstractProposal" : {
-      "type" : "object",
+    "WikiDataId" : {
+      "type" : "string",
+      "built-in" : "true"
+    },
+    "ProposalKind" : {
       "description" : "",
+      "enum" : [ "Standard", "ToO", "Survey" ]
+    },
+    "InvestigatorKind" : {
+      "description" : "",
+      "enum" : [ "PI", "COI" ]
+    },
+    "TextFormats" : {
+      "description" : "acceptable text formats for document submission",
+      "enum" : [ "latex", "rst", "asciidoc" ]
+    },
+    "CalibrationTarget_intendedUse" : {
+      "description" : "",
+      "enum" : [ "Amplitude", "Atmospheric", "Bandpass", "Phase", "Pointing", "Focus", "Polarization", "Delay" ]
+    },
+    "CelestialPosition" : {
+      "type" : "object",
+      "description" : "a point on the celestial sphere",
       "properties" : {
         "$comment" : "placeholder to make commas easier!",
+        "sourceCoordinates" : {
+          "$ref" : "https://ivoa.net/dm/ADQLGeomDM-v1.vo-dml.json#/$defs/Point",
+          "description" : "The actual position"
+        },
+        "referenceFrame" : {
+          "type" : "string",
+          "built-in" : "true",
+          "description" : "the reference frame"
+        },
+        "equinox" : {
+          "type" : "number",
+          "built-in" : "true",
+          "description" : "the equinox when needed - not for modern reference frames"
+        }
+      },
+      "required" : [ "sourceCoordinates", "referenceFrame" ],
+      "additionalProperties" : false
+    },
+    "SpectralWindowSetup" : {
+      "type" : "object",
+      "description" : "Science oriented definition of a spectral window.",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier!",
+        "start" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : "The start of the spectral window"
+        },
+        "end" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : "The end of the spectral window"
+        },
+        "spectralResolution" : {
+          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
+          "description" : "channel width"
+        },
+        "isSkyFrequency" : {
+          "type" : "boolean",
+          "built-in" : "true",
+          "description" : "represents an observed frequency"
+        },
+        "polarization" : {
+          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/coords.Polarization",
+          "description" : "desired polarization"
+        }
+      },
+      "required" : [ "start", "end", "isSkyFrequency", "polarization" ],
+      "additionalProperties" : false
+    },
+    "AbstractProposal" : {
+      "type" : "object",
+      "description" : "base proposal",
+      "properties" : {
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "title" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "the proposal title"
         },
         "summary" : {
           "type" : "string",
-          "description" : ""
-        },
-        "kind" : {
-          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ProposalKind",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "a short summary/abstract of the proposal"
         },
         "scientificJustification" : {
           "type" : "object",
@@ -103,6 +168,10 @@
           "items" : {
             "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Investigator"
           }
+        },
+        "kind" : {
+          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ProposalKind",
+          "description" : "the type of proposal"
         },
         "relatedProposals" : {
           "type" : "array",
@@ -132,11 +201,7 @@
             "anyOf" : [ {
               "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TargetField"
             }, {
-              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Point"
-            }, {
-              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Polygon"
-            }, {
-              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Ellipse"
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/SinglePointing"
             } ]
           }
         },
@@ -157,25 +222,20 @@
           }
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
-      "required" : [ "title", "summary", "scientificJustification", "technicalJustification", "investigators", "kind", "technicalGoals", "observations" ]
+      "required" : [ "@type", "title", "summary", "scientificJustification", "technicalJustification", "investigators", "kind", "technicalGoals", "observations" ]
     },
     "ObservingProposal" : {
       "allOf" : [ {
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/AbstractProposal"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "a complete proposal",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
-          "_id" : {
-            "type" : "number"
-          }
+          "$comment" : "placeholder to make commas easier"
         },
         "required" : [ ]
       } ],
@@ -183,11 +243,12 @@
     },
     "RelatedProposal" : {
       "type" : "object",
-      "description" : "",
+      "description" : "a related proposal",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "proposal" : {
           "oneOf" : [ {
@@ -195,10 +256,11 @@
           }, {
             "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/AbstractProposal"
           } ],
-          "description" : ""
+          "description" : "the related proposal"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "proposal" ],
@@ -206,23 +268,22 @@
     },
     "Person" : {
       "type" : "object",
-      "description" : "",
+      "description" : "person connected with the proposal",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "fullName" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "The given names for the person"
         },
         "eMail" : {
           "type" : "string",
-          "description" : ""
-        },
-        "orcidId" : {
-          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/stringIdentifier",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "an email that can be used to communicate with the person"
         },
         "homeInstitute" : {
           "oneOf" : [ {
@@ -232,8 +293,14 @@
           } ],
           "description" : ""
         },
+        "orcidId" : {
+          "type" : "string",
+          "built-in" : "true",
+          "description" : "orcid id see https://orcid.org"
+        },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "fullName", "eMail", "homeInstitute" ],
@@ -243,17 +310,10 @@
       "type" : "object",
       "description" : "",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
-        },
-        "type" : {
-          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/InvestigatorKind",
-          "description" : ""
-        },
-        "forPhD" : {
-          "type" : "boolean",
-          "description" : ""
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "person" : {
           "oneOf" : [ {
@@ -261,10 +321,20 @@
           }, {
             "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Person"
           } ],
-          "description" : ""
+          "description" : "the investigator"
+        },
+        "type" : {
+          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/InvestigatorKind",
+          "description" : "the investigator type"
+        },
+        "forPhD" : {
+          "type" : "boolean",
+          "built-in" : "true",
+          "description" : "is the investigator making proposal for their PhD"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "person", "type" ],
@@ -272,52 +342,61 @@
     },
     "Organization" : {
       "type" : "object",
-      "description" : "",
+      "description" : "An institution that is a collection of people",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "name" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "The name of the organization"
         },
         "address" : {
           "type" : "string",
+          "built-in" : "true",
           "description" : ""
         },
         "ivoid" : {
-          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/ivoid",
-          "description" : ""
+          "type" : "string",
+          "format" : "uri",
+          "description" : "the registry identifier for the organization"
         },
         "wikiId" : {
-          "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/WikiDataId",
-          "description" : ""
+          "type" : "string",
+          "built-in" : "true",
+          "description" : "the wikidata id for the Organization"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
-      "required" : [ "name", "address" ]
+      "required" : [ "@type", "name", "address" ]
     },
     "Justification" : {
       "type" : "object",
-      "description" : "",
+      "description" : "The justification for the proposal. Note that the justification is for reading by humans and is not parsed to extract things like source lists - that sort of information must be entered in the correct place in the model.",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "text" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "the full text of the justification"
         },
         "format" : {
           "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TextFormats",
-          "description" : ""
+          "description" : "the format of the text"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "text", "format" ],
@@ -325,22 +404,26 @@
     },
     "SupportingDocument" : {
       "type" : "object",
-      "description" : "",
+      "description" : "a document",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "title" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "document title"
         },
         "location" : {
+          "type" : "string",
           "format" : "uri",
-          "description" : ""
+          "description" : "location of document"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "title", "location" ],
@@ -348,40 +431,50 @@
     },
     "Target" : {
       "type" : "object",
-      "description" : "",
+      "description" : "A target source",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "sourceName" : {
           "type" : "string",
-          "description" : ""
+          "built-in" : "true",
+          "description" : "A common name for the source"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
-      "required" : [ "sourceName" ]
+      "required" : [ "@type", "sourceName" ]
     },
     "CelestialTarget" : {
       "allOf" : [ {
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Target"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "The basic target setup for a celestial Target.",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
+          "$comment" : "placeholder to make commas easier",
+          "coord" : {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/CelestialPosition",
+            "description" : "the coordinates"
           },
-          "sourceCoordinates" : {
-            "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/EquatorialPoint",
-            "description" : ""
+          "coordUnit" : {
+            "type" : "object",
+            "properties" : {
+              "value" : {
+                "type" : "string"
+              }
+            },
+            "description" : "the unit for the coordinates"
           },
           "positionEpoch" : {
-            "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/Epoch",
-            "description" : ""
+            "type" : "number",
+            "built-in" : "true",
+            "description" : "the epoch at which the position was measured"
           },
           "pmRA" : {
             "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
@@ -398,12 +491,9 @@
           "sourceVelocity" : {
             "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
             "description" : ""
-          },
-          "_id" : {
-            "type" : "number"
           }
         },
-        "required" : [ "sourceCoordinates", "positionEpoch" ]
+        "required" : [ "coord", "coordUnit", "positionEpoch" ]
       } ],
       "unevaluatedProperties" : false
     },
@@ -414,13 +504,7 @@
         "type" : "object",
         "description" : "",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
-          "_id" : {
-            "type" : "number"
-          }
+          "$comment" : "placeholder to make commas easier"
         },
         "required" : [ ]
       } ],
@@ -428,156 +512,88 @@
     },
     "Field" : {
       "type" : "object",
-      "description" : "",
+      "description" : "Definition of an observing field pointing",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "name" : {
           "type" : "string",
+          "built-in" : "true",
           "description" : ""
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
-      "required" : [ "name" ]
+      "required" : [ "@type", "name" ]
     },
     "TargetField" : {
       "allOf" : [ {
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Field"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "the field points to the associated target",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
-          "_id" : {
-            "type" : "number"
-          }
+          "$comment" : "placeholder to make commas easier"
         },
         "required" : [ ]
       } ],
       "unevaluatedProperties" : false
     },
-    "Point" : {
+    "SinglePointing" : {
       "allOf" : [ {
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Field"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "Single point on the sky",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
+          "$comment" : "placeholder to make commas easier",
           "centre" : {
-            "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/Point",
-            "description" : ""
-          },
-          "_id" : {
-            "type" : "number"
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/CelestialPosition",
+            "description" : "Where to point"
           }
         },
         "required" : [ "centre" ]
       } ],
       "unevaluatedProperties" : false
     },
-    "Polygon" : {
-      "allOf" : [ {
-        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Field"
-      }, {
-        "type" : "object",
-        "description" : "",
-        "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
-          "points" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/EquatorialPoint"
-            },
-            "description" : ""
-          },
-          "_id" : {
-            "type" : "number"
-          }
-        },
-        "required" : [ ]
-      } ],
-      "unevaluatedProperties" : false
-    },
-    "Ellipse" : {
-      "allOf" : [ {
-        "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Field"
-      }, {
-        "type" : "object",
-        "description" : "",
-        "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
-          "semiMajor" : {
-            "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
-            "description" : ""
-          },
-          "semiMinor" : {
-            "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
-            "description" : ""
-          },
-          "pAMajor" : {
-            "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
-            "description" : ""
-          },
-          "_id" : {
-            "type" : "number"
-          }
-        },
-        "required" : [ "semiMajor", "semiMinor", "pAMajor" ]
-      } ],
-      "unevaluatedProperties" : false
-    },
     "ObservingConstraint" : {
       "type" : "object",
-      "description" : "",
+      "description" : "a form of constraint on the observation",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
-      "required" : [ ]
+      "required" : [ "@type" ]
     },
     "TimingConstraint" : {
       "allOf" : [ {
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingConstraint"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "Any specific timing requirements for the observing",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
+          "$comment" : "placeholder to make commas easier",
           "note" : {
             "type" : "string",
+            "built-in" : "true",
             "description" : ""
           },
           "isAvoidConstraint" : {
             "type" : "boolean",
+            "built-in" : "true",
             "description" : ""
-          },
-          "_id" : {
-            "type" : "number"
           }
         },
         "required" : [ ]
@@ -588,22 +604,18 @@
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TimingConstraint"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "particular time range",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
+          "$comment" : "placeholder to make commas easier",
           "startTime" : {
+            "type" : "string",
             "format" : "date-time",
             "description" : ""
           },
           "endTime" : {
+            "type" : "string",
             "format" : "date-time",
             "description" : ""
-          },
-          "_id" : {
-            "type" : "number"
           }
         },
         "required" : [ ]
@@ -615,15 +627,9 @@
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TimingConstraint"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "A constraint that requires that two observations occur simultaneously",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
-          "_id" : {
-            "type" : "number"
-          }
+          "$comment" : "placeholder to make commas easier"
         },
         "required" : [ ]
       } ],
@@ -634,15 +640,9 @@
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/ObservingConstraint"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "A constraint that limits the telescope pointing",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
-          "_id" : {
-            "type" : "number"
-          }
+          "$comment" : "placeholder to make commas easier"
         },
         "required" : [ ]
       } ],
@@ -650,11 +650,12 @@
     },
     "ScienceSpectralWindow" : {
       "type" : "object",
-      "description" : "",
+      "description" : "A spectral window for science use.",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "spectralWindowSetup" : {
           "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/SpectralWindowSetup",
@@ -667,7 +668,8 @@
           }
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ ],
@@ -675,11 +677,12 @@
     },
     "ExpectedSpectralLine" : {
       "type" : "object",
-      "description" : "",
+      "description" : "Brief description of a spectral line.",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "restFrequency" : {
           "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
@@ -687,18 +690,22 @@
         },
         "transition" : {
           "type" : "string",
+          "built-in" : "true",
           "description" : ""
         },
         "splatalogId" : {
-          "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/stringIdentifier",
+          "type" : "string",
+          "built-in" : "true",
           "description" : ""
         },
         "description" : {
           "type" : "string",
+          "built-in" : "true",
           "description" : ""
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "restFrequency", "splatalogId", "description" ],
@@ -706,11 +713,12 @@
     },
     "PerformanceParameters" : {
       "type" : "object",
-      "description" : "",
+      "description" : "The parameters required for observation to be useful for the science goal",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "desiredAngularResolution" : {
           "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
@@ -730,10 +738,11 @@
         },
         "representativeSpectralPoint" : {
           "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
-          "description" : ""
+          "description" : "the the point in the EM where these parameters should be evaluated"
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "representativeSpectralPoint" ],
@@ -741,11 +750,39 @@
     },
     "Observation" : {
       "type" : "object",
-      "description" : "",
+      "description" : "An observation - a pointing of the telescope at a part of the sky, occurs in a single non-overlapping time period",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
+        },
+        "target" : {
+          "type" : "array",
+          "items" : {
+            "oneOf" : [ {
+              "type" : "number"
+            }, {
+              "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Target"
+            } ]
+          },
+          "description" : "The actual target of the observation"
+        },
+        "field" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Field"
+          } ],
+          "description" : "The Field for the observation"
+        },
+        "technicalGoal" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TechnicalGoal"
+          } ],
+          "description" : "The technical goals of the observation"
         },
         "constraints" : {
           "type" : "array",
@@ -761,49 +798,21 @@
             } ]
           }
         },
-        "target" : {
-          "type" : "array",
-          "items" : {
-            "type" : "number"
-          },
-          "description" : ""
-        },
-        "field" : {
-          "oneOf" : [ {
-            "type" : "number"
-          }, {
-            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Field"
-          } ],
-          "description" : ""
-        },
-        "technicalGoal" : {
-          "oneOf" : [ {
-            "type" : "number"
-          }, {
-            "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/TechnicalGoal"
-          } ],
-          "description" : ""
-        },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
-      "required" : [ "field", "technicalGoal" ]
+      "required" : [ "@type", "field", "technicalGoal" ]
     },
     "TargetObservation" : {
       "allOf" : [ {
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Observation"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "an observation of the scientific target",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
-          "_id" : {
-            "type" : "number"
-          }
+          "$comment" : "placeholder to make commas easier"
         },
         "required" : [ ]
       } ],
@@ -814,18 +823,12 @@
         "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/Observation"
       }, {
         "type" : "object",
-        "description" : "",
+        "description" : "An observation that is intended for calibration",
         "properties" : {
-          "$comment" : "placeholder to make commas easier!",
-          "@type" : {
-            "type" : "string"
-          },
+          "$comment" : "placeholder to make commas easier",
           "intent" : {
             "$ref" : "https://ivoa.net/dm/proposaldm.vo-dml.json#/$defs/CalibrationTarget_intendedUse",
-            "description" : ""
-          },
-          "_id" : {
-            "type" : "number"
+            "description" : "The use of the calibration observation"
           }
         },
         "required" : [ "intent" ]
@@ -834,11 +837,12 @@
     },
     "TechnicalGoal" : {
       "type" : "object",
-      "description" : "",
+      "description" : "collects together the technical goals of the proposal",
       "properties" : {
-        "$comment" : "placeholder to make commas easier!",
+        "$comment" : "placeholder to make commas easier",
         "@type" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "UType as type discriminator"
         },
         "performance" : {
           "type" : "object",
@@ -851,65 +855,46 @@
           }
         },
         "_id" : {
-          "type" : "number"
+          "type" : "integer",
+          "description" : "surrogate key"
         }
       },
       "required" : [ "performance", "spectrum" ],
       "additionalProperties" : false
     },
-    "SpectralWindowSetup" : {
+    "coords.mjd" : {
+      "type" : "number",
+      "built-in" : "true"
+    },
+    "coords.Polarization" : {
+      "description" : "description of polarization",
+      "enum" : [ "Linear", "Circular" ]
+    },
+    "coords.CartesianPoint" : {
       "type" : "object",
       "description" : "",
       "properties" : {
         "$comment" : "placeholder to make commas easier!",
-        "@type" : {
-          "type" : "string"
-        },
-        "start" : {
+        "x" : {
           "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
-          "description" : ""
+          "description" : "x coord"
         },
-        "end" : {
+        "y" : {
           "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
-          "description" : ""
+          "description" : "y coord"
         },
-        "spectralResolution" : {
+        "z" : {
           "$ref" : "https://ivoa.net/dm/IVOA-v1.0.vo-dml.json#/$defs/RealQuantity",
-          "description" : ""
+          "description" : "z coord"
         },
-        "isSkyFrequency" : {
-          "type" : "boolean",
-          "description" : ""
-        },
-        "polarization" : {
-          "$ref" : "https://ivoa.net/dm/Coords-v1.0.vo-dml.json#/$defs/PolStateEnum",
-          "description" : ""
+        "refpos" : {
+          "type" : "string",
+          "built-in" : "true",
+          "description" : "The reference position for this coordinate system"
         }
       },
-      "required" : [ "start", "end", "isSkyFrequency", "polarization" ],
+      "required" : [ "x", "y", "z", "refpos" ],
       "additionalProperties" : false
-    },
-    "WikiDataId" : {
-      "type" : "object",
-      "properties" : {
-        "value" : "string"
-      }
-    },
-    "ProposalKind" : {
-      "description" : "",
-      "enum" : [ "Standard", "ToO", "Survey" ]
-    },
-    "InvestigatorKind" : {
-      "description" : "",
-      "enum" : [ "PI", "COI" ]
-    },
-    "TextFormats" : {
-      "description" : "",
-      "enum" : [ "latex", "rst", "asciidoc" ]
-    },
-    "CalibrationTarget_intendedUse" : {
-      "description" : "",
-      "enum" : [ "Amplitude", "Atmospheric", "Bandpass", "Phase", "Pointing", "Focus", "Polarization", "Delay" ]
     }
   }
 }

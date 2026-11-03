@@ -69,7 +69,7 @@ digraph GVmap {
     ] ;
   "proposalManagement:Telescope" [
     URL="../proposalManagement/Telescope"
-    label = "{Telescope|+name : ivoa:string\l+wikiId : proposal:WikiDataId\l+location : coords:RealCartesianPoint\l}"
+    label = "{Telescope|+name : ivoa:string\l+wikiId : proposal:WikiDataId\l+location : proposal:coords.CartesianPoint\l}"
     fillcolor="/set312/1"
     ] ;
   "proposalManagement:TelescopeArrayMember" [
